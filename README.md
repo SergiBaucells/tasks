@@ -37,4 +37,10 @@ Route::get('/start','ExampleController@start');
 * php artisan dump-server (Per que surtin els xivatos per consola)
 * php artisan serve (Per obrir servidor Laravel)
 * laravel new nomApp (Per crear una App Laravel)
-* 
+* $this->withoutExceptionHandling(); (Mostra errors en el test al PHPStorm)
+* php artisan make:model nomModel (Per crear un model)
+* php artisan make:model -a nomModel (Per crear un model, factoria, migració i controlador)
+* use RefreshDatabase; (Sempre avans de fer un test que use bases de dades)
+
+
+# Tasques per fer

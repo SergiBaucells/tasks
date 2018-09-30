@@ -13,8 +13,16 @@
 @foreach ($tasks as $task)
     <ul>
         <li>{{ $task->name }}
-            <button>Completar</button>
-            <button>Modificar</button>
+            <form action="/tasks/{{$task->id}}" method="POST">
+                @csrf
+                {{method_field('PUT')}}
+                <button>Completar</button>
+            </form>
+            <form action="/tasks/{{$task->id}}/edit" method="POST">
+                @csrf
+                {{method_field('GET')}}
+                <button>Modificar</button>
+            </form>
             <form action="/tasks/{{$task->id}}" method="POST">
                 @csrf
                 {{method_field('DELETE')}}

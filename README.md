@@ -54,3 +54,4 @@ Route::get('/start','ExampleController@start');
 ~~~
 
 # Tasques per fer
+* Modificar i completar tasques

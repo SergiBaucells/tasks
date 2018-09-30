@@ -10,11 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/tasks','TasksController@index');
-Route::post('/tasks','TasksController@store');
-Route::delete('/tasks/{id}','TasksController@destroy');
-
+Route::resource('tasks', 'TasksController');
+//Route::get('/tasks','TasksController@index');
+//Route::post('/tasks','TasksController@store');
+//Route::delete('/tasks/{id}','TasksController@destroy');
+//Route::get('/tasks/{id}/edit','TasksController@edit');
+//Route::put('/tasks/{id}','TasksController@update');
 
 Route::get('/about', function () {
     return view('about');

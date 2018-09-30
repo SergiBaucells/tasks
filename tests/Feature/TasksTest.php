@@ -10,6 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class TasksTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * @test
      */
@@ -46,16 +47,16 @@ class TasksTest extends TestCase
     /**
      * @test
      */
-    public function can_store_tack()
+    public function can_store_task()
     {
         $this->withoutExceptionHandling();
-        $response = $this->post('/tasks',[
-            'name'=>'Comprar patates'
+        $response = $this->post('/tasks', [
+            'name' => 'Comprar patates'
         ]);
 //        $response->assertSuccessful();
         $response->assertStatus(302);
-        $this->assertDatabaseHas('tasks',[
-            'name'=>'Comprar patates'
+        $this->assertDatabaseHas('tasks', [
+            'name' => 'Comprar patates'
         ]);
     }
 
@@ -76,14 +77,15 @@ class TasksTest extends TestCase
         $this->withoutExceptionHandling();
         // Preparar
         $task = Task::create([
-            'name'=>'Comprar pa'
+            'name' => 'Comprar pa'
         ]);
         // Executar
         $response = $this->delete('/tasks/' . $task->id);
         //Comprovar
         $response->assertStatus(302);
-        $this->assertDatabaseMissing('tasks',[
-            'name'=>'Comprar pa'
+        $this->assertDatabaseMissing('tasks', [
+            'name' => 'Comprar pa'
         ]);
     }
+
 }

@@ -41,6 +41,16 @@ Route::get('/start','ExampleController@start');
 * php artisan make:model nomModel (Per crear un model)
 * php artisan make:model -a nomModel (Per crear un model, factoria, migració i controlador)
 * use RefreshDatabase; (Sempre avans de fer un test que use bases de dades)
-
+* php artisan tinker (Provar App)
+###### Crear un formulari bàsic
+~~~
+<form action="/tasks" method="POST">
+    {{--Label--}}
+    @csrf
+    <input name="name" type="text" placeholder="Nova tasca">
+    <input hidden name="token" value="MY_TOKEN" type="text">
+    <button>Afegir</button>
+</form>
+~~~
 
 # Tasques per fer

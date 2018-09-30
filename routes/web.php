@@ -12,6 +12,8 @@
 */
 
 Route::get('/tasks','TasksController@index');
+Route::post('/tasks','TasksController@store');
+Route::delete('/tasks/{id}','TasksController@destroy');
 
 
 Route::get('/about', function () {

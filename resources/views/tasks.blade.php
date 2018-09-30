@@ -8,6 +8,28 @@
     <title>Document</title>
 </head>
 <body>
+
 <h1>Tasques</h1>
+@foreach ($tasks as $task)
+    <ul>
+        <li>{{ $task->name }}
+            <button>Completar</button>
+            <button>Modificar</button>
+            <form action="/tasks/{{$task->id}}" method="POST">
+                @csrf
+                {{method_field('DELETE')}}
+                <button>Eliminar</button>
+            </form>
+        </li>
+    </ul>
+@endforeach
+<form action="/tasks" method="POST">
+    {{--Label--}}
+    @csrf
+    <input name="name" type="text" placeholder="Nova tasca">
+    <input hidden name="token" value="MY_TOKEN" type="text">
+    <button>Afegir</button>
+</form>
+
 </body>
 </html>

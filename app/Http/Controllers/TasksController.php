@@ -48,13 +48,5 @@ class TasksController extends Controller
         return redirect('tasks');
     }
 
-    public function completed(Request $request, $id)
-    {
-        $task = Task::findOrFail($id);
-        $task->completed = $request->get('completed');
-        $task->completed = $request->set('true');
-        return redirect('tasks');
-    }
-
 
 }

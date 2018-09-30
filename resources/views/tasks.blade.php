@@ -10,14 +10,18 @@
 <body>
 
 <h1>Tasques</h1>
+<form action="/tasks" method="POST">
+    {{--Label--}}
+    @csrf
+    <input name="name" type="text" placeholder="Nova tasca">
+    <input hidden name="token" value="MY_TOKEN" type="text">
+    <button>Afegir</button>
+</form>
+
 @foreach ($tasks as $task)
     <ul>
         <li>{{ $task->name }}
-            <form action="/tasks/{{$task->id}}" method="POST">
-                @csrf
-                {{method_field('PUT')}}
-                <button>Completar</button>
-            </form>
+            <button>Completar</button>
             <form action="/tasks/{{$task->id}}/edit" method="POST">
                 @csrf
                 {{method_field('GET')}}
@@ -31,13 +35,6 @@
         </li>
     </ul>
 @endforeach
-<form action="/tasks" method="POST">
-    {{--Label--}}
-    @csrf
-    <input name="name" type="text" placeholder="Nova tasca">
-    <input hidden name="token" value="MY_TOKEN" type="text">
-    <button>Afegir</button>
-</form>
 
 </body>
 </html>

@@ -10,14 +10,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('tasks', 'TasksController');
-//Route::get('/tasks','TasksController@index');
-//Route::post('/tasks','TasksController@store');
-//Route::delete('/tasks/{id}','TasksController@destroy');
-//Route::get('/tasks/{id}/edit','TasksController@edit');
-//Route::put('/tasks/{id}','TasksController@update');
 
-Route::get('/about', function () {
+// TDD -> TEST DRIVEN DEVELOPMENT
+
+Route::get('/tasks','TasksController@index');
+Route::post('/tasks','TasksController@store');
+Route::delete('/tasks/{id}','TasksController@destroy');
+Route::put('/tasks/{id}','TasksController@update');
+
+// Complete
+Route::post('/completed_task','CompletedTaskController@store');
+// Uncompleted
+Route::delete('/completed_task','CompletedTaskController@destroy');
+
+Route::get('/task_edit/{id}','TasksController@edit');
+
+
+Route::get('/about',function () {
     return view('about');
 });
 
@@ -27,9 +36,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/prova','ProvaController@show');
-Route::get('/prova', function () {
-    dd('Hola');
+Route::get('/prova',function() {
+    $prova = 'asdasdasd';
+    dd($prova);
 });
 
-Route::redirect('/hola', '/prova');
+Route::redirect('/hola','/prova');

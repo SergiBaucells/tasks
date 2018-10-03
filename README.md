@@ -52,6 +52,57 @@ Route::get('/start','ExampleController@start');
     <button>Afegir</button>
 </form>
 ~~~
+* phpunit (Executa testos per línia de comandes)
+* Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relational Model
 
-# Tasques per fer
-* Modificar i completar tasques
+# Javascript
+* console.log('Hello World') (Igual que el echo del PHP)
+* npm | yarn (Es el composer del Javascript)
+* npm -g install (Es igual que el composer install)
+* node.js (Interpret de Javascript)
+* http-server . (Per obrir el servidor)
+###### Formes d'executar Javascript
+~~~
+<button onclick="alert('Hello wolrd!')">Saluda</button>
+~~~
+~~~
+<button onclick="alert(suma(1,2))">Suma 1+2</button>
+<script>
+    console.log('Hello World')
+    function suma(x,y) {
+        return x+y
+    }
+</script>
+~~~
+~~~
+<button onclick="saluda()">Saluda</button>
+~~~
+~~~
+<script src="functions.js"></script>
+~~~
+* Les variables no van amb $
+* MVC -> Model??? -> NO tenim base de dades!!
+    * Model = Variables/Objectes Javascript
+* document (guarda tota la pagina HTML)
+###### Crear llista amb foreach
+~~~
+var app = document.getElementById('app')
+    var ul = document.createElement('ul');
+    tasks.forEach(function(task) {
+        var li = document.createElement('li');
+        var text = li.appendChild(document.createTextNode(task))
+        li.appendChild(text)
+        ul.appendChild(li)
+    })
+    app.appendChild(ul);
+~~~
+* tasks.splice(0, 0, "Comprar jocs"); (Agefir en un array, 0 posició, 0 no vull borrar res, nomTasca)
+
+
+# Tasques per fer tasks
+* Completar tasques, taxar tasques completades
+* Instal·lar Vuetify (igual que al php-learning)
+
+# Tasques per fer tasks_javascript
+* Enter per a crear tasca
+* Alternativa al divtasks.appendChild(ul);

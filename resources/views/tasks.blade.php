@@ -8,33 +8,28 @@
     <title>Document</title>
 </head>
 <body>
-
 <h1>Tasques</h1>
-<form action="/tasks" method="POST">
-    {{--Label--}}
-    @csrf
-    <input name="name" type="text" placeholder="Nova tasca">
-    <input hidden name="token" value="MY_TOKEN" type="text">
-    <button>Afegir</button>
-</form>
-
-@foreach ($tasks as $task)
-    <ul>
-        <li>{{ $task->name }}
-            <button>Completar</button>
-            <form action="/tasks/{{$task->id}}/edit" method="POST">
-                @csrf
-                {{method_field('GET')}}
+{{--LARAVEL BLADE--}}
+<ul>
+    @foreach ($tasks as $task)
+        <li>{{ $task->name }} <button>Completar</button>
+            <a href="/task_edit/{{ $task->id }}">
                 <button>Modificar</button>
-            </form>
-            <form action="/tasks/{{$task->id}}" method="POST">
+            </a>
+
+            <form action="/tasks/{{ $task->id }}" method="POST">
                 @csrf
-                {{method_field('DELETE')}}
+                {{ method_field('DELETE') }}
                 <button>Eliminar</button>
             </form>
         </li>
-    </ul>
-@endforeach
-
+    @endforeach
+</ul>
+<form action="/tasks" method="POST">
+    {{--label--}}
+    @csrf
+    <input name="name" type="text" placeholder="Nova tasca">
+    <button>Afegir</button>
+</form>
 </body>
 </html>

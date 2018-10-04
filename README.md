@@ -97,12 +97,3 @@ var app = document.getElementById('app')
     app.appendChild(ul);
 ~~~
 * tasks.splice(0, 0, "Comprar jocs"); (Agefir en un array, 0 posició, 0 no vull borrar res, nomTasca)
-
-
-# Tasques per fer tasks
-* Completar tasques, taxar tasques completades
-* Instal·lar Vuetify (igual que al php-learning)
-
-# Tasques per fer tasks_javascript
-* Enter per a crear tasca
-* Alternativa al divtasks.appendChild(ul);

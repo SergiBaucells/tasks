@@ -44,7 +44,6 @@
     function addTask() {
         // Afegir la tasca al vector tasks
         // Manipulació d'arrays
-        tasks = []
         var task = document.getElementById('newTask')
         console.log(task.value);
         tasks.splice(0, 0, task.value)
@@ -54,6 +53,7 @@
 
     function draw_list() {
         var divtasks = document.getElementById('tasks')
+        divtasks.innerHTML = ''
         var ul = document.createElement('ul')
         ul.setAttribute('class', 'list-reset')
         tasks.forEach(function (task) {

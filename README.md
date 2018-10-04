@@ -97,3 +97,5 @@ var app = document.getElementById('app')
     app.appendChild(ul);
 ~~~
 * tasks.splice(0, 0, "Comprar jocs"); (Agefir en un array, 0 posició, 0 no vull borrar res, nomTasca)
+* divtasks.innerHTML = '' (Agafa un element i posa el contingut que l'hi pases, en aquet cas, agafa l'element <div id="tasks"></div> i el deixa sense res)
+* 

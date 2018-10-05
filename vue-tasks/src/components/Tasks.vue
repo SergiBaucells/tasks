@@ -15,7 +15,14 @@
                 <!--<li v-for="task in tasks" v-if="task.completed"><strike>{{task.name}}</strike></li>-->
                 <!--<li v-else>{{task.name}}</li>-->
                 <li v-for="task in filteredTasks" :key="task.id" class="text-grey-darker m-2 pl-5">
-                    <span :class="{strike:task.completed}">{{task.name}}</span>
+                    <span :class="{strike:task.completed}">
+                        <editable-text>
+                            {{task.name}}
+                        </editable-text>
+                    </span>
+                    <svg class="h-4 w-4 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
+                    </svg>
                     &nbsp;
                     <span @click="remove(task)" class="cursor-pointer">&#215;</span>
                 </li>
@@ -39,6 +46,8 @@
 
 <script>
 
+    import EditableText from './EditableText.vue'
+
     var filters = {
         all: function (tasks) {
             return tasks
@@ -56,6 +65,9 @@
     }
 
     export default {
+        components: {
+            'editable-text': EditableText
+        },
         data() {
             return {
                 filter: 'all',
@@ -68,7 +80,7 @@
             }
         },
         computed: {
-            total(){
+            total() {
                 return this.tasks.length
             },
             filteredTasks() {

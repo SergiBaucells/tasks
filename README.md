@@ -55,7 +55,7 @@ Route::get('/start','ExampleController@start');
 * phpunit (Executa testos per línia de comandes)
 * Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relational Model
 
-# Javascript
+# Javascript i  VUE
 * console.log('Hello World') (Igual que el echo del PHP)
 * npm | yarn (Es el composer del Javascript)
 * npm -g install (Es igual que el composer install)
@@ -98,4 +98,5 @@ var app = document.getElementById('app')
 ~~~
 * tasks.splice(0, 0, "Comprar jocs"); (Agefir en un array, 0 posició, 0 no vull borrar res, nomTasca)
 * divtasks.innerHTML = '' (Agafa un element i posa el contingut que l'hi pases, en aquet cas, agafa l'element <div id="tasks"></div> i el deixa sense res)
+* {} (Dintre dels corxetes per crear un objecte en VUE)
 * 

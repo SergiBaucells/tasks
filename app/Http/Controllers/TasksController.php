@@ -47,7 +47,7 @@ class TasksController extends Controller
         $task = Task::findOrFail($request->id);
 
         $task->name = $request->name;
-        $task->completed = true;
+        $task->completed = false;
         $task->save();
         return redirect('/tasks');
     }
@@ -58,17 +58,20 @@ class TasksController extends Controller
         return view('task_edit',[ 'task' => $task]);
 //        return view('task_edit',compact('task'));
     }
-}
 
-//class CopletedTaskController{
-//    //Completed
-//    public function store()
-//    {
-//
-//    }
-//    //Uncompleted
-//    public function delete()
-//    {
-//
-//    }
-//}
+    public function completar(Request $request)
+    {
+        $task = Task::findOrFail($request->id);
+        $task->completed = true;
+        $task->save();
+        return redirect('/tasks');
+    }
+
+    public function descompletar(Request $request)
+    {
+        $task = Task::findOrFail($request->id);
+        $task->completed = false;
+        $task->save();
+        return redirect('/tasks');
+    }
+}

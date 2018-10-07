@@ -13,15 +13,13 @@
 
 // TDD -> TEST DRIVEN DEVELOPMENT
 
+
 Route::get('/tasks','TasksController@index');
 Route::post('/tasks','TasksController@store');
 Route::delete('/tasks/{id}','TasksController@destroy');
 Route::put('/tasks/{id}','TasksController@update');
+Route::put('/tasks', 'TasksController@completar');
 
-// Complete
-Route::post('/completed_task','CompletedTaskController@store');
-// Uncompleted
-Route::delete('/completed_task','CompletedTaskController@destroy');
 
 Route::get('/task_edit/{id}','TasksController@edit');
 

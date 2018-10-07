@@ -1,13 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-Som la polla en esta empresa!!!
-</body>
-</html>
+@extends('partials.partial')
+
+@section('title')
+    Sobre nosaltres
+@endsection
+@section('content')
+    <h1>SOBRE NOSALTRES</h1>
+    <v-img
+            src="http://1.bp.blogspot.com/-c297IH62xeA/USY4XE1sdPI/AAAAAAAABR4/Y2mU9tQ0j2k/w1200-h630-p-k-no-nu/senyera+catalana.jpg"
+    ></v-img>
+
+    <v-card-title primary-title>
+        <div>
+            <h3 class="headline mb-0">Sergi Baucells</h3>
+            <div align="left">Estudiant de DAM <br> Ies del Ebre <br> 2018-2019</div>
+        </div>
+    </v-card-title>
+
+    <v-card-actions>
+        <v-btn flat color="blue"><a href="https://github.com/SergiBaucells" style='text-decoration:none'>GitHub</a>
+        </v-btn>
+    </v-card-actions>
+@endsection

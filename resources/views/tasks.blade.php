@@ -1,57 +1,74 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1>Tasques</h1>
-{{--LARAVEL BLADE--}}
-<ul>
-    @foreach ($tasks as $task)
-        @if($task->completed)
-            <li>
-                <del>{{ $task->name }}</del>
+@extends('partials.partial')
 
-                <form action="/tasks/{{ $task->id }}" method="POST">
-                    @csrf
-                    {{ method_field('DELETE') }}
-                    <button>Eliminar</button>
-                </form>
+@section('title')
+    Tasques
+@endsection
+@section('content')
+    <v-card>
+        <v-toolbar color="cyan" dark>
 
-            </li>
-        @else
-            <li>{{ $task->name }}
+            <v-toolbar-title>Tasques</v-toolbar-title>
 
-                <form action="" method="POST">
-                    @csrf
-                    {{ method_field('PUT') }}
-                    <input type="hidden" name="id" value="{{ $task->id  }}">
-                    <button type="submit">Completar</button>
-                </form>
+            <v-spacer></v-spacer>
 
-                <a href="/task_edit/{{ $task->id }}">
-                    <button>Modificar</button>
-                </a>
+        </v-toolbar>
 
-                <form action="/tasks/{{ $task->id }}" method="POST">
-                    @csrf
-                    {{ method_field('DELETE') }}
-                    <button>Eliminar</button>
-                </form>
+        <v-list>
 
-            </li>
-        @endif
-    @endforeach
-</ul>
-<form action="/tasks" method="POST">
-    {{--label--}}
-    @csrf
-    <input name="name" type="text" placeholder="Nova tasca">
-    <button>Afegir</button>
-</form>
-</body>
-</html>
+            <?php foreach ($tasks as $task) : ?>
+
+            <v-list-tile>
+
+                <v-list-tile-avatar>
+                    <img src="https://placeimg.com/100/100/any">
+                </v-list-tile-avatar>
+                @if($task->completed)
+                    <del>{{ $task->name }}</del>
+
+                    <form action="/tasks/{{ $task->id }}" method="POST">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <v-btn color="error">
+                            <button>Eliminar</button>
+                        </v-btn>
+                    </form>
+
+                @else
+                    {{ $task->name }}
+
+                    <form action="" method="POST">
+                        @csrf
+                        {{ method_field('PUT') }}
+                        <input type="hidden" name="id" value="{{ $task->id  }}">
+                        <v-btn color="warning">
+                            <button>Completar</button>
+                        </v-btn>
+                    </form>
+
+                    <v-btn color="info" href="/task_edit/{{ $task->id }}">
+                        <button>Modificar</button>
+                    </v-btn>
+
+                    <form action="/tasks/{{ $task->id }}" method="POST">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <v-btn color="error">
+                            <button>Eliminar</button>
+                        </v-btn>
+                    </form>
+                @endif
+            </v-list-tile>
+            <?php endforeach;?>
+
+            <form action="/tasks" method="POST">
+                @csrf
+                <input name="name" type="text" placeholder="Nova tasca" required>
+                <v-btn color="success">
+                    <button>Afegir</button>
+                </v-btn>
+            </form>
+
+        </v-list>
+
+    </v-card>
+@endsection

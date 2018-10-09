@@ -32,9 +32,9 @@
                 <h3 class="mb-3 mt-2">Filtros</h3>
                 Active filter: {{filter}}
                 <div class="mt-4">
-                <button @click="setFilter('all')">Totes</button>
-                <button @click="setFilter('completed')" class="ml-3 mr-3">Completades</button>
-                <button @click="setFilter('active')">Pendents</button>
+                    <button @click="setFilter('all')">Totes</button>
+                    <button @click="setFilter('completed')" class="ml-3 mr-3">Completades</button>
+                    <button @click="setFilter('active')">Pendents</button>
                 </div>
             </div>
         </div>
@@ -62,6 +62,7 @@
     }
 
     export default {
+        name: 'Tasks',
         components: {
             'editable-text': EditableText
         },
@@ -69,26 +70,27 @@
             return {
                 filter: 'all',
                 newTask: '',
-                tasks: [
-                    {id: 1, name: 'Comprar pa', completed: false},
-                    {id: 2, name: 'Comprar llet', completed: false},
-                    {id: 3, name: 'Comprar patates', completed: true}
-                ]
+                dataTasks: this.tasks
+            }
+        },
+        props: {
+            'tasks': {
+                type: Array,
+                default: function () {
+                    return []
+                }
             }
         },
         computed: {
             total() {
-                return this.tasks.length
+                return this.dataTasks.length
             },
             filteredTasks() {
-                return filters[this.filter](this.tasks)
+                return filters[this.filter](this.dataTasks)
             }
         },
         methods: {
             editName(task, text) {
-                // console.log('TASK: ', task.name);
-                // console.log('TEXT: ', text);
-                // console.log("TODO editName");
                 task.name = text
             },
             setFilter(newFilter) {
@@ -96,11 +98,14 @@
             },
             add() {
                 if (this.newTask === "") return
-                this.tasks.splice(0, 0, {name: this.newTask, completed: false})
+                this.dataTasks.splice(0, 0, {name: this.newTask, completed: false})
                 this.newTask = ""
             },
             remove(task) {
-                this.tasks.splice(this.tasks.indexOf(task), 1)
+                this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+            },
+            created() {
+                console.log('Component Tasks ha estat creat')
             }
         }
     }

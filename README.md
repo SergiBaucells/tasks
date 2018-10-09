@@ -99,4 +99,6 @@ var app = document.getElementById('app')
 * tasks.splice(0, 0, "Comprar jocs"); (Agefir en un array, 0 posició, 0 no vull borrar res, nomTasca)
 * divtasks.innerHTML = '' (Agafa un element i posa el contingut que l'hi pases, en aquet cas, agafa l'element <div id="tasks"></div> i el deixa sense res)
 * {} (Dintre dels corxetes per crear un objecte en VUE)
+* data() dintre de export default {} (Hi posarem les variables que volem que s'actualitzin automàticament)
+* API (JSON APIS / REST APIS, NO tornen HTML, tornen objectes Javascript en format JSON)
 * 

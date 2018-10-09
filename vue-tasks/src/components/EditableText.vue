@@ -2,7 +2,8 @@
     <span>
         <span v-if="!editing" @dblclick="editing=true">
             {{currentText}}
-            <svg @click="editing=true" class="h-3 w-3 cursor-pointer ml-3 fill-current text-green" xmlns="http://www.w3.org/2000/svg"
+            <svg @click="editing=true" class="h-3 w-3 cursor-pointer ml-3 fill-current text-green"
+                 xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 20 20">
                 <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
             </svg>
@@ -44,6 +45,9 @@
                 // Informar al pare
                 this.$emit('edited', this.currentText)
             }
+        },
+        created() {
+            console.log('Component EditableText ha estat creat')
         }
     }
 </script>

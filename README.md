@@ -54,6 +54,7 @@ Route::get('/start','ExampleController@start');
 ~~~
 * phpunit (Executa testos per línia de comandes)
 * Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relational Model
+* Fitxer helpers.php (Van funcions on les podrem utilitzar d'es d'on vulguem)
 
 # Javascript i  VUE
 * console.log('Hello World') (Igual que el echo del PHP)

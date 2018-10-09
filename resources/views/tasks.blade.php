@@ -9,8 +9,6 @@
 
             <v-toolbar-title>Tasques</v-toolbar-title>
 
-            <v-spacer></v-spacer>
-
         </v-toolbar>
 
         <v-list>

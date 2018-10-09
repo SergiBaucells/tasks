@@ -15,6 +15,7 @@
                     type="text"
                     label="Nom"
                     value="{{$task->name}}"
+                    required
             ></v-text-field>
             <v-btn color="success">
                 <button>Editar</button>

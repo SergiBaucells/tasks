@@ -1,4 +1,4 @@
-@extends('partials.partial')
+@extends('layouts.app')
 
 @section('title')
     Sobre nosaltres

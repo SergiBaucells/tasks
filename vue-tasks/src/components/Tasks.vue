@@ -16,7 +16,7 @@
                 <!--<li v-for="task in tasks" v-if="task.completed"><strike>{{task.name}}</strike></li>-->
                 <!--<li v-else>{{task.name}}</li>-->
                 <li v-for="task in filteredTasks" :key="task.id" class="text-grey-darker m-2 pl-5">
-                    <span :class="{strike:task.completed}">
+                    <span :class="{strike:task.completed=='1'}">
                         <editable-text :text="task.name" @edited="editName(task, $event)">
                             <!--{{task.name}}-->
                         </editable-text>
@@ -43,7 +43,7 @@
 
 <script>
 
-    import EditableText from './EditableText.vue'
+    import EditableText from './EditableText'
 
     var filters = {
         all: function (tasks) {
@@ -52,13 +52,16 @@
         completed: function (tasks) {
             return tasks.filter(function (task) {
                 return task.completed
+                // NO CAL
+                // if (task.completed) return true
+                // else return false
             })
         },
         active: function (tasks) {
             return tasks.filter(function (task) {
                 return !task.completed
             })
-        }
+        },
     }
 
     export default {
@@ -68,13 +71,13 @@
         },
         data() {
             return {
-                filter: 'all',
+                filter: 'all', // All Completed Active
                 newTask: '',
                 dataTasks: this.tasks
             }
         },
         props: {
-            'tasks': {
+            tasks: {
                 type: Array,
                 default: function () {
                     return []
@@ -86,9 +89,17 @@
                 return this.dataTasks.length
             },
             filteredTasks() {
+                // Segons el filtre actiu
+                // Alternativa switch/case -> array associatiu
                 return filters[this.filter](this.dataTasks)
             }
         },
+        watch: {
+            tasks(newTasks) {
+                this.dataTasks = newTasks
+            }
+        },
+
         methods: {
             editName(task, text) {
                 task.name = text
@@ -97,19 +108,17 @@
                 this.filter = newFilter
             },
             add() {
-                if (this.newTask === "") return
                 this.dataTasks.splice(0, 0, {name: this.newTask, completed: false})
-                this.newTask = ""
+                this.newTask = ''
             },
             remove(task) {
                 this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
-            },
-            created() {
-                console.log('Component Tasks ha estat creat')
             }
+        },
+        created() {
+            // console.log('Component Tasks ha estat creat');
         }
     }
-
 </script>
 
 <style>

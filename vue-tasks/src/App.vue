@@ -10,50 +10,50 @@
 
     export default {
         name: 'app',
-        data() {
+        data () {
             return {
-                tasks: []
+                tasks : [],
+                error: null
             }
         },
         components: {
-            'tasks': Tasks,
+            'tasks' : Tasks,
         },
-        created() {
-            console.log('Component App ha estat creat')
-            // AJAX -> Asynchonous Javascript And XML
-            // XHR -> XML/JSON HTTP Request -> Asíncrones
+        mounted() {
+            axios.get('http://localhost:8050/api/v1/tasks').then((response) => {
+                this.tasks = response.data
+            }).catch((error) => {
+                this.error = error
+            })
+            // AJAX -> Asynchonous JAvascript i  XML
+            // XHR ->  XML/JSON HTTP Request Asíncrones
             // this.tasks =
 
             // JAVASCRIPT NO BLOQUEJA
-            // axios.get('http://localhost:8050/api/v1/tasks')
-            // console.log('Prova');
 
-            axios.get('http://localhost:8050/api/v1/tasks').then((response)=>{
-            // axios.get('https://httpbin.org/get').then(()=>{
-                    console.log('TOT HA ANAT BÉ');
-                    this.tasks = response.data
-                }).catch((error)=>{
-                console.log('CONNECTION ERROR');
-            })
+            // let result = axios.get('http://localhost:8050/api/v1/tasks')
+            //  console.log(result);
+
+            // 3 ASYNC WAIT
+            // async function () {
+            //     let result = await axios.get('http://localhost:8050/api/v1/tasks')
+
 
             // 3 opcions
-            //     1) CALLBACKS -> Funcions anònimes
-            //         fileManager.open('/home/sergi/.bashrc', (file) => {
-            //             console.log(file);
-            //         })
-            //     2) PROMISES then.catch
-            //         axios.get('http://localhost:8050/api/v1/tasks').then(
-            //             'TOT OK'
-            //         ).catch(
-            //             'ERROR'
-            //         )
-            //     3) ASYNC WAIT
-            //         let result = await axios.get('http://localhost:8050/api/v1/tasks') faltaría posar async davant la funció
+            // 1) API per defecte de javascript: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+            // 2) Jquery --> Ajax/XHR
+            // 3) Llibreria específica -> Axios
 
             // 3 opcions
-            //     1) API per defecte de javascript
-            //     2) Jquery
-            //     3) Llibreries específiques -> Axios
+            // 1) CALLBACKS -> Funcions anònimes
+            // let file = fileManager.open('/home/sergi/.bashrc')
+            // console.log(file);
+            // fileManager.open('/home/sergi/.bashrc', (file) => {
+            //     console.log(file);
+            // })
+            // console.log('1');
+
+            // 2 PROMISES then.catch
         }
     }
 </script>

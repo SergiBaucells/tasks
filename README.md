@@ -101,4 +101,7 @@ var app = document.getElementById('app')
 * {} (Dintre dels corxetes per crear un objecte en VUE)
 * data() dintre de export default {} (Hi posarem les variables que volem que s'actualitzin automàticament)
 * API (JSON APIS / REST APIS, NO tornen HTML, tornen objectes Javascript en format JSON)
+* CORS
+    * Failed to load http://localhost:8050/api/v1/tasks: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8080' is therefore not allowed access.
+    * No permet les peticions entre pàgines Web diferents.
 * 

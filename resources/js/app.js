@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -7,6 +6,8 @@
 
 require('./bootstrap');
 
+// ES6/VUE/BABEL -> imports
+// window OCO en browser Objecte global
 window.Vue = require('vue');
 Vue.use(require('vuetify'));
 /**
@@ -19,5 +20,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('tasks', require('./components/Tasks.vue'));
 
 const app = new Vue({
-    el: '#app'
-});
+    el: '#app',
+    data: () => ({
+        drawer: null
+    }),
+    props: {
+        source: String
+    }
+})

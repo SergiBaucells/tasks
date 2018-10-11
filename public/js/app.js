@@ -68774,7 +68774,7 @@ exports = module.exports = __webpack_require__(47)(false);
 
 
 // module
-exports.push([module.i, "\n.strike {\n    text-decoration: line-through;\n}\n\n", ""]);
+exports.push([module.i, "\n.strike {\n    text-decoration: line-through;\n}\n.outline-none:focus {\n    outline:0;\n}\n\n", ""]);
 
 // exports
 
@@ -69130,6 +69130,13 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditableText__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditableText___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__EditableText__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69648,38 +69655,43 @@ var render = function() {
           _c(
             "button",
             {
+              staticClass:
+                "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none",
               on: {
                 click: function($event) {
                   _vm.setFilter("all")
                 }
               }
             },
-            [_vm._v("Totes")]
+            [_vm._v("Totes\n                ")]
           ),
           _vm._v(" "),
           _c(
             "button",
             {
-              staticClass: "ml-3 mr-3",
+              staticClass:
+                "ml-3 mr-3 bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none",
               on: {
                 click: function($event) {
                   _vm.setFilter("completed")
                 }
               }
             },
-            [_vm._v("Completades")]
+            [_vm._v("\n                    Completades\n                ")]
           ),
           _vm._v(" "),
           _c(
             "button",
             {
+              staticClass:
+                "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none",
               on: {
                 click: function($event) {
                   _vm.setFilter("active")
                 }
               }
             },
-            [_vm._v("Pendents")]
+            [_vm._v("Pendents\n                ")]
           )
         ])
       ])

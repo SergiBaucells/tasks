@@ -32,9 +32,16 @@
                 <h3 class="mb-3 mt-2">Filtros</h3>
                 Active filter: {{filter}}
                 <div class="mt-4">
-                    <button @click="setFilter('all')">Totes</button>
-                    <button @click="setFilter('completed')" class="ml-3 mr-3">Completades</button>
-                    <button @click="setFilter('active')">Pendents</button>
+                    <button @click="setFilter('all')"
+                            class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">Totes
+                    </button>
+                    <button @click="setFilter('completed')"
+                            class="ml-3 mr-3 bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
+                        Completades
+                    </button>
+                    <button @click="setFilter('active')"
+                            class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">Pendents
+                    </button>
                 </div>
             </div>
         </div>
@@ -127,6 +134,10 @@
 
     .strike {
         text-decoration: line-through;
+    }
+
+    .outline-none:focus {
+        outline:0;
     }
 
 </style>

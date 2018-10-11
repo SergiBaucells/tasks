@@ -17,7 +17,7 @@ if (!function_exists('create_example_tasks')) {
 
         Task::create([
             'name' => 'Estudiar PHP',
-            'completed' => false
+            'completed' => true
         ]);
     }
 }

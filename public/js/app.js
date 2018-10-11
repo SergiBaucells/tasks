@@ -68774,7 +68774,7 @@ exports = module.exports = __webpack_require__(47)(false);
 
 
 // module
-exports.push([module.i, "\n.strike {\n    text-decoration: line-through;\n}\n.outline-none:focus {\n    outline:0;\n}\n\n", ""]);
+exports.push([module.i, "\n.strike {\n    text-decoration: line-through;\n}\n.outline-none:focus {\n    outline: 0;\n}\n\n", ""]);
 
 // exports
 
@@ -69180,6 +69180,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -69533,7 +69535,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container flex justify-center" }, [
     _c("div", { staticClass: "flex flex-col" }, [
-      _c("h1", { staticClass: "text-center text-red-light pb-3 pt-8" }, [
+      _c("h1", { staticClass: "text-center text-red-light" }, [
         _vm._v("Tasques (" + _vm._s(_vm.total) + ")")
       ]),
       _vm._v(" "),
@@ -69645,13 +69647,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", [
-        _c("h3", { staticClass: "mb-3 mt-2" }, [_vm._v("Filtros")]),
-        _vm._v(
-          "\n            Active filter: " +
-            _vm._s(_vm.filter) +
-            "\n            "
-        ),
-        _c("div", { staticClass: "mt-4" }, [
+        _c("div", { staticClass: "mt-2" }, [
           _c(
             "button",
             {
@@ -69663,7 +69659,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Totes\n                ")]
+            [_vm._v("\n                    Totes\n                ")]
           ),
           _vm._v(" "),
           _c(
@@ -69691,7 +69687,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Pendents\n                ")]
+            [_vm._v("\n                    Pendents\n                ")]
           )
         ])
       ])

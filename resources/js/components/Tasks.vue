@@ -1,7 +1,7 @@
 <template>
     <div class="container flex justify-center">
         <div class="flex flex-col">
-            <h1 class="text-center text-red-light pb-3 pt-8">Tasques ({{total}})</h1>
+            <h1 class="text-center text-red-light">Tasques ({{total}})</h1>
             <div class="flex-row">
                 <input type="text" v-model="newTask" @keyup.enter="add" placeholder="Nova Tasca"
                        class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
@@ -29,18 +29,20 @@
                 </li>
             </ul>
             <div>
-                <h3 class="mb-3 mt-2">Filtros</h3>
-                Active filter: {{filter}}
-                <div class="mt-4">
+                <!--<h3 class="mb-1 mt-2">Filtres</h3>-->
+                <!--Active filter: {{filter}}-->
+                <div class="mt-2">
                     <button @click="setFilter('all')"
-                            class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">Totes
+                            class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
+                        Totes
                     </button>
                     <button @click="setFilter('completed')"
                             class="ml-3 mr-3 bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
                         Completades
                     </button>
                     <button @click="setFilter('active')"
-                            class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">Pendents
+                            class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
+                        Pendents
                     </button>
                 </div>
             </div>
@@ -137,7 +139,7 @@
     }
 
     .outline-none:focus {
-        outline:0;
+        outline: 0;
     }
 
 </style>

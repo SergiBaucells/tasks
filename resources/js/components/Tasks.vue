@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex justify-center">
+    <div id="tasks" class="tasks container flex justify-center">
         <div class="flex flex-col">
             <h1 class="text-center text-red-light">Tasques ({{total}})</h1>
             <div class="flex-row">
@@ -16,8 +16,9 @@
                 <!--<li v-for="task in tasks" v-if="task.completed"><strike>{{task.name}}</strike></li>-->
                 <!--<li v-else>{{task.name}}</li>-->
                 <li v-for="task in filteredTasks" :key="task.id" class="text-grey-darker m-2 pl-5">
-                    <span :class="{strike:task.completed=='1'}">
-                        <editable-text :text="task.name" @edited="editName(task, $event)">
+                    <span>
+                        <editable-text :class="{strike:task.completed=='1'}" :text="task.name"
+                                       @edited="editName(task, $event)">
                             <!--{{task.name}}-->
                         </editable-text>
                     </span>
@@ -119,15 +120,35 @@
                 this.filter = newFilter
             },
             add() {
-                this.dataTasks.splice(0, 0, {name: this.newTask, completed: false})
-                this.newTask = ''
+                axios.post('/api/v1/tasks', {
+                    name: this.newTask
+                }).then((response) => {
+                    this.dataTasks.splice(0, 0, {id: response.data.id, name: this.newTask, completed: false})
+                    this.newTask = ''
+                }).catch((error) => {
+                    console.log(error);
+                })
             },
             remove(task) {
-                this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+                // this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+                axios.delete('/api/v1/tasks/' + task.id).then((response) => {
+                    this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+                }).catch((error) => {
+                    console.log(error);
+                })
             }
         },
         created() {
-            // console.log('Component Tasks ha estat creat');
+            // Si tinc propietat tasks no fer res
+            // sino vull fer petició a la API per obtenir les tasques
+            if (this.tasks.length === 0) {
+                // axios.get('/api/v1/task')
+                axios.get('/api/v1/tasks').then((response) => {
+                    this.dataTasks = response.data
+                }).catch((error) => {
+                    console.log(error);
+                })
+            }
         }
     }
 </script>

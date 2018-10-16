@@ -16,7 +16,7 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_complete_a_task()
     {
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         // TEST OK!!
         // 1
         $task = Task::create([
@@ -24,7 +24,7 @@ class CompletedTaskControllerTest extends TestCase
             'completed' => false
         ]);
         // 2
-        $response = $this->post('/completed_task/1' . $task->id);
+        $response = $this->post('/completed_task/' . $task->id);
         // 3
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
@@ -54,7 +54,7 @@ class CompletedTaskControllerTest extends TestCase
             'completed' => true
         ]);
         // 2
-        $response = $this->delete('/completed_task/1' . $task->id);
+        $response = $this->delete('/completed_task/' . $task->id);
         // 3
         $task = $task->fresh();
         $this->assertEquals($task->completed, false);

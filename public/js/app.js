@@ -69603,9 +69603,9 @@ var render = function() {
             [
               _c(
                 "span",
-                { class: { strike: task.completed == "1" } },
                 [
                   _c("editable-text", {
+                    class: { strike: task.completed == "1" },
                     attrs: { text: task.name },
                     on: {
                       edited: function($event) {

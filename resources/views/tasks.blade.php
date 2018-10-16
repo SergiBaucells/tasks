@@ -27,16 +27,16 @@
                         @csrf
                         {{ method_field('PUT') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
-                        <v-btn color="warning">
-                            <button>Descompletar</button>
+                        <v-btn type="submit" color="warning">
+                            Descompletar
                         </v-btn>
                     </form>
 
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <v-btn color="error">
-                            <button>Eliminar</button>
+                        <v-btn type="submit" color="error">
+                            Eliminar
                         </v-btn>
                     </form>
 
@@ -47,20 +47,20 @@
                         @csrf
                         {{ method_field('PUT') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
-                        <v-btn color="warning">
-                            <button>Completar</button>
+                        <v-btn type="submit" color="warning">
+                            Completar
                         </v-btn>
                     </form>
 
-                    <v-btn color="info" href="/task_edit/{{ $task->id }}">
-                        <button>Modificar</button>
+                    <v-btn type="submit" color="info" href="/task_edit/{{ $task->id }}">
+                        Modificar
                     </v-btn>
 
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <v-btn color="error">
-                            <button>Eliminar</button>
+                        <v-btn type="submit" color="error">
+                            Eliminar
                         </v-btn>
                     </form>
                 @endif
@@ -70,8 +70,8 @@
             <form action="/tasks" method="POST">
                 @csrf
                 <input name="name" type="text" placeholder="Nova tasca" required>
-                <v-btn color="success">
-                    <button>Afegir</button>
+                <v-btn type="submit" color="success">
+                    Afegir
                 </v-btn>
             </form>
 

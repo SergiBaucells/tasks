@@ -17,8 +17,8 @@
                     value="{{$task->name}}"
                     required
             ></v-text-field>
-            <v-btn color="success">
-                <button>Editar</button>
+            <v-btn type="submit" color="success">
+                Editar
             </v-btn>
         </v-flex>
     </form>

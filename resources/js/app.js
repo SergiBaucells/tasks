@@ -4,27 +4,27 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./bootstrap')
 
 // ES6/VUE/BABEL -> imports
 // window OCO en browser Objecte global
-window.Vue = require('vue');
-Vue.use(require('vuetify'));
+window.Vue = require('vue')
+window.Vue.use(require('vuetify'))
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('tasks', require('./components/Tasks.vue'));
+window.Vue.component('example-component', require('./components/ExampleComponent.vue'))
+window.Vue.component('tasks', require('./components/Tasks.vue'))
 
-const app = new Vue({
-    el: '#app',
-    data: () => ({
-        drawer: null
-    }),
-    props: {
-        source: String
-    }
+const app = new window.Vue({
+  el: '#app',
+  data: () => ({
+    drawer: null
+  }),
+  props: {
+    source: String
+  }
 })

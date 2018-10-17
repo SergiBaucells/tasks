@@ -6,6 +6,9 @@
                 <input type="text" v-model="newTask" @keyup.enter="add" placeholder="Nova Tasca"
                        class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
                 <!--<button @click="add">Afegir</button>-->
+
+                <div v-if="errorMessage">Ha succeit un error: {{ errorMessage }}</div>
+
                 <svg @click="add" class="h-4 w-4 cursor-pointer fill-current text-green"
                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/>
@@ -16,8 +19,8 @@
                 <!--<li v-for="task in tasks" v-if="task.completed"><strike>{{task.name}}</strike></li>-->
                 <!--<li v-else>{{task.name}}</li>-->
                 <li v-for="task in filteredTasks" :key="task.id" class="text-grey-darker m-2 pl-5">
-                    <span>
-                        <editable-text :class="{strike:task.completed=='1'}" :text="task.name"
+                    <span :id="'task' + task.id" :class="{strike:task.completed=='1'}">
+                        <editable-text :text="task.name"
                                        @edited="editName(task, $event)">
                             <!--{{task.name}}-->
                         </editable-text>
@@ -32,7 +35,8 @@
             <div>
                 <!--<h3 class="mb-1 mt-2">Filtres</h3>-->
                 <!--Active filter: {{filter}}-->
-                <div class="mt-2">
+                <div class="mt-2" v-show="total > 0">
+                    <h3>Filtros:</h3>
                     <button @click="setFilter('all')"
                             class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
                         Totes
@@ -63,14 +67,14 @@ var filters = {
     return tasks.filter(function (task) {
       // return task.completed
       // NO CAL
-      if (task.completed == '1') return true
+      if (task.completed === '1') return true
       else return false
     })
   },
   active: function (tasks) {
     return tasks.filter(function (task) {
       // return !task.completed
-      if (task.completed == '0') return true
+      if (task.completed === '0') return true
       else return false
     })
   }
@@ -85,7 +89,8 @@ export default {
     return {
       filter: 'all', // All Completed Active
       newTask: '',
-      dataTasks: this.tasks
+      dataTasks: this.tasks,
+      errorMessage: null
     }
   },
   props: {
@@ -120,7 +125,7 @@ export default {
       this.filter = newFilter
     },
     add () {
-      axios.post('/api/v1/tasks', {
+      window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then((response) => {
         this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
@@ -146,7 +151,7 @@ export default {
       window.axios.get('/api/v1/tasks').then((response) => {
         this.dataTasks = response.data
       }).catch((error) => {
-        console.log(error)
+        this.errorMessage = error.data.message
       })
     }
   }

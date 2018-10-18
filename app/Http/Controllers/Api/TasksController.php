@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\StoreTask;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -25,7 +26,7 @@ class TasksController extends Controller
         $task->delete();
     }
 
-    public function store(Request $request)
+    public function store(StoreTask $request)
     {
 //        Task:create();
         $task = new Task();

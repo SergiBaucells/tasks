@@ -3,13 +3,13 @@
         <div class="flex flex-col">
             <h1 class="text-center text-red-light">Tasques ({{total}})</h1>
             <div class="flex-row">
-                <input type="text" v-model="newTask" @keyup.enter="add" placeholder="Nova Tasca"
+                <input name="name" type="text" v-model="newTask" @keyup.enter="add" placeholder="Nova Tasca"
                        class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
                 <!--<button @click="add">Afegir</button>-->
 
                 <div v-if="errorMessage">Ha succeit un error: {{ errorMessage }}</div>
 
-                <svg @click="add" class="h-4 w-4 cursor-pointer fill-current text-green"
+                <svg id="button_add_task" @click="add" class="h-4 w-4 cursor-pointer fill-current text-green"
                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/>
                 </svg>
@@ -26,7 +26,7 @@
                         </editable-text>
                     </span>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" @click="remove(task)"
+                    <svg :id="'deleta_task_' + task.id" xmlns="http://www.w3.org/2000/svg" @click="remove(task)"
                          class="h-4 w-4 cursor-pointer ml-3 mt-1 fill-current text-red" viewBox="0 0 20 20">
                         <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM11.4 10l2.83-2.83-1.41-1.41L10 8.59 7.17 5.76 5.76 7.17 8.59 10l-2.83 2.83 1.41 1.41L10 11.41l2.83 2.83 1.41-1.41L11.41 10z"/>
                     </svg>
@@ -147,11 +147,10 @@ export default {
     // Si tinc propietat tasks no fer res
     // sino vull fer petició a la API per obtenir les tasques
     if (this.tasks.length === 0) {
-      // axios.get('/api/v1/task')
       window.axios.get('/api/v1/tasks').then((response) => {
         this.dataTasks = response.data
       }).catch((error) => {
-        this.errorMessage = error.data.message
+        this.errorMessage = error.response.data
       })
     }
   }

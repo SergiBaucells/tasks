@@ -144,7 +144,7 @@ describe.only('Tasks.vue', () => {
     moxios.stubRequest('/api/v1/tasks', {
       status: 200,
       response: {
-        id: 69,
+        id: 68,
         name: 'Comprar lejia',
         completed: false
       }
@@ -169,12 +169,11 @@ describe.only('Tasks.vue', () => {
     })
   })
 
-  it.only('delete_a_task', (done) => {
+  it('delete_a_task', (done) => {
     // 1
-    moxios.stubRequest('/api/v1/tasks', {
+    moxios.stubRequest('/api/v1/tasks/1', {
       status: 200
     })
-
     // 2
     const wrapper = mount(Tasks, {
       propsData: {
@@ -182,11 +181,9 @@ describe.only('Tasks.vue', () => {
       }
     })
 
-    let deleteIcon = wrapper.find('svg#delete_task_1')
-    window.console.log(deleteIcon)
-    deleteIcon.trigger('click')
+    let svgDelete = wrapper.find('#deleteTask1')
+    svgDelete.trigger('click')
 
-    // 3
     moxios.wait(() => {
       expect(wrapper.text()).not.contains('Comprar pa')
       done()

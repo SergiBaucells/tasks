@@ -24972,26 +24972,26 @@ __webpack_require__(15);
 // ES6/VUE/BABEL -> imports
 // window OCO en browser Objecte global
 window.Vue = __webpack_require__(12);
-Vue.use(__webpack_require__(40));
+window.Vue.use(__webpack_require__(40));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(41));
-Vue.component('tasks', __webpack_require__(44));
+window.Vue.component('example-component', __webpack_require__(41));
+window.Vue.component('tasks', __webpack_require__(44));
 
-var app = new Vue({
-    el: '#app',
-    data: function data() {
-        return {
-            drawer: null
-        };
-    },
-    props: {
-        source: String
-    }
+var app = new window.Vue({
+  el: '#app',
+  data: function data() {
+    return {
+      drawer: null
+    };
+  },
+  props: {
+    source: String
+  }
 });
 
 /***/ }),
@@ -69182,84 +69182,117 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
 
 var filters = {
-    all: function all(tasks) {
-        return tasks;
-    },
-    completed: function completed(tasks) {
-        return tasks.filter(function (task) {
-            //return task.completed
-            // NO CAL
-            if (task.completed == '1') return true;else return false;
-        });
-    },
-    active: function active(tasks) {
-        return tasks.filter(function (task) {
-            //return !task.completed
-            if (task.completed == '0') return true;else return false;
-        });
-    }
+  all: function all(tasks) {
+    return tasks;
+  },
+  completed: function completed(tasks) {
+    return tasks.filter(function (task) {
+      // return task.completed
+      // NO CAL
+      if (task.completed === '1') return true;else return false;
+    });
+  },
+  active: function active(tasks) {
+    return tasks.filter(function (task) {
+      // return !task.completed
+      if (task.completed === '0') return true;else return false;
+    });
+  }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'Tasks',
-    components: {
-        'editable-text': __WEBPACK_IMPORTED_MODULE_0__EditableText___default.a
-    },
-    data: function data() {
-        return {
-            filter: 'all', // All Completed Active
-            newTask: '',
-            dataTasks: this.tasks
-        };
-    },
+  name: 'Tasks',
+  components: {
+    'editable-text': __WEBPACK_IMPORTED_MODULE_0__EditableText___default.a
+  },
+  data: function data() {
+    return {
+      filter: 'all', // All Completed Active
+      newTask: '',
+      dataTasks: this.tasks,
+      errorMessage: null
+    };
+  },
 
-    props: {
-        tasks: {
-            type: Array,
-            default: function _default() {
-                return [];
-            }
-        }
-    },
-    computed: {
-        total: function total() {
-            return this.dataTasks.length;
-        },
-        filteredTasks: function filteredTasks() {
-            // Segons el filtre actiu
-            // Alternativa switch/case -> array associatiu
-            return filters[this.filter](this.dataTasks);
-        }
-    },
-    watch: {
-        tasks: function tasks(newTasks) {
-            this.dataTasks = newTasks;
-        }
-    },
-
-    methods: {
-        editName: function editName(task, text) {
-            task.name = text;
-        },
-        setFilter: function setFilter(newFilter) {
-            this.filter = newFilter;
-        },
-        add: function add() {
-            this.dataTasks.splice(0, 0, { name: this.newTask, completed: false });
-            this.newTask = '';
-        },
-        remove: function remove(task) {
-            this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
-        }
-    },
-    created: function created() {
-        // console.log('Component Tasks ha estat creat');
+  props: {
+    tasks: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
     }
+  },
+  computed: {
+    total: function total() {
+      return this.dataTasks.length;
+    },
+    filteredTasks: function filteredTasks() {
+      // Segons el filtre actiu
+      // Alternativa switch/case -> array associatiu
+      return filters[this.filter](this.dataTasks);
+    }
+  },
+  watch: {
+    tasks: function tasks(newTasks) {
+      this.dataTasks = newTasks;
+    }
+  },
+
+  methods: {
+    editName: function editName(task, text) {
+      task.name = text;
+    },
+    setFilter: function setFilter(newFilter) {
+      this.filter = newFilter;
+    },
+    add: function add() {
+      var _this = this;
+
+      if (this.newTask === '') return;
+      window.axios.post('/api/v1/tasks', {
+        name: this.newTask
+      }).then(function (response) {
+        _this.dataTasks.splice(0, 0, { id: response.data.id, name: _this.newTask, completed: false });
+        _this.newTask = '';
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    remove: function remove(task) {
+      var _this2 = this;
+
+      // this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+      window.axios.delete('/api/v1/tasks/' + task.id).then(function (response) {
+        _this2.dataTasks.splice(_this2.dataTasks.indexOf(task), 1);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  },
+  created: function created() {
+    var _this3 = this;
+
+    // Si tinc propietat tasks no fer res
+    // sino vull fer petició a la API per obtenir les tasques
+    if (this.tasks.length === 0) {
+      window.axios.get('/api/v1/tasks').then(function (response) {
+        _this3.dataTasks = response.data;
+      }).catch(function (error) {
+        _this3.errorMessage = error.response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -69343,36 +69376,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'EditableText',
-    data: function data() {
-        return {
-            editing: false,
-            currentText: this.text
-        };
-    },
+  name: 'EditableText',
+  data: function data() {
+    return {
+      editing: false,
+      currentText: this.text
+    };
+  },
 
-    props: {
-        'text': {
-            type: String,
-            required: true
-        }
-    },
-    watch: {
-        text: function text(newText) {
-            this.currentText = this.text;
-        }
-    },
-    // props: ['text'],
-    methods: {
-        edit: function edit() {
-            this.editing = false;
-            //INFORMAR AL PARE
-            this.$emit('edited', this.currentText);
-        }
-    },
-    created: function created() {
-        // console.log('Component EditableText ha estat creat');
+  props: {
+    'text': {
+      type: String,
+      required: true
     }
+  },
+  watch: {
+    text: function text(newText) {
+      this.currentText = this.text;
+    }
+  },
+  // props: ['text'],
+  methods: {
+    edit: function edit() {
+      this.editing = false;
+      // INFORMAR AL PARE
+      this.$emit('edited', this.currentText);
+    }
+  },
+  created: function created() {
+    // console.log('Component EditableText ha estat creat');
+  }
 });
 
 /***/ }),
@@ -69533,166 +69566,207 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container flex justify-center" }, [
-    _c("div", { staticClass: "flex flex-col" }, [
-      _c("h1", { staticClass: "text-center text-red-light" }, [
-        _vm._v("Tasques (" + _vm._s(_vm.total) + ")")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex-row" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.newTask,
-              expression: "newTask"
-            }
-          ],
-          staticClass:
-            "m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker",
-          attrs: { type: "text", placeholder: "Nova Tasca" },
-          domProps: { value: _vm.newTask },
-          on: {
-            keyup: function($event) {
-              if (
-                !("button" in $event) &&
-                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-              ) {
-                return null
+  return _c(
+    "div",
+    {
+      staticClass: "tasks container flex justify-center",
+      attrs: { id: "tasks" }
+    },
+    [
+      _c("div", { staticClass: "flex flex-col" }, [
+        _c("h1", { staticClass: "text-center text-red-light" }, [
+          _vm._v("Tasques (" + _vm._s(_vm.total) + ")")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex-row" }, [
+          _c("form", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newTask,
+                  expression: "newTask"
+                }
+              ],
+              staticClass:
+                "m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker",
+              attrs: {
+                name: "name",
+                type: "text",
+                placeholder: "Nova Tasca",
+                required: ""
+              },
+              domProps: { value: _vm.newTask },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  return _vm.add($event)
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.newTask = $event.target.value
+                }
               }
-              return _vm.add($event)
-            },
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.newTask = $event.target.value
-            }
-          }
-        }),
+            }),
+            _vm._v(" "),
+            _c(
+              "svg",
+              {
+                staticClass: "h-4 w-4 cursor-pointer fill-current text-green",
+                attrs: {
+                  id: "button_add_task",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 20 20"
+                },
+                on: { click: _vm.add }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    d:
+                      "M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"
+                  }
+                })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _vm.errorMessage
+            ? _c("div", [
+                _vm._v("Ha succeit un error: " + _vm._s(_vm.errorMessage))
+              ])
+            : _vm._e()
+        ]),
         _vm._v(" "),
         _c(
-          "svg",
-          {
-            staticClass: "h-4 w-4 cursor-pointer fill-current text-green",
-            attrs: {
-              xmlns: "http://www.w3.org/2000/svg",
-              viewBox: "0 0 20 20"
-            },
-            on: { click: _vm.add }
-          },
-          [
-            _c("path", {
-              attrs: {
-                d:
-                  "M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"
-              }
-            })
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "list-reset" },
-        _vm._l(_vm.filteredTasks, function(task) {
-          return _c(
-            "li",
-            { key: task.id, staticClass: "text-grey-darker m-2 pl-5" },
-            [
-              _c(
-                "span",
-                [
-                  _c("editable-text", {
+          "ul",
+          { staticClass: "list-reset" },
+          _vm._l(_vm.filteredTasks, function(task) {
+            return _c(
+              "li",
+              { key: task.id, staticClass: "text-grey-darker m-2 pl-5" },
+              [
+                _c(
+                  "span",
+                  {
                     class: { strike: task.completed == "1" },
-                    attrs: { text: task.name },
+                    attrs: { id: "task" + task.id }
+                  },
+                  [
+                    _c("editable-text", {
+                      attrs: { text: task.name },
+                      on: {
+                        edited: function($event) {
+                          _vm.editName(task, $event)
+                        }
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass:
+                      "h-4 w-4 cursor-pointer ml-3 mt-1 fill-current text-red",
+                    attrs: {
+                      id: "delete_task_" + task.id,
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20"
+                    },
                     on: {
-                      edited: function($event) {
-                        _vm.editName(task, $event)
+                      click: function($event) {
+                        _vm.remove(task)
                       }
                     }
-                  })
-                ],
-                1
-              ),
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM11.4 10l2.83-2.83-1.41-1.41L10 8.59 7.17 5.76 5.76 7.17 8.59 10l-2.83 2.83 1.41 1.41L10 11.41l2.83 2.83 1.41-1.41L11.41 10z"
+                      }
+                    })
+                  ]
+                )
+              ]
+            )
+          })
+        ),
+        _vm._v(" "),
+        _c("div", [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.total > 0,
+                  expression: "total > 0"
+                }
+              ],
+              staticClass: "mt-2"
+            },
+            [
+              _c("h3", [_vm._v("Filtros:")]),
               _vm._v(" "),
               _c(
-                "svg",
+                "button",
                 {
                   staticClass:
-                    "h-4 w-4 cursor-pointer ml-3 mt-1 fill-current text-red",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  },
+                    "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none",
                   on: {
                     click: function($event) {
-                      _vm.remove(task)
+                      _vm.setFilter("all")
                     }
                   }
                 },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM11.4 10l2.83-2.83-1.41-1.41L10 8.59 7.17 5.76 5.76 7.17 8.59 10l-2.83 2.83 1.41 1.41L10 11.41l2.83 2.83 1.41-1.41L11.41 10z"
+                [_vm._v("\n                    Totes\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "ml-3 mr-3 bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none",
+                  on: {
+                    click: function($event) {
+                      _vm.setFilter("completed")
                     }
-                  })
-                ]
+                  }
+                },
+                [_vm._v("\n                    Completades\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none",
+                  on: {
+                    click: function($event) {
+                      _vm.setFilter("active")
+                    }
+                  }
+                },
+                [_vm._v("\n                    Pendents\n                ")]
               )
             ]
           )
-        })
-      ),
-      _vm._v(" "),
-      _c("div", [
-        _c("div", { staticClass: "mt-2" }, [
-          _c(
-            "button",
-            {
-              staticClass:
-                "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none",
-              on: {
-                click: function($event) {
-                  _vm.setFilter("all")
-                }
-              }
-            },
-            [_vm._v("\n                    Totes\n                ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "ml-3 mr-3 bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none",
-              on: {
-                click: function($event) {
-                  _vm.setFilter("completed")
-                }
-              }
-            },
-            [_vm._v("\n                    Completades\n                ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none",
-              on: {
-                click: function($event) {
-                  _vm.setFilter("active")
-                }
-              }
-            },
-            [_vm._v("\n                    Pendents\n                ")]
-          )
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

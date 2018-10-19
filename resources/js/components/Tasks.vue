@@ -4,8 +4,9 @@
             <h1 class="text-center text-red-light">Tasques ({{total}})</h1>
             <div class="flex-row">
                 <form>
-                <input name="name" type="text" v-model="newTask" @keyup.enter="add" placeholder="Nova Tasca" required
-                       class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
+                    <input name="name" type="text" v-model="newTask" @keyup.enter="add" placeholder="Nova Tasca"
+                           required
+                           class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
 
                     <svg id="button_add_task" @click="add" class="h-4 w-4 cursor-pointer fill-current text-green"
                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

@@ -4,12 +4,14 @@
 namespace Tests\Feature;
 
 use App\Task;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TasksControllerTest extends TestCase
 {
     use RefreshDatabase;
+//    use WithoutMiddleware;
 
     /**
      * @test
@@ -48,9 +50,7 @@ class TasksControllerTest extends TestCase
         $response = $this->post('/tasks',[
             'name' => 'Comprar llet'
         ]);
-
         $response->assertStatus(302);
-
         $this->assertDatabaseHas('tasks',['name' => 'Comprar llet']);
     }
 
@@ -122,7 +122,7 @@ class TasksControllerTest extends TestCase
     }
 
     /**
-     * @ test
+     * @test
      */
     public function can_edit_a_task_todo_validation()
     {

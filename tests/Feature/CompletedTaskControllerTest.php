@@ -1,14 +1,11 @@
 <?php
 
-namespace Test\Feature;
+namespace Tests\Feature;
 
-use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class CompletedTaskControllerTest extends TestCase
-{
-
+class CompletedTaskControllerTest extends TestCase {
     use RefreshDatabase;
 
     /**
@@ -16,30 +13,30 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_complete_a_task()
     {
-        $this->withoutExceptionHandling();
-        // TEST OK!!
-        // 1
-        $task = Task::create([
+        $this->markTestSkipped();
+        //1
+        $task= Task::create([
             'name' => 'comprar pa',
             'completed' => false
         ]);
-        // 2
+        //2
         $response = $this->post('/completed_task/' . $task->id);
-        // 3
+        //3 Dos opcions: 1) Comprovar base de dades directament
+        // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
-        $response->assertStatus(302);
+        $response->assertStatus('302');
         $this->assertEquals($task->completed, true);
     }
 
     /**
      * @test
      */
-    public function cannot_complete_an_unexisting_task()
+    public function cannot_complete_a_unexisting_task()
     {
-        // TEST OK!!
-        $this->delete('/completed_task/1');
-        $this->assertStatus(404);
+        $response = $this->post('/completed_task/1');
+        //3 Assert
+        $response->assertStatus(404);
     }
 
     /**
@@ -47,30 +44,31 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_uncomplete_a_task()
     {
-        // TEST OK!!
-        // 1
-        $task = Task::create([
+        $this->markTestSkipped();
+        //1
+        $task= Task::create([
             'name' => 'comprar pa',
             'completed' => true
         ]);
-        // 2
+        //2
         $response = $this->delete('/completed_task/' . $task->id);
-        // 3
+        //3 Dos opcions: 1) Comprovar base de dades directament
+        // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
         $this->assertEquals($task->completed, false);
         $response->assertRedirect('/tasks');
-        $response->assertStatus(302);
+        $response->assertStatus('302');
     }
 
     /**
      * @test
      */
-    public function cannot_uncomplete_an_unexisting_task()
+    public function cannot_uncomplete_a_unexisting_task()
     {
-        // TEST OK!!
-        $this->delete('/completed_task/1');
-        $this->assertStatus(404);
+        // 1 -> no cal fer res
+        // 2 Execute
+        $response= $this->delete('/completed_task/1');
+        //3 Assert
+        $response->assertStatus(404);
     }
-
-
 }

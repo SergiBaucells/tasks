@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -13,6 +13,7 @@ class CompletedTaskControllerTest extends TestCase {
      */
     public function can_complete_a_task()
     {
+        $this->markTestSkipped();
         //1
         $task= Task::create([
             'name' => 'comprar pa',
@@ -41,6 +42,7 @@ class CompletedTaskControllerTest extends TestCase {
      */
     public function can_uncomplete_a_task()
     {
+        $this->markTestSkipped();
         //1
         $task= Task::create([
             'name' => 'comprar pa',

@@ -139,12 +139,7 @@ describe.only('Tasks.vue', () => {
     })
   })
 
-  it.skip('adds_a_task_with_enter', () => {
-    // https://vue-test-utils.vuejs.org/guides/#testing-key-mouse-and-other-dom-events
-    // similar al click -> test de baix, en mes de trigger click es trigger i mirar la documentacio
-  })
-
-  it.skip('delete_a_task', (done) => {
+  it('adds_a_task_with_enter', (done) => {
     // 1
     moxios.stubRequest('/api/v1/tasks', {
       status: 200,
@@ -154,6 +149,31 @@ describe.only('Tasks.vue', () => {
         completed: false
       }
     })
+    // 2
+    const wrapper = mount(Tasks, {
+      propsData: {
+        tasks: exampletasks
+      }
+    })
+    // input name tasks
+    let inputName = wrapper.find("input[name='name']")
+    inputName.element.value = 'Comprar lejia'
+    // OJO!!! disparar el input!!!
+    inputName.trigger('input')
+    inputName.trigger('keyup.enter')
+
+    // 3
+    moxios.wait(() => {
+      expect(wrapper.text()).contains('Comprar lejia')
+      done()
+    })
+  })
+
+  it.skip('delete_a_task', (done) => {
+    // 1
+    moxios.stubRequest('/api/v1/tasks', {
+      status: 200
+    })
 
     // 2
     const wrapper = mount(Tasks, {
@@ -162,12 +182,13 @@ describe.only('Tasks.vue', () => {
       }
     })
 
-    let deleteIcon = wrapper.find('svg#deleta_task_ + task.id')
+    let deleteIcon = wrapper.find('svg#delete_task_1')
+    window.console.log(deleteIcon)
     deleteIcon.trigger('click')
 
     // 3
     moxios.wait(() => {
-      // Falta algo
+      expect(wrapper.text()).not.contains('Comprar pa')
       done()
     })
   })

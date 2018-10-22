@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class TasksCompletedController extends Controller
         $task = Task::findOrFail($id);
         $task->completed = "1";
         $task->save();
-        return redirect('/tasks');
+        return $task;
     }
 
     public function destroy($id, Request $request)
@@ -21,6 +22,6 @@ class TasksCompletedController extends Controller
         $task = Task::findOrFail($id);
         $task->completed = "0";
         $task->save();
-        return redirect('/tasks');
+        return $task;
     }
 }

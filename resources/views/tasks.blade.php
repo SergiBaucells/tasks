@@ -23,9 +23,9 @@
                 @if($task->completed)
                     <del>{{ $task->name }}</del>
 
-                    <form action="/tasksuncompleted" method="POST">
+                    <form action="/tasksuncompleted/{{$task->id}}" method="POST">
                         @csrf
-                        {{ method_field('PUT') }}
+                        {{ method_field('DELETE') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
                         <v-btn type="submit" color="warning">
                             Descompletar
@@ -43,7 +43,7 @@
                 @else
                     {{ $task->name }}
 
-                    <form action="/taskscompleted" method="POST">
+                    <form action="/taskscompleted/{{$task->id}}" method="POST">
                         @csrf
                         {{ method_field('PUT') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">

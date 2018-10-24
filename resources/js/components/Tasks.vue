@@ -2,9 +2,9 @@
     <v-card id="tasks" class="tasks container flex justify-center">
         <v-container grid-list-md text-xs-center>
             <v-layout row wrap>
-                <v-flex xs12>
-                    <v-card>
-                        <v-card-title>
+                <v-flex xs12 justify-center>
+                    <v-card flat>
+                        <v-card-title class="justify-center">
                             <span class="headline">Tasques ({{total}})</span>
                         </v-card-title>
                         <v-card-text class="px-0">

@@ -125,7 +125,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_edit_a_task_todo_validation()
     {
-        $this->markTestSkipped();
+        $this->markTestSkipped('TODO');
         $this->withoutExceptionHandling();
         // 1
         $task = Task::create([
@@ -145,7 +145,7 @@ class TasksControllerTest extends TestCase
 
         $task = $task->fresh();
         $this->assertEquals($task->name, 'Comprar pa');
-        $this->assertEquals($task->completed, true);
+        $this->assertEquals((boolean)$task->completed, true);
     }
 
     /**

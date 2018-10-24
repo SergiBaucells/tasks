@@ -15,18 +15,18 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_complete_a_task()
     {
-//        $this->markTestSkipped();
         //1
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => false
         ]);
         //2
-        $response = $this->json('PUT', '/api/v1/completed_task/' . $task->id);
+        $response = $this->json('POST', '/api/v1/completed_task/' . $task->id);
+        $response->assertSuccessful();
         //3 Dos opcions: 1) Comprovar base de dades directament
         // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
-        $this->assertEquals($task->completed, 1);
+        $this->assertEquals((boolean)$task->completed, true);
     }
 
     /**
@@ -34,7 +34,7 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function cannot_complete_a_unexisting_task()
     {
-        $response = $this->json('PUT', '/api/v1/completed_task/1');
+        $response = $this->json('POST', '/api/v1/completed_task/1');
         //3 Assert
         $response->assertStatus(404);
     }
@@ -44,18 +44,18 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_uncomplete_a_task()
     {
-//        $this->markTestSkipped();
         //1
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => true
         ]);
         //2
-        $response = $this->json('DELETE', '/api/v1/uncompleted_task/' . $task->id);
+        $response = $this->json('DELETE', '/api/v1/completed_task/' . $task->id);
+        $response->assertSuccessful();
         //3 Dos opcions: 1) Comprovar base de dades directament
         // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
-        $this->assertEquals($task->completed, 0);
+        $this->assertEquals((boolean)$task->completed, false);
     }
 
     /**
@@ -65,7 +65,7 @@ class CompletedTaskControllerTest extends TestCase
     {
         // 1 -> no cal fer res
         // 2 Execute
-        $response = $this->delete('/api/v1/uncompleted_task/598');
+        $response = $this->delete('/api/v1/completed_task/598');
         //3 Assert
         $response->assertStatus(404);
     }

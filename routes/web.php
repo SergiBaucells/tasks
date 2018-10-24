@@ -21,5 +21,5 @@ Route::view('/calendari', 'calendari');
 Route::get('/tasks_vue', 'TasksVueController@index');
 
 // Propies
-Route::put('/taskscompleted/{id}', 'TasksCompletedController@update');
-Route::delete('/tasksuncompleted/{id}', 'TasksCompletedController@destroy');
+Route::post('/taskscompleted/{task}', 'TasksCompletedController@store');
+Route::delete('/taskscompleted/{task}', 'TasksCompletedController@destroy');

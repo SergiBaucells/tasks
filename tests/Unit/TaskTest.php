@@ -23,6 +23,24 @@ class TaskTest extends TestCase
     /**
      * @test
      */
+    public function can_toggle_completed()
+    {
+        $task = factory(Task::class)->create([
+            'completed' => false
+        ]);
+        $task->toggleCompleted();
+        $this->assertTrue($task->completed);
+
+        $task = factory(Task::class)->create([
+            'completed' => true
+        ]);
+        $task->toggleCompleted();
+        $this->assertFalse($task->completed);
+    }
+
+    /**
+     * @test
+     */
     public function can_assign_user_to_task()
     {
         // 1
@@ -120,7 +138,6 @@ class TaskTest extends TestCase
 
         $this->assertTrue($tags[0]->is($tag));
 
-
     }
 
     /**
@@ -136,6 +153,35 @@ class TaskTest extends TestCase
         $file = $task->file;
         //3
         $this->assertNull($file);
+    }
+
+    /**
+     * @test
+     */
+    public function map()
+    {
+        //1
+        $task = Task::create([
+            'name' => 'Prova',
+            'completed' => false,
+        ]);
+
+        $user = User::create([
+            'name' => 'Pepito',
+            'email' => 'Pepito@gmail.com',
+            'password' => 'heyhey'
+        ]);
+
+        //2
+        $task->assignUser($user);
+        $result = $task->map();
+
+        //3
+        $this->assertEquals($task->name, $result['name']);
+        $this->assertEquals($task->id, $result['id']);
+        $this->assertEquals($task->completed, $result['completed']);
+        $this->assertEquals($user->id, $result['user_id']);
+        $this->assertEquals($user->name, $result['user_name']);
     }
 
 }

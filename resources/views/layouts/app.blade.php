@@ -15,40 +15,6 @@
             fixed
             app
     >
-        {{--<v-list dense>--}}
-            {{--<v-list-tile href="/tasks">--}}
-                {{--<v-list-tile-action>--}}
-                    {{--<v-icon>assignment</v-icon>--}}
-                {{--</v-list-tile-action>--}}
-                {{--<v-list-tile-content>--}}
-                    {{--<v-list-tile-title>Tasques PHP</v-list-tile-title>--}}
-                {{--</v-list-tile-content>--}}
-            {{--</v-list-tile>--}}
-            {{--<v-list-tile href="/tasks_vue">--}}
-                {{--<v-list-tile-action>--}}
-                    {{--<v-icon>assignment</v-icon>--}}
-                {{--</v-list-tile-action>--}}
-                {{--<v-list-tile-content>--}}
-                    {{--<v-list-tile-title>Tasques Vue</v-list-tile-title>--}}
-                {{--</v-list-tile-content>--}}
-            {{--</v-list-tile>--}}
-            {{--<v-list-tile href="/about">--}}
-                {{--<v-list-tile-action>--}}
-                    {{--<v-icon>account_box</v-icon>--}}
-                {{--</v-list-tile-action>--}}
-                {{--<v-list-tile-content>--}}
-                    {{--<v-list-tile-title>Sobre nosaltres</v-list-tile-title>--}}
-                {{--</v-list-tile-content>--}}
-            {{--</v-list-tile>--}}
-            {{--<v-list-tile href="/calendari">--}}
-                {{--<v-list-tile-action>--}}
-                    {{--<v-icon>date_range</v-icon>--}}
-                {{--</v-list-tile-action>--}}
-                {{--<v-list-tile-content>--}}
-                    {{--<v-list-tile-title>Calendari</v-list-tile-title>--}}
-                {{--</v-list-tile-content>--}}
-            {{--</v-list-tile>--}}
-        {{--</v-list>--}}
         <v-list dense>
             <template v-for="item in items">
                 <v-layout
@@ -73,7 +39,7 @@
                         :prepend-icon="item.model ? item.icon : item['icon-alt']"
                         append-icon=""
                 >
-                    <v-list-tile slot="activator">
+                    <v-list-tile slot="activator" :href="item.url">
                         <v-list-tile-content>
                             <v-list-tile-title>
                                 @{{ item.text }}
@@ -83,7 +49,7 @@
                     <v-list-tile
                             v-for="(child, i) in item.children"
                             :key="i"
-                            @click=""
+                            :href="child.url"
                     >
                         <v-list-tile-action v-if="child.icon">
                             <v-icon>@{{ child.icon }}</v-icon>
@@ -95,7 +61,7 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
-                <v-list-tile v-else :key="item.text" @click="">
+                <v-list-tile v-else :key="item.text" :href="item.url">
                     <v-list-tile-action>
                         <v-icon>@{{ item.icon }}</v-icon>
                     </v-list-tile-action>

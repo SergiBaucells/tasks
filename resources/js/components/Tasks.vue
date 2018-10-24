@@ -1,25 +1,34 @@
 <template>
     <div id="tasks" class="tasks container flex justify-center">
-        <div class="flex flex-col">
-            <h1 class="text-center text-red-light">Tasques ({{total}})</h1>
-            <div class="flex-row">
-                <form>
-                    <input name="name" type="text" v-model="newTask" @keyup.enter="add" placeholder="Nova Tasca"
-                           required
-                           class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
+        <v-container grid-list-md text-xs-center>
+            <v-layout row wrap>
+                <v-flex xs12>
+                    <v-card>
+                        <v-card-title>
+                            <span class="headline">Tasques ({{total}})</span>
+                        </v-card-title>
+                        <v-card-text class="px-0">
+                            <div class="flex flex-col">
+                                <div class="flex-row">
+                                    <form>
+                                        <v-text-field name="name" type="text" v-model="newTask" @keyup.enter="add" placeholder="Nova Tasca"
+                                                      required
+                                                      class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
 
-                    <svg id="button_add_task" @click="add" class="h-4 w-4 cursor-pointer fill-current text-green"
-                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/>
-                    </svg>
-                </form>
-                <div v-if="errorMessage">Ha succeit un error: {{ errorMessage }}</div>
-            </div>
-            <!--<input :value="newTask" @input="newTask = $event.target.value">-->
-            <ul class="list-reset">
-                <!--<li v-for="task in tasks" v-if="task.completed"><strike>{{task.name}}</strike></li>-->
-                <!--<li v-else>{{task.name}}</li>-->
-                <li v-for="task in filteredTasks" :key="task.id" class="text-grey-darker m-2 pl-5">
+                                        </v-text-field>
+
+                                        <svg id="button_add_task" @click="add" class="h-4 w-4 cursor-pointer fill-current text-green"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/>
+                                        </svg>
+                                    </form>
+                                    <div v-if="errorMessage">Ha succeit un error: {{ errorMessage }}</div>
+                                </div>
+                                <!--<input :value="newTask" @input="newTask = $event.target.value">-->
+                                <v-list class="list-reset">
+                                    <!--<li v-for="task in tasks" v-if="task.completed"><strike>{{task.name}}</strike></li>-->
+                                    <!--<li v-else>{{task.name}}</li>-->
+                                    <v-list-tile v-for="task in filteredTasks" :key="task.id" class="text-grey-darker m-2 pl-5">
                     <span :id="'task' + task.id" :class="{strike:task.completed=='1'}">
                         <editable-text :text="task.name"
                                        @edited="editName(task, $event)">
@@ -27,38 +36,45 @@
                         </editable-text>
                     </span>
 
-                    <svg :id="'deleteTask' + task.id" xmlns="http://www.w3.org/2000/svg" @click="remove(task)"
-                         class="h-4 w-4 cursor-pointer ml-3 mt-1 fill-current text-red" viewBox="0 0 20 20">
-                        <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM11.4 10l2.83-2.83-1.41-1.41L10 8.59 7.17 5.76 5.76 7.17 8.59 10l-2.83 2.83 1.41 1.41L10 11.41l2.83 2.83 1.41-1.41L11.41 10z"/>
-                    </svg>
-                </li>
-            </ul>
-            <div>
-                <!--<h3 class="mb-1 mt-2">Filtres</h3>-->
-                <!--Active filter: {{filter}}-->
-                <div class="mt-2" v-show="total > 0">
-                    <h3>Filtros:</h3>
-                    <button @click="setFilter('all')"
-                            class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
-                        Totes
-                    </button>
-                    <button @click="setFilter('completed')"
-                            class="ml-3 mr-3 bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
-                        Completades
-                    </button>
-                    <button @click="setFilter('active')"
-                            class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
-                        Pendents
-                    </button>
-                </div>
-            </div>
-        </div>
+                                        <svg :id="'deleteTask' + task.id" xmlns="http://www.w3.org/2000/svg" @click="remove(task)"
+                                             class="h-4 w-4 cursor-pointer ml-3 mt-1 fill-current text-red" viewBox="0 0 20 20">
+                                            <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM11.4 10l2.83-2.83-1.41-1.41L10 8.59 7.17 5.76 5.76 7.17 8.59 10l-2.83 2.83 1.41 1.41L10 11.41l2.83 2.83 1.41-1.41L11.41 10z"/>
+                                        </svg>
+                                    </v-list-tile>
+                                </v-list>
+                                <div>
+                                    <!--<h3 class="mb-1 mt-2">Filtres</h3>-->
+                                    <!--Active filter: {{filter}}-->
+                                    <div class="mt-2" v-show="total > 0">
+                                        <h3>Filtros:</h3>
+                                        <v-btn @click="setFilter('all')"
+                                                class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
+                                            Totes
+                                        </v-btn>
+                                        <v-btn @click="setFilter('completed')"
+                                                class="ml-3 mr-3 bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
+                                            Completades
+                                        </v-btn>
+                                        <v-btn @click="setFilter('active')"
+                                                class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full outline-none">
+                                            Pendents
+                                        </v-btn>
+                                    </div>
+                                </div>
+                            </div>
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
+
     </div>
 </template>
 
 <script>
 
 import EditableText from './EditableText'
+import VListTile from 'vuetify/lib/components/VList/VListTile'
 
 var filters = {
   all: function (tasks) {
@@ -84,6 +100,7 @@ var filters = {
 export default {
   name: 'Tasks',
   components: {
+    VListTile,
     'editable-text': EditableText
   },
   data () {

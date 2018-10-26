@@ -23,3 +23,8 @@ Route::get('/tasks_vue', 'TasksVueController@index');
 // Propies
 Route::post('/taskscompleted/{task}', 'TasksCompletedController@store');
 Route::delete('/taskscompleted/{task}', 'TasksCompletedController@destroy');
+
+Auth::routes();
+
+// TODO
+Route::post('/login_alt','Auth\LoginAltController@login');

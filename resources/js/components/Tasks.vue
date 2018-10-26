@@ -5,7 +5,7 @@
                 <v-flex xs12 justify-center>
                     <v-card flat>
                         <v-card-title class="justify-center">
-                            <span class="headline">Tasques ({{total}})</span>
+                            <span class="headline blue-grey--text">Tasques ({{total}})</span>
                         </v-card-title>
                         <v-card-text class="px-0">
                             <v-card class="flex flex-col" flat>
@@ -13,9 +13,7 @@
                                     <v-form>
                                         <v-text-field name="name" type="text" v-model="newTask" @keyup.enter="add"
                                                       placeholder="Nova Tasca"
-                                                      required
-                                                      class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
-
+                                                      required>
                                         </v-text-field>
                                         <v-btn id="button_add_task" @click="add" color="success">
                                             Afegir
@@ -28,7 +26,7 @@
                                     <!--<li v-for="task in tasks" v-if="task.completed"><strike>{{task.name}}</strike></li>-->
                                     <!--<li v-else>{{task.name}}</li>-->
                                     <v-list-tile v-for="task in filteredTasks" :key="task.id"
-                                                 class="text-grey-darker m-2 pl-5">
+                                                 class="m-2 pl-5">
                     <span :id="'task' + task.id" :class="{strike:task.completed=='1'}">
                         <editable-text :text="task.name"
                                        @edited="editName(task, $event)">

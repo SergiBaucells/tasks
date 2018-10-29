@@ -19,6 +19,7 @@ Route::get('/about', function () {
 Route::view('/calendari', 'calendari');
 
 Route::get('/tasks_vue', 'TasksVueController@index');
+Route::get('/home','TasksVueController@index');
 
 // Propies
 Route::post('/taskscompleted/{task}', 'TasksCompletedController@store');

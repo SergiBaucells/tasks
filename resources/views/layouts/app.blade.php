@@ -10,7 +10,7 @@
 </head>
 <body>
 <v-app id="app">
-    <v-navigation-drawer
+    <v-navigation-dramwer
             v-model="drawer"
             fixed
             app
@@ -73,7 +73,7 @@
                 </v-list-tile>
             </template>
         </v-list>
-    </v-navigation-drawer>
+    </v-navigation-dramwer>
     <v-toolbar color="indigo" dark fixed app>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Menú</v-toolbar-title>
@@ -83,7 +83,7 @@
         </v-avatar>
         <v-form action="logout" method="POST">
             @csrf
-            <v-btn color="primary" type="submit">Logout</v-btn>
+            <v-btn color="error" type="submit">Logout</v-btn>
         </v-form>
     </v-toolbar>
     <v-content>

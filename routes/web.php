@@ -29,3 +29,7 @@ Auth::routes();
 
 // TODO
 Route::post('/login_alt','Auth\LoginAltController@login');
+
+Route::get('/', function () {
+    return view('welcome');
+});

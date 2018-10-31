@@ -10,7 +10,7 @@
 </head>
 <body>
 <v-app id="app">
-    <v-navigation-dramwer
+    <v-navigation-drawer
             v-model="drawer"
             fixed
             app
@@ -73,7 +73,7 @@
                 </v-list-tile>
             </template>
         </v-list>
-    </v-navigation-dramwer>
+    </v-navigation-drawer>
     <v-toolbar color="indigo" dark fixed app>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Menú</v-toolbar-title>

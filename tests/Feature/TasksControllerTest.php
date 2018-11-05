@@ -4,6 +4,7 @@
 namespace Tests\Feature;
 
 use App\Task;
+use App\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -23,6 +24,7 @@ class TasksControllerTest extends TestCase
 
         //1 Prepare
         create_example_tasks();
+        login($this);
 
 //        dd(Task::find(1));
 
@@ -79,7 +81,8 @@ class TasksControllerTest extends TestCase
      */
     public function can_delete_task()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
+        login($this);
 
         // 1
         $task = Task::create([

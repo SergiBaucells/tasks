@@ -17,13 +17,13 @@ class LoginAltControllerTest extends TestCase
      */
     public function can_login_a_user()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         //1
         $user = factory(User::class)->create([
             'email' => 'prova@gmail.com'
         ]);
 
-        $this->assertNull(Auth::user());
+        login($this);
 
         //2
         $response = $this->post('/login_alt', [

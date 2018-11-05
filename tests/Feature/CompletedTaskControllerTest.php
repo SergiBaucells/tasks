@@ -15,8 +15,9 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_complete_a_task()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         //1
+        login($this);
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => false
@@ -46,8 +47,9 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_uncomplete_a_task()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         //1
+        login($this);
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => true
@@ -57,7 +59,7 @@ class CompletedTaskControllerTest extends TestCase
         //3 Dos opcions: 1) Comprovar base de dades directament
         // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
-        $response->assertRedirect('/tasks');
+        $response->assertRedirect('/');
         $response->assertStatus(302);
         $this->assertEquals((boolean)$task->completed, false);
     }

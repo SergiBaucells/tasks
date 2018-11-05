@@ -19,6 +19,7 @@ class TasksVueControllerTest extends TestCase
         $this->withoutExceptionHandling();
         // Prepare
         create_example_tasks();
+        login($this);
         // Execute
         $response = $this->get('/tasks_vue');
         // Assert

@@ -19,6 +19,6 @@ class TasksCompletedController extends Controller
     {
         $task->completed = false;
         $task->save();
-        return redirect('/tasks');
+        return redirect()->back();
     }
 }

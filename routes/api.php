@@ -18,12 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/v1/tasks', 'Api\TasksController@index');
-Route::get('/v1/tasks/{task}', 'Api\TasksController@show');
-Route::delete('/v1/tasks/{task}', 'Api\TasksController@destroy');
-Route::post('/v1/tasks/', 'Api\TasksController@store');
-Route::put('/v1/tasks/{task}', 'Api\TasksController@update');
+Route::middleware(['auth:api'])->group(function () {
+    Route::get('/v1/tasks', 'Api\TasksController@index');
+    Route::get('/v1/tasks/{task}', 'Api\TasksController@show');
+    Route::delete('/v1/tasks/{task}', 'Api\TasksController@destroy');
+    Route::post('/v1/tasks/', 'Api\TasksController@store');
+    Route::put('/v1/tasks/{task}', 'Api\TasksController@update');
 
 // Completed tasks
-Route::post('/v1/completed_task/{task}', 'Api\TasksCompletedController@store');
-Route::delete('/v1/completed_task/{task}', 'Api\TasksCompletedController@destroy');
+    Route::post('/v1/completed_task/{task}', 'Api\TasksCompletedController@store');
+    Route::delete('/v1/completed_task/{task}', 'Api\TasksCompletedController@destroy');
+});

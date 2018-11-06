@@ -50,6 +50,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_store_task()
     {
+        login($this);
         $response = $this->post('/tasks', [
             'name' => 'Comprar llet'
         ]);
@@ -62,6 +63,7 @@ class TasksControllerTest extends TestCase
      */
     public function cannnot_delete_an_unexisting_task()
     {
+        login($this);
         $response = $this->delete('/tasks/1');
         $response->assertStatus(404);
     }
@@ -104,6 +106,7 @@ class TasksControllerTest extends TestCase
     public function can_edit_a_task()
     {
         // 1
+        login($this);
         $task = Task::create([
             'name' => 'asdasdasd',
             'completed' => '0'
@@ -158,7 +161,7 @@ class TasksControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         // TDD Test Driven Development ->
-
+        login($this);
         // 2 execute HTTP REQUEST -> HTTP RESPONSE (resposta)
         $response = $this->put('/tasks/1', []);
 //        dd($response->getContent());
@@ -172,6 +175,7 @@ class TasksControllerTest extends TestCase
     public function can_show_edit_form()
     {
         // 1
+        login($this);
         $task = Task::create([
             'name' => 'Comprar pa',
             'completed' => false
@@ -188,6 +192,7 @@ class TasksControllerTest extends TestCase
     public function cannot_show_edit_form_unexisting_task()
     {
 //        $this->withoutExceptionHandling();
+        login($this);
         $response = $this->get('/task_edit/1');
         $response->assertStatus(404);
     }

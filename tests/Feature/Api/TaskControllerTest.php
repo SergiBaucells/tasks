@@ -17,11 +17,11 @@ class TaskControllerTest extends TestCase
      */
     public function can_show_a_task()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         // routes/api.php
         // http:// tasks.test/api/v1/tasks
         // HTTP -> GET | POST | PUT | DELETE
-
+        login($this,'api');
         //1
         // Task:create()
         $task = factory(Task::class)->create();
@@ -41,8 +41,9 @@ class TaskControllerTest extends TestCase
      */
     public function can_delete_task()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         // 1
+        login($this,'api');
         $task = factory(Task::class)->create();
 
         // 2
@@ -62,6 +63,7 @@ class TaskControllerTest extends TestCase
     public function cannot_create_task_without_name()
     {
         // 1
+        login($this,'api');
         // 2
         $response = $this->json('POST', '/api/v1/tasks/', [
             'name' => ''
@@ -79,6 +81,7 @@ class TaskControllerTest extends TestCase
     public function cannot_edit_task_without_name()
     {
         // 1
+        login($this,'api');
         $oldTask = factory(Task::class)->create();
         // 2
         $response = $this->json('PUT', '/api/v1/tasks/' . $oldTask->id, [
@@ -95,8 +98,9 @@ class TaskControllerTest extends TestCase
      */
     public function can_create_task()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         // 1
+        login($this,'api');
         // 2
         $response = $this->json('POST', '/api/v1/tasks/', [
             'name' => 'Comprar pa'
@@ -117,6 +121,7 @@ class TaskControllerTest extends TestCase
      */
     public function can_list_task()
     {
+        login($this,'api');
         create_example_tasks();
 
         $response = $this->json('GET', '/api/v1/tasks/', [
@@ -141,6 +146,7 @@ class TaskControllerTest extends TestCase
     public function can_edit_task()
     {
         // 1
+        login($this,'api');
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet'
         ]);

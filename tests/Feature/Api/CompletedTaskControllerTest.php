@@ -16,6 +16,7 @@ class CompletedTaskControllerTest extends TestCase
     public function can_complete_a_task()
     {
         //1
+        login($this,'api');
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => false
@@ -34,6 +35,7 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function cannot_complete_a_unexisting_task()
     {
+        login($this,'api');
         $response = $this->json('POST', '/api/v1/completed_task/1');
         //3 Assert
         $response->assertStatus(404);
@@ -44,6 +46,7 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_uncomplete_a_task()
     {
+        login($this,'api');
         //1
         $task = Task::create([
             'name' => 'comprar pa',
@@ -63,7 +66,8 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function cannot_uncomplete_a_unexisting_task()
     {
-        // 1 -> no cal fer res
+        // 1
+        login($this,'api');
         // 2 Execute
         $response = $this->delete('/api/v1/completed_task/598');
         //3 Assert

@@ -19,11 +19,10 @@ class LoginAltControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         //1
+        login($this);
         $user = factory(User::class)->create([
             'email' => 'prova@gmail.com'
         ]);
-
-        login($this);
 
         //2
         $response = $this->post('/login_alt', [

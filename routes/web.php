@@ -24,20 +24,20 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/calendari', 'calendari');
 
     Route::get('/tasks_vue', 'TasksVueController@index');
+    Route::get('/tasques', 'TasquesController@index');
     Route::get('/home', 'TasksVueController@index');
 
 // Propies
     Route::post('/taskscompleted/{task}', 'TasksCompletedController@store');
     Route::delete('/taskscompleted/{task}', 'TasksCompletedController@destroy');
+    Route::get('/tasks', 'TasksController@index');
+    Route::get('/', 'TasksController@index');
 
-});
-Route::get('/tasks', 'TasksController@index');
-Route::get('/', 'TasksController@index');
 // TODO
-Route::post('/login_alt', 'Auth\LoginAltController@login');
-Route::post('/register_alt', 'Auth\RegisterAltController@store');
-//
-////
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+    Route::post('/login_alt', 'Auth\LoginAltController@login');
+    Route::post('/register_alt', 'Auth\RegisterAltController@store');
+});
+
+Route::get('/', function () {
+    return view('welcome');
+});

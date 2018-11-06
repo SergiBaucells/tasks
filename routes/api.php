@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['auth:api'])->group(function () {
+//Route::middleware(['auth:api'])->group(function () {
     Route::get('/v1/tasks', 'Api\TasksController@index');
     Route::get('/v1/tasks/{task}', 'Api\TasksController@show');
     Route::delete('/v1/tasks/{task}', 'Api\TasksController@destroy');
@@ -28,4 +28,4 @@ Route::middleware(['auth:api'])->group(function () {
 // Completed tasks
     Route::post('/v1/completed_task/{task}', 'Api\TasksCompletedController@store');
     Route::delete('/v1/completed_task/{task}', 'Api\TasksCompletedController@destroy');
-});
+//});

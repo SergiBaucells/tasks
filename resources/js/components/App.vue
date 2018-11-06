@@ -12,7 +12,8 @@ export default{
         model: true,
         children: [
           { icon: 'assignment', text: 'Tasques PHP', url: '/tasks' },
-          { icon: 'assignment', text: 'Tasques Vue', url: 'tasks_vue' }
+          { icon: 'assignment', text: 'Tasques Tailwind', url: '/tasks_vue' },
+          { icon: 'assignment', text: 'Tasques', url: 'tasques' }
         ]
       },
       { icon: 'account_box', text: 'Sobre nosaltres', url: '/about' },

@@ -70,9 +70,9 @@ class Task extends Model
             'name' => $this->name,
             'completed' => $this->completed,
             'user_id' => $this->user_id,
-            'user_name' => optional($this->user)->name
-//            'tags' => $this->tags,
-//            'file' => $this->file,
+            'user_name' => optional($this->user)->name,
+            'user_email' => optional($this->user)->email,
+            'user' => $this->user
         ];
     }
 

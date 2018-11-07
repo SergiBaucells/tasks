@@ -19,11 +19,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Route::middleware(['auth:api'])->group(function () {
+    // Tasks
     Route::get('/v1/tasks', 'Api\TasksController@index');
     Route::get('/v1/tasks/{task}', 'Api\TasksController@show');
     Route::delete('/v1/tasks/{task}', 'Api\TasksController@destroy');
     Route::post('/v1/tasks/', 'Api\TasksController@store');
     Route::put('/v1/tasks/{task}', 'Api\TasksController@update');
+    // Tags
+    Route::get('/v1/tags', 'Api\TagsController@index');
+    Route::get('/v1/tags/{tag}', 'Api\TagsController@show');
+    Route::delete('/v1/tags/{tag}', 'Api\TagsController@destroy');
+    Route::post('/v1/tags/', 'Api\TagsController@store');
+    Route::put('/v1/tags/{tag}', 'Api\TagsController@update');
 
 // Completed tasks
     Route::post('/v1/completed_task/{task}', 'Api\TasksCompletedController@store');

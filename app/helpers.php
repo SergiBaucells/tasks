@@ -77,5 +77,44 @@ if (!function_exists('create_example_tasks')) {
             DB::connection('mysqlroot')->getPdo()->exec($statement);
         }
     }
+
+    if (!function_exists('drop_mysql_database')) {
+        function drop_mysql_database($name)
+        {
+            $statement = "CREATE DATABASE IF EXISTS $name";
+            DB::connection('mysqlroot')->getPdo()->exec($statement);
+        }
+    }
+
+    if (!function_exists('create_mysql_user')) {
+        function create_mysql_user($name, $password = null, $host = 'localhost')
+        {
+            if (!$password) $password = str_random();
+            $statement = "CREATE USER IF NOT EXISTS {$name}@{$host}";
+            DB::connection('mysqlroot')->getPdo()->exec($statement);
+            $statement = "ALTER USER '{$name}'@'{$host}' IDENTIFIED BY '{$password}'";
+            DB::connection('mysqlroot')->getPdo()->exec($statement);
+            return "El password aleatori es: {$password}";
+        }
+    }
+
+    if (!function_exists('grant_mysql_privileges')) {
+        function grant_mysql_privileges($name, $database, $host = 'localhost')
+        {
+            $statement = "GRANT ALL PRIVILEGES ON {$database}.* TO '{$name}'@'{$host}' WITH GRANT OPTION";
+            DB::connection('mysqlroot')->getPdo()->exec($statement);
+            $statement = "FLUSH PRIVILEGES";
+            DB::connection('mysqlroot')->getPdo()->exec($statement);
+        }
+    }
+
+    if (!function_exists('create_database')) {
+        function create_database()
+        {
+            create_mysql_database(env('DB_DATABASE'));
+            create_mysql_user(env('DB_USERNAME'), env('DB_PASSWORD'));
+            grant_mysql_privileges(env('DB_USERNAME'), env('DB_DATABASE'));
+        }
+    }
 }
 

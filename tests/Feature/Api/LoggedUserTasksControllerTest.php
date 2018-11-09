@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 
 
 use App\Task;
@@ -18,22 +18,26 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_list_logged_user_tasks()
     {
-
-        $user = login($this);
+        // 1
+        $user = login($this, 'api');
 
         $task1 = factory(Task::class)->create();
         $task2 = factory(Task::class)->create();
         $task3 = factory(Task::class)->create();
 
-        $tasks = collect([$task1, $task2, $task3]);
+        $tasks = [$task1, $task2, $task3];
         $user->addTasks($tasks);
 
-
-        $response = $this->get('/user/tasks');
+        // 2 execute
+        $response = $this->json('GET', '/api/v1/user/tasks');
         $response->assertSuccessful();
 
-        $response->assertViewIs('tasks.user.index');
-        $response->assertViewHas('tasks', $user->tasks);
+        $result = json_decode($response->getContent());
+
+        $this->assertCount(3, $result);
+        $this->assertEquals($result[0]->id,$task1->id);
+        $this->assertEquals($result[1]->id,$task2->id);
+        $this->assertEquals($result[2]->id,$task3->id);
     }
 
     /**
@@ -41,6 +45,7 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_not_list_logged_user_tasks_if_user_is_not_logged()
     {
+//        $this->markTestSkipped();
         // 2
         $response = $this->json('GET', '/user/tasks');
         $response->assertStatus(401);

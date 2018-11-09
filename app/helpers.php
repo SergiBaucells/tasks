@@ -62,11 +62,12 @@ if (!function_exists('create_example_tasks')) {
     }
 
     if (!function_exists('login')) {
-        function login($test, $guard = null): void
+        function login($test, $guard = null)
         {
             $user = factory(User::class)->create();
             $test->actingAs($user, $guard); //WEB
             //        $this->actingAs($user,'api'); //API
+            return $user;
         }
     }
 

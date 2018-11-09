@@ -27,11 +27,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tasques', 'TasquesController@index');
     Route::get('/home', 'TasksVueController@index');
 
-// Propies
+    // Propies
     Route::post('/taskscompleted/{task}', 'TasksCompletedController@store');
     Route::delete('/taskscompleted/{task}', 'TasksCompletedController@destroy');
     Route::get('/tasks', 'TasksController@index');
     Route::get('/', 'TasksController@index');
+    // User tasks
+    Route::get('/user/tasks', 'LoggedUserTasksController@index');
 
 });
 

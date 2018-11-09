@@ -138,32 +138,7 @@ export default {
       deleting: false,
       showing: false,
       editing: false,
-      dataTasks: [
-        {
-          id: 1,
-          name: 'Comprar pa',
-          completed: false,
-          user_id: 1,
-          create_at: 'fa 1 minut',
-          update_at: 'fa 1 minut'
-        },
-        {
-          id: 2,
-          name: 'Comprar llet',
-          completed: true,
-          user_id: 1,
-          create_at: 'fa 1 minut',
-          update_at: 'fa 1 minut'
-        },
-        {
-          id: 3,
-          name: 'Estudiar PHP',
-          completed: false,
-          user_id: 2,
-          create_at: 'fa 1 minut',
-          update_at: 'fa 1 minut'
-        }
-      ],
+      dataTasks: this.tasks,
       headers: [
         {
           text: 'Id',
@@ -196,12 +171,25 @@ export default {
       ]
     }
   },
+  props: {
+    tasks: {
+      type: Array,
+      required: true
+    }
+  },
   methods: {
     refresh () {
       this.loading = true
-      setTimeout(() => { this.loading = false }, 5000)
-      // TODO -> AXIOS
-      console.log('TODO REFRESH')
+      // setTimeout(() => { this.loading = false }, 5000)
+      // OCO!! URL CANVIA SEGONS EL CAS
+      // window.axios.get('/api/v1/tasks').then().catch()
+      window.axios.get('/api/v1/user/tasks').then(response => {
+        // SHOW SNACKBAR MISSATGE OK
+        this.dataTasks = response.data
+      }).catch(error => {
+        console.log(error)
+        // SHOW SNACKBAR ERROR
+      })
     },
     opcio1 () {
       console.log('TODO OPCIÓ 1')

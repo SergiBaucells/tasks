@@ -15,6 +15,6 @@
 - [ ] Crear mètode removeTask
 
 ### Fer en explotació
-- [ ] composer install
+- [X] composer install
 - [ ] php artisan migrate
 - [ ] php artisan passport:install

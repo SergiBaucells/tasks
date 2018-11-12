@@ -1,6 +1,6 @@
 # Feina per fer
 
-- [ ] Fer pàgina Registrar
+- [X] Fer pàgina Registrar
     - Igual que login canviar login per register.
     - 3 camps:
      	- nom

@@ -1,9 +1,24 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog" width="500">
-            <v-card>TODO DELETE DIALOG</v-card>
+        <v-dialog v-model="deleteDialog" width="400">
+            <v-card>
+                <v-card-title class="headline">Esteu segurs?</v-card-title>
+                <v-card-text>
+                    Aquesta operació no es pot desfer.
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                      <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
+                        Cancel·lar
+                      </v-btn>
+
+                      <v-btn color="error darken-1" flat="flat" @click="destroy">
+                        Confirmar
+                      </v-btn>
+                </v-card-actions>
+            </v-card>
         </v-dialog>
-        <v-dialog v-model="createDialog" fullscreen>
+        <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition">
             <v-card>TODO CREATE DIALOG</v-card>
         </v-dialog>
 
@@ -87,7 +102,7 @@
                         <td v-text="task.update_at"></td>
                         <td>
                             <v-btn icon color="primary" flat title="Mostrar snackbar" @click="snackbar=true">
-                                <v-icon>delete</v-icon>
+                                <v-icon>visibility</v-icon>
                             </v-btn>
                             <v-btn :loading="showing" :disabled="showing" icon color="primary" flat title="Mostrar la tasca" @click="show(task)">
                                 <v-icon>search</v-icon>
@@ -140,34 +155,13 @@ export default {
       editing: false,
       dataTasks: this.tasks,
       headers: [
-        {
-          text: 'Id',
-          value: 'id'
-        },
-        {
-          text: 'Nom',
-          value: 'name'
-        },
-        {
-          text: 'Usuari',
-          value: 'user_id'
-        },
-        {
-          text: 'Completat',
-          value: 'completed'
-        },
-        {
-          text: 'Creat',
-          value: 'created_at'
-        },
-        {
-          text: 'Modificat',
-          value: 'update_at'
-        },
-        {
-          text: 'Accions',
-          sortable: false
-        }
+        { text: 'Id', value: 'id' },
+        { text: 'Nom', value: 'name' },
+        { text: 'Usuari', value: 'user_id' },
+        { text: 'Completat', value: 'completed' },
+        { text: 'Creat', value: 'created_at' },
+        { text: 'Modificat', value: 'update_at' },
+        { text: 'Accions', sortable: false }
       ]
     }
   },
@@ -186,8 +180,10 @@ export default {
       window.axios.get('/api/v1/user/tasks').then(response => {
         // SHOW SNACKBAR MISSATGE OK
         this.dataTasks = response.data
+        this.loading = false
       }).catch(error => {
         console.log(error)
+        this.loading = false
         // SHOW SNACKBAR ERROR
       })
     },
@@ -201,7 +197,7 @@ export default {
       console.log('TODO ESBORRAR TASCA ' + task.id)
     },
     destroy (task) {
-      this.deleting = true
+      this.deleting = false
       setTimeout(() => { this.deleting = false }, 5000)
       console.log('TODO ESBORRAR TASCA ' + task.id)
     },

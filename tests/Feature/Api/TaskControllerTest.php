@@ -4,6 +4,7 @@ namespace Tests\Feature\Api;
 
 use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
 
 class TaskControllerTest extends TestCase
@@ -21,7 +22,7 @@ class TaskControllerTest extends TestCase
         // routes/api.php
         // http:// tasks.test/api/v1/tasks
         // HTTP -> GET | POST | PUT | DELETE
-        login($this,'api');
+        login($this, 'api');
         //1
         // Task:create()
         $task = factory(Task::class)->create();
@@ -43,7 +44,7 @@ class TaskControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         // 1
-        login($this,'api');
+        login($this, 'api');
         $task = factory(Task::class)->create();
 
         // 2
@@ -63,7 +64,7 @@ class TaskControllerTest extends TestCase
     public function cannot_create_task_without_name()
     {
         // 1
-        login($this,'api');
+        login($this, 'api');
         // 2
         $response = $this->json('POST', '/api/v1/tasks/', [
             'name' => ''
@@ -81,7 +82,7 @@ class TaskControllerTest extends TestCase
     public function cannot_edit_task_without_name()
     {
         // 1
-        login($this,'api');
+        login($this, 'api');
         $oldTask = factory(Task::class)->create();
         // 2
         $response = $this->json('PUT', '/api/v1/tasks/' . $oldTask->id, [
@@ -100,7 +101,16 @@ class TaskControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         // 1
-        login($this,'api');
+        $user = login($this, 'api');
+
+        // TODO assign permission to $user
+
+        $user->givePermissionTo('task.store');
+
+//        Gate::define('task.store', function ($user) {
+//            dd('PROVA');
+//        });
+
         // 2
         $response = $this->json('POST', '/api/v1/tasks/', [
             'name' => 'Comprar pa'
@@ -121,7 +131,7 @@ class TaskControllerTest extends TestCase
      */
     public function can_list_task()
     {
-        login($this,'api');
+        login($this, 'api');
         create_example_tasks();
 
         $response = $this->json('GET', '/api/v1/tasks/', [
@@ -146,7 +156,7 @@ class TaskControllerTest extends TestCase
     public function can_edit_task()
     {
         // 1
-        login($this,'api');
+        login($this, 'api');
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet'
         ]);

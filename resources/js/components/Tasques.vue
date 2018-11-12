@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog">
+        <v-dialog v-model="deleteDialog" width="500">
             <v-card>TODO DELETE DIALOG</v-card>
         </v-dialog>
         <v-dialog v-model="createDialog" fullscreen>
@@ -174,7 +174,7 @@ export default {
   props: {
     tasks: {
       type: Array,
-      required: true
+      required: false
     }
   },
   methods: {

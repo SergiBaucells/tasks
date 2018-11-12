@@ -14,7 +14,9 @@
 - [ ] Crear test unitari per a removeTask
 - [ ] Crear mètode removeTask
 
+- [ ] Fer vista per a tags
+
 ### Fer en explotació
-- [X] composer install
+- [ ] composer install
 - [ ] php artisan migrate
 - [ ] php artisan passport:install

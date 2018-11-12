@@ -107,7 +107,7 @@ var app = document.getElementById('app')
     * No permet les peticions entre pàgines Web diferents.
 
 # Penjar en explotació
-* git co
+* co
 * git checkout production
 * git merge master
 * git checkout master

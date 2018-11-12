@@ -17,6 +17,6 @@
 - [ ] Fer vista per a tags
 
 ### Fer en explotació
-- [ ] composer install
-- [ ] php artisan migrate
-- [ ] php artisan passport:install
+- [X] composer install
+- [X] php artisan migrate
+- [X] php artisan passport:install

@@ -95,7 +95,7 @@ if (!function_exists('create_example_tasks')) {
             DB::connection('mysqlroot')->getPdo()->exec($statement);
             $statement = "ALTER USER '{$name}'@'{$host}' IDENTIFIED BY '{$password}'";
             DB::connection('mysqlroot')->getPdo()->exec($statement);
-            return "El password aleatori es: {$password}";
+            echo "El password aleatori es: {$password}";
         }
     }
 

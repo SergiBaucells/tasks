@@ -1,5 +1,5 @@
 <template>
-    <v-form action="/register" method="post">
+    <v-form action="/register" method="POST">
         <v-toolbar dark color="primary">
             <v-spacer></v-spacer>
             <v-toolbar-title>Register</v-toolbar-title>
@@ -21,7 +21,7 @@
             <v-text-field
                     prepend-icon="person"
                     name="email"
-                    label="e-mail"
+                    label="Email"
                     type="text"
                     v-model="dataEmail"
                     :error-messages="emailErrors"
@@ -40,15 +40,15 @@
                     @blur="$v.password.$touch()"
             ></v-text-field>
             <v-text-field
-                    id="password_confirm"
+                    id="password_confirmation"
                     prepend-icon="lock"
-                    name="password_confirm"
-                    label="Password Confirm"
+                    name="password_confirmation"
+                    label="Confirm Password"
                     type="password"
-                    v-model="password_confirm"
-                    :error-messages="password_confirmErrors"
-                    @input="$v.password_confirm.$touch()"
-                    @blur="$v.password_confirm.$touch()"
+                    v-model="password_confirmation"
+                    :error-messages="password_confirmationErrors"
+                    @input="$v.password_confirmation.$touch()"
+                    @blur="$v.password_confirmation.$touch()"
             ></v-text-field>
 
         </v-card-text>
@@ -68,7 +68,7 @@ export default {
     name: { required },
     dataEmail: { required, email },
     password: { required, minLength: minLength(6) },
-    password_confirm: { sameAsPassword: sameAs('password') }
+    password_confirmation: { sameAsPassword: sameAs('password') }
   },
   name: 'RegisterForm',
   data () {
@@ -76,7 +76,7 @@ export default {
       dataEmail: this.email,
       name: '',
       password: '',
-      password_confirm: ''
+      password_confirmation: ''
     }
   },
   props: {
@@ -104,10 +104,10 @@ export default {
       !this.$v.password.required && errors.push('El password és obligatori')
       return errors
     },
-    password_confirmErrors () {
+    password_confirmationErrors () {
       const errors = []
-      if (!this.$v.password_confirm.$dirty) return errors
-      !this.$v.password_confirm.sameAsPassword && errors.push('Les contrasenyes no coincideixen')
+      if (!this.$v.password_confirmation.$dirty) return errors
+      !this.$v.password_confirmation.sameAsPassword && errors.push('Les password no son iguals')
       return errors
     }
   }

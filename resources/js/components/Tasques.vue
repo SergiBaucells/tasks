@@ -11,15 +11,108 @@
                       <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
                         Cancel·lar
                       </v-btn>
-
                       <v-btn color="error darken-1" flat="flat" @click="destroy">
                         Confirmar
                       </v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
-        <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition">
-            <v-card>TODO CREATE DIALOG</v-card>
+
+        <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="createDialog=false">
+            <v-toolbar color="primary" class="white--text">
+                <v-btn flat icon class="white--text" @click="createDialog=false">
+                    <v-icon class="mr-2">close</v-icon>
+                </v-btn>
+                <v-card-title class="headline">Crear tasca</v-card-title>
+                <v-spacer></v-spacer>
+                <v-btn flat class="white--text" @click="createDialog=false">
+                    <v-icon class="mr-2">exit_to_app</v-icon>
+                    Sortir
+                </v-btn>
+                <v-btn flat class="white--text">
+                    <v-icon class="mr-2">save</v-icon>
+                    Guardar
+                </v-btn>
+            </v-toolbar>
+            <v-card>
+                <v-card-text>
+                    <v-form>
+                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea v-model="description" label="Descripció"></v-textarea>
+                        <div class="text-xs-center">
+                            <v-btn @click="editDialog=false">
+                                <v-icon class="mr-2">exit_to_app</v-icon>
+                                Cancel·lar
+                            </v-btn>
+                            <v-btn color="success">
+                                <v-icon class="mr-2">save</v-icon>
+                                Guardar
+                            </v-btn>
+                        </div>
+                    </v-form>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="editDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="editDialog=false">
+            <v-toolbar color="primary" class="white--text">
+                <v-btn flat icon class="white--text" @click="editDialog=false">
+                    <v-icon class="mr-2">close</v-icon>
+                </v-btn>
+                <v-card-title class="headline">Editar tasca</v-card-title>
+                <v-spacer></v-spacer>
+                <v-btn flat class="white--text" @click="editDialog=false">
+                    <v-icon class="mr-2">exit_to_app</v-icon>
+                    Sortir
+                </v-btn>
+                <v-btn flat class="white--text">
+                    <v-icon class="mr-2">save</v-icon>
+                    Guardar
+                </v-btn>
+            </v-toolbar>
+            <v-card>
+                <v-card-text>
+                    <v-form>
+                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea v-model="description" label="Descripció"></v-textarea>
+                        <div class="text-xs-center">
+                            <v-btn @click="editDialog=false">
+                                <v-icon class="mr-2">exit_to_app</v-icon>
+                                Cancel·lar
+                            </v-btn>
+                            <v-btn color="success">
+                                <v-icon class="mr-2">save</v-icon>
+                                Guardar
+                            </v-btn>
+                        </div>
+                    </v-form>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="showDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="showDialog=false">
+            <v-toolbar color="primary" class="white--text">
+                <v-btn flat icon class="white--text" @click="showDialog=false">
+                    <v-icon class="mr-2">close</v-icon>
+                </v-btn>
+                <v-card-title class="headline">Mostrar tasca</v-card-title>
+                <v-spacer></v-spacer>
+                <v-btn flat class="white--text" @click="showDialog=false">
+                    <v-icon class="mr-2">exit_to_app</v-icon>
+                    Sortir
+                </v-btn>
+                <v-btn flat class="white--text">
+                    <v-icon class="mr-2">save</v-icon>
+                    Guardar
+                </v-btn>
+            </v-toolbar>
+            <v-card>
+                <v-card-text>
+                    TODO SHOW DIALOG
+                </v-card-text>
+            </v-card>
         </v-dialog>
 
         <v-snackbar
@@ -55,15 +148,15 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout>
-                    <v-flex xs3 class="mr-2">
+                <v-layout row wrap>
+                    <v-flex lg3 class="mr-2">
                         <v-select
                                 label="Filtres"
                                 :items="filters"
                                 v-model="filter"
                         ></v-select>
                     </v-flex>
-                    <v-flex xs4 class="mr-2">
+                    <v-flex lg4 class="mr-2">
                         <v-select
                                 label="Usuari"
                                 :items="users"
@@ -71,7 +164,7 @@
                                 clearable
                         ></v-select>
                     </v-flex>
-                    <v-flex xs5>
+                    <v-flex lg5>
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
@@ -90,6 +183,7 @@
                     :rows-per-page-items="[5,10,25,50,100,{'text':'Tots','value':-1}]"
                     :loading="loading"
                     :pagination.sync="pagination"
+                    class="hidden-md-and-down"
             >
                 <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item:task}">
@@ -99,15 +193,15 @@
                         <td v-text="task.user_id"></td>
                         <td v-text="task.completed"></td>
                         <td v-text="task.create_at"></td>
-                        <td v-text="task.update_at"></td>
+                        <td v-text="task.updated_at"></td>
                         <td>
                             <v-btn icon color="primary" flat title="Mostrar snackbar" @click="snackbar=true">
+                                <v-icon>info</v-icon>
+                            </v-btn>
+                            <v-btn :loading="showing" :disabled="showing" icon color="primary" flat title="Mostrar la tasca" @click="showTask(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn :loading="showing" :disabled="showing" icon color="primary" flat title="Mostrar la tasca" @click="show(task)">
-                                <v-icon>search</v-icon>
-                            </v-btn>
-                            <v-btn :loading="editing" :disabled="editing" icon color="success" flat title="Actualitzar la tasca" @click="update(task)">
+                            <v-btn :loading="editing" :disabled="editing" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
                             <v-btn :loading="deleting" :disabled="deleting" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
@@ -117,6 +211,39 @@
                     </tr>
                 </template>
             </v-data-table>
+            <v-data-iterator
+                    class="hidden-lg-and-up"
+                    :items="dataTasks"
+                    :search="search"
+                    no-results-text="No s'ha trobat cap registre coincident"
+                    no-data-text="No hi han dades disponibles"
+                    rows-per-page-text="Tasques per pàgina"
+                    :rows-per-page-items="[5,10,25,50,100,{'text':'Tots','value':-1}]"
+                    :loading="loading"
+                    :pagination.sync="pagination"
+            >
+                <v-flex
+                        slot="item"
+                        slot-scope="{item:task}"
+                        xs12
+                        sm6
+                        md4
+                >
+                    <v-card class="mb-1">
+                        <v-card-title v-text="task.name"></v-card-title>
+                        <v-list dense>
+                            <v-list-tile>
+                              <v-list-tile-content>Completed:</v-list-tile-content>
+                              <v-list-tile-content class="align-end">{{ task.completed }}</v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile>
+                              <v-list-tile-content>User:</v-list-tile-content>
+                              <v-list-tile-content class="align-end">{{ task.user_id }}</v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-card>
+                </v-flex>
+            </v-data-iterator>
         </v-card>
         <v-btn fab bottom right color="pink" fixed class="white--text" @click="showCreate">
             <v-icon>add</v-icon>
@@ -130,8 +257,13 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      description: '',
+      completed: false,
+      name: '',
       createDialog: false,
       deleteDialog: false,
+      editDialog: false,
+      showDialog: false,
       snackbar: true,
       user: '',
       users: [
@@ -160,7 +292,7 @@ export default {
         { text: 'Usuari', value: 'user_id' },
         { text: 'Completat', value: 'completed' },
         { text: 'Creat', value: 'created_at' },
-        { text: 'Modificat', value: 'update_at' },
+        { text: 'Modificat', value: 'updated_at' },
         { text: 'Accions', sortable: false }
       ]
     }
@@ -168,7 +300,7 @@ export default {
   props: {
     tasks: {
       type: Array,
-      required: false
+      required: true
     }
   },
   methods: {
@@ -190,20 +322,10 @@ export default {
     opcio1 () {
       console.log('TODO OPCIÓ 1')
     },
-    showDestroy (task) {
-      this.deleteDialog = true
-      this.deleting = true
-      setTimeout(() => { this.deleting = false }, 5000)
-      console.log('TODO ESBORRAR TASCA ' + task.id)
-    },
     destroy (task) {
       this.deleting = false
       setTimeout(() => { this.deleting = false }, 5000)
       console.log('TODO ESBORRAR TASCA ' + task.id)
-    },
-    showCreate (task) {
-      this.createDialog = true
-      console.log('TODO CREAR TASCA')
     },
     create (task) {
       console.log('TODO CREAR TASCA')
@@ -217,6 +339,18 @@ export default {
       this.showing = true
       setTimeout(() => { this.showing = false }, 5000)
       console.log('TODO MOSTRAR TASCA ' + task.id)
+    },
+    showUpdate () {
+      this.editDialog = true
+    },
+    showTask () {
+      this.showDialog = true
+    },
+    showCreate () {
+      this.createDialog = true
+    },
+    showDestroy () {
+      this.deleteDialog = true
     }
   }
 }

@@ -35,10 +35,11 @@ Route::middleware(['auth'])->group(function () {
     // User tasks
     Route::get('/user/tasks', 'LoggedUserTasksController@index');
 
+    Route::post('/login_alt', 'Auth\LoginAltController@login');
+    Route::post('/register_alt', 'Auth\RegisterAltController@store');
+
 });
 
-Route::post('/login_alt', 'Auth\LoginAltController@login');
-Route::post('/register_alt', 'Auth\RegisterAltController@store');
 
 Route::get('/', function () {
     return view('welcome');

@@ -19,7 +19,7 @@
                     @blur="$v.name.$touch()"
             ></v-text-field>
             <v-text-field
-                    prepend-icon="person"
+                    prepend-icon="mail_outline"
                     name="email"
                     label="Email"
                     type="text"

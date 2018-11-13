@@ -8,6 +8,8 @@
      	- password
      	- password confirmed (opcional)
 - [ ] Fer formularis
+    - [X] Eliminar tasca
+    - [ ] Afegir (Botó +, baix dreta)
 
 - [ ] Crear test unitari per a haveTask
 - [ ] Crear mètode haveTask

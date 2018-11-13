@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 if (!function_exists('create_primary_user')) {
     function create_primary_user()
     {
-        $user = User::where('email', 'sergibaucells@gmail.com')->first();
+        $user = User::where('email', 'sergibaucells@iesebre.com')->first();
         if (!$user) {
             User::firstOrCreate([
                 'name' => 'Sergi Baucells',
-                'email' => 'sergibaucells@gmail.com',
+                'email' => 'sergibaucells@iesebre.com',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD', '123456'))
             ]);
         }

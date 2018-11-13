@@ -41,7 +41,7 @@
                         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="description" label="Descripció"></v-textarea>
                         <div class="text-xs-center">
-                            <v-btn @click="editDialog=false">
+                            <v-btn @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Cancel·lar
                             </v-btn>
@@ -77,6 +77,7 @@
                         <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="description" label="Descripció"></v-textarea>
+                        <v-autocomplete :items="dataUsers" label="Usuari" item-text="name"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -110,7 +111,21 @@
             </v-toolbar>
             <v-card>
                 <v-card-text>
-                    TODO SHOW DIALOG
+                    <v-form>
+                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" readonly></v-text-field>
+                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'" readonly></v-switch>
+                        <v-textarea v-model="description" label="Descripció" readonly></v-textarea>
+                        <div class="text-xs-center">
+                            <v-btn @click="showDialog=false">
+                                <v-icon class="mr-2">exit_to_app</v-icon>
+                                Cancel·lar
+                            </v-btn>
+                            <v-btn color="success">
+                                <v-icon class="mr-2">save</v-icon>
+                                Guardar
+                            </v-btn>
+                        </div>
+                    </v-form>
                 </v-card-text>
             </v-card>
         </v-dialog>
@@ -159,8 +174,9 @@
                     <v-flex lg4 class="mr-2">
                         <v-select
                                 label="Usuari"
-                                :items="users"
+                                :items="dataUsers"
                                 v-model="user"
+                                item-text="name"
                                 clearable
                         ></v-select>
                     </v-flex>
@@ -257,6 +273,7 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      dataUsers: this.users,
       description: '',
       completed: false,
       name: '',
@@ -266,7 +283,7 @@ export default {
       showDialog: false,
       snackbar: true,
       user: '',
-      users: [
+      usersold: [
         'Sergi Baucells',
         'Jordi baucells',
         'Carmen Rodríguez'
@@ -299,6 +316,10 @@ export default {
   },
   props: {
     tasks: {
+      type: Array,
+      required: true
+    },
+    users: {
       type: Array,
       required: true
     }

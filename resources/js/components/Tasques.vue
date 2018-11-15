@@ -11,7 +11,13 @@
                       <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
                         Cancel·lar
                       </v-btn>
-                      <v-btn color="error darken-1" flat="flat" @click="destroy">
+                      <v-btn
+                        color="error darken-1"
+                        flat="flat"
+                        @click="destroy"
+                        :loading="removing"
+                        :disabled="removing"
+                        >
                         Confirmar
                       </v-btn>
                 </v-card-actions>
@@ -208,7 +214,7 @@
                         <td v-text="task.name"></td>
                         <td v-text="task.user_id"></td>
                         <td v-text="task.completed"></td>
-                        <td v-text="task.create_at"></td>
+                        <td v-text="task.created_at"></td>
                         <td v-text="task.updated_at"></td>
                         <td>
                             <v-btn icon color="primary" flat title="Mostrar snackbar" @click="snackbar=true">
@@ -220,7 +226,7 @@
                             <v-btn :loading="editing" :disabled="editing" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn :loading="deleting" :disabled="deleting" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
+                            <v-btn :loading="removing" :disabled="removing" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -283,6 +289,7 @@ export default {
       showDialog: false,
       snackbar: false,
       user: '',
+      taskBeingRemoved: '',
       usersold: [
         'Sergi Baucells',
         'Jordi baucells',
@@ -298,6 +305,8 @@ export default {
       pagination: {
         rowsPerPage: 25
       },
+      removing: false,
+      creating: false,
       loading: false,
       deleting: false,
       showing: false,
@@ -343,10 +352,20 @@ export default {
     opcio1 () {
       console.log('TODO OPCIÓ 1')
     },
-    destroy (task) {
-      this.deleting = false
-      setTimeout(() => { this.deleting = false }, 5000)
-      console.log('TODO ESBORRAR TASCA ' + task.id)
+    removeTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
+    destroy () {
+      this.removing = true
+      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(() => {
+        this.removeTask(this.taskBeingRemoved)
+        this.deleteDialog = false
+        this.taskBeingRemoved = null
+        this.removing = false
+      }).catch(error => {
+        console.log(error)
+        this.removing = false
+      })
     },
     create (task) {
       console.log('TODO CREAR TASCA')
@@ -370,8 +389,9 @@ export default {
     showCreate () {
       this.createDialog = true
     },
-    showDestroy () {
+    showDestroy (task) {
       this.deleteDialog = true
+      this.taskBeingRemoved = task
     }
   }
 }

@@ -24,17 +24,23 @@ if (!function_exists('create_example_tasks')) {
     {
         Task::create([
             'name' => 'comprar pa',
-            'completed' => false
+            'completed' => false,
+            'description' => 'Descripció de prova',
+            'user_id' => 1
         ]);
 
         Task::create([
             'name' => 'comprar llet',
-            'completed' => false
+            'completed' => false,
+            'description' => 'Descripció de prova',
+            'user_id' => 1
         ]);
 
         Task::create([
             'name' => 'Estudiar PHP',
-            'completed' => true
+            'completed' => true,
+            'description' => 'Descripció de prova',
+            'user_id' => 1
         ]);
     }
 

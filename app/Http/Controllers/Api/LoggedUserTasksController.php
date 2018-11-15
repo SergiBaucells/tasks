@@ -21,10 +21,10 @@ class LoggedUserTasksController extends Controller
         return Auth::user()->addTask($task);
     }
 
-    public function destory(Request $request, Task $task)
+    public function destroy(Request $request, Task $task)
     {
+        Auth::user()->tasks()->findOrFail($task->id);
         $task->delete();
-        return Auth::user()->removeTask($task);
     }
 
     public function update(Request $request, Task $task)
@@ -32,13 +32,10 @@ class LoggedUserTasksController extends Controller
         Auth::user()->tasks()->findOrFail($task->id);
 
         $task->name = $request->name;
-        $task->completed = $request->completed;
+        $task->description = $request->description;
+        $task->completed = $request->completed ?? false;
         $task->save();
+        return $task;
 
-//        if (Auth::user()->haveTask($task)) {
-//            $task->name = $request->name;
-//            $task->completed = $request->completed;
-//            $task->save();
-//        }
     }
 }

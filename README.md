@@ -107,6 +107,8 @@ var app = document.getElementById('app')
     * No permet les peticions entre pàgines Web diferents.
 
 # Penjar en explotació
+* Parar npm run hot
+* Executar npm run dev
 * co
 * git checkout production
 * git status (he d'estar net)

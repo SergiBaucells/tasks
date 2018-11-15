@@ -109,7 +109,10 @@ var app = document.getElementById('app')
 # Penjar en explotació
 * co
 * git checkout production
+* git status (he d'estar net)
 * git merge master
+* git status (he d'estar net)
+* co
 * git checkout master
-* git push origin production
-* git pull origin production | server
+* git push origin production o git push --all origin
+* git pull origin production (Al server)

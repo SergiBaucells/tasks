@@ -88,11 +88,8 @@
     </v-toolbar>
     <v-content>
         <v-container fluid fill-height>
-            <v-layout
-                    justify-center
-
-            >
-                <v-flex text-xs-center>
+            <v-layout>
+                <v-flex>
                     @yield('content')
                 </v-flex>
             </v-layout>

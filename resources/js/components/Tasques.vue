@@ -132,7 +132,7 @@
 
         <v-snackbar
             :timeout="3000"
-            color="success"
+            color="pink"
             v-model="snackbar"
         >
             Això es un snackbar
@@ -281,7 +281,7 @@ export default {
       deleteDialog: false,
       editDialog: false,
       showDialog: false,
-      snackbar: true,
+      snackbar: false,
       user: '',
       usersold: [
         'Sergi Baucells',

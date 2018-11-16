@@ -30,7 +30,7 @@ class RegisterControllerTest extends TestCase
     /**
      * @test
      */
-    public function can_login_a_user()
+    public function can_register_a_user()
     {
 //        $this->withoutExceptionHandling();
         $this->assertNull(Auth::user());
@@ -57,7 +57,7 @@ class RegisterControllerTest extends TestCase
     /**
      * @test
      */
-    public function cannot_register_a_user_when__passing_error_values()
+    public function cannot_register_a_user_when_passing_error_values()
     {
         //1
         //2

@@ -70,7 +70,7 @@ class LoginControllerTest extends TestCase
     /**
      * @test
      */
-    public function cannot_login_a_user_with_user_password()
+    public function cannot_login_an_user_with_incorrect_user()
     {
 //        $this->withoutExceptionHandling();
         //1

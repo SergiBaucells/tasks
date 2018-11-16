@@ -41,7 +41,7 @@ class LoginAltControllerTest extends TestCase
     /**
      * @test
      */
-    public function cannot_login_a_user_with_incorrect_password()
+    public function cannot_login_an_user_with_incorrect_password()
     {
 //        $this->withoutExceptionHandling();
         //1
@@ -59,7 +59,7 @@ class LoginAltControllerTest extends TestCase
 
         //3
         $response->assertStatus(302);
-        $response->assertRedirect('/');
+        $response->assertRedirect('/login');
         $this->assertNull(Auth::user());
 
     }
@@ -67,7 +67,7 @@ class LoginAltControllerTest extends TestCase
     /**
      * @test
      */
-    public function cannot_login_a_user_with_user_password()
+    public function cannot_login_an_user_with_incorrect_user()
     {
 //        $this->withoutExceptionHandling();
         //1
@@ -85,7 +85,7 @@ class LoginAltControllerTest extends TestCase
 
         //3
         $response->assertStatus(302);
-        $response->assertRedirect('/');
+        $response->assertRedirect('/login');
         $this->assertNull(Auth::user());
 
     }

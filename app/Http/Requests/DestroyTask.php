@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateTask extends FormRequest
+class DestroyTask extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,9 +14,10 @@ class UpdateTask extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('task.update');
+        return Auth::user()->can('task.destroy');
+//        return Auth::user()->can('task.store');
 //        return Auth::user()->isSuperAdmin() || Auth::user()->hasRole('TaskManager') ||
-//            Auth::user()->id === $this->task->user_id || today_is_happy_day();
+//            Auth::user()->id === ;
     }
 
     /**

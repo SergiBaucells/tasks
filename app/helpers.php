@@ -4,6 +4,8 @@ use App\Tag;
 use App\Task;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 if (!function_exists('create_primary_user')) {
     function create_primary_user()
@@ -40,7 +42,7 @@ if (!function_exists('create_example_tasks')) {
             'name' => 'Estudiar PHP',
             'completed' => true,
             'description' => 'Descripció de prova',
-            'user_id' => 1
+            'user_id' => 2
         ]);
     }
 
@@ -121,6 +123,146 @@ if (!function_exists('create_example_tasks')) {
             create_mysql_database(env('DB_DATABASE'));
             create_mysql_user(env('DB_USERNAME'), env('DB_PASSWORD'));
             grant_mysql_privileges(env('DB_USERNAME'), env('DB_DATABASE'));
+        }
+    }
+
+    if (!function_exists('initialize_roles')) {
+        function initialize_roles()
+        {
+            // Crear rols
+            try {
+
+                $taskManager = Role::create([
+                    'name' => 'TaskManager'
+                ]);
+            } catch (Exception $e) {
+            }
+
+            try {
+                $tasks = Role::create([
+                    'name' => 'Tasks'
+                ]);
+            } catch (Exception $e) {
+            }
+            // Crear permisos
+            // CRUD de tasques
+            try {
+                Permission::create([
+                    'name' => 'tasks.index'
+                ]);
+                Permission::create([
+                    'name' => 'tasks.show'
+                ]);
+                Permission::create([
+                    'name' => 'tasks.store'
+                ]);
+                Permission::create([
+                    'name' => 'tasks.update'
+                ]);
+                Permission::create([
+                    'name' => 'tasks.complete'
+                ]);
+                Permission::create([
+                    'name' => 'tasks.uncomplete'
+                ]);
+                Permission::create([
+                    'name' => 'tasks.destroy'
+                ]);
+                // CRUD tasques d'un usuari en concret
+                Permission::create([
+                    'name' => 'user.tasks.index'
+                ]);
+                Permission::create([
+                    'name' => 'user.tasks.show'
+                ]);
+                Permission::create([
+                    'name' => 'user.tasks.store'
+                ]);
+                Permission::create([
+                    'name' => 'user.tasks.update'
+                ]);
+                Permission::create([
+                    'name' => 'user.tasks.destroy'
+                ]);
+                Permission::create([
+                    'name' => 'user.tasks.complete'
+                ]);
+                Permission::create([
+                    'name' => 'user.tasks.uncomplete'
+                ]);
+            } catch (Exception $e) {
+            }
+            try {
+                // Assignar permissos a taskManager
+                $taskManager->givePermissionTo('tasks.index');
+                $taskManager->givePermissionTo('tasks.show');
+                $taskManager->givePermissionTo('tasks.store');
+                $taskManager->givePermissionTo('tasks.update');
+                $taskManager->givePermissionTo('tasks.complete');
+                $taskManager->givePermissionTo('tasks.uncomplete');
+                $taskManager->givePermissionTo('tasks.destroy');
+                // Assignar permissos a usuaris que es registren al sistema
+                $tasks->givePermissionTo('user.tasks.index');
+                $tasks->givePermissionTo('user.tasks.show');
+                $tasks->givePermissionTo('user.tasks.store');
+                $tasks->givePermissionTo('user.tasks.update');
+                $tasks->givePermissionTo('user.tasks.complete');
+                $tasks->givePermissionTo('user.tasks.uncomplete');
+                $tasks->givePermissionTo('user.tasks.destroy');
+            } catch (Exception $e) {
+            }
+        }
+    }
+
+    if (!function_exists('sample_users')) {
+        function sample_users()
+        {
+            // Pepe Pringao -> No té cap permis ni cap rol
+            try {
+                factory(User::class)->create([
+                    'name' => 'Pepe Pringao',
+                    'email' => 'pepepringao@hotmail.com'
+                ]);
+            } catch (Exception $e) {
+            }
+
+            try {
+                $bartsimpson = factory(User::class)->create([
+                    'name' => 'Bart Simpson',
+                    'email' => 'bartsimpson@gmail.com'
+                ]);
+            } catch (Exception $e) {
+            }
+            try {
+                $bartsimpson->assignRole('Tasks');
+            } catch (Exception $e) {
+            }
+
+            try {
+                $homersimpson = factory(User::class)->create([
+                    'name' => 'Homer Simpson',
+                    'email' => 'homersimpson@gmail.com'
+                ]);
+            } catch (Exception $e) {
+            }
+            try {
+                $homersimpson->assignRole('TaskManager');
+            } catch (Exception $e) {
+            }
+
+            try {
+                $sergitur = factory(User::class)->create([
+                    'name' => 'Sergi Tur',
+                    'email' => 'sergiturbadenas@gmail.com',
+                    'password' => bcrypt(env('PRIMARY_USER_PASSWORD', 'secret'))
+                ]);
+            } catch (Exception $e) {
+            }
+            try {
+                $sergitur->assignRole('TaskManager');
+            } catch (Exception $e) {
+            }
+
         }
     }
 }

@@ -34,6 +34,7 @@ class RegisterControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         $this->assertNull(Auth::user());
+        initialize_roles();
         //1
 
         //2
@@ -51,6 +52,7 @@ class RegisterControllerTest extends TestCase
         $this->assertEquals('Sergi', Auth::user()->name);
         $this->assertTrue(Hash::check('secret', Auth::user()->password));
         $this->assertNotNull(Auth::user());
+        $this->assertTrue(Auth::user()->hasRole('Tasks'));
 //        $this->assertDatabaseHas('users',['email' => 'sergibaucells@iesebre.com']);
     }
 

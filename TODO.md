@@ -9,7 +9,7 @@
      	- password confirmed (opcional)
 - [ ] Fer formularis
     - [X] Eliminar tasca
-    - [ ] Afegir (Botó +, baix dreta)
+    - [X] Afegir (Botó +, baix dreta)
 
 - [ ] Crear test unitari per a haveTask
 - [ ] Crear mètode haveTask
@@ -17,5 +17,9 @@
 - [ ] Crear mètode removeTask
 
 - [ ] Fer vista per a tags
+
+- [X] Fer un usuari per al profe, helpers, seeders + tots els permissos/rols (password = secret)
+- [ ] Assignar permissos/rols als testos
+- [X] Protegir accions CRUD al controlador (igual que StoreTask)
 
 ### Fer en explotació

@@ -26,7 +26,6 @@ class TaskControllerTest extends TestCase
         //1
         // Task:create()
         $task = factory(Task::class)->create();
-
         // 2
         $response = $this->json('GET', '/api/v1/tasks/' . $task->id);
 

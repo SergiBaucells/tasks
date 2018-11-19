@@ -3,19 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DestroyTaskCompleted;
+use App\Http\Requests\ShowTaskCompleted;
 use App\Task;
 use Illuminate\Http\Request;
 
 class TasksCompletedController extends Controller
 {
 
-    public function store(Request $request, Task $task)
+    public function store(ShowTaskCompleted $request, Task $task)
     {
         $task->completed = true;
         $task->save();
     }
 
-    public function destroy(Request $request, Task $task)
+    public function destroy(DestroyTaskCompleted $request, Task $task)
     {
         $task->completed = false;
         $task->save();

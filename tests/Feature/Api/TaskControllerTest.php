@@ -137,13 +137,11 @@ class TaskControllerTest extends TestCase
     public function can_create_task()
     {
 //        $this->withoutExceptionHandling();
-        $this->markTestSkipped();
+//        $this->markTestSkipped();
         // 1
+        initialize_roles();
         $user = login($this, 'api');
-
-        // TODO assign permission to $user
-
-        $user->givePermissionTo('task.store');
+        $user->assignRole('TaskManager');
 
 //        Gate::define('task.store', function ($user) {
 //            dd('PROVA');

@@ -34,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', 'TasksController@index');
     // User tasks
     Route::get('/user/tasks', 'LoggedUserTasksController@index');
+
+    Route::impersonate();
 });
 
 Route::post('/login_alt', 'Auth\LoginAltController@login');

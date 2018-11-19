@@ -3,31 +3,35 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DestroyLoggedUserTask;
+use App\Http\Requests\IndexLoggedUserTask;
+use App\Http\Requests\StoreLoggedUserTask;
+use App\Http\Requests\UpdateLoggedUserTask;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoggedUserTasksController extends Controller
 {
-    public function index()
+    public function index(IndexLoggedUserTask $request)
     {
         return Auth::user()->tasks;
     }
 
-    public function store(Request $request)
+    public function store(StoreLoggedUserTask $request)
     {
         // Afegir tasca nova i afegir a usuari logat
         $task = Request::create($request->only(['name', 'completed']));
         return Auth::user()->addTask($task);
     }
 
-    public function destroy(Request $request, Task $task)
+    public function destroy(DestroyLoggedUserTask $request, Task $task)
     {
         Auth::user()->tasks()->findOrFail($task->id);
         $task->delete();
     }
 
-    public function update(Request $request, Task $task)
+    public function update(UpdateLoggedUserTask $request, Task $task)
     {
         Auth::user()->tasks()->findOrFail($task->id);
 

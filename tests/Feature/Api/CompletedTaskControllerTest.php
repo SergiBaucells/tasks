@@ -16,7 +16,9 @@ class CompletedTaskControllerTest extends TestCase
     public function can_complete_a_task()
     {
         //1
-        login($this,'api');
+        initialize_roles();
+        $user = login($this, 'api');
+        $user->assignRole('TaskManager');
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => false
@@ -46,7 +48,9 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_uncomplete_a_task()
     {
-        login($this,'api');
+        initialize_roles();
+        $user = login($this, 'api');
+        $user->assignRole('TaskManager');
         //1
         $task = Task::create([
             'name' => 'comprar pa',

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sergi
- * Date: 19/10/18
- * Time: 16:17
- */
 
 namespace Tests\Unit;
 
@@ -103,7 +97,7 @@ class UserTest extends TestCase
      */
     public function haveTask()
     {
-
+        $this->markTestSkipped();
         // 2
         $user->haveTask();
     }
@@ -113,9 +107,23 @@ class UserTest extends TestCase
      */
     public function removeTask()
     {
-
+        $this->markTestSkipped();
         // 2
         $user->removeTask();
+    }
+
+    /**
+     * @test
+     */
+    public function isSuperAdmin()
+    {
+        $user = factory(User::class)->create();
+
+        $this->assertFalse($user->isSuperAdmin());
+        $user->admin = true;
+        $user->save();
+        $this->assertTrue($user->isSuperAdmin());
+
     }
 
 }

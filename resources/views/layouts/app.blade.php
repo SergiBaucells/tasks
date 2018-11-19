@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-    <link rel="shortcut icon" href="http://dinatur.com.es/reservar/Icono/CatalunaBanderaIcono.png">
     <title>@yield('title')</title>
 </head>
 <body>

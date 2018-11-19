@@ -11,20 +11,15 @@ class TaskControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    // CRUD -> CRU -> CREATE RETRIEVE UPDATE DELETE
-    // BREAD -> PA -> BROWSE READ EDIT ADD DELETE
     /**
      * @test
      */
-    public function can_show_a_task()
+    public function task_manager_can_show_a_task()
     {
-//        $this->withoutExceptionHandling();
-        // routes/api.php
-        // http:// tasks.test/api/v1/tasks
-        // HTTP -> GET | POST | PUT | DELETE
         login($this, 'api');
+        // TODO add role TaskManager al usuari
+
         //1
-        // Task:create()
         $task = factory(Task::class)->create();
         // 2
         $response = $this->json('GET', '/api/v1/tasks/' . $task->id);
@@ -34,6 +29,41 @@ class TaskControllerTest extends TestCase
         $response->assertSuccessful();
         $this->assertEquals($task->name, $result->name);
         $this->assertEquals($task->completed, (boolean)$result->completed);
+    }
+
+    /**
+     * @test
+     */
+    public function superadmin_can_show_a_task()
+    {
+        $user = login($this, 'api');
+        $user->admin = true;
+        $user->save();
+        //1
+        $task = factory(Task::class)->create();
+        // 2
+        $response = $this->json('GET', '/api/v1/tasks/' . $task->id);
+
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+        $this->assertEquals($task->name, $result->name);
+        $this->assertEquals($task->completed, (boolean)$result->completed);
+    }
+
+    /**
+     * @test
+     */
+    public function regular_user_cannot_show_a_task()
+    {
+        login($this, 'api');
+        //1
+        $task = factory(Task::class)->create();
+        // 2
+        $response = $this->json('GET', '/api/v1/tasks/' . $task->id);
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertStatus(403);
     }
 
     /**

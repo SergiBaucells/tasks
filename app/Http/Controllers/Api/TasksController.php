@@ -35,6 +35,7 @@ class TasksController extends Controller
         $task = new Task();
         $task->name = $request->name;
         $task->completed = false;
+        $task->description = $request->description ?? null;
         $task->save();
         return $task->map();
     }
@@ -42,6 +43,7 @@ class TasksController extends Controller
     public function update(UpdateTask $request, Task $task)
     {
         $task->name = $request->name;
+        $task->description = $request->description ?? $task->description;
         $task->save();
         return $task->map();
     }

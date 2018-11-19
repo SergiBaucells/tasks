@@ -14,7 +14,7 @@ class ShowTask extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('task.show');
+        return Auth::user()->can('tasks.show');
 //        return Auth::user()->can('task.store');
 //        return Auth::user()->isSuperAdmin() || Auth::user()->hasRole('TaskManager') ||
 //            Auth::user()->id === ;
@@ -27,8 +27,6 @@ class ShowTask extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required'
-        ];
+        return [];
     }
 }

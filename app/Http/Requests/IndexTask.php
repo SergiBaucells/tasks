@@ -14,7 +14,7 @@ class IndexTask extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('task.index');
+        return Auth::user()->can('tasks.index');
 //        return Auth::user()->can('task.store');
 //        return Auth::user()->isSuperAdmin() || Auth::user()->hasRole('TaskManager') ||
 //            Auth::user()->id === ;
@@ -27,8 +27,6 @@ class IndexTask extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required'
-        ];
+        return [];
     }
 }

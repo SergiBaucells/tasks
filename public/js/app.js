@@ -73739,7 +73739,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -73750,6 +73750,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -74035,6 +74041,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       showDialog: false,
       snackbar: false,
       user: '',
+      taskBeingRemoved: '',
       usersold: ['Sergi Baucells', 'Jordi baucells', 'Carmen Rodríguez'],
       filter: 'Totes',
       filters: ['Totes', 'Completades', 'Pendents'],
@@ -74042,6 +74049,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       pagination: {
         rowsPerPage: 25
       },
+      removing: false,
+      creating: false,
       loading: false,
       deleting: false,
       showing: false,
@@ -74082,14 +74091,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     opcio1: function opcio1() {
       console.log('TODO OPCIÓ 1');
     },
-    destroy: function destroy(task) {
+    removeTask: function removeTask(task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
+    },
+    destroy: function destroy() {
       var _this2 = this;
 
-      this.deleting = false;
-      setTimeout(function () {
-        _this2.deleting = false;
-      }, 5000);
-      console.log('TODO ESBORRAR TASCA ' + task.id);
+      this.removing = true;
+      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(function () {
+        _this2.removeTask(_this2.taskBeingRemoved);
+        _this2.deleteDialog = false;
+        _this2.taskBeingRemoved = null;
+        _this2.removing = false;
+      }).catch(function (error) {
+        console.log(error);
+        _this2.removing = false;
+      });
     },
     create: function create(task) {
       console.log('TODO CREAR TASCA');
@@ -74121,8 +74138,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     showCreate: function showCreate() {
       this.createDialog = true;
     },
-    showDestroy: function showDestroy() {
+    showDestroy: function showDestroy(task) {
       this.deleteDialog = true;
+      this.taskBeingRemoved = task;
     }
   }
 });
@@ -74189,7 +74207,12 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "error darken-1", flat: "flat" },
+                      attrs: {
+                        color: "error darken-1",
+                        flat: "flat",
+                        loading: _vm.removing,
+                        disabled: _vm.removing
+                      },
                       on: { click: _vm.destroy }
                     },
                     [
@@ -74987,7 +75010,7 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("td", {
-                          domProps: { textContent: _vm._s(task.create_at) }
+                          domProps: { textContent: _vm._s(task.created_at) }
                         }),
                         _vm._v(" "),
                         _c("td", {
@@ -75062,8 +75085,8 @@ var render = function() {
                               "v-btn",
                               {
                                 attrs: {
-                                  loading: _vm.deleting,
-                                  disabled: _vm.deleting,
+                                  loading: _vm.removing,
+                                  disabled: _vm.removing,
                                   icon: "",
                                   color: "error",
                                   flat: "",

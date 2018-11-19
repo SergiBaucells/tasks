@@ -16,8 +16,10 @@ class TaskControllerTest extends TestCase
      */
     public function task_manager_can_show_a_task()
     {
-        login($this, 'api');
-        // TODO add role TaskManager al usuari
+//        $this->withoutExceptionHandling();
+        initialize_roles();
+        $user = login($this, 'api');
+        $user->assignRole('TaskManager');
 
         //1
         $task = factory(Task::class)->create();
@@ -73,7 +75,9 @@ class TaskControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         // 1
-        login($this, 'api');
+        initialize_roles();
+        $user = login($this, 'api');
+        $user->assignRole('TaskManager');
         $task = factory(Task::class)->create();
 
         // 2
@@ -93,7 +97,9 @@ class TaskControllerTest extends TestCase
     public function cannot_create_task_without_name()
     {
         // 1
-        login($this, 'api');
+        initialize_roles();
+        $user = login($this, 'api');
+        $user->assignRole('TaskManager');
         // 2
         $response = $this->json('POST', '/api/v1/tasks/', [
             'name' => ''
@@ -111,7 +117,9 @@ class TaskControllerTest extends TestCase
     public function cannot_edit_task_without_name()
     {
         // 1
-        login($this, 'api');
+        initialize_roles();
+        $user = login($this, 'api');
+        $user->assignRole('TaskManager');
         $oldTask = factory(Task::class)->create();
         // 2
         $response = $this->json('PUT', '/api/v1/tasks/' . $oldTask->id, [
@@ -161,7 +169,9 @@ class TaskControllerTest extends TestCase
      */
     public function can_list_task()
     {
-        login($this, 'api');
+        initialize_roles();
+        $user = login($this, 'api');
+        $user->assignRole('TaskManager');
         create_example_tasks();
 
         $response = $this->json('GET', '/api/v1/tasks/', [
@@ -186,7 +196,9 @@ class TaskControllerTest extends TestCase
     public function can_edit_task()
     {
         // 1
-        login($this, 'api');
+        initialize_roles();
+        $user = login($this, 'api');
+        $user->assignRole('TaskManager');
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet'
         ]);

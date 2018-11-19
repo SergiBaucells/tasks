@@ -23,9 +23,9 @@ class LoginAltController
         // Buscar el usuari a la BD i comprobar password OK!
         $user = User::where('email', $request->email)->first();
 
-        if (!$user) return redirect('/');
+        if (!$user) return redirect()->route('login');
 
-        if (!Hash::check($request->password, $user->password)) return redirect('/');
+        if (!Hash::check($request->password, $user->password)) return redirect()->route('login');
 
         Auth::login($user);
         return redirect('/home');

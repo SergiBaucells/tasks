@@ -1,37 +1,10 @@
-<<script>
+<script>
 export default{
   el: '#app',
   name: 'App',
   data: () => ({
     drawer: null,
-    items: [
-      {
-        icon: 'keyboard_arrow_up',
-        'icon-alt': 'keyboard_arrow_down',
-        text: 'Tasques',
-        model: true,
-        children: [
-          { icon: 'assignment', text: 'Tasques PHP', url: '/tasks' },
-          { icon: 'assignment', text: 'Tasques Tailwind', url: '/tasks_vue' },
-          { icon: 'assignment', text: 'Tasques', url: 'tasques' }
-        ]
-      },
-      { icon: 'account_box', text: 'Sobre nosaltres', url: '/about' },
-      { icon: 'date_range', text: 'Calendari', url: '/calendari' }
-    ]
-  }),
-  props: {
-    source: String
-  }
-}
-</script>
-script>
-export default{
-  el: '#app',
-  name: 'App',
-  data: () => ({
-    picker: new Date().toISOString().substr(0, 10),
-    drawer: null,
+    drawerRight: null,
     items: [
       {
         icon: 'keyboard_arrow_up',

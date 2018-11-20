@@ -93,7 +93,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
+     * @ test
      */
     public function haveTask()
     {
@@ -103,7 +103,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
+     * @ test
      */
     public function removeTask()
     {
@@ -123,6 +123,26 @@ class UserTest extends TestCase
         $user->admin = true;
         $user->save();
         $this->assertTrue($user->isSuperAdmin());
+
+    }
+
+    /**
+     * @test
+     */
+    public function map()
+    {
+
+        $user = factory(User::class)->create([
+            'name' => 'Pepito Vadecurt',
+            'email' => 'pepito@gmail.com'
+        ]);
+
+        $mappeduser = $user->map();
+
+        $this->assertEquals($mappeduser['id'],1);
+        $this->assertEquals($mappeduser['name'],'Pepito Vadecurt');
+        $this->assertEquals($mappeduser['email'],'pepito@gmail.com');
+        $this->assertEquals($mappeduser['avatar'],'https://www.gravatar.com/avatar/42c58abd933c11304fcaa7a18cefaaaa');
 
     }
 

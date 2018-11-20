@@ -12,19 +12,20 @@
                         Cancel·lar
                       </v-btn>
                       <v-btn
-                        color="error darken-1"
-                        flat="flat"
-                        @click="destroy"
-                        :loading="removing"
-                        :disabled="removing"
-                        >
+                              color="error darken-1"
+                              flat="flat"
+                              @click="destroy"
+                              :loading="removing"
+                              :disabled="removing"
+                      >
                         Confirmar
                       </v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
 
-        <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="createDialog=false">
+        <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition"
+                  @keydown.esc="createDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="createDialog=false">
                     <v-icon class="mr-2">close</v-icon>
@@ -43,7 +44,8 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca"
+                                      placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="description" label="Descripció"></v-textarea>
                         <div class="text-xs-center">
@@ -80,7 +82,8 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca"
+                                      placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="description" label="Descripció"></v-textarea>
                         <v-autocomplete :items="dataUsers" label="Usuari" item-text="name"></v-autocomplete>
@@ -137,11 +140,11 @@
         </v-dialog>
 
         <v-snackbar
-            :timeout="3000"
-            color="pink"
-            v-model="snackbar"
+                :timeout="snackbarTimeout"
+                :color="snackbarColor"
+                v-model="snackbar"
         >
-            Això es un snackbar
+            {{ snackbarMessage }}
             <v-btn dark flat @click="snackbar=false">Tancar</v-btn>
         </v-snackbar>
         <v-toolbar color="blue">
@@ -217,16 +220,16 @@
                         <td v-text="task.created_at"></td>
                         <td v-text="task.updated_at"></td>
                         <td>
-                            <v-btn icon color="primary" flat title="Mostrar snackbar" @click="snackbar=true">
-                                <v-icon>info</v-icon>
-                            </v-btn>
-                            <v-btn :loading="showing" :disabled="showing" icon color="primary" flat title="Mostrar la tasca" @click="showTask(task)">
+                            <v-btn :loading="showing" :disabled="showing" icon color="primary" flat
+                                   title="Mostrar la tasca" @click="showTask(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn :loading="editing" :disabled="editing" icon color="success" flat title="Actualitzar la tasca" @click="showUpdate(task)">
+                            <v-btn :loading="editing" :disabled="editing" icon color="success" flat
+                                   title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn :loading="removing" :disabled="removing" icon color="error" flat title="Eliminar la tasca" @click="showDestroy(task)">
+                            <v-btn :loading="removing" :disabled="removing" icon color="error" flat
+                                   title="Eliminar la tasca" @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                         </td>
@@ -279,6 +282,10 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      snackbarMessage: 'Prova',
+      snackbarTimeout: 3000,
+      snackbarColor: 'success',
+      snackbar: false,
       dataUsers: this.users,
       description: '',
       completed: false,
@@ -287,7 +294,6 @@ export default {
       deleteDialog: false,
       editDialog: false,
       showDialog: false,
-      snackbar: false,
       user: '',
       taskBeingRemoved: '',
       usersold: [
@@ -342,9 +348,10 @@ export default {
       window.axios.get('/api/v1/user/tasks').then(response => {
         // SHOW SNACKBAR MISSATGE OK
         this.dataTasks = response.data
+        this.showMessage("S'ha refrescat correctament")
         this.loading = false
       }).catch(error => {
-        console.log(error)
+        this.showError(error)
         this.loading = false
         // SHOW SNACKBAR ERROR
       })
@@ -361,23 +368,40 @@ export default {
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
         this.taskBeingRemoved = null
+        this.showMessage("S'ha esborrat correctament")
         this.removing = false
       }).catch(error => {
-        console.log(error)
+        this.showError(error)
         this.removing = false
       })
     },
+    // SNACKBAR
+    showMessage (message) {
+      this.snackbarMessage = message
+      this.snackbarColor = 'success'
+      this.snackbar = true
+    },
+    showError (error) {
+      this.snackbarMessage = error.message
+      this.snackbarColor = 'error'
+      this.snackbar = true
+    },
+    // SNACKBAR END
     create (task) {
       console.log('TODO CREAR TASCA')
     },
     update (task) {
       this.editing = true
-      setTimeout(() => { this.editing = false }, 5000)
+      setTimeout(() => {
+        this.editing = false
+      }, 5000)
       console.log('TODO ACTUALITZAR TASCA ' + task.id)
     },
     show (task) {
       this.showing = true
-      setTimeout(() => { this.showing = false }, 5000)
+      setTimeout(() => {
+        this.showing = false
+      }, 5000)
       console.log('TODO MOSTRAR TASCA ' + task.id)
     },
     showUpdate () {

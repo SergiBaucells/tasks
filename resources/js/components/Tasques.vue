@@ -402,7 +402,9 @@ export default {
             name: this.name,
             completed: this.completed,
             description: this.description,
-            user_id: this.user.id
+            user_id: this.user.id,
+            created_at: this.created_at,
+            updated_at: this.updated_at
           })
         this.createDialog = false
         this.showMessage("S'ha creat correctament")

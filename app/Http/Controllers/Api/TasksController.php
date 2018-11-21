@@ -8,7 +8,6 @@ use App\Http\Requests\ShowTask;
 use App\Http\Requests\StoreTask;
 use App\Http\Requests\UpdateTask;
 use App\Task;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class TasksController extends Controller
@@ -16,7 +15,7 @@ class TasksController extends Controller
 
     public function index(IndexTask $request)
     {
-        return Task::orderBy('created_at', 'desc')->get();
+        return map_collection(Task::orderBy('created_at', 'desc')->get());
     }
 
     public function show(ShowTask $request, Task $task) // Route Model Binding
@@ -33,8 +32,9 @@ class TasksController extends Controller
     {
 //        Task:create();
         $task = new Task();
+        $task->user_id = $request->user_id;
         $task->name = $request->name;
-        $task->completed = false;
+        $task->completed = $request->completed;
         $task->description = $request->description ?? null;
         $task->save();
         return $task->map();

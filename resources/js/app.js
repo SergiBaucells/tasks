@@ -14,6 +14,13 @@ import UserSelect from './components/UserSelect'
 window.Vue = Vue
 window.Vue.use(Vuetify)
 
+// Created+Updated_at en català
+const moment = require('moment')
+require('moment/locale/ca')
+window.Vue.use(require('vue-moment'), {
+  moment
+})
+
 // window.Vue.use(Snackbar)
 
 window.Vue.component('example-component', ExampleComponent)

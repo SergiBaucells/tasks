@@ -15,13 +15,13 @@ class LoggedUserTasksController extends Controller
 {
     public function index(IndexLoggedUserTask $request)
     {
-        return Auth::user()->tasks;
+        return  Auth::user()->tasks;
     }
 
     public function store(StoreLoggedUserTask $request)
     {
         // Afegir tasca nova i afegir a usuari logat
-        $task = Request::create($request->only(['name', 'completed']));
+        $task = Task::create($request->only(['name', 'completed', 'description', 'user_id']));
         return Auth::user()->addTask($task);
     }
 

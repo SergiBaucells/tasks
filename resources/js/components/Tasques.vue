@@ -36,7 +36,7 @@
                     <v-icon class="mr-2">exit_to_app</v-icon>
                     Sortir
                 </v-btn>
-                <v-btn flat class="white--text">
+                <v-btn flat class="white--text" @click="create">
                     <v-icon class="mr-2">save</v-icon>
                     Guardar
                 </v-btn>
@@ -48,12 +48,13 @@
                                       placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="description" label="Descripció"></v-textarea>
+                        <v-autocomplete :items="dataUsers" label="Usuari" v-model="user" item-text="name" return-object></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Cancel·lar
                             </v-btn>
-                            <v-btn color="success">
+                            <v-btn color="success" @click="create">
                                 <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
@@ -216,7 +217,7 @@
                         <td>{{task.id}}</td>
                         <td v-text="task.name"></td>
                         <td v-text="task.user_id"></td>
-                        <td v-text="task.completed"></td>
+                        <td v-text="task.completed ? 'Completada':'Pendent'"></td>
                         <td v-text="task.created_at"></td>
                         <td v-text="task.updated_at"></td>
                         <td>
@@ -345,7 +346,7 @@ export default {
       // setTimeout(() => { this.loading = false }, 5000)
       // OCO!! URL CANVIA SEGONS EL CAS
       // window.axios.get('/api/v1/tasks').then().catch()
-      window.axios.get('/api/v1/user/tasks').then(response => {
+      window.axios.get('/api/v1/tasks').then(response => {
         // SHOW SNACKBAR MISSATGE OK
         this.dataTasks = response.data
         this.showMessage("S'ha refrescat correctament")
@@ -364,7 +365,7 @@ export default {
     },
     destroy () {
       this.removing = true
-      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(() => {
+      window.axios.delete('/api/v1/tasks/' + this.taskBeingRemoved.id).then(() => {
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
         this.taskBeingRemoved = null
@@ -387,8 +388,29 @@ export default {
       this.snackbar = true
     },
     // SNACKBAR END
-    create (task) {
-      console.log('TODO CREAR TASCA')
+    create () {
+      this.creating = true
+      window.axios.post('/api/v1/tasks', {
+        user_id: this.user.id,
+        name: this.name,
+        completed: this.completed,
+        description: this.description
+      }).then((response) => {
+        this.dataTasks.splice(0, 0,
+          {
+            id: response.data.id,
+            name: this.name,
+            completed: this.completed,
+            description: this.description,
+            user_id: this.user.id
+          })
+        this.createDialog = false
+        this.showMessage("S'ha creat correctament")
+        this.creating = false
+      }).catch((error) => {
+        this.showError(error)
+        this.creating = false
+      })
     },
     update (task) {
       this.editing = true

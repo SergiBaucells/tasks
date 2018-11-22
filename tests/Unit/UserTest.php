@@ -142,7 +142,38 @@ class UserTest extends TestCase
         $this->assertEquals($mappeduser['id'],1);
         $this->assertEquals($mappeduser['name'],'Pepito Vadecurt');
         $this->assertEquals($mappeduser['email'],'pepito@gmail.com');
-        $this->assertEquals($mappeduser['avatar'],'https://www.gravatar.com/avatar/42c58abd933c11304fcaa7a18cefaaaa');
+        $this->assertEquals($mappeduser['gravatar'],'https://www.gravatar.com/avatar/42c58abd933c11304fcaa7a18cefaaaa');
+
+    }
+
+    /**
+     * @test
+     */
+    public function regulars()
+    {
+        $this->assertCount(0,User::regular()->get());
+        $user1 = factory(User::class)->create([
+            'name' => 'Pepe Pardo Jeans',
+            'email' => 'pepepardo@jeans.com'
+        ]);
+        $user2 = factory(User::class)->create([
+            'name' => 'Pepa Parda Jeans',
+            'email' => 'pepaparda@jeans.com'
+        ]);
+        $user3 = factory(User::class)->create([
+            'name' => 'Pepa Pig',
+            'email' => 'pepapig@dibus.com'
+        ]);
+        $user3->admin=true;
+        $user3->save();
+        $this->assertCount(2, $regularUsers=User::regular()->get());
+        $this->assertEquals($regularUsers[0]->name,'Pepe Pardo Jeans');
+        $this->assertEquals($regularUsers[1]->name,'Pepa Parda Jeans');
+//        try{
+//            $regularUsers[2];
+//        } catch (Exception $e) {
+//            dump($e);
+//        }
 
     }
 

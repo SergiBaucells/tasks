@@ -4,10 +4,8 @@
             v-model="selectedUser"
             item-value="id"
             clearable
+            :label="label"
     >
-        <!--<template slot="selection" slot-scope="{ item:user }">-->
-        <!--{{ user.email }}-->
-        <!--</template>-->
         <template slot="selection" slot-scope="data">
             <v-chip>
                 <v-avatar :title="data.item.name">
@@ -19,7 +17,7 @@
         <template slot="item" slot-scope="{ item: user }">
             <v-list-tile-avatar>
                 <v-avatar :title="user.name">
-                    <img :src="user.avatar" alt="avatar">
+                    <img :src="user.gravatar" alt="avatar">
                 </v-avatar>
             </v-list-tile-avatar>
             <v-list-tile-content>
@@ -42,19 +40,25 @@ export default {
   props: {
     users: {
       type: Array
+    },
+    url: {
+      type: String,
+      default: '/api/v1/users'
+    },
+    label: {
+      type: String,
+      default: 'Usuaris'
     }
   },
   watch: {
     selectedUser (newValue) {
-      if (newValue) {
-        window.location.href = '/impersonate/take/' + newValue
-      }
+      this.$emit('selected', newValue)
     }
   },
   created () {
     if (this.users) this.dataUsers = this.users
     else {
-      window.axios.get('/api/v1/users').then(response => {
+      window.axios.get(this.url).then(response => {
         this.dataUsers = response.data
       }).catch(error => {
         console.log(error)

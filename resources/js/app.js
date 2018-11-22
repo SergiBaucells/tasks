@@ -10,17 +10,9 @@ import Tasques from './components/Tasques.vue'
 import LoginForm from './components/LoginForm.vue'
 import UserList from './components/UserList'
 import UserSelect from './components/UserSelect'
-import moment from 'moment'
 
 window.Vue = Vue
 window.Vue.use(Vuetify)
-
-// Created+Updated_at formatat
-window.Vue.filter('formatDate', function (value) {
-  if (value) {
-    return moment(String(value)).format('DD/MM/YYYY hh:mm')
-  }
-})
 
 // window.Vue.use(Snackbar)
 

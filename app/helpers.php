@@ -258,13 +258,10 @@ if (!function_exists('create_example_tasks')) {
                     'email' => 'sergiturbadenas@gmail.com',
                     'password' => bcrypt(env('PRIMARY_USER_PASSWORD', 'secret'))
                 ]);
+                $sergitur->admin = true;
+                $sergitur->save();
             } catch (Exception $e) {
             }
-            try {
-                $sergitur->assignRole('TaskManager');
-            } catch (Exception $e) {
-            }
-
         }
     }
 }

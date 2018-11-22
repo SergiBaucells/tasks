@@ -45,4 +45,5 @@ Route::middleware(['auth:api'])->group(function () {
 
     // Users
     Route::get('/v1/users', 'Api\UsersController@index');
+    Route::get('/v1/regular_users', 'Api\RegularUsersController@index');
 });

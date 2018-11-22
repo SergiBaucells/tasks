@@ -23,6 +23,13 @@ export default{
   }),
   props: {
     source: String
+  },
+  methods: {
+    impersonate (user) {
+      if (user) {
+        window.location.href = '/impersonate/take/' + user
+      }
+    }
   }
 }
 </script>

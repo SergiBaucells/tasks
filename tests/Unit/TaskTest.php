@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sergi
- * Date: 19/10/18
- * Time: 16:17
- */
+
 
 namespace Tests\Unit;
 
@@ -172,15 +167,26 @@ class TaskTest extends TestCase
         $task = Task::create([
             'name' => 'Comprar pa',
             'completed' => false,
-            'user_id' => $user->id
+            'description' => 'Bla bla bla',
         ]);
+        $task->assignUser($user);
         $mappedTask = $task->map();
         $this->assertEquals($mappedTask['id'],1);
         $this->assertEquals($mappedTask['name'],'Comprar pa');
+        $this->assertEquals($mappedTask['description'],'Bla bla bla');
         $this->assertEquals($mappedTask['completed'],false);
         $this->assertEquals($mappedTask['user_id'],$user->id);
         $this->assertEquals($mappedTask['user_name'],$user->name);
         $this->assertEquals($mappedTask['user_email'],$user->email);
+        $this->assertNotNull($mappedTask['created_at']);
+        $this->assertNotNull($mappedTask['updated_at']);
+        $this->assertNotNull($mappedTask['created_at_formatted']);
+        $this->assertNotNull($mappedTask['created_at_timestamp']);
+        $this->assertNotNull($mappedTask['updated_at_formatted']);
+        $this->assertNotNull($mappedTask['updated_at_timestamp']);
+        $this->assertNotNull($mappedTask['created_at_human']);
+        $this->assertNotNull($mappedTask['updated_at_human']);
+        // TODO fullsearch
         $this->assertTrue($user->is($mappedTask['user']));
     }
 

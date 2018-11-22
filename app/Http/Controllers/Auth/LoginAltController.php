@@ -11,13 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginAltController
 {
-
-    // Fer validació
-//    public function login(LoginRequest)
-//    {
-//        // TODO -> VALIDATE
-//    }
-
     public function login(Request $request)
     {
         // Buscar el usuari a la BD i comprobar password OK!

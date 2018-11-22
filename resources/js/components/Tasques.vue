@@ -75,7 +75,7 @@
                     <v-icon class="mr-2">exit_to_app</v-icon>
                     Sortir
                 </v-btn>
-                <v-btn flat class="white--text">
+                <v-btn flat class="white--text" @click="update">
                     <v-icon class="mr-2">save</v-icon>
                     Guardar
                 </v-btn>
@@ -83,17 +83,17 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca"
+                        <v-text-field v-model="taskBeingUpdated.name" label="Nom" hint="Nom de la tasca"
                                       placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea v-model="description" label="Descripció"></v-textarea>
-                        <v-autocomplete :items="dataUsers" label="Usuari" item-text="name"></v-autocomplete>
+                        <v-switch v-model="taskBeingUpdated.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea v-model="taskBeingUpdated.description" label="Descripció"></v-textarea>
+                        <v-autocomplete :items="dataUsers" v-model="taskBeingUpdated.user" label="Usuari" item-text="name" :return-object="true"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
                                 Cancel·lar
                             </v-btn>
-                            <v-btn color="success">
+                            <v-btn color="success" @click="update">
                                 <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
@@ -264,7 +264,7 @@
                 </v-flex>
             </v-data-iterator>
         </v-card>
-        <v-btn fab bottom right color="pink" fixed class="white--text" @click="showCreate">
+        <v-btn fab bottom right color="purple accent-2" fixed class="white--text" @click="showCreate()">
             <v-icon>add</v-icon>
         </v-btn>
     </span>
@@ -291,6 +291,7 @@ export default {
       takeTask: '',
       user: '',
       taskBeingRemoved: '',
+      taskBeingUpdated: '',
       usersold: [
         'Sergi Baucells',
         'Jordi baucells',
@@ -337,9 +338,6 @@ export default {
   methods: {
     refresh () {
       this.loading = true
-      // setTimeout(() => { this.loading = false }, 5000)
-      // OCO!! URL CANVIA SEGONS EL CAS
-      // window.axios.get('/api/v1/tasks').then().catch()
       window.axios.get('/api/v1/tasks').then(response => {
         // SHOW SNACKBAR MISSATGE OK
         this.dataTasks = response.data
@@ -399,22 +397,29 @@ export default {
         this.creating = false
       })
     },
-    update (task) {
+    update () {
       this.editing = true
-      setTimeout(() => {
+      window.axios.put('/api/v1/tasks/' + this.taskBeingUpdated.id,
+        {
+          user_id: this.taskBeingUpdated.user.id,
+          name: this.taskBeingUpdated.name,
+          completed: this.taskBeingUpdated.completed,
+          description: this.taskBeingUpdated.description
+        }
+      ).then(() => {
+        this.refresh()
+        this.editDialog = false
+        this.taskBeingRemoved = null
+        this.showMessage("S'ha actualitzat correctament")
         this.editing = false
-      }, 5000)
-      console.log('TODO ACTUALITZAR TASCA ' + task.id)
+      }).catch(error => {
+        this.showError(error)
+        this.editing = false
+      })
     },
-    show (task) {
-      this.showing = true
-      setTimeout(() => {
-        this.showing = false
-      }, 5000)
-      console.log('TODO MOSTRAR TASCA ' + task.id)
-    },
-    showUpdate () {
+    showUpdate (task) {
       this.editDialog = true
+      this.taskBeingUpdated = task
     },
     showTask (task) {
       this.takeTask = task

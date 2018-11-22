@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link rel="shortcut icon" href="https://www.cttbalaguer.com/wp-content/uploads/2014/09/cat.png">
     <title>@yield('title')</title>
 </head>
 <body>
@@ -93,7 +94,7 @@
 
         </v-card>
     </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app clipped-right>
+    <v-toolbar color="indigo" dark fixed app clipped-right clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Menú</v-toolbar-title>
         <v-spacer></v-spacer>

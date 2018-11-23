@@ -238,6 +238,10 @@
                                    title="Eliminar la tasca" @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
+                            <!--<v-btn v-if="$can('tasks.destroy')" :loading="removing" :disabled="removing" icon color="error" flat-->
+                                   <!--title="Eliminar la tasca" @click="showDestroy(task)">-->
+                                <!--<v-icon>delete</v-icon>-->
+                            <!--</v-btn>-->
                         </td>
                     </tr>
                 </template>

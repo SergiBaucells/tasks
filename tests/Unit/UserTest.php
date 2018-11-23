@@ -44,9 +44,9 @@ class UserTest extends TestCase
         $task3 = factory(Task::class)->create();
 
         $tasks = [];
-        array_push($tasks,$task1);
-        array_push($tasks,$task2);
-        array_push($tasks,$task3);
+        array_push($tasks, $task1);
+        array_push($tasks, $task2);
+        array_push($tasks, $task3);
 
         //2
         $user->addTasks($tasks);
@@ -141,16 +141,16 @@ class UserTest extends TestCase
 
         $mappeduser = $user->map();
 
-        $this->assertEquals($mappeduser['id'],1);
-        $this->assertEquals($mappeduser['name'],'Pepito Vadecurt');
-        $this->assertEquals($mappeduser['email'],'pepito@gmail.com');
-        $this->assertEquals($mappeduser['gravatar'],'https://www.gravatar.com/avatar/42c58abd933c11304fcaa7a18cefaaaa');
-        $this->assertEquals($mappeduser['admin'],false);
-        $this->assertCount(0,$mappeduser['roles']);
-        $this->assertCount(0,$mappeduser['permissions']);
+        $this->assertEquals($mappeduser['id'], 1);
+        $this->assertEquals($mappeduser['name'], 'Pepito Vadecurt');
+        $this->assertEquals($mappeduser['email'], 'pepito@gmail.com');
+        $this->assertEquals($mappeduser['gravatar'], 'https://www.gravatar.com/avatar/42c58abd933c11304fcaa7a18cefaaaa');
+        $this->assertEquals($mappeduser['admin'], false);
+        $this->assertCount(0, $mappeduser['roles']);
+        $this->assertCount(0, $mappeduser['permissions']);
 
-        $user->admin=true;
-        $user->save;
+        $user->admin = true;
+        $user->save();
         $rol1 = Role::create([
             'name' => 'Rol1'
         ]);
@@ -170,14 +170,13 @@ class UserTest extends TestCase
         $user->assignRole($rol2);
         $user = $user->fresh();
         $mappeduser = $user->map();
-        $this->assertEquals($mappeduser['admin'],true);
-        $this->assertCount(2,$mappeduser['roles']);
-        $this->assertCount(2,$mappeduser['permissions']);
-
-        $this->assertEquals($mappeduser['roles'][0],'Rol1');
-        $this->assertEquals($mappeduser['roles'][1],'Rol2');
-        $this->assertEquals($mappeduser['permission'][0],'Permissison1');
-        $this->assertEquals($mappeduser['permission'][1],'Permissison2');
+        $this->assertCount(2, $mappeduser['roles']);
+        $this->assertCount(2, $mappeduser['permissions']);
+        $this->assertEquals($mappeduser['admin'], true);
+        $this->assertEquals($mappeduser['roles'][0], 'Rol1');
+        $this->assertEquals($mappeduser['roles'][1], 'Rol2');
+        $this->assertEquals($mappeduser['permissions'][0], 'Permission1');
+        $this->assertEquals($mappeduser['permissions'][1], 'Permission2');
 
 
     }
@@ -187,7 +186,7 @@ class UserTest extends TestCase
      */
     public function regulars()
     {
-        $this->assertCount(0,User::regular()->get());
+        $this->assertCount(0, User::regular()->get());
         $user1 = factory(User::class)->create([
             'name' => 'Pepe Pardo Jeans',
             'email' => 'pepepardo@jeans.com'
@@ -200,11 +199,11 @@ class UserTest extends TestCase
             'name' => 'Pepa Pig',
             'email' => 'pepapig@dibus.com'
         ]);
-        $user3->admin=true;
+        $user3->admin = true;
         $user3->save();
-        $this->assertCount(2, $regularUsers=User::regular()->get());
-        $this->assertEquals($regularUsers[0]->name,'Pepe Pardo Jeans');
-        $this->assertEquals($regularUsers[1]->name,'Pepa Parda Jeans');
+        $this->assertCount(2, $regularUsers = User::regular()->get());
+        $this->assertEquals($regularUsers[0]->name, 'Pepe Pardo Jeans');
+        $this->assertEquals($regularUsers[1]->name, 'Pepa Parda Jeans');
 //        try{
 //            $regularUsers[2];
 //        } catch (Exception $e) {

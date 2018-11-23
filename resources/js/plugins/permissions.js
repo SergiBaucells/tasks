@@ -39,6 +39,7 @@ const can = (permission, resource = null) => {
   }
   if (userPermissions) {
     if (userPermissions.indexOf(permission) === -1) return false
+    console.log(permission)
     return true
   } else return false
 }

@@ -226,11 +226,11 @@
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human }}</span>
                         </td>
                         <td>
-                            <v-btn :loading="showing" :disabled="showing" icon color="primary" flat
+                            <v-btn v-can="tasks.show" :loading="showing" :disabled="showing" icon color="primary" flat
                                    title="Mostrar la tasca" @click="showTask(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn :loading="editing" :disabled="editing" icon color="success" flat
+                            <v-btn v-can="tasks.update" :loading="editing" :disabled="editing" icon color="success" flat
                                    title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
@@ -280,7 +280,7 @@
                 </v-flex>
             </v-data-iterator>
         </v-card>
-        <v-btn fab bottom right color="purple accent-2" fixed class="white--text" @click="showCreate()">
+        <v-btn v-can="tasks.create" fab bottom right color="purple accent-2" fixed class="white--text" @click="showCreate()">
             <v-icon>add</v-icon>
         </v-btn>
     </span>

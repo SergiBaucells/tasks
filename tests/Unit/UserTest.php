@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use App\Task;
 use App\User;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -143,6 +145,40 @@ class UserTest extends TestCase
         $this->assertEquals($mappeduser['name'],'Pepito Vadecurt');
         $this->assertEquals($mappeduser['email'],'pepito@gmail.com');
         $this->assertEquals($mappeduser['gravatar'],'https://www.gravatar.com/avatar/42c58abd933c11304fcaa7a18cefaaaa');
+        $this->assertEquals($mappeduser['admin'],false);
+        $this->assertCount(0,$mappeduser['roles']);
+        $this->assertCount(0,$mappeduser['permissions']);
+
+        $user->admin=true;
+        $user->save;
+        $rol1 = Role::create([
+            'name' => 'Rol1'
+        ]);
+        $rol2 = Role::create([
+            'name' => 'Rol2'
+        ]);
+        $permission1 = Permission::create([
+            'name' => 'Permission1'
+        ]);
+        $permission2 = Permission::create([
+            'name' => 'Permission2'
+        ]);
+
+        $user->givePermissionTo($permission1);
+        $user->givePermissionTo($permission2);
+        $user->assignRole($rol1);
+        $user->assignRole($rol2);
+        $user = $user->fresh();
+        $mappeduser = $user->map();
+        $this->assertEquals($mappeduser['admin'],true);
+        $this->assertCount(2,$mappeduser['roles']);
+        $this->assertCount(2,$mappeduser['permissions']);
+
+        $this->assertEquals($mappeduser['roles'][0],'Rol1');
+        $this->assertEquals($mappeduser['roles'][1],'Rol2');
+        $this->assertEquals($mappeduser['permission'][0],'Permissison1');
+        $this->assertEquals($mappeduser['permission'][1],'Permissison2');
+
 
     }
 

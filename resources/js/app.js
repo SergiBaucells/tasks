@@ -8,11 +8,14 @@ import ExampleComponent from './components/ExampleComponent.vue'
 import Tasks from './components/Tasks.vue'
 import Tasques from './components/Tasques.vue'
 import LoginForm from './components/LoginForm.vue'
+import RegisterForm from './components/RegisterForm.vue'
 import UserList from './components/UserList'
 import UserSelect from './components/UserSelect'
+import permissions from './plugins/permissions'
 
 window.Vue = Vue
 window.Vue.use(Vuetify)
+window.Vue.use(permissions)
 
 // window.Vue.use(Snackbar)
 
@@ -20,6 +23,7 @@ window.Vue.component('example-component', ExampleComponent)
 window.Vue.component('tasks', Tasks)
 window.Vue.component('tasques', Tasques)
 window.Vue.component('login-form', LoginForm)
+window.Vue.component('register-form', RegisterForm)
 window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
 

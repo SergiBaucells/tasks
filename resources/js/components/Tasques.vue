@@ -234,7 +234,7 @@
                                    title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn :loading="removing" :disabled="removing" icon color="error" flat
+                            <v-btn v-can="tasks.destroy" :loading="removing" :disabled="removing" icon color="error" flat
                                    title="Eliminar la tasca" @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
@@ -444,6 +444,9 @@ export default {
       this.deleteDialog = true
       this.taskBeingRemoved = task
     }
+  },
+  created () {
+    console.log(window.laravel_user)
   }
 }
 </script>

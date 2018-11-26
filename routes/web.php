@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/taskscompleted/{task}', 'TasksCompletedController@store');
     Route::delete('/taskscompleted/{task}', 'TasksCompletedController@destroy');
     Route::get('/tasks', 'TasksController@index');
+    Route::get('/tags', 'TagsController@index');
     Route::get('/', 'TasksController@index');
     // User tasks
     Route::get('/user/tasks', 'LoggedUserTasksController@index');

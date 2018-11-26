@@ -149,7 +149,8 @@ class TaskControllerTest extends TestCase
 
         // 2
         $response = $this->json('POST', '/api/v1/tasks/', [
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+            'completed' => false
         ]);
 
         // 3
@@ -198,11 +199,13 @@ class TaskControllerTest extends TestCase
         $user = login($this, 'api');
         $user->assignRole('TaskManager');
         $oldTask = factory(Task::class)->create([
-            'name' => 'Comprar llet'
+            'name' => 'Comprar llet',
+            'completed' => false
         ]);
         // 2
         $response = $this->json('PUT', '/api/v1/tasks/' . $oldTask->id, [
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+            'completed' => false
         ]);
         // 3
         $result = json_decode($response->getContent());

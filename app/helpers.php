@@ -129,6 +129,39 @@ if (!function_exists('create_example_tasks')) {
         }
     }
 
+    if (!function_exists('create_role')) {
+        function create_role($role)
+        {
+            try {
+                return Role::create([
+                    'name' => $role
+                ]);
+            } catch(Exception $e) {
+                return Role::findByName($role);
+            }
+        }
+    }
+
+    if (!function_exists('create_permission')) {
+        function create_permission($permission)
+        {
+            try {
+                return Permission::create([
+                    'name' => $permission
+                ]);
+            } catch(Exception $e) {
+                return Permission::findByName($permission);
+            }
+        }
+    }
+
+    if (!function_exists('initialize_gates')) {
+        function initialize_gates()
+        {
+
+        }
+    }
+
     if (!function_exists('initialize_roles')) {
         function initialize_roles()
         {

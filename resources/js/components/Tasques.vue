@@ -288,14 +288,13 @@
 
 <script>
 
+import HasSnackbar from './mixins/HasSnackbar'
+
 export default {
   name: 'Tasques',
+  mixins: [HasSnackbar],
   data () {
     return {
-      snackbarMessage: 'Prova',
-      snackbarTimeout: 3000,
-      snackbarColor: 'success',
-      snackbar: false,
       dataUsers: this.users,
       description: '',
       completed: false,
@@ -384,18 +383,6 @@ export default {
         this.removing = false
       })
     },
-    // SNACKBAR
-    showMessage (message) {
-      this.snackbarMessage = message
-      this.snackbarColor = 'success'
-      this.snackbar = true
-    },
-    showError (error) {
-      this.snackbarMessage = error.message
-      this.snackbarColor = 'error'
-      this.snackbar = true
-    },
-    // SNACKBAR END
     create () {
       this.creating = true
       window.axios.post('/api/v1/tasks', {

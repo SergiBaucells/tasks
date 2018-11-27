@@ -133,14 +133,6 @@
             </v-card>
         </v-dialog>
 
-        <v-snackbar
-                :timeout="snackbarTimeout"
-                :color="snackbarColor"
-                v-model="snackbar"
-        >
-            {{ snackbarMessage }}
-            <v-btn dark flat @click="snackbar=false">Tancar</v-btn>
-        </v-snackbar>
         <v-toolbar color="blue">
             <v-menu>
                 <v-btn slot="activator" icon dark>
@@ -287,12 +279,10 @@
 </template>
 
 <script>
-
-import HasSnackbar from './mixins/HasSnackbar'
+import EventBus from '../eventBus'
 
 export default {
   name: 'Tasques',
-  mixins: [HasSnackbar],
   data () {
     return {
       dataUsers: this.users,
@@ -356,10 +346,11 @@ export default {
       window.axios.get('/api/v1/tasks').then(response => {
         // SHOW SNACKBAR MISSATGE OK
         this.dataTasks = response.data
-        this.showMessage("S'ha refrescat correctament")
+        // this.showMessage("S'ha refrescat correctament")
+        this.$snackbar.showMessage("S'ha refrescat correctament")
         this.loading = false
       }).catch(error => {
-        this.showError(error)
+        this.$snackbar.showError(error.message)
         this.loading = false
         // SHOW SNACKBAR ERROR
       })
@@ -376,10 +367,10 @@ export default {
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
         this.taskBeingRemoved = null
-        this.showMessage("S'ha esborrat correctament")
+        this.$snackbar.showMessage("S'ha esborrat correctament")
         this.removing = false
       }).catch(error => {
-        this.showError(error)
+        this.$snackbar.showError(error.message)
         this.removing = false
       })
     },
@@ -393,10 +384,10 @@ export default {
       }).then(() => {
         this.refresh()
         this.createDialog = false
-        this.showMessage("S'ha creat correctament")
+        this.$snackbar.showMessage("S'ha creat correctament")
         this.creating = false
       }).catch((error) => {
-        this.showError(error)
+        this.$snackbar.showError(error.message)
         this.creating = false
       })
     },
@@ -413,10 +404,10 @@ export default {
         this.refresh()
         this.editDialog = false
         this.taskBeingRemoved = null
-        this.showMessage("S'ha actualitzat correctament")
+        this.$snackbar.showMessage("S'ha actualitzat correctament")
         this.editing = false
       }).catch(error => {
-        this.showError(error)
+        this.$snackbar.showError(error.message)
         this.editing = false
       })
     },

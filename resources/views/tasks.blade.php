@@ -20,19 +20,19 @@
                 <v-list-tile-avatar>
                     <img src="https://placeimg.com/100/100/any">
                 </v-list-tile-avatar>
-                @if($task->completed)
-                    <del>{{ $task->name }}</del>
+                @if($task['completed'])
+                    <del>{{ $task['name'] }}</del>
 
-                    <form action="/taskscompleted/{{$task->id}}" method="POST">
+                    <form action="/taskscompleted/{{$task['id']}}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <input type="hidden" name="id" value="{{ $task->id  }}">
+                        <input type="hidden" name="id" value="{{ $task['id']  }}">
                         <v-btn type="submit" color="warning">
                             Descompletar
                         </v-btn>
                     </form>
 
-                    <form action="/tasks/{{ $task->id }}" method="POST">
+                    <form action="/tasks/{{ $task['id'] }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
                         <v-btn type="submit" color="error">
@@ -41,21 +41,21 @@
                     </form>
 
                 @else
-                    {{ $task->name }}
+                    {{ $task['name'] }}
 
-                    <form action="/taskscompleted/{{$task->id}}" method="POST">
+                    <form action="/taskscompleted/{{$task['id']}}" method="POST">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $task->id  }}">
+                        <input type="hidden" name="id" value="{{ $task['id']  }}">
                         <v-btn type="submit" color="warning">
                             Completar
                         </v-btn>
                     </form>
 
-                    <v-btn type="submit" color="info" href="/task_edit/{{ $task->id }}">
+                    <v-btn type="submit" color="info" href="/task_edit/{{ $task['id'] }}">
                         Modificar
                     </v-btn>
 
-                    <form action="/tasks/{{ $task->id }}" method="POST">
+                    <form action="/tasks/{{ $task['id'] }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
                         <v-btn type="submit" color="error">

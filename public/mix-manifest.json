@@ -1,8 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/0.4a5c33516b3f0369f5aa.hot-update.js": "/0.4a5c33516b3f0369f5aa.hot-update.js",
-    "/0.5d535edc02fd1094027f.hot-update.js": "/0.5d535edc02fd1094027f.hot-update.js",
-    "/0.d6c29791dcb970d37c59.hot-update.js": "/0.d6c29791dcb970d37c59.hot-update.js",
-    "/0.03e022b137cd59d25d3f.hot-update.js": "/0.03e022b137cd59d25d3f.hot-update.js"
+    "/css/app.css": "/css/app.css"
 }

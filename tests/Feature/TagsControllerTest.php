@@ -93,7 +93,7 @@ class TagsControllerTest extends TestCase
     /**
      * @test
      */
-    public function users_With_roles_cannot_show_tags()
+    public function users_with_roles_cannot_show_tags()
     {
         //1 Prepare
         create_example_tags();

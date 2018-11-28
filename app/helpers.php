@@ -27,25 +27,26 @@ if (!function_exists('create_primary_user')) {
 if (!function_exists('create_example_tasks')) {
     function create_example_tasks()
     {
+        $user1 = factory(User::class)->create();
         Task::create([
             'name' => 'comprar pa',
             'completed' => false,
             'description' => 'Descripció de prova',
-            'user_id' => 1
+            'user_id' => $user1->id
         ]);
 
         Task::create([
             'name' => 'comprar llet',
             'completed' => false,
             'description' => 'Descripció de prova',
-            'user_id' => 1
+            'user_id' => $user1->id
         ]);
 
         Task::create([
             'name' => 'Estudiar PHP',
             'completed' => true,
             'description' => 'Descripció de prova',
-            'user_id' => 2
+            'user_id' => $user1->id
         ]);
     }
 
@@ -262,6 +263,10 @@ if (!function_exists('create_example_tasks')) {
             }
             try {
                 $homersimpson->assignRole('TaskManager');
+            } catch (Exception $e) {
+            }
+            try {
+                $homersimpson->assignRole('Tasks');
             } catch (Exception $e) {
             }
 

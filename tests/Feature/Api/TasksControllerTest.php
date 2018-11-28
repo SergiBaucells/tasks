@@ -79,7 +79,7 @@ class TasksControllerTest extends TestCase
 
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
-        $this->assertEquals($result->name, $task->name);
+        $this->assertEquals('', $result);
 
         $this->assertNull(Task::find($task->id));
     }
@@ -96,7 +96,7 @@ class TasksControllerTest extends TestCase
 
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
-        $this->assertEquals($result->name, $task->name);
+        $this->assertEquals('', $result);
 
         $this->assertNull(Task::find($task->id));
     }
@@ -136,7 +136,8 @@ class TasksControllerTest extends TestCase
         $this->loginAsSuperAdmin('api');
 
         $response = $this->json('POST','/api/v1/tasks/',[
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+            'completed' => false
         ]);
 
         $result = json_decode($response->getContent());
@@ -155,7 +156,8 @@ class TasksControllerTest extends TestCase
         $this->loginAsTaskManager('api');
 
         $response = $this->json('POST','/api/v1/tasks/',[
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+            'completed' => false
         ]);
 
         $result = json_decode($response->getContent());
@@ -174,7 +176,8 @@ class TasksControllerTest extends TestCase
         $user = $this->login('api');
 
         $response = $this->json('POST','/api/v1/tasks/',[
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+            'completed' => false
         ]);
 
         $result = json_decode($response->getContent());
@@ -277,7 +280,8 @@ class TasksControllerTest extends TestCase
 
         // 2
         $response = $this->json('PUT','/api/v1/tasks/' . $oldTask->id, [
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+            'completed' => false
         ]);
 
         $result = json_decode($response->getContent());
@@ -302,7 +306,8 @@ class TasksControllerTest extends TestCase
 
         // 2
         $response = $this->json('PUT','/api/v1/tasks/' . $oldTask->id, [
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+            'completed' => false
         ]);
 
         $result = json_decode($response->getContent());

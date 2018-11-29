@@ -39,18 +39,18 @@ trait CanLogin
      * @param null $guard
      * @return mixed
      */
-    protected function loginAsTaskManager($guard = null)
+    protected function loginAsTasksUser($guard = null)
     {
-        return $this->loginAsUsingRole($guard, ['TaskManager', 'Tasks']);
+        return $this->loginAsUsingRole($guard, 'Tasks');
     }
 
     /**
      * @param null $guard
      * @return mixed
      */
-    protected function loginAsTasksUser($guard = null)
+    protected function loginAsTaskManager($guard = null)
     {
-        return $this->loginAsUsingRole($guard, ['Tasks']);
+        return $this->loginAsUsingRole($guard, ['TaskManager', 'Tasks']);
     }
 
     /**

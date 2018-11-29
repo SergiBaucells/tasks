@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class UpdateTag extends FormRequest
+class DestroyTag extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,10 @@ class UpdateTag extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tags.update');
+        return Auth::user()->can('tags.destroy');
+//        return Auth::user()->can('task.store');
+//        return Auth::user()->isSuperAdmin() || Auth::user()->hasRole('TaskManager') ||
+//            Auth::user()->id === ;
     }
 
     /**
@@ -23,8 +27,6 @@ class UpdateTag extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required'
-        ];
+        return [];
     }
 }

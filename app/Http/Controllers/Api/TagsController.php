@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DestroyTag;
+use App\Http\Requests\IndexTag;
+use App\Http\Requests\ShowTag;
 use App\Http\Requests\StoreTag;
 use App\Http\Requests\UpdateTag;
 use App\Tag;
@@ -11,9 +14,9 @@ use Illuminate\Http\Request;
 class TagsController extends Controller
 {
 
-    public function index()
+    public function index(IndexTag $request)
     {
-        return Tag::orderBy('created_at', 'desc')->get();
+        return map_collection(Tag::orderBy('created_at', 'desc')->get());
     }
 
     public function store(StoreTag $request)
@@ -26,7 +29,7 @@ class TagsController extends Controller
         return $tag->map();
     }
 
-    public function show(Tag $tag)
+    public function show(ShowTag $tag)
     {
         return $tag->map();
     }
@@ -40,7 +43,7 @@ class TagsController extends Controller
         return $tag->map();
     }
 
-    public function destroy(Tag $tag)
+    public function destroy(DestroyTag $tag)
     {
         $tag->delete();
     }

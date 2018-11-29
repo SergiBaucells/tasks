@@ -13,7 +13,7 @@ class StoreTag extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->can('tags.store');
     }
 
     /**

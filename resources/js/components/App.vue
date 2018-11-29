@@ -17,6 +17,7 @@ export default{
           { icon: 'assignment', text: 'Tasques', url: 'tasques' }
         ]
       },
+      { icon: 'turned_in', text: 'Etiquetes', url: 'tags' },
       { icon: 'account_box', text: 'Sobre nosaltres', url: '/about' },
       { icon: 'date_range', text: 'Calendari', url: '/calendari' }
     ]

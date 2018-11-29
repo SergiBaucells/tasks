@@ -11,14 +11,12 @@ class TasquesController extends Controller
 {
     public function index(IndexUserTasks $request)
     {
-        // Agafa de la base de dades i ho passa a la vista
-
+        $tasks = [];
         if (Auth::user()->isSuperAdmin() || Auth::user()->hasRole('TaskManager')) {
             $tasks = map_collection(Task::orderBy('created_at', 'desc')->get());
         } else {
             $tasks = map_collection($request->user()->tasks);
         }
-
         $users = User::all();
         return view('tasques', compact('tasks', 'users'));
     }

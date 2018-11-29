@@ -73,21 +73,17 @@ class TagsControllerTest extends TestCase
      */
     public function tags_manager_can_show_tags()
     {
-        //1 Prepare
-        $this->loginAsTaskManager();
-        // 2 execute
+        create_example_tags();
+        $this->loginAsTagsManager();
         $response = $this->get('/tags');
-
-        //3 Comprovar
         $response->assertSuccessful();
-        $response->assertSee('Tags');
-
-        $response->assertSee('Etiqueta 1');
-        $response->assertSee('Etiqueta 2');
-        $response->assertSee('Etiqueta 3');
-
-        // Comprovar que es veuen les etiquetes que hi ha a la base dades
-
+        $response->assertViewIs('tags');
+        $response->assertViewHas('tags', function ($tags) {
+            return count($tags) === 3 &&
+                $tags[0]['name'] === 'Etiqueta 1' &&
+                $tags[1]['name'] === 'Etiqueta 2' &&
+                $tags[2]['name'] === 'Etiqueta 3';
+        });
     }
 
     /**
@@ -96,20 +92,11 @@ class TagsControllerTest extends TestCase
     public function users_with_roles_cannot_show_tags()
     {
         //1 Prepare
-        create_example_tags();
-        login($this);
+        $this->loginAsUsingRole('web','Tags');
         // 2 execute
         $response = $this->get('/tags');
 
         //3 Comprovar
-        $response->assertSuccessful();
-        $response->assertSee('Tags');
-
-        $response->assertSee('Etiqueta 1');
-        $response->assertSee('Etiqueta 2');
-        $response->assertSee('Etiqueta 3');
-
-        // Comprovar que es veuen les etiquetes que hi ha a la base dades
-
+        $response->assertStatus(403);
     }
 }

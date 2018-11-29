@@ -209,7 +209,7 @@
                             </v-avatar>
                         </td>
                         <td>
-                          <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
+                          <v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'"></v-switch>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human }}</span>
@@ -272,15 +272,13 @@
                 </v-flex>
             </v-data-iterator>
         </v-card>
-        <v-btn v-can="tasks.create" fab bottom right color="purple accent-2" fixed class="white--text" @click="showCreate()">
+        <v-btn v-can="tasks.store" fab bottom right color="purple accent-2" fixed class="white--text" @click="showCreate()">
             <v-icon>add</v-icon>
         </v-btn>
     </span>
 </template>
 
 <script>
-import EventBus from '../eventBus'
-
 export default {
   name: 'Tasques',
   data () {
@@ -343,7 +341,7 @@ export default {
   methods: {
     refresh () {
       this.loading = true
-      window.axios.get('/api/v1/tasks').then(response => {
+      window.axios.get('/api/v1/user/tasks').then(response => {
         // SHOW SNACKBAR MISSATGE OK
         this.dataTasks = response.data
         // this.showMessage("S'ha refrescat correctament")
@@ -363,7 +361,7 @@ export default {
     },
     destroy () {
       this.removing = true
-      window.axios.delete('/api/v1/tasks/' + this.taskBeingRemoved.id).then(() => {
+      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(() => {
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
         this.taskBeingRemoved = null
@@ -376,7 +374,7 @@ export default {
     },
     create () {
       this.creating = true
-      window.axios.post('/api/v1/tasks', {
+      window.axios.post('/api/v1/user/tasks', {
         user_id: this.user.id,
         name: this.name,
         completed: this.completed,
@@ -393,7 +391,7 @@ export default {
     },
     update () {
       this.editing = true
-      window.axios.put('/api/v1/tasks/' + this.taskBeingUpdated.id,
+      window.axios.put('/api/v1/user/tasks/' + this.taskBeingUpdated.id,
         {
           user_id: this.taskBeingUpdated.user.id,
           name: this.taskBeingUpdated.name,

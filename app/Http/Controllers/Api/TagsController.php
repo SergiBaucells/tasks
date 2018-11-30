@@ -29,7 +29,7 @@ class TagsController extends Controller
         return $tag->map();
     }
 
-    public function show(ShowTag $tag)
+    public function show(ShowTag $request, Tag $tag)
     {
         return $tag->map();
     }
@@ -43,7 +43,7 @@ class TagsController extends Controller
         return $tag->map();
     }
 
-    public function destroy(DestroyTag $tag)
+    public function destroy(DestroyTag $request, Tag $tag)
     {
         $tag->delete();
     }

@@ -4,11 +4,12 @@ namespace Tests\Feature\Api;
 
 use App\Tag;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
 class TagControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, CanLogin;
 
     // CRUD -> CRU -> CREATE RETRIEVE UPDATE DELETE
     // BREAD -> PA -> BROWSE READ EDIT ADD DELETE
@@ -23,7 +24,7 @@ class TagControllerTest extends TestCase
         // routes/api.php
         // http:// tags.test/api/v1/tags
         // HTTP -> GET | POST | PUT | DELETE
-        login($this, 'api');
+        $this->loginAsTagsManager('api');
         //1
         // Tag:create()
         $tag = factory(Tag::class)->create();
@@ -46,7 +47,7 @@ class TagControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         // 1
-        login($this, 'api');
+        $this->loginAsTagsManager('api');
         $tag = factory(Tag::class)->create();
 
         // 2
@@ -68,7 +69,7 @@ class TagControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         // 1
-        login($this, 'api');
+        $this->loginAsTagsManager('api');
         // 2
         $response = $this->json('POST', '/api/v1/tags/', [
             'name' => ''
@@ -87,7 +88,7 @@ class TagControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         // 1
-        login($this, 'api');
+        $this->loginAsTagsManager('api');
         $oldTag = factory(Tag::class)->create();
         // 2
         $response = $this->json('PUT', '/api/v1/tags/' . $oldTag->id, [
@@ -106,7 +107,7 @@ class TagControllerTest extends TestCase
     {
 //        $this->withoutExceptionHandling();
         // 1
-        login($this, 'api');
+        $this->loginAsTagsManager('api');
         // 2
         $response = $this->json('POST', '/api/v1/tags/', [
             'name' => 'Etiqueta 1',
@@ -130,7 +131,7 @@ class TagControllerTest extends TestCase
      */
     public function can_list_tag()
     {
-        login($this, 'api');
+        $this->loginAsTagsManager('api');
         create_example_tags();
 
         $response = $this->json('GET', '/api/v1/tags/', [
@@ -148,7 +149,7 @@ class TagControllerTest extends TestCase
         $this->assertEquals('#000000', $result[1]->color);
 
         $this->assertEquals('Etiqueta 3', $result[2]->name);
-        $this->assertEquals('Descripció',  $result[2]->description);
+        $this->assertEquals('Descripció', $result[2]->description);
         $this->assertEquals('#000000', $result[2]->color);
     }
 
@@ -158,7 +159,7 @@ class TagControllerTest extends TestCase
     public function can_edit_tag()
     {
         // 1
-        login($this, 'api');
+        $this->loginAsTagsManager('api');
         $oldTag = factory(Tag::class)->create([
             'name' => 'Etiqueta 1',
             'description' => 'Descripció',

@@ -5,6 +5,7 @@ use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -137,7 +138,7 @@ if (!function_exists('create_example_tasks')) {
                 return Role::create([
                     'name' => $role
                 ]);
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 return Role::findByName($role);
             }
         }
@@ -150,7 +151,7 @@ if (!function_exists('create_example_tasks')) {
                 return Permission::create([
                     'name' => $permission
                 ]);
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 return Permission::findByName($permission);
             }
         }
@@ -159,7 +160,9 @@ if (!function_exists('create_example_tasks')) {
     if (!function_exists('initialize_gates')) {
         function initialize_gates()
         {
-
+            Gate::define('tasks.manage', function ($user) {
+                return $user->isSuperAdmin() || $user->hasRole('TaskManager');
+            });
         }
     }
 
@@ -235,13 +238,18 @@ if (!function_exists('create_example_tasks')) {
         {
             // Pepe Pringao -> No té cap permis ni cap rol
             try {
-                factory(User::class)->create([
+                $pepepringao = factory(User::class)->create([
                     'name' => 'Pepe Pringao',
                     'email' => 'pepepringao@hotmail.com'
                 ]);
             } catch (Exception $e) {
             }
-
+            Task::create([
+                'name' => 'Tasca Pepe',
+                'completed' => false,
+                'description' => 'Descripció de prova',
+                'user_id' => $pepepringao->id
+            ]);
             try {
                 $bartsimpson = factory(User::class)->create([
                     'name' => 'Bart Simpson',
@@ -249,6 +257,12 @@ if (!function_exists('create_example_tasks')) {
                 ]);
             } catch (Exception $e) {
             }
+            Task::create([
+                'name' => 'Tasca Bart',
+                'completed' => false,
+                'description' => 'Descripció de prova',
+                'user_id' => $bartsimpson->id
+            ]);
             try {
                 $bartsimpson->assignRole('Tasks');
             } catch (Exception $e) {
@@ -261,6 +275,12 @@ if (!function_exists('create_example_tasks')) {
                 ]);
             } catch (Exception $e) {
             }
+            Task::create([
+                'name' => 'Tasca Homer',
+                'completed' => false,
+                'description' => 'Descripció de prova',
+                'user_id' => $homersimpson->id
+            ]);
             try {
                 $homersimpson->assignRole('TaskManager');
             } catch (Exception $e) {
@@ -269,7 +289,6 @@ if (!function_exists('create_example_tasks')) {
                 $homersimpson->assignRole('Tasks');
             } catch (Exception $e) {
             }
-
             try {
                 $sergitur = factory(User::class)->create([
                     'name' => 'Sergi Tur',
@@ -280,6 +299,12 @@ if (!function_exists('create_example_tasks')) {
                 $sergitur->save();
             } catch (Exception $e) {
             }
+            Task::create([
+                'name' => 'Tasca Sergi Tur',
+                'completed' => false,
+                'description' => 'Descripció de prova',
+                'user_id' => $sergitur->id
+            ]);
         }
     }
 }

@@ -3,8 +3,8 @@ export default{
   el: '#app',
   name: 'App',
   data: () => ({
-    drawer: null,
-    drawerRight: null,
+    drawer: false,
+    drawerRight: false,
     items: [
       {
         icon: 'keyboard_arrow_up',

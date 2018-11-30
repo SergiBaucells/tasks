@@ -100,6 +100,8 @@ class TasquesControllerTest extends TestCase
             return count($tasks) === 1 &&
                 $tasks[0]['name'] === 'Tasca usuari logat';
         });
+        $response->assertViewHas('users');
+        $response->assertViewHas('uri');
     }
 
 }

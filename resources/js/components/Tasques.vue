@@ -48,7 +48,8 @@
                                       placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="description" label="Descripció"></v-textarea>
-                        <v-autocomplete :items="dataUsers" label="Usuari" v-model="user" item-text="name" return-object></v-autocomplete>
+                        <v-autocomplete :items="dataUsers" label="Usuari" v-model="user" item-text="name"
+                                        return-object></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -85,9 +86,11 @@
                     <v-form>
                         <v-text-field v-model="taskBeingUpdated.name" label="Nom" hint="Nom de la tasca"
                                       placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="taskBeingUpdated.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-switch v-model="taskBeingUpdated.completed"
+                                  :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="taskBeingUpdated.description" label="Descripció"></v-textarea>
-                        <v-autocomplete :items="dataUsers" v-model="taskBeingUpdated.user" label="Usuari" item-text="name" :return-object="true"></v-autocomplete>
+                        <v-autocomplete :items="dataUsers" v-model="taskBeingUpdated.user" label="Usuari"
+                                        item-text="name" :return-object="true"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -118,10 +121,13 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="takeTask.name" label="Nom" hint="Nom de la tasca" readonly></v-text-field>
-                        <v-switch v-model="takeTask.completed" :label="takeTask.completed ? 'Completada':'Pendent'" readonly></v-switch>
+                        <v-text-field v-model="takeTask.name" label="Nom" hint="Nom de la tasca"
+                                      readonly></v-text-field>
+                        <v-switch v-model="takeTask.completed" :label="takeTask.completed ? 'Completada':'Pendent'"
+                                  readonly></v-switch>
                         <v-textarea v-model="takeTask.description" label="Descripció" readonly></v-textarea>
-                        <v-autocomplete :items="dataUsers" label="Usuari" v-model="takeTask.user" item-text="name" return-object readonly></v-autocomplete>
+                        <v-autocomplete :items="dataUsers" label="Usuari" v-model="takeTask.user" item-text="name"
+                                        return-object readonly></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="showDialog=false">
                                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -209,7 +215,8 @@
                             </v-avatar>
                         </td>
                         <td>
-                          <v-switch v-model="task.completed" :label="task.completed ? 'Completada' : 'Pendent'"></v-switch>
+                          <v-switch v-model="task.completed"
+                                    :label="task.completed ? 'Completada' : 'Pendent'"></v-switch>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human }}</span>
@@ -218,21 +225,25 @@
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human }}</span>
                         </td>
                         <td>
-                            <v-btn v-can="tasks.show" :loading="showing" :disabled="showing" icon color="primary" flat
+                            <v-btn v-if="$can('user.tasks.show', task)" :loading="showing" :disabled="showing" icon
+                                   color="primary" flat
                                    title="Mostrar la tasca" @click="showTask(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn v-can="tasks.update" :loading="editing" :disabled="editing" icon color="success" flat
+                            <v-btn v-if="$can('user.tasks.update', task)" :loading="editing" :disabled="editing" icon
+                                   color="success" flat
                                    title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-can="tasks.destroy" :loading="removing" :disabled="removing" icon color="error" flat
+                            <v-btn v-if="$can('user.tasks.destroy', task)" :loading="removing" :disabled="removing" icon
+                                   color="error"
+                                   flat
                                    title="Eliminar la tasca" @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                             <!--<v-btn v-if="$can('tasks.destroy')" :loading="removing" :disabled="removing" icon color="error" flat-->
-                                   <!--title="Eliminar la tasca" @click="showDestroy(task)">-->
-                                <!--<v-icon>delete</v-icon>-->
+                            <!--title="Eliminar la tasca" @click="showDestroy(task)">-->
+                            <!--<v-icon>delete</v-icon>-->
                             <!--</v-btn>-->
                         </td>
                     </tr>
@@ -272,7 +283,8 @@
                 </v-flex>
             </v-data-iterator>
         </v-card>
-        <v-btn v-can="tasks.store" fab bottom right color="purple accent-2" fixed class="white--text" @click="showCreate()">
+        <v-btn v-if="$can('user.tasks.store', task)" fab bottom right color="purple accent-2" fixed class="white--text"
+               @click="showCreate()">
             <v-icon>add</v-icon>
         </v-btn>
     </span>
@@ -336,12 +348,21 @@ export default {
     users: {
       type: Array,
       required: true
+    },
+    uri: {
+      type: String,
+      required: true
     }
   },
+  // watch: {
+  //   dataTasks: {
+  //
+  //   }
+  // },
   methods: {
     refresh () {
       this.loading = true
-      window.axios.get('/api/v1/user/tasks').then(response => {
+      window.axios.get(this.uri).then(response => {
         // SHOW SNACKBAR MISSATGE OK
         this.dataTasks = response.data
         // this.showMessage("S'ha refrescat correctament")
@@ -361,7 +382,7 @@ export default {
     },
     destroy () {
       this.removing = true
-      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(() => {
+      window.axios.delete(this.uri + '/' + this.taskBeingRemoved.id).then(() => {
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
         this.taskBeingRemoved = null
@@ -374,7 +395,7 @@ export default {
     },
     create () {
       this.creating = true
-      window.axios.post('/api/v1/user/tasks', {
+      window.axios.post(this.uri, {
         user_id: this.user.id,
         name: this.name,
         completed: this.completed,
@@ -391,7 +412,7 @@ export default {
     },
     update () {
       this.editing = true
-      window.axios.put('/api/v1/user/tasks/' + this.taskBeingUpdated.id,
+      window.axios.put(this.uri + '/' + this.taskBeingUpdated.id,
         {
           user_id: this.taskBeingUpdated.user.id,
           name: this.taskBeingUpdated.name,
@@ -424,13 +445,6 @@ export default {
       this.deleteDialog = true
       this.taskBeingRemoved = task
     }
-  },
-  created () {
-    console.log(window.laravel_user)
   }
 }
 </script>
-
-<style>
-
-</style>

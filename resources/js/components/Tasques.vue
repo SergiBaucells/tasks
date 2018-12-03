@@ -87,7 +87,7 @@
                         <v-text-field v-model="taskBeingUpdated.name" label="Nom" hint="Nom de la tasca"
                                       placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="taskBeingUpdated.completed"
-                                  :label="completed ? 'Completada':'Pendent'"></v-switch>
+                                  :label="taskBeingUpdated.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="taskBeingUpdated.description" label="Descripció"></v-textarea>
                         <v-autocomplete :items="dataUsers" v-model="taskBeingUpdated.user" label="Usuari"
                                         item-text="name" :return-object="true"></v-autocomplete>
@@ -225,17 +225,17 @@
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human }}</span>
                         </td>
                         <td>
-                            <v-btn v-if="$can('user.tasks.show', task)" :loading="showing" :disabled="showing" icon
+                            <v-btn v-if="$can('user.tasks.show', tasks)" :loading="showing" :disabled="showing" icon
                                    color="primary" flat
                                    title="Mostrar la tasca" @click="showTask(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn v-if="$can('user.tasks.update', task)" :loading="editing" :disabled="editing" icon
+                            <v-btn v-if="$can('user.tasks.update', tasks)" :loading="editing" :disabled="editing" icon
                                    color="success" flat
                                    title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-if="$can('user.tasks.destroy', task)" :loading="removing" :disabled="removing" icon
+                            <v-btn v-if="$can('user.tasks.destroy', tasks)" :loading="removing" :disabled="removing" icon
                                    color="error"
                                    flat
                                    title="Eliminar la tasca" @click="showDestroy(task)">
@@ -283,7 +283,7 @@
                 </v-flex>
             </v-data-iterator>
         </v-card>
-        <v-btn v-if="$can('user.tasks.store', task)" fab bottom right color="purple accent-2" fixed class="white--text"
+        <v-btn v-if="$can('user.tasks.store', tasks)" fab bottom right color="purple accent-2" fixed class="white--text"
                @click="showCreate()">
             <v-icon>add</v-icon>
         </v-btn>
@@ -420,7 +420,6 @@ export default {
           description: this.taskBeingUpdated.description
         }
       ).then(() => {
-        this.refresh()
         this.editDialog = false
         this.taskBeingRemoved = null
         this.$snackbar.showMessage("S'ha actualitzat correctament")

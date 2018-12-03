@@ -3,6 +3,7 @@
 
 namespace Tests\Unit;
 
+use App\Mail\TestDinamicEmail;
 use App\Mail\TestEmail;
 use App\Mail\TestTextEmail;
 use App\User;
@@ -40,6 +41,20 @@ class MailTest extends TestCase
 
         // 2
         Mail::to($user)->send(new TestTextEmail());
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     */
+    public function send_markdown_email_dinamic()
+    {
+
+        // 1
+        $user = factory(User::class)->create();
+
+        // 2
+        Mail::to($user)->send(new TestDinamicEmail($user));
         $this->assertTrue(true);
     }
 }

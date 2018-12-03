@@ -3,6 +3,8 @@
 
 namespace Tests\Unit;
 
+use App\Mail\TestEmail;
+use App\Mail\TestTextEmail;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
@@ -16,7 +18,7 @@ class MailTest extends TestCase
     /**
      * @test
      */
-    public function send_email()
+    public function send_markdown_email()
     {
 
         // 1
@@ -24,5 +26,20 @@ class MailTest extends TestCase
 
         // 2
         Mail::to($user)->send(new TestEmail());
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     */
+    public function send_text_email()
+    {
+
+        // 1
+        $user = factory(User::class)->create();
+
+        // 2
+        Mail::to($user)->send(new TestTextEmail());
+        $this->assertTrue(true);
     }
 }

@@ -21,7 +21,7 @@ class MailTest extends TestCase
      */
     public function send_markdown_email()
     {
-
+        $this->markTestSkipped();
         // 1
         $user = factory(User::class)->create();
 
@@ -35,7 +35,7 @@ class MailTest extends TestCase
      */
     public function send_text_email()
     {
-
+        $this->markTestSkipped();
         // 1
         $user = factory(User::class)->create();
 
@@ -49,7 +49,7 @@ class MailTest extends TestCase
      */
     public function send_markdown_email_dinamic()
     {
-
+        $this->markTestSkipped();
         // 1
         $user = factory(User::class)->create();
 

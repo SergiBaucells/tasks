@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 
+use App\Mail\WelcomeEmail;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,7 @@ class RegisterControllerTest extends TestCase
         ]);
 
         Mail::assertSent(WelcomeEmail::class, function ($mail){
-            $mail->user->name == 'Sergi';
+            return $mail->user->name == 'Sergi';
         });
 
         //3

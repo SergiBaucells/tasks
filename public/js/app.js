@@ -74122,7 +74122,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 return this.$confirm('Les tasques esborrades no es poden recuperar!', {
                   title: 'Esteu segurs?',
                   buttonFalseText: 'Cancel·lar',
-                  buttonTrueText: 'Eliminar'
+                  buttonTrueText: 'Eliminar',
+                  color: 'error'
                 });
 
               case 2:

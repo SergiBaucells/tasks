@@ -192,8 +192,10 @@
                             </v-avatar>
                         </td>
                         <td>
-                          <v-switch v-model="task.completed"
-                                    :label="task.completed ? 'Completada' : 'Pendent'"></v-switch>
+                          <!--<v-switch v-model="task.completed"-->
+                                    <!--:label="task.completed ? 'Completada' : 'Pendent'"></v-switch>-->
+                            <task-completed-toggle :task="task"></task-completed-toggle>
+                            <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human }}</span>
@@ -268,8 +270,14 @@
 </template>
 
 <script>
+import TaskCompletedToggle from './TaskCompletedToggle'
+import Toggle from './Toggle'
 export default {
   name: 'Tasques',
+  components: {
+    'task-completed-toggle': TaskCompletedToggle,
+    'toggle': Toggle
+  },
   data () {
     return {
       dataUsers: this.users,
@@ -329,11 +337,6 @@ export default {
       required: true
     }
   },
-  // watch: {
-  //   dataTasks: {
-  //
-  //   }
-  // },
   methods: {
     refresh () {
       this.loading = true
@@ -361,7 +364,8 @@ export default {
         {
           title: 'Esteu segurs?',
           buttonFalseText: 'Cancel·lar',
-          buttonTrueText: 'Eliminar'
+          buttonTrueText: 'Eliminar',
+          color: 'error'
         })
       if (result) {
         // OK tirem endevant

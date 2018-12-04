@@ -8,7 +8,7 @@ export default {
   data () {
     return {
       dataTask: this.task,
-      loading: null
+      loading: false
     }
   },
   props: {
@@ -31,10 +31,22 @@ export default {
   },
   methods: {
     uncompleteTask () {
-      window.axios.delete('/api/v1/completed_task/' + this.task.id)
+      this.loading = true
+      window.axios.delete('/api/v1/completed_task/' + this.task.id).then(() => {
+        this.loading = false
+      }).catch(error => {
+        this.$snackbar.showError(error.message)
+        this.loading = false
+      })
     },
     completeTask () {
-      window.axios.post('/api/v1/completed_task/' + this.task.id)
+      this.loading = true
+      window.axios.post('/api/v1/completed_task/' + this.task.id).then(() => {
+        this.loading = false
+      }).catch(error => {
+        this.$snackbar.showError(error.message)
+        this.loading = false
+      })
     }
   }
 }

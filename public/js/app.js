@@ -75054,7 +75054,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       dataTask: this.task,
-      loading: null
+      loading: false
     };
   },
 
@@ -75077,10 +75077,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     uncompleteTask: function uncompleteTask() {
-      window.axios.delete('/api/v1/completed_task/' + this.task.id);
+      var _this = this;
+
+      this.loading = true;
+      window.axios.delete('/api/v1/completed_task/' + this.task.id).then(function () {
+        _this.loading = false;
+      }).catch(function (error) {
+        _this.$snackbar.showError(error.message);
+        _this.loading = false;
+      });
     },
     completeTask: function completeTask() {
-      window.axios.post('/api/v1/completed_task/' + this.task.id);
+      var _this2 = this;
+
+      this.loading = true;
+      window.axios.post('/api/v1/completed_task/' + this.task.id).then(function () {
+        _this2.loading = false;
+      }).catch(function (error) {
+        _this2.$snackbar.showError(error.message);
+        _this2.loading = false;
+      });
     }
   }
 });

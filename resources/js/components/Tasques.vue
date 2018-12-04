@@ -192,8 +192,6 @@
                             </v-avatar>
                         </td>
                         <td>
-                          <!--<v-switch v-model="task.completed"-->
-                                    <!--:label="task.completed ? 'Completada' : 'Pendent'"></v-switch>-->
                             <task-completed-toggle :task="task"></task-completed-toggle>
                             <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
                         </td>
@@ -220,10 +218,6 @@
                                    title="Eliminar la tasca" @click="destroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
-                            <!--<v-btn v-if="$can('tasks.destroy')" :loading="removing" :disabled="removing" icon color="error" flat-->
-                            <!--title="Eliminar la tasca" @click="showDestroy(task)">-->
-                            <!--<v-icon>delete</v-icon>-->
-                            <!--</v-btn>-->
                         </td>
                     </tr>
                 </template>

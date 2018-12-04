@@ -7,6 +7,5 @@
 - [ ] Fer tags
 
 - [ ] Totes les Request han d'estar protegides
-- [ ] Acabar component TaskCompletedToggle.vue
 
 ### Fer en explotació

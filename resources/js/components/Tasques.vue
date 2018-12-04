@@ -1,28 +1,5 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog" width="400">
-            <v-card>
-                <v-card-title class="headline">Esteu segurs?</v-card-title>
-                <v-card-text>
-                    Aquesta operació no es pot desfer.
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                      <v-btn color="green darken-1" flat="flat" @click="deleteDialog = false">
-                        Cancel·lar
-                      </v-btn>
-                      <v-btn
-                              color="error darken-1"
-                              flat="flat"
-                              @click="destroy"
-                              :loading="removing"
-                              :disabled="removing"
-                      >
-                        Confirmar
-                      </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
 
         <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition"
                   @keydown.esc="createDialog=false">
@@ -235,10 +212,10 @@
                                    title="Actualitzar la tasca" @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-if="$can('user.tasks.destroy', tasks)" :loading="removing" :disabled="removing" icon
+                            <v-btn v-if="$can('user.tasks.destroy', tasks)" :loading="removing === task.id" :disabled="removing === task.id" icon
                                    color="error"
                                    flat
-                                   title="Eliminar la tasca" @click="showDestroy(task)">
+                                   title="Eliminar la tasca" @click="destroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
                             <!--<v-btn v-if="$can('tasks.destroy')" :loading="removing" :disabled="removing" icon color="error" flat-->
@@ -300,12 +277,10 @@ export default {
       completed: false,
       name: '',
       createDialog: false,
-      deleteDialog: false,
       editDialog: false,
       showDialog: false,
       takeTask: '',
       user: '',
-      taskBeingRemoved: '',
       taskBeingUpdated: '',
       usersold: [
         'Sergi Baucells',
@@ -322,7 +297,7 @@ export default {
       pagination: {
         rowsPerPage: 25
       },
-      removing: false,
+      removing: null,
       creating: false,
       loading: false,
       deleting: false,
@@ -380,18 +355,27 @@ export default {
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    destroy () {
-      this.removing = true
-      window.axios.delete(this.uri + '/' + this.taskBeingRemoved.id).then(() => {
-        this.removeTask(this.taskBeingRemoved)
-        this.deleteDialog = false
-        this.taskBeingRemoved = null
-        this.$snackbar.showMessage("S'ha esborrat correctament")
-        this.removing = false
-      }).catch(error => {
-        this.$snackbar.showError(error.message)
-        this.removing = false
-      })
+    async destroy (task) {
+      // ES6 async await
+      let result = await this.$confirm('Les tasques esborrades no es poden recuperar!',
+        {
+          title: 'Esteu segurs?',
+          buttonFalseText: 'Cancel·lar',
+          buttonTrueText: 'Eliminar'
+        })
+      if (result) {
+        // OK tirem endevant
+        this.removing = task.id
+        window.axios.delete(this.uri + '/' + task.id).then(() => {
+          this.removeTask(task)
+          task = null
+          this.$snackbar.showMessage("S'ha esborrat correctament")
+          this.removing = null
+        }).catch(error => {
+          this.$snackbar.showError(error.message)
+          this.removing = null
+        })
+      }
     },
     create () {
       this.creating = true
@@ -439,10 +423,6 @@ export default {
     },
     showCreate () {
       this.createDialog = true
-    },
-    showDestroy (task) {
-      this.deleteDialog = true
-      this.taskBeingRemoved = task
     }
   }
 }

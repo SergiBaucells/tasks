@@ -35,6 +35,8 @@ Route::middleware(['auth:api'])->group(function () {
     // Completed tasks
     Route::post('/v1/completed_task/{task}', 'Api\TasksCompletedController@store');
     Route::delete('/v1/completed_task/{task}', 'Api\TasksCompletedController@destroy');
+    Route::post('/v1/completed_task/{task}', 'Api\LoggedUserTasksCompletedController@store');
+    Route::delete('/v1/completed_task/{task}', 'Api\LoggedUserTasksCompletedController@destroy');
 
 
     Route::get('/v1/user/tasks', 'Api\LoggedUserTasksController@index');

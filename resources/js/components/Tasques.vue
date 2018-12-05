@@ -25,7 +25,7 @@
                                       placeholder="Nom de la tasca"></v-text-field>
                         <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="description" label="Descripció"></v-textarea>
-                        <v-autocomplete :items="dataUsers" label="Usuari" v-model="user" item-text="name"
+                        <v-autocomplete v-if="$can('tasks.index')" :items="dataUsers" label="Usuari" v-model="user" item-text="name"
                                         return-object></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
@@ -66,7 +66,7 @@
                         <v-switch v-model="taskBeingUpdated.completed"
                                   :label="taskBeingUpdated.completed ? 'Completada':'Pendent'"></v-switch>
                         <v-textarea v-model="taskBeingUpdated.description" label="Descripció"></v-textarea>
-                        <v-autocomplete :items="dataUsers" v-model="taskBeingUpdated.user" label="Usuari"
+                        <v-autocomplete v-if="$can('tasks.index')" :items="dataUsers" v-model="taskBeingUpdated.user" label="Usuari"
                                         item-text="name" :return-object="true"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">

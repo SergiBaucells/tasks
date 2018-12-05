@@ -12,12 +12,12 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
-class MailTest extends TestCase
+class MailTest //extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * @test
+     * @ test
      */
     public function send_markdown_email()
     {
@@ -31,7 +31,7 @@ class MailTest extends TestCase
     }
 
     /**
-     * @test
+     * @ test
      */
     public function send_text_email()
     {
@@ -45,7 +45,7 @@ class MailTest extends TestCase
     }
 
     /**
-     * @test
+     * @ test
      */
     public function send_markdown_email_dinamic()
     {

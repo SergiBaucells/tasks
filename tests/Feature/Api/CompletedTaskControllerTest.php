@@ -18,7 +18,7 @@ class CompletedTaskControllerTest extends TestCase
         //1
         initialize_roles();
         $user = login($this, 'api');
-        $user->assignRole('TaskManager');
+        $user->assignRole('Tasks');
         $task = Task::create([
             'name' => 'comprar pa',
             'completed' => false
@@ -50,7 +50,7 @@ class CompletedTaskControllerTest extends TestCase
     {
         initialize_roles();
         $user = login($this, 'api');
-        $user->assignRole('TaskManager');
+        $user->assignRole('Tasks');
         //1
         $task = Task::create([
             'name' => 'comprar pa',

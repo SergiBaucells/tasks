@@ -1,6 +1,5 @@
 <template>
     <span>
-
         <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition"
                   @keydown.esc="createDialog=false">
             <v-toolbar color="primary" class="white--text">
@@ -257,7 +256,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn v-if="$can('user.tasks.store', tasks)" fab bottom right color="purple accent-2" fixed class="white--text"
-               @click="showCreate()">
+               @click="showCreate">
             <v-icon>add</v-icon>
         </v-btn>
     </span>

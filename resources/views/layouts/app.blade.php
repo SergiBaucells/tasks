@@ -149,7 +149,7 @@
         </v-container>
     </v-content>
     <v-footer color="indigo" app>
-        <span class="white--text">Created by Sergi Baucells Rodríguez, &copy; 2018 All rights reserved</span>
+        <span class="white--text pl-2">Created by Sergi Baucells Rodríguez, &copy; 2018 All rights reserved</span>
     </v-footer>
 </v-app>
 

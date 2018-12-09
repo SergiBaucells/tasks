@@ -142,15 +142,15 @@ class TagControllerTest extends TestCase
         $this->assertCount(3, $result);
         $this->assertEquals('Etiqueta 1', $result[0]->name);
         $this->assertEquals('Descripció', $result[0]->description);
-        $this->assertEquals('#000000', $result[0]->color);
+        $this->assertEquals('blue', $result[0]->color);
 
         $this->assertEquals('Etiqueta 2', $result[1]->name);
         $this->assertEquals('Descripció', $result[1]->description);
-        $this->assertEquals('#000000', $result[1]->color);
+        $this->assertEquals('red', $result[1]->color);
 
         $this->assertEquals('Etiqueta 3', $result[2]->name);
         $this->assertEquals('Descripció', $result[2]->description);
-        $this->assertEquals('#000000', $result[2]->color);
+        $this->assertEquals('black', $result[2]->color);
     }
 
     /**

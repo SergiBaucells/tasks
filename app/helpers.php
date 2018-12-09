@@ -57,19 +57,19 @@ if (!function_exists('create_example_tasks')) {
             Tag::create([
                 'name' => 'Etiqueta 1',
                 'description' => 'Descripció',
-                'color' => '#000000'
+                'color' => 'blue'
             ]);
 
             Tag::create([
                 'name' => 'Etiqueta 2',
                 'description' => 'Descripció',
-                'color' => '#000000'
+                'color' => 'red'
             ]);
 
             Tag::create([
                 'name' => 'Etiqueta 3',
                 'description' => 'Descripció',
-                'color' => '#000000'
+                'color' => 'black'
             ]);
         }
     }
@@ -265,6 +265,7 @@ if (!function_exists('create_example_tasks')) {
             ]);
             try {
                 $bartsimpson->assignRole('Tasks');
+                $bartsimpson->assignRole('Tags');
             } catch (Exception $e) {
             }
 
@@ -283,10 +284,12 @@ if (!function_exists('create_example_tasks')) {
             ]);
             try {
                 $homersimpson->assignRole('TaskManager');
+                $homersimpson->assignRole('TagsManager');
             } catch (Exception $e) {
             }
             try {
                 $homersimpson->assignRole('Tasks');
+                $homersimpson->assignRole('Tags');
             } catch (Exception $e) {
             }
             try {

@@ -74040,6 +74040,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 
 
@@ -74062,8 +74064,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       user: '',
       taskBeingUpdated: '',
       usersold: ['Sergi Baucells', 'Jordi baucells', 'Carmen Rodríguez'],
-      filter: 'Totes',
-      filters: ['Totes', 'Completades', 'Pendents'],
+      filter: { name: 'Totes', value: null },
+      filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       search: '',
       pagination: {
         rowsPerPage: 25
@@ -74093,20 +74095,29 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       required: true
     }
   },
+  computed: {
+    getFilteredTasks: function getFilteredTasks() {
+      var _this = this;
+
+      return this.dataTasks.filter(function (task) {
+        if (task.completed === _this.filter.value || _this.filter.value == null) return true;else return false;
+      });
+    }
+  },
   methods: {
     refresh: function refresh() {
-      var _this = this;
+      var _this2 = this;
 
       this.loading = true;
       window.axios.get(this.uri).then(function (response) {
         // SHOW SNACKBAR MISSATGE OK
-        _this.dataTasks = response.data;
+        _this2.dataTasks = response.data;
         // this.showMessage("S'ha refrescat correctament")
-        _this.$snackbar.showMessage("S'ha refrescat correctament");
-        _this.loading = false;
+        _this2.$snackbar.showMessage("S'ha refrescat correctament");
+        _this2.loading = false;
       }).catch(function (error) {
-        _this.$snackbar.showError(error.message);
-        _this.loading = false;
+        _this2.$snackbar.showError(error.message);
+        _this2.loading = false;
         // SHOW SNACKBAR ERROR
       });
     },
@@ -74118,7 +74129,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     destroy: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(task) {
-        var _this2 = this;
+        var _this3 = this;
 
         var result;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
@@ -74140,13 +74151,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   // OK tirem endevant
                   this.removing = task.id;
                   window.axios.delete(this.uri + '/' + task.id).then(function () {
-                    _this2.removeTask(task);
+                    _this3.removeTask(task);
                     task = null;
-                    _this2.$snackbar.showMessage("S'ha esborrat correctament");
-                    _this2.removing = null;
+                    _this3.$snackbar.showMessage("S'ha esborrat correctament");
+                    _this3.removing = null;
                   }).catch(function (error) {
-                    _this2.$snackbar.showError(error.message);
-                    _this2.removing = null;
+                    _this3.$snackbar.showError(error.message);
+                    _this3.removing = null;
                   });
                 }
 
@@ -74165,7 +74176,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       return destroy;
     }(),
     create: function create() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.creating = true;
       window.axios.post(this.uri, {
@@ -74174,17 +74185,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         completed: this.completed,
         description: this.description
       }).then(function () {
-        _this3.refresh();
-        _this3.createDialog = false;
-        _this3.$snackbar.showMessage("S'ha creat correctament");
-        _this3.creating = false;
+        _this4.name = '';
+        _this4.completed = false;
+        _this4.description = '';
+        _this4.user = '';
+        _this4.refresh();
+        _this4.createDialog = false;
+        _this4.$snackbar.showMessage("S'ha creat correctament");
+        _this4.creating = false;
       }).catch(function (error) {
-        _this3.$snackbar.showError(error.message);
-        _this3.creating = false;
+        _this4.$snackbar.showError(error.message);
+        _this4.creating = false;
       });
     },
     update: function update() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.editing = true;
       window.axios.put(this.uri + '/' + this.taskBeingUpdated.id, {
@@ -74193,13 +74208,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         completed: this.taskBeingUpdated.completed,
         description: this.taskBeingUpdated.description
       }).then(function () {
-        _this4.editDialog = false;
-        _this4.taskBeingRemoved = null;
-        _this4.$snackbar.showMessage("S'ha actualitzat correctament");
-        _this4.editing = false;
+        _this5.editDialog = false;
+        _this5.taskBeingRemoved = null;
+        _this5.$snackbar.showMessage("S'ha actualitzat correctament");
+        _this5.editing = false;
       }).catch(function (error) {
-        _this4.$snackbar.showError(error.message);
-        _this4.editing = false;
+        _this5.$snackbar.showError(error.message);
+        _this5.editing = false;
       });
     },
     showUpdate: function showUpdate(task) {
@@ -75948,7 +75963,12 @@ var render = function() {
                     { staticClass: "pr-2", attrs: { lg3: "" } },
                     [
                       _c("v-select", {
-                        attrs: { label: "Filtres", items: _vm.filters },
+                        attrs: {
+                          label: "Filtres",
+                          items: _vm.filters,
+                          "item-text": "name",
+                          "return-object": true
+                        },
                         model: {
                           value: _vm.filter,
                           callback: function($$v) {
@@ -76014,7 +76034,7 @@ var render = function() {
               staticClass: "hidden-md-and-down",
               attrs: {
                 headers: _vm.headers,
-                items: _vm.dataTasks,
+                items: _vm.getFilteredTasks,
                 search: _vm.search,
                 "no-results-text": "No s'ha trobat cap registre coincident",
                 "no-data-text": "No hi han dades disponibles",

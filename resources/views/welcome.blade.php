@@ -9,8 +9,8 @@
         <v-toolbar class="white">
             <v-toolbar-title>Tasks</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn href="/login">Login</v-btn>
-            <v-btn href="register">Registrar</v-btn>
+            <v-btn color="primary" href="/login">Login</v-btn>
+            <v-btn color="primary" href="register">Registrar</v-btn>
         </v-toolbar>
         <v-content>
             <section>
@@ -22,7 +22,7 @@
                             class="white--text"
                     >
                         <img src="img/vuetify.png" alt="Vuetify.js" height="200">
-                        <h1 class="white--text mb-2 display-1 text-xs-center">Parallax Template</h1>
+                        <h1 class="white--text mb-2 display-1 text-xs-center">Sergi Baucells Rodríguez</h1>
                         <div class="subheading mb-3 text-xs-center">Powered by Vuetify</div>
                         <v-btn
                                 class="blue lighten-2 mt-5"

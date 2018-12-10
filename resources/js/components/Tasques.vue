@@ -146,6 +146,8 @@
                                 label="Filtres"
                                 :items="filters"
                                 v-model="filter"
+                                item-text="name"
+                                :return-object="true"
                         ></v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
@@ -168,7 +170,7 @@
             </v-card-title>
             <v-data-table
                     :headers="headers"
-                    :items="dataTasks"
+                    :items="getFilteredTasks"
                     :search="search"
                     no-results-text="No s'ha trobat cap registre coincident"
                     no-data-text="No hi han dades disponibles"
@@ -288,11 +290,11 @@ export default {
         'Jordi baucells',
         'Carmen Rodríguez'
       ],
-      filter: 'Totes',
+      filter: { name: 'Totes', value: null },
       filters: [
-        'Totes',
-        'Completades',
-        'Pendents'
+        { name: 'Totes', value: null },
+        { name: 'Completades', value: true },
+        { name: 'Pendents', value: false }
       ],
       search: '',
       pagination: {
@@ -328,6 +330,14 @@ export default {
     uri: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    getFilteredTasks () {
+      return this.dataTasks.filter((task) => {
+        if (task.completed === this.filter.value || this.filter.value == null) return true
+        else return false
+      })
     }
   },
   methods: {
@@ -382,6 +392,10 @@ export default {
         completed: this.completed,
         description: this.description
       }).then(() => {
+        this.name = ''
+        this.completed = false
+        this.description = ''
+        this.user = ''
         this.refresh()
         this.createDialog = false
         this.$snackbar.showMessage("S'ha creat correctament")

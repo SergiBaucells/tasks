@@ -89,14 +89,16 @@ class TagsControllerTest extends TestCase
     /**
      * @test
      */
-    public function users_with_roles_cannot_show_tags()
+    public function users_with_role_tags_can_show_tags()
     {
-        //1 Prepare
-        $this->loginAsUsingRole('web','Tags');
-        // 2 execute
+        $this->withoutExceptionHandling();
+        create_example_tags();
+        $this->loginAsUsingRole('web', 'Tags');
         $response = $this->get('/tags');
-
-        //3 Comprovar
-        $response->assertStatus(403);
+        $response->assertSuccessful();
+        $response->assertSee('Tags');
+        $response->assertSee('Etiqueta 1');
+        $response->assertSee('Etiqueta 2');
+        $response->assertSee('Etiqueta 3');
     }
 }

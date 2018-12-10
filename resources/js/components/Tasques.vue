@@ -188,9 +188,10 @@
                             <span :title="task.description">{{ task.name }}</span>
                         </td>
                         <td>
-                            <v-avatar :title="task.user_name">
+                            <v-avatar :title="task.user_name + ' - ' + task.user_email">
                                 <img :src="task.user_gravatar" alt="avatar">
                             </v-avatar>
+                            {{ task.user_email }}
                         </td>
                         <td>
                             <task-completed-toggle :task="task"></task-completed-toggle>

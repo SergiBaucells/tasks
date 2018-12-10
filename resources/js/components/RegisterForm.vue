@@ -1,9 +1,9 @@
 <template>
     <v-form action="/register" method="POST">
         <v-toolbar dark color="primary">
-            <v-spacer></v-spacer>
             <v-toolbar-title>Register</v-toolbar-title>
             <v-spacer></v-spacer>
+            <v-btn flat type="submit" href="https://tasks.test">Go back</v-btn>
         </v-toolbar>
         <v-card-text>
 
@@ -57,11 +57,20 @@
             <v-btn color="primary" type="submit" :disabled="$v.$invalid">Register</v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
+        <v-card-text class="text-md-center">
+            Ja tens un compte?
+        </v-card-text>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" type="submit" href="https://tasks.test/login" class="mb-3">Inicia sessió</v-btn>
+            <v-spacer></v-spacer>
+        </v-card-actions>
     </v-form>
 </template>
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+
 export default {
   mixins: [validationMixin],
   validations: {

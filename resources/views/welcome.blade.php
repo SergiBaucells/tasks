@@ -7,7 +7,7 @@
 @section('content')
     <v-app light>
         <v-toolbar class="white">
-            <v-toolbar-title>Tasks</v-toolbar-title>
+            <v-toolbar-title>Tasques</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn color="primary" href="/login">Login</v-btn>
             <v-btn color="primary" href="register">Registrar</v-btn>
@@ -22,16 +22,27 @@
                             class="white--text"
                     >
                         <img src="img/vuetify.png" alt="Vuetify.js" height="200">
-                        <h1 class="white--text mb-2 display-1 text-xs-center">Sergi Baucells Rodríguez</h1>
-                        <div class="subheading mb-3 text-xs-center">Powered by Vuetify</div>
-                        <v-btn
-                                class="blue lighten-2 mt-5"
-                                dark
-                                large
-                                href="/home"
-                        >
-                            Get Started
-                        </v-btn>
+                        <h1 class="white--text mb-2 display-1 text-xs-center">App de Tasques</h1>
+                        <div class="subheading mb-3 text-xs-center">Sergi Baucells Rodríguez</div>
+                        <v-layout>
+                            <v-btn
+                                    class="blue lighten-2 mt-5"
+                                    dark
+                                    large
+                                    href="/home"
+                            >
+                                Accedeix
+                            </v-btn>
+                            <v-btn
+                                    class="blue lighten-2 mt-5"
+                                    dark
+                                    large
+                                    href="https://github.com/SergiBaucells/tasks"
+                                    target="_blank"
+                            >
+                                GitHub
+                            </v-btn>
+                        </v-layout>
                     </v-layout>
                 </v-parallax>
             </section>

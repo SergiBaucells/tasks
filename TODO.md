@@ -14,7 +14,7 @@
 - [ ] Botons login i Registre no s'han d'ensenyar a la welcome Page si l'usuari ja està logat
 - [ ] Utilitzar el select d'usuaris "currat" (component reaprofitable) que es autocompletable i mostra tota la info (inclòs avatars) dels usuaris
 - [ ] Utilitzar el component completar/descompletar a tot arreu 
-- [ ] Cerca fullsearch vaig explicar un dia a classe (veure la meva implementació)
+- [X] Cerca fullsearch vaig explicar un dia a classe (veure la meva implementació)
 - [ ] Compte avatar mostreu en tasques que no tenen usuari associat o hi ha algun null.
  
 Issues Github:

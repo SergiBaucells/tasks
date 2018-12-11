@@ -15,6 +15,7 @@ import UserSelect from './components/UserSelect'
 import permissions from './plugins/permissions'
 import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
+import Impersonate from './components/Impersonate'
 
 window.Vue = Vue
 window.Vue.use(Vuetify)
@@ -32,6 +33,7 @@ window.Vue.component('login-form', LoginForm)
 window.Vue.component('register-form', RegisterForm)
 window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
+window.Vue.component('impersonate', Impersonate)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

@@ -1,46 +1,5 @@
 <template>
     <span>
-        <v-dialog v-model="createDialog" fullscreen transition="dialog-bottom-transition"
-                  @keydown.esc="createDialog=false">
-            <v-toolbar color="primary" class="white--text">
-                <v-btn flat icon class="white--text" @click="createDialog=false">
-                    <v-icon class="mr-2">close</v-icon>
-                </v-btn>
-                <v-card-title class="headline">Crear tasca</v-card-title>
-                <v-spacer></v-spacer>
-                <v-btn flat class="white--text" @click="createDialog=false">
-                    <v-icon class="mr-2">exit_to_app</v-icon>
-                    Sortir
-                </v-btn>
-                <v-btn flat class="white--text" @click="create">
-                    <v-icon class="mr-2">save</v-icon>
-                    Guardar
-                </v-btn>
-            </v-toolbar>
-            <v-card>
-                <v-card-text>
-                    <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca"
-                                      placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea v-model="description" label="Descripció"></v-textarea>
-                        <v-autocomplete v-if="$can('tasks.index')" :items="dataUsers" label="Usuari" v-model="user" item-text="name"
-                                        return-object></v-autocomplete>
-                        <div class="text-xs-center">
-                            <v-btn @click="createDialog=false">
-                                <v-icon class="mr-2">exit_to_app</v-icon>
-                                Cancel·lar
-                            </v-btn>
-                            <v-btn color="success" @click="create">
-                                <v-icon class="mr-2">save</v-icon>
-                                Guardar
-                            </v-btn>
-                        </div>
-                    </v-form>
-                </v-card-text>
-            </v-card>
-        </v-dialog>
-
         <v-dialog v-model="editDialog" fullscreen transition="dialog-bottom-transition" @keydown.esc="editDialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="editDialog=false">
@@ -151,13 +110,7 @@
                         ></v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
-                        <v-select
-                                label="Usuari"
-                                :items="dataUsers"
-                                v-model="user"
-                                item-text="name"
-                                clearable
-                        ></v-select>
+                        <user-select :users="dataUsers" label="Usuari"></user-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
@@ -188,8 +141,8 @@
                             <span :title="task.description">{{ task.name }}</span>
                         </td>
                         <td>
-                            <v-avatar :title="task.user_name + ' - ' + task.user_email">
-                                <img :src="task.user_gravatar" alt="avatar">
+                            <v-avatar :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : ''">
+                                <img :src="(task.user !== null) ? task.user_gravatar : 'img/user_profile.png'" alt="avatar">
                             </v-avatar>
                             {{ task.user_email }}
                         </td>
@@ -258,31 +211,28 @@
                 </v-flex>
             </v-data-iterator>
         </v-card>
-        <v-btn v-if="$can('user.tasks.store', tasks)" fab bottom right color="purple accent-2" fixed class="white--text"
-               @click="showCreate">
-            <v-icon>add</v-icon>
-        </v-btn>
+        <task-create v-if="$can('user.tasks.store', tasks)" :users="users" @created="refresh" :uri="uri"></task-create>
     </span>
 </template>
 
 <script>
 import TaskCompletedToggle from './TaskCompletedToggle'
 import Toggle from './Toggle'
+import TaskCreate from './TaskCreate'
+import UserSelect from './UserSelect'
 export default {
   name: 'Tasques',
   components: {
+    'task-create': TaskCreate,
     'task-completed-toggle': TaskCompletedToggle,
-    'toggle': Toggle
+    'toggle': Toggle,
+    'user-select': UserSelect
   },
   data () {
     return {
-      dataUsers: this.users,
-      description: '',
-      completed: false,
-      name: '',
-      createDialog: false,
       editDialog: false,
       showDialog: false,
+      dataUsers: this.users,
       takeTask: '',
       user: '',
       taskBeingUpdated: '',
@@ -302,7 +252,6 @@ export default {
         rowsPerPage: 25
       },
       removing: null,
-      creating: false,
       loading: false,
       deleting: false,
       showing: false,
@@ -385,27 +334,6 @@ export default {
         })
       }
     },
-    create () {
-      this.creating = true
-      window.axios.post(this.uri, {
-        user_id: this.user.id,
-        name: this.name,
-        completed: this.completed,
-        description: this.description
-      }).then(() => {
-        this.name = ''
-        this.completed = false
-        this.description = ''
-        this.user = ''
-        this.refresh()
-        this.createDialog = false
-        this.$snackbar.showMessage("S'ha creat correctament")
-        this.creating = false
-      }).catch((error) => {
-        this.$snackbar.showError(error.message)
-        this.creating = false
-      })
-    },
     update () {
       this.editing = true
       window.axios.put(this.uri + '/' + this.taskBeingUpdated.id,
@@ -432,9 +360,6 @@ export default {
     showTask (task) {
       this.takeTask = task
       this.showDialog = true
-    },
-    showCreate () {
-      this.createDialog = true
     }
   }
 }

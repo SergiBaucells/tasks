@@ -4,17 +4,14 @@
                 autofocus
                 v-model="name"
                 label="Nom"
-                hint="El nom de la tasca..."
+                hint="Nom de la tasca"
                 placeholder="Nom de la tasca"
-                :error-messages="nameErrors"
-                @input="$v.name.$touch()"
-                @blur="$v.name.$touch()"
         ></v-text-field>
         <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
 
-        <v-textarea v-model="description" label="Descripció" hint="Escriu la descripció de la tasca..."></v-textarea>
+        <v-textarea v-model="description" label="Descripció" hint="Descripció de la tasca"></v-textarea>
 
-        <user-select @selected="setUser" :users="dataUsers" label="Usuari"></user-select>
+        <user-select :users="dataUsers" label="Usuari"></user-select>
 
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
@@ -72,6 +69,20 @@ export default {
     }
   },
   methods: {
+    refresh () {
+      this.loading = true
+      window.axios.get(this.uri).then(response => {
+        // SHOW SNACKBAR MISSATGE OK
+        this.dataTasks = response.data
+        // this.showMessage("S'ha refrescat correctament")
+        this.$snackbar.showMessage("S'ha refrescat correctament")
+        this.loading = false
+      }).catch(error => {
+        this.$snackbar.showError(error.message)
+        this.loading = false
+        // SHOW SNACKBAR ERROR
+      })
+    },
     reset () {
       this.name = ''
       this.description = ''
@@ -80,25 +91,22 @@ export default {
     },
     add () {
       this.loading = true
-      const task = {
-        'name': this.name,
-        'description': this.description,
-        'completed': this.completed,
-        'user_id': this.user_id
-      }
-      window.axios.post(this.uri, task).then(response => {
-        this.$snackbar.showMessage('Tasca creada correctament')
+      window.axios.post(this.uri, {
+        user_id: this.user_id,
+        name: this.name,
+        completed: this.completed,
+        description: this.description
+      }).then((response) => {
+        this.$snackbar.showMessage("S'ha creat correctament")
         this.reset()
         this.$emit('created', response.data)
-        this.loading = false
+        this.refresh()
         this.$emit('close')
-      }).catch(error => {
-        this.$snackbar.showError(error.data)
         this.loading = false
+      }).catch((error) => {
+        this.$snackbar.showError(error.message)
+        this.creating = false
       })
-    },
-    setUser ($event) {
-      this.user_id = $event
     }
   }
 }

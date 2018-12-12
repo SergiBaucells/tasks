@@ -10,12 +10,12 @@
 - [X] Servidor en explotació no peti el enviament emails al registre
 - [ ] Filtre tasques d'un usuari concret
 - [X] Mostrar el email usuari al costat avatar 
-- [ ] Tasques que no tenen assignat un usuari -> No mostrar errors (mostrar que no té cap usuari assignat). A tasques PHP es poden afegir tasques sense usuari després apareixen mal a Tasques final
+- [X] Tasques que no tenen assignat un usuari -> No mostrar errors (mostrar que no té cap usuari assignat). A tasques PHP es poden afegir tasques sense usuari després apareixen mal a Tasques final
 - [ ] Botons login i Registre no s'han d'ensenyar a la welcome Page si l'usuari ja està logat
 - [ ] Utilitzar el select d'usuaris "currat" (component reaprofitable) que es autocompletable i mostra tota la info (inclòs avatars) dels usuaris
 - [ ] Utilitzar el component completar/descompletar a tot arreu 
 - [X] Cerca fullsearch vaig explicar un dia a classe (veure la meva implementació)
-- [ ] Compte avatar mostreu en tasques que no tenen usuari associat o hi ha algun null.
+- [X] Compte avatar mostreu en tasques que no tenen usuari associat o hi ha algun null.
  
 Issues Github:
 - [ ] Posar com a mínim un parell de incidències a partir dels problemes he trobat en la correció a cadascún dels vostres projectes.

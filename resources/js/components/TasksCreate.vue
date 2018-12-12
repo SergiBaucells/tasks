@@ -1,7 +1,7 @@
 <template>
     <span>
         <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition"
-                  @keydown.esc="dialog=false">
+                  @keydown.esc.stop.prevent="dialog=false">
             <v-toolbar color="primary" class="white--text">
                 <v-btn flat icon class="white--text" @click="dialog=false">
                     <v-icon class="mr-2">close</v-icon>
@@ -19,7 +19,7 @@
             </v-toolbar>
             <v-card>
                 <v-card-text>
-                    <task-form :users="users" @close="dialog=false" @created="$emit('created')" :uri="uri"></task-form>
+                    <task-form :users="users" @close="dialog=false" @created="created" :uri="uri"></task-form>
                 </v-card-text>
             </v-card>
         </v-dialog>
@@ -33,7 +33,7 @@
 <script>
 import TaskForm from './TaskForm'
 export default {
-  name: 'TaskCreate',
+  name: 'TasksCreate',
   components: {
     'task-form': TaskForm
   },
@@ -50,6 +50,11 @@ export default {
     uri: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    created (task) {
+      this.$emit('created', task)
     }
   }
 }

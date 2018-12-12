@@ -44,10 +44,6 @@ export default {
       type: String,
       default: 'warning'
     },
-    message: {
-      type: String,
-      required: true
-    },
     title: {
       type: String
     },

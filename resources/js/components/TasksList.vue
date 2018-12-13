@@ -83,24 +83,14 @@
                         <td>
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human }}</span>
                         </td>
-                        <td>
-                            <v-btn v-if="$can('user.tasks.show', tasks)" :loading="showing" :disabled="showing" icon
-                                   color="primary" flat
-                                   title="Mostrar la tasca" @click="showTask(task)">
-                                <v-icon>visibility</v-icon>
-                            </v-btn>
-                            <v-btn v-if="$can('user.tasks.update', tasks)" :loading="editing" :disabled="editing" icon
-                                   color="success" flat
-                                   title="Actualitzar la tasca" @click="showUpdate(task)">
-                                <v-icon>edit</v-icon>
-                            </v-btn>
-                            <v-btn v-if="$can('user.tasks.destroy', tasks)" :loading="removing === task.id"
-                                   :disabled="removing === task.id" icon
-                                   color="error"
-                                   flat
-                                   title="Eliminar la tasca" @click="destroy(task)">
-                                <v-icon>delete</v-icon>
-                            </v-btn>
+                        <td class="d-flex">
+
+                            <task-show :users="users" :task="task" :uri="uri" :loading="showing" :disabled="showing"></task-show>
+
+                            <task-update :users="users" :task="task" @updated="updateTask" :uri="uri" :loading="editing" :disabled="editing"></task-update>
+
+                            <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+
                         </td>
                     </tr>
                 </template>
@@ -144,10 +134,16 @@
 
 <script>
 import TaskCompletedToggle from './TaskCompletedToggle'
+import TaskDestroy from './TaskDestroy'
+import TaskUpdate from './TaskUpdate'
+import TaskShow from './TaskShow'
 export default {
   name: 'TasksList',
   components: {
-    'task-completed-toggle': TaskCompletedToggle
+    'task-completed-toggle': TaskCompletedToggle,
+    'task-destroy': TaskDestroy,
+    'task-update': TaskUpdate,
+    'task-show': TaskShow
   },
   data () {
     return {
@@ -156,7 +152,6 @@ export default {
       editDialog: false,
       takeTask: '',
       user: '',
-      removing: false,
       showing: false,
       editing: false,
       usersold: [
@@ -210,45 +205,15 @@ export default {
     }
   },
   methods: {
-    update () {
-      this.editing = true
-      window.axios.put(this.uri + '/' + this.taskBeingUpdated.id,
-        {
-          user_id: this.taskBeingUpdated.user.id,
-          name: this.taskBeingUpdated.name,
-          completed: this.taskBeingUpdated.completed,
-          description: this.taskBeingUpdated.description
-        }
-      ).then(() => {
-        this.editDialog = false
-        this.taskBeingRemoved = null
-        this.$snackbar.showMessage("S'ha actualitzat correctament")
-        this.editing = false
-      }).catch(error => {
-        this.$snackbar.showError(error.message)
-        this.editing = false
-      })
-    },
-    showUpdate (task) {
-      this.editDialog = true
-      this.taskBeingUpdated = task
-    },
-    showTask (task) {
-      this.takeTask = task
-      this.showDialog = true
-    },
     refresh () {
       this.loading = true
       window.axios.get(this.uri).then(response => {
-        // SHOW SNACKBAR MISSATGE OK
         this.dataTasks = response.data
-        // this.showMessage("S'ha refrescat correctament")
         this.$snackbar.showMessage("S'ha refrescat correctament")
         this.loading = false
       }).catch(error => {
         this.$snackbar.showError(error.message)
         this.loading = false
-        // SHOW SNACKBAR ERROR
       })
     },
     opcio1 () {
@@ -257,28 +222,8 @@ export default {
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    async destroy (task) {
-      // ES6 async await
-      let result = await this.$confirm('Les tasques esborrades no es poden recuperar!',
-        {
-          title: 'Esteu segurs?',
-          buttonFalseText: 'Cancel·lar',
-          buttonTrueText: 'Eliminar',
-          color: 'error'
-        })
-      if (result) {
-        // OK tirem endevant
-        this.removing = task.id
-        window.axios.delete(this.uri + '/' + task.id).then(() => {
-          this.removeTask(task)
-          task = null
-          this.$snackbar.showMessage("S'ha esborrat correctament")
-          this.removing = null
-        }).catch(error => {
-          this.$snackbar.showError(error.message)
-          this.removing = null
-        })
-      }
+    updateTask () {
+      this.refresh()
     }
   }
 }

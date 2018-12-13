@@ -1,11 +1,7 @@
 <?php
-//index -> list
-//store -> create
-//delete -> destory
-//edit -> PUT
+
 Auth::routes();
-// MIDDLEWARE
-// GRUP DE URLS PER USUARIS AUTENTICATS
+
 Route::middleware(['auth'])->group(function () {
     Route::post('/tasks', 'TasksController@store');
     Route::delete('/tasks/{id}', 'TasksController@destroy');

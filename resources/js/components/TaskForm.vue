@@ -86,7 +86,7 @@ export default {
     reset () {
       this.name = ''
       this.description = ''
-      this.completed = ''
+      this.completed = false
       this.user_id = null
     },
     add () {

@@ -5,6 +5,7 @@
             item-value="id"
             clearable
             :label="label"
+            :readonly="readonly"
     >
         <template slot="selection" slot-scope="data">
             <v-chip>
@@ -45,6 +46,9 @@ export default {
     label: {
       type: String,
       default: 'Usuaris'
+    },
+    readonly: {
+      type: Boolean
     }
   },
   watch: {

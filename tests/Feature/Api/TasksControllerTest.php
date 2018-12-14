@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Task;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use Tests\Feature\Traits\CanLogin;
@@ -146,6 +147,33 @@ class TasksControllerTest extends TestCase
         $this->assertNotNull($task = Task::find($result->id));
         $this->assertEquals('Comprar pa',$result->name);
         $this->assertFalse($result->completed);
+    }
+
+    /**
+     * @test
+     */
+    public function superadmin_can_create_fulltask()
+    {
+        $this->withoutExceptionHandling();
+        $this->loginAsSuperAdmin('api');
+
+        $user = factory(User::class)->create();
+        $response = $this->json('POST','/api/v1/tasks/',[
+            'name' => 'Comprar pa',
+            'completed' => false,
+            'description' => 'efqwra',
+            'user_id' => $user->id
+        ]);
+
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+
+        $this->assertNotNull($task = Task::find($result->id));
+        $this->assertEquals('Comprar pa',$result->name);
+        $this->assertEquals('efqwra',$result->description);
+        $this->assertEquals(false,$result->completed);
+        $this->assertEquals($user->id,$result->user_id);
+
     }
 
     /**

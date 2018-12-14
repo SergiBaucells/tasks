@@ -2,7 +2,7 @@
     <v-autocomplete
             :items="dataUsers"
             v-model="selectedUser"
-            item-value="id"
+            :item-value="itemValue"
             clearable
             :label="label"
             :readonly="readonly"
@@ -35,10 +35,24 @@ export default {
   data () {
     return {
       dataUsers: this.users,
-      selectedUser: null
+      selectedUser: this.user
     }
   },
+  model: {
+    prop: 'user',
+    event: 'selected'
+  },
   props: {
+    itemValue: {
+      type: String,
+      default: 'id'
+    },
+    user: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
     users: {
       type: Array,
       required: true
@@ -57,6 +71,9 @@ export default {
     },
     users () {
       this.dataUsers = this.users
+    },
+    user (user) {
+      this.selectedUser = user
     }
   }
 }

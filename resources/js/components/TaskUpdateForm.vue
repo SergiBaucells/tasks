@@ -8,9 +8,7 @@
 
         <v-textarea v-model="description" label="Descripció"></v-textarea>
 
-        <v-autocomplete v-if="$can('tasks.index')" :items="dataUsers" v-model="user"
-                        label="Usuari"
-                        item-text="name" :return-object="true"></v-autocomplete>
+        <user-select v-if="$hasRole('TasksManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
 
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
@@ -26,16 +24,26 @@
 </template>
 
 <script>
+import UserSelect from './UserSelect'
+
 export default {
   'name': 'TaskUpdateForm',
+  components: {
+    'user-select': UserSelect
+  },
   data () {
     return {
       name: this.task.name,
       completed: this.task.completed,
       description: this.task.description,
-      user: this.task.user,
+      user: null,
       dataUsers: this.users,
       working: false
+    }
+  },
+  watch: {
+    task (task) {
+      this.updateUser(task)
     }
   },
   props: {
@@ -71,7 +79,15 @@ export default {
         this.$snackbar.showError(error.message)
         this.working = false
       })
+    },
+    updateUser (task) {
+      this.user = this.users.find((user) => {
+        return parseInt(user.id) === parseInt(task.user_id)
+      })
     }
+  },
+  created () {
+    this.updateUser(this.task)
   }
 }
 </script>

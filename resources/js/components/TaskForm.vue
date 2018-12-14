@@ -11,7 +11,7 @@
 
         <v-textarea v-model="description" label="Descripció" hint="Descripció de la tasca"></v-textarea>
 
-        <user-select :users="dataUsers" label="Usuari"></user-select>
+        <user-select v-if="$hasRole('TasksManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
 
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
@@ -47,7 +47,7 @@ export default {
       description: '',
       dataUsers: this.users,
       loading: false,
-      user_id: null
+      user: null
     }
   },
   props: {
@@ -69,6 +69,13 @@ export default {
     }
   },
   methods: {
+    selectLoggedUser () {
+      if (window.laravel_user) {
+        this.user = this.users.find((user) => {
+          return parseInt(user.id) === parseInt(window.laravel_user.id)
+        })
+      }
+    },
     refresh () {
       this.loading = true
       window.axios.get(this.uri).then(response => {
@@ -87,12 +94,12 @@ export default {
       this.name = ''
       this.description = ''
       this.completed = false
-      this.user_id = null
+      this.user = null
     },
     add () {
       this.loading = true
       window.axios.post(this.uri, {
-        user_id: this.user_id,
+        user_id: this.user.id,
         name: this.name,
         completed: this.completed,
         description: this.description
@@ -108,6 +115,9 @@ export default {
         this.creating = false
       })
     }
+  },
+  created () {
+    this.selectLoggedUser()
   }
 }
 </script>

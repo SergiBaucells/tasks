@@ -3,7 +3,7 @@
         <v-toolbar dark color="primary">
             <v-toolbar-title>Register</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn flat type="submit" href="https://tasks.test">Go back</v-btn>
+            <v-btn flat type="submit" href="/">Go back</v-btn>
         </v-toolbar>
         <v-card-text>
 
@@ -62,7 +62,7 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit" href="https://tasks.test/login" class="mb-3">Inicia sessió</v-btn>
+            <v-btn color="primary" type="submit" href="/login" class="mb-3">Inicia sessió</v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
     </v-form>

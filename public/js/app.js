@@ -79739,11 +79739,9 @@ var render = function() {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { flat: "", type: "submit", href: "https://tasks.test" } },
-            [_vm._v("Go back")]
-          )
+          _c("v-btn", { attrs: { flat: "", type: "submit", href: "/" } }, [
+            _vm._v("Go back")
+          ])
         ],
         1
       ),
@@ -79845,11 +79843,7 @@ var render = function() {
             "v-btn",
             {
               staticClass: "mb-3",
-              attrs: {
-                color: "primary",
-                type: "submit",
-                href: "https://tasks.test/register"
-              }
+              attrs: { color: "primary", type: "submit", href: "/register" }
             },
             [_vm._v("Crea el teu compte\n        ")]
           ),
@@ -80074,11 +80068,9 @@ var render = function() {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { flat: "", type: "submit", href: "https://tasks.test" } },
-            [_vm._v("Go back")]
-          )
+          _c("v-btn", { attrs: { flat: "", type: "submit", href: "/" } }, [
+            _vm._v("Go back")
+          ])
         ],
         1
       ),
@@ -80231,11 +80223,7 @@ var render = function() {
             "v-btn",
             {
               staticClass: "mb-3",
-              attrs: {
-                color: "primary",
-                type: "submit",
-                href: "https://tasks.test/login"
-              }
+              attrs: { color: "primary", type: "submit", href: "/login" }
             },
             [_vm._v("Inicia sessió")]
           ),

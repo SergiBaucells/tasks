@@ -9,8 +9,14 @@
         <v-toolbar class="white">
             <v-toolbar-title>Tasques</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn color="primary" href="/login">Login</v-btn>
-            <v-btn color="primary" href="register">Registrar</v-btn>
+            @if (Route::has('login'))
+                @auth
+                    <v-btn color="primary" href="{{ url('/home') }}">Accedeix</v-btn>
+                @else
+                    <v-btn color="primary" href="/login">Login</v-btn>
+                    <v-btn color="primary" href="/register">Registrar</v-btn>
+                @endauth
+            @endif
         </v-toolbar>
         <v-content>
             <section>
@@ -74,9 +80,12 @@
                                             <div class="headline text-xs-center">Material Design</div>
                                         </v-card-title>
                                         <v-card-text>
-                                            Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                                            Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                                            Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt
+                                            ornare.
+                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                                            ac turpis egestas.
+                                            Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt.
+                                            Suspendisse potenti.
                                         </v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -89,9 +98,12 @@
                                             <div class="headline">Fast development</div>
                                         </v-card-title>
                                         <v-card-text>
-                                            Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                                            Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                                            Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt
+                                            ornare.
+                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                                            ac turpis egestas.
+                                            Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt.
+                                            Suspendisse potenti.
                                         </v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -104,9 +116,12 @@
                                             <div class="headline text-xs-center">Completely Open Sourced</div>
                                         </v-card-title>
                                         <v-card-text>
-                                            Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                                            Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                                            Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt
+                                            ornare.
+                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                                            ac turpis egestas.
+                                            Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt.
+                                            Suspendisse potenti.
                                         </v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -119,7 +134,8 @@
             <section>
                 <v-parallax src="img/section.jpeg" height="380">
                     <v-layout column align-center justify-center>
-                        <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
+                        <div class="headline white--text mb-3 text-xs-center">Web development has never been easier
+                        </div>
                         <em>Kick-start your application today</em>
                         <v-btn
                                 class="blue lighten-2 mt-5"
@@ -143,8 +159,10 @@
                                 </v-card-title>
                                 <v-card-text>
                                     Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+                                    egestas.
+                                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse
+                                    potenti.
                                 </v-card-text>
                             </v-card>
                         </v-flex>

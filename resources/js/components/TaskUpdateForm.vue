@@ -1,22 +1,22 @@
 <template>
     <v-form>
-        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca"
+        <v-text-field autofocus v-model="name" label="Nom" hint="Nom de la tasca"
                       placeholder="Nom de la tasca"></v-text-field>
 
         <v-switch v-model="completed"
                   :label="completed ? 'Completada':'Pendent'"></v-switch>
 
-        <v-textarea v-model="description" label="Descripció"></v-textarea>
+        <v-textarea v-model="description" label="Descripció" hint="Descripció de la tasca"></v-textarea>
 
-        <user-select v-if="$hasRole('TasksManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
+        <user-select v-if="$hasRole('TaskManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
 
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
-                <v-icon class="mr-2">exit_to_app</v-icon>
+                <v-icon class="mr-1">exit_to_app</v-icon>
                 Cancel·lar
             </v-btn>
-            <v-btn color="success" @click="update" :disabled="working" :loading="working">
-                <v-icon class="mr-2">save</v-icon>
+            <v-btn color="success" @click="update" :disabled="working || $v.$invalid" :loading="working">
+                <v-icon class="mr-1">save</v-icon>
                 Guardar
             </v-btn>
         </div>
@@ -25,9 +25,15 @@
 
 <script>
 import UserSelect from './UserSelect'
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   'name': 'TaskUpdateForm',
+  mixins: [validationMixin],
+  validations: {
+    name: { required }
+  },
   components: {
     'user-select': UserSelect
   },
@@ -65,7 +71,7 @@ export default {
       this.working = true
       window.axios.put(this.uri + '/' + this.task.id,
         {
-          user: this.user,
+          user_id: this.user.id,
           name: this.name,
           completed: this.completed,
           description: this.description

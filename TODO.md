@@ -11,24 +11,24 @@
 - [ ] Filtre tasques d'un usuari concret
 - [X] Mostrar el email usuari al costat avatar 
 - [X] Tasques que no tenen assignat un usuari -> No mostrar errors (mostrar que no té cap usuari assignat). A tasques PHP es poden afegir tasques sense usuari després apareixen mal a Tasques final
-- [ ] Botons login i Registre no s'han d'ensenyar a la welcome Page si l'usuari ja està logat
-- [ ] Utilitzar el select d'usuaris "currat" (component reaprofitable) que es autocompletable i mostra tota la info (inclòs avatars) dels usuaris
+- [X] Botons login i Registre no s'han d'ensenyar a la welcome Page si l'usuari ja està logat
+- [X] Utilitzar el select d'usuaris "currat" (component reaprofitable) que es autocompletable i mostra tota la info (inclòs avatars) dels usuaris
 - [ ] Utilitzar el component completar/descompletar a tot arreu 
 - [X] Cerca fullsearch vaig explicar un dia a classe (veure la meva implementació)
 - [X] Compte avatar mostreu en tasques que no tenen usuari associat o hi ha algun null.
  
 Issues Github:
-- [ ] Posar com a mínim un parell de incidències a partir dels problemes he trobat en la correció a cadascún dels vostres projectes.
-   - [ ] Cadascú al seu repositori
-   - [ ] Assigneu-vos la incidència
-   - [ ] Tanqueu-la un cop resolta
+- [X] Posar com a mínim un parell de incidències a partir dels problemes he trobat en la correció a cadascún dels vostres projectes.
+   - [X] Cadascú al seu repositori
+   - [X] Assigneu-vos la incidència
+   - [X] Tanqueu-la un cop resolta
    - Observeu com està programada l'aplicació (etiquetes, projectes)
    - Descripcions: accepten Markdown, citar usuaris (@ davant nom usuari), citar altres issues (# davant número issue) etc
    - Exemple URL issues: https://github.com/navarropalatsi/tasks/issues
 
 #### TODO possibles millores (opcionals):
 - [ ] Color de les etiquetes: utilitzar un color picker
-- [ ] Validacions Javascript (vuelidate) arreu també a l crear tasca i editar.
+- [X] Validacions Javascript (vuelidate) arreu també a l crear tasca i editar.
 - [ ] inline Edit: Editar amb click/dblick el nom d'una tasca directament sense entrar al formulari de edit
 
 ### Fer en explotació

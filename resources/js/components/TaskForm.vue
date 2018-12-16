@@ -11,7 +11,7 @@
 
         <v-textarea v-model="description" label="Descripció" hint="Descripció de la tasca"></v-textarea>
 
-        <user-select v-if="$hasRole('TasksManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
+        <user-select v-if="$hasRole('TaskManager')" v-model="user" :users="dataUsers" label="Usuari"></user-select>
 
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
@@ -79,15 +79,12 @@ export default {
     refresh () {
       this.loading = true
       window.axios.get(this.uri).then(response => {
-        // SHOW SNACKBAR MISSATGE OK
         this.dataTasks = response.data
-        // this.showMessage("S'ha refrescat correctament")
         this.$snackbar.showMessage("S'ha refrescat correctament")
         this.loading = false
       }).catch(error => {
         this.$snackbar.showError(error.message)
         this.loading = false
-        // SHOW SNACKBAR ERROR
       })
     },
     reset () {
@@ -107,9 +104,9 @@ export default {
         this.$snackbar.showMessage("S'ha creat correctament")
         this.reset()
         this.$emit('created', response.data)
-        this.refresh()
         this.$emit('close')
         this.loading = false
+        this.refresh()
       }).catch((error) => {
         this.$snackbar.showError(error.message)
         this.creating = false

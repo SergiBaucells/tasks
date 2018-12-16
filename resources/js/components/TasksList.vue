@@ -85,11 +85,11 @@
                         </td>
                         <td class="d-flex">
 
-                            <task-show :users="users" :task="task" :uri="uri" :loading="showing" :disabled="showing"></task-show>
+                            <task-show v-if="$can('user.tasks.show')" :users="users" :task="task" :uri="uri" :loading="showing" :disabled="showing"></task-show>
 
-                            <task-update :users="users" :task="task" @updated="updateTask" :uri="uri" :loading="editing" :disabled="editing"></task-update>
+                            <task-update v-if="$can('user.tasks.update')" :users="users" :task="task" @updated="updateTask" :uri="uri" :loading="editing" :disabled="editing"></task-update>
 
-                            <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+                            <task-destroy v-if="$can('user.tasks.destroy')" :task="task" @removed="removeTask" :uri="uri"></task-destroy>
 
                         </td>
                     </tr>

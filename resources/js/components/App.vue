@@ -6,6 +6,7 @@ export default{
     drawer: false,
     drawerRight: false,
     items: [
+      { icon: 'account_balance', text: 'Welcome', url: '/' },
       {
         icon: 'keyboard_arrow_up',
         'icon-alt': 'keyboard_arrow_down',

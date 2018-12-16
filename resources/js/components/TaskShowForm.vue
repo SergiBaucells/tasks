@@ -7,7 +7,7 @@
         <v-textarea v-model="description" label="Descripció" readonly></v-textarea>
         <v-autocomplete :items="dataUsers" label="Usuari" v-model="user" item-text="name"
                         return-object readonly></v-autocomplete>
-        <user-select :readonly="true" :users="dataUsers" label="Usuari"></user-select>
+        <!--<user-select :readonly="true" v-model="user" :users="dataUsers" label="Usuari"></user-select>-->
         <div class="text-xs-center">
             <v-btn @click="$emit('close')">
                 <v-icon class="mr-2">exit_to_app</v-icon>
@@ -30,7 +30,7 @@ export default {
       name: this.task.name,
       completed: this.task.completed,
       description: this.task.description,
-      user: this.task.user,
+      user: null,
       dataUsers: this.users,
       working: false
     }
@@ -48,6 +48,16 @@ export default {
       type: String,
       required: true
     }
+  },
+  methods: {
+    showUser (task) {
+      this.user = this.users.find((user) => {
+        return parseInt(user.id) === parseInt(task.user_id)
+      })
+    }
+  },
+  created () {
+    this.showUser(this.task)
   }
 }
 </script>

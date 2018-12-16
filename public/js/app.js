@@ -11604,192 +11604,6 @@ module.exports = Component.exports
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(2);
-var normalizeHeaderName = __webpack_require__(46);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(15);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(15);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  /**
-   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-   * timeout is not created.
-   */
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12470,7 +12284,7 @@ var _default = Vuelidate;
 exports.default = _default;
 
 /***/ }),
-/* 9 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12656,6 +12470,192 @@ exports.helpers = helpers;
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(2);
+var normalizeHeaderName = __webpack_require__(46);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(15);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(15);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ }),
 /* 10 */
@@ -49852,7 +49852,7 @@ if(false) {
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)(false);
+exports = module.exports = __webpack_require__(8)(false);
 // imports
 
 
@@ -49993,7 +49993,7 @@ if(false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(33);
-exports = module.exports = __webpack_require__(6)(false);
+exports = module.exports = __webpack_require__(8)(false);
 // imports
 
 
@@ -71227,7 +71227,7 @@ module.exports = __webpack_require__(43);
 var utils = __webpack_require__(2);
 var bind = __webpack_require__(14);
 var Axios = __webpack_require__(45);
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(9);
 
 /**
  * Create an instance of Axios
@@ -71310,7 +71310,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(9);
 var utils = __webpack_require__(2);
 var InterceptorManager = __webpack_require__(54);
 var dispatchRequest = __webpack_require__(55);
@@ -71849,7 +71849,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(2);
 var transformData = __webpack_require__(56);
 var isCancel = __webpack_require__(17);
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(9);
 var isAbsoluteURL = __webpack_require__(57);
 var combineURLs = __webpack_require__(58);
 
@@ -72160,7 +72160,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       drawer: false,
       drawerRight: false,
-      items: [{
+      items: [{ icon: 'account_balance', text: 'Welcome', url: '/' }, {
         icon: 'keyboard_arrow_up',
         'icon-alt': 'keyboard_arrow_down',
         text: 'Tasques',
@@ -72374,7 +72374,7 @@ if(false) {
 /* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)(false);
+exports = module.exports = __webpack_require__(8)(false);
 // imports
 
 
@@ -74027,9 +74027,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuelidate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__UserSelect__);
@@ -74082,7 +74082,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       description: '',
       dataUsers: this.users,
       loading: false,
-      user_id: null
+      user: null
     };
   },
 
@@ -74105,34 +74105,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+    selectLoggedUser: function selectLoggedUser() {
+      if (window.laravel_user) {
+        this.user = this.users.find(function (user) {
+          return parseInt(user.id) === parseInt(window.laravel_user.id);
+        });
+      }
+    },
     refresh: function refresh() {
       var _this = this;
 
       this.loading = true;
       window.axios.get(this.uri).then(function (response) {
-        // SHOW SNACKBAR MISSATGE OK
         _this.dataTasks = response.data;
-        // this.showMessage("S'ha refrescat correctament")
         _this.$snackbar.showMessage("S'ha refrescat correctament");
         _this.loading = false;
       }).catch(function (error) {
         _this.$snackbar.showError(error.message);
         _this.loading = false;
-        // SHOW SNACKBAR ERROR
       });
     },
     reset: function reset() {
       this.name = '';
       this.description = '';
       this.completed = false;
-      this.user_id = null;
+      this.user = null;
     },
     add: function add() {
       var _this2 = this;
 
       this.loading = true;
       window.axios.post(this.uri, {
-        user_id: this.user_id,
+        user_id: this.user.id,
         name: this.name,
         completed: this.completed,
         description: this.description
@@ -74140,14 +74144,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this2.$snackbar.showMessage("S'ha creat correctament");
         _this2.reset();
         _this2.$emit('created', response.data);
-        _this2.refresh();
         _this2.$emit('close');
         _this2.loading = false;
+        _this2.refresh();
       }).catch(function (error) {
         _this2.$snackbar.showError(error.message);
         _this2.creating = false;
       });
     }
+  },
+  created: function created() {
+    this.selectLoggedUser();
   }
 });
 
@@ -74929,11 +74936,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       dataUsers: this.users,
-      selectedUser: null
+      selectedUser: this.user
     };
   },
 
+  model: {
+    prop: 'user',
+    event: 'selected'
+  },
   props: {
+    itemValue: {
+      type: String,
+      default: 'id'
+    },
+    user: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
     users: {
       type: Array,
       required: true
@@ -74941,12 +74962,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     label: {
       type: String,
       default: 'Usuaris'
-    },
-    readonly: {
-      type: Boolean
     }
   },
   watch: {
+    user: function user(_user) {
+      this.selectedUser = _user;
+    },
     selectedUser: function selectedUser(newValue) {
       this.$emit('selected', newValue);
     },
@@ -74967,10 +74988,9 @@ var render = function() {
   return _c("v-autocomplete", {
     attrs: {
       items: _vm.dataUsers,
-      "item-value": "id",
+      item_value: _vm.itemValue,
       clearable: "",
-      label: _vm.label,
-      readonly: _vm.readonly
+      label: _vm.label
     },
     scopedSlots: _vm._u([
       {
@@ -75001,7 +75021,16 @@ var render = function() {
               "v-list-tile-avatar",
               [
                 _c("v-avatar", { attrs: { title: user.name } }, [
-                  _c("img", { attrs: { src: user.gravatar, alt: "avatar" } })
+                  user.gravatar
+                    ? _c("img", {
+                        attrs: { src: user.gravatar, alt: "avatar" }
+                      })
+                    : _c("img", {
+                        attrs: {
+                          src: "https://www.gravatar.com/avatar/",
+                          alt: "avatar"
+                        }
+                      })
                 ])
               ],
               1
@@ -75092,7 +75121,18 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("user-select", { attrs: { users: _vm.dataUsers, label: "Usuari" } }),
+      _vm.$hasRole("TaskManager")
+        ? _c("user-select", {
+            attrs: { users: _vm.dataUsers, label: "Usuari" },
+            model: {
+              value: _vm.user,
+              callback: function($$v) {
+                _vm.user = $$v
+              },
+              expression: "user"
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
@@ -76865,8 +76905,12 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__UserSelect__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuelidate_lib_validators__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vuelidate_lib_validators__);
 //
 //
 //
@@ -76893,19 +76937,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   'name': 'TaskUpdateForm',
+  mixins: [__WEBPACK_IMPORTED_MODULE_1_vuelidate__["validationMixin"]],
+  validations: {
+    name: { required: __WEBPACK_IMPORTED_MODULE_2_vuelidate_lib_validators__["required"] }
+  },
+  components: {
+    'user-select': __WEBPACK_IMPORTED_MODULE_0__UserSelect___default.a
+  },
   data: function data() {
     return {
       name: this.task.name,
       completed: this.task.completed,
       description: this.task.description,
-      user: this.task.user,
+      user: null,
       dataUsers: this.users,
       working: false
     };
   },
 
+  watch: {
+    task: function task(_task) {
+      this.updateUser(_task);
+    }
+  },
   props: {
     task: {
       type: Object,
@@ -76926,7 +76986,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.working = true;
       window.axios.put(this.uri + '/' + this.task.id, {
-        user: this.user,
+        user_id: this.user.id,
         name: this.name,
         completed: this.completed,
         description: this.description
@@ -76939,7 +76999,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.$snackbar.showError(error.message);
         _this.working = false;
       });
+    },
+    updateUser: function updateUser(task) {
+      this.user = this.users.find(function (user) {
+        return parseInt(user.id) === parseInt(task.user_id);
+      });
     }
+  },
+  created: function created() {
+    this.updateUser(this.task);
   }
 });
 
@@ -76956,6 +77024,7 @@ var render = function() {
     [
       _c("v-text-field", {
         attrs: {
+          autofocus: "",
           label: "Nom",
           hint: "Nom de la tasca",
           placeholder: "Nom de la tasca"
@@ -76981,7 +77050,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("v-textarea", {
-        attrs: { label: "Descripció" },
+        attrs: { label: "Descripció", hint: "Descripció de la tasca" },
         model: {
           value: _vm.description,
           callback: function($$v) {
@@ -76991,14 +77060,9 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _vm.$can("tasks.index")
-        ? _c("v-autocomplete", {
-            attrs: {
-              items: _vm.dataUsers,
-              label: "Usuari",
-              "item-text": "name",
-              "return-object": true
-            },
+      _vm.$hasRole("TaskManager")
+        ? _c("user-select", {
+            attrs: { users: _vm.dataUsers, label: "Usuari" },
             model: {
               value: _vm.user,
               callback: function($$v) {
@@ -77023,7 +77087,7 @@ var render = function() {
               }
             },
             [
-              _c("v-icon", { staticClass: "mr-2" }, [_vm._v("exit_to_app")]),
+              _c("v-icon", { staticClass: "mr-1" }, [_vm._v("exit_to_app")]),
               _vm._v("\n            Cancel·lar\n        ")
             ],
             1
@@ -77034,13 +77098,13 @@ var render = function() {
             {
               attrs: {
                 color: "success",
-                disabled: _vm.working,
+                disabled: _vm.working || _vm.$v.$invalid,
                 loading: _vm.working
               },
               on: { click: _vm.update }
             },
             [
-              _c("v-icon", { staticClass: "mr-2" }, [_vm._v("save")]),
+              _c("v-icon", { staticClass: "mr-1" }, [_vm._v("save")]),
               _vm._v("\n            Guardar\n        ")
             ],
             1
@@ -77418,7 +77482,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       name: this.task.name,
       completed: this.task.completed,
       description: this.task.description,
-      user: this.task.user,
+      user: null,
       dataUsers: this.users,
       working: false
     };
@@ -77437,6 +77501,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: String,
       required: true
     }
+  },
+  methods: {
+    showUser: function showUser(task) {
+      this.user = this.users.find(function (user) {
+        return parseInt(user.id) === parseInt(task.user_id);
+      });
+    }
+  },
+  created: function created() {
+    this.showUser(this.task);
   }
 });
 
@@ -77502,10 +77576,6 @@ var render = function() {
           },
           expression: "user"
         }
-      }),
-      _vm._v(" "),
-      _c("user-select", {
-        attrs: { readonly: true, users: _vm.dataUsers, label: "Usuari" }
       }),
       _vm._v(" "),
       _c(
@@ -77937,31 +78007,37 @@ var render = function() {
                           "td",
                           { staticClass: "d-flex" },
                           [
-                            _c("task-show", {
-                              attrs: {
-                                users: _vm.users,
-                                task: task,
-                                uri: _vm.uri,
-                                loading: _vm.showing,
-                                disabled: _vm.showing
-                              }
-                            }),
+                            _vm.$can("user.tasks.show")
+                              ? _c("task-show", {
+                                  attrs: {
+                                    users: _vm.users,
+                                    task: task,
+                                    uri: _vm.uri,
+                                    loading: _vm.showing,
+                                    disabled: _vm.showing
+                                  }
+                                })
+                              : _vm._e(),
                             _vm._v(" "),
-                            _c("task-update", {
-                              attrs: {
-                                users: _vm.users,
-                                task: task,
-                                uri: _vm.uri,
-                                loading: _vm.editing,
-                                disabled: _vm.editing
-                              },
-                              on: { updated: _vm.updateTask }
-                            }),
+                            _vm.$can("user.tasks.update")
+                              ? _c("task-update", {
+                                  attrs: {
+                                    users: _vm.users,
+                                    task: task,
+                                    uri: _vm.uri,
+                                    loading: _vm.editing,
+                                    disabled: _vm.editing
+                                  },
+                                  on: { updated: _vm.updateTask }
+                                })
+                              : _vm._e(),
                             _vm._v(" "),
-                            _c("task-destroy", {
-                              attrs: { task: task, uri: _vm.uri },
-                              on: { removed: _vm.removeTask }
-                            })
+                            _vm.$can("user.tasks.destroy")
+                              ? _c("task-destroy", {
+                                  attrs: { task: task, uri: _vm.uri },
+                                  on: { removed: _vm.removeTask }
+                                })
+                              : _vm._e()
                           ],
                           1
                         )
@@ -79555,9 +79631,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuelidate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
 //
 //
@@ -79849,9 +79925,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuelidate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuelidate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
 //
 //
@@ -80964,7 +81040,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     impersonate: function impersonate(user) {
       if (user) {
-        window.location.href = '/impersonate/take/' + user;
+        window.location.href = '/impersonate/take/' + user.id;
       }
     }
   }
@@ -80979,7 +81055,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("user-select", {
-    attrs: { users: _vm.dataUsers, label: _vm.label },
+    attrs: { users: _vm.dataUsers, label: _vm.label, "item-value": null },
     on: { selected: _vm.impersonate }
   })
 }

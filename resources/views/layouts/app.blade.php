@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user" content="{{ logged_user() }}">
+    <meta name="git" content="{{ git() }}">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link rel="shortcut icon" type="image/png"
           href="https://twibbon.blob.core.windows.net/twibbon/2014/303/d9b1e1c1-e3ea-4e6f-9daf-0c6e2d10dab0.png">
@@ -131,6 +132,9 @@
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Menú</v-toolbar-title>
         <v-spacer></v-spacer>
+
+        <span class="mr-4" v-role="'SuperAdmin'"><git-info></git-info></span>
+
         <v-avatar @click.stop="drawerRight = !drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
             <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
         </v-avatar>

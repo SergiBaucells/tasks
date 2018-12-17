@@ -74112,19 +74112,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       }
     },
-    refresh: function refresh() {
-      var _this = this;
-
-      this.loading = true;
-      window.axios.get(this.uri).then(function (response) {
-        _this.dataTasks = response.data;
-        _this.$snackbar.showMessage("S'ha refrescat correctament");
-        _this.loading = false;
-      }).catch(function (error) {
-        _this.$snackbar.showError(error.message);
-        _this.loading = false;
-      });
-    },
     reset: function reset() {
       this.name = '';
       this.description = '';
@@ -74132,7 +74119,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.user = null;
     },
     add: function add() {
-      var _this2 = this;
+      var _this = this;
 
       this.loading = true;
       window.axios.post(this.uri, {
@@ -74141,15 +74128,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         completed: this.completed,
         description: this.description
       }).then(function (response) {
-        _this2.$snackbar.showMessage("S'ha creat correctament");
-        _this2.reset();
-        _this2.$emit('created', response.data);
-        _this2.$emit('close');
-        _this2.loading = false;
-        _this2.refresh();
+        _this.$snackbar.showMessage("S'ha creat correctament");
+        _this.reset();
+        _this.$emit('created', response.data);
+        _this.$emit('close');
+        _this.loading = false;
       }).catch(function (error) {
-        _this2.$snackbar.showError(error.message);
-        _this2.creating = false;
+        _this.$snackbar.showError(error.message);
+        _this.creating = false;
       });
     }
   },
@@ -78493,9 +78479,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tags',
@@ -78775,18 +78758,25 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          label: "Color",
-                          hint: "Color",
-                          placeholder: "Color"
-                        },
-                        model: {
-                          value: _vm.newTag.color,
-                          callback: function($$v) {
-                            _vm.$set(_vm.newTag, "color", $$v)
-                          },
-                          expression: "newTag.color"
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newTag.color,
+                            expression: "newTag.color"
+                          }
+                        ],
+                        staticStyle: { width: "30px", height: "30px" },
+                        attrs: { type: "color" },
+                        domProps: { value: _vm.newTag.color },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.newTag, "color", $event.target.value)
+                          }
                         }
                       }),
                       _vm._v(" "),
@@ -78975,18 +78965,29 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          label: "Color",
-                          hint: "Color",
-                          placeholder: "Color"
-                        },
-                        model: {
-                          value: _vm.tagBeingUpdated.color,
-                          callback: function($$v) {
-                            _vm.$set(_vm.tagBeingUpdated, "color", $$v)
-                          },
-                          expression: "tagBeingUpdated.color"
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.tagBeingUpdated.color,
+                            expression: "tagBeingUpdated.color"
+                          }
+                        ],
+                        staticStyle: { width: "30px", height: "30px" },
+                        attrs: { type: "color" },
+                        domProps: { value: _vm.tagBeingUpdated.color },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.tagBeingUpdated,
+                              "color",
+                              $event.target.value
+                            )
+                          }
                         }
                       }),
                       _vm._v(" "),
@@ -79154,19 +79155,29 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          label: "Color",
-                          hint: "Color",
-                          placeholder: "Color",
-                          readonly: ""
-                        },
-                        model: {
-                          value: _vm.tagBeingShow.color,
-                          callback: function($$v) {
-                            _vm.$set(_vm.tagBeingShow, "color", $$v)
-                          },
-                          expression: "tagBeingShow.color"
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.tagBeingShow.color,
+                            expression: "tagBeingShow.color"
+                          }
+                        ],
+                        staticStyle: { width: "30px", height: "30px" },
+                        attrs: { disabled: "", type: "color" },
+                        domProps: { value: _vm.tagBeingShow.color },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.tagBeingShow,
+                              "color",
+                              $event.target.value
+                            )
+                          }
                         }
                       }),
                       _vm._v(" "),

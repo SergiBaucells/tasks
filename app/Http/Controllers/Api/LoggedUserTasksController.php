@@ -22,7 +22,8 @@ class LoggedUserTasksController extends Controller
     {
         // Afegir tasca nova i afegir a usuari logat
         $task = Task::create($request->only(['name', 'completed', 'description', 'user_id']));
-        return Auth::user()->addTask($task);
+        Auth::user()->addTask($task);
+        return $task->map();
     }
 
     public function destroy(DestroyLoggedUserTask $request, Task $task)
@@ -39,7 +40,7 @@ class LoggedUserTasksController extends Controller
         $task->description = $request->description;
         $task->completed = $request->completed ?? false;
         $task->save();
-        return $task;
+        return $task->map();
 
     }
 }

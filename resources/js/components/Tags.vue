@@ -23,8 +23,7 @@
                     <v-form>
                         <v-text-field v-model="newTag.name" label="Nom" hint="Nom del tag"
                                       placeholder="Nom del tag"></v-text-field>
-                        <v-text-field v-model="newTag.color" label="Color" hint="Color"
-                                      placeholder="Color"></v-text-field>
+                        <input type="color" v-model="newTag.color" style="width: 30px; height: 30px;">
                         <v-textarea v-model="newTag.description" label="Descripció" item-value="id"></v-textarea>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
@@ -66,8 +65,7 @@
                     <v-form>
                         <v-text-field v-model="tagBeingUpdated.name" label="Nom" hint="Nom de la tag"
                                       placeholder="Nom de la tag"></v-text-field>
-                        <v-text-field v-model="tagBeingUpdated.color" label="Color" hint="Color"
-                                      placeholder="Color"></v-text-field>
+                        <input type="color" v-model="tagBeingUpdated.color" style="width: 30px; height: 30px;">
                         <v-textarea v-model="tagBeingUpdated.description" label="Descripció"></v-textarea>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
@@ -103,8 +101,7 @@
                     <v-form>
                         <v-text-field v-model="tagBeingShow.name" label="Nom" hint="Nom de la tag"
                                       placeholder="Nom de la tag" readonly></v-text-field>
-                        <v-text-field v-model="tagBeingShow.color" label="Color" hint="Color"
-                                      placeholder="Color" readonly></v-text-field>
+                        <input disabled type="color" v-model="tagBeingShow.color" style="width: 30px; height: 30px;">
                         <v-textarea v-model="tagBeingShow.description" label="Descripció" readonly></v-textarea>
                         <div class="text-xs-center">
                             <v-btn @click="showDialog=false">

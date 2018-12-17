@@ -57,19 +57,19 @@ if (!function_exists('create_example_tasks')) {
             Tag::create([
                 'name' => 'Etiqueta 1',
                 'description' => 'Descripció',
-                'color' => 'blue'
+                'color' => '#0000FF'
             ]);
 
             Tag::create([
                 'name' => 'Etiqueta 2',
                 'description' => 'Descripció',
-                'color' => 'red'
+                'color' => '#FF0000'
             ]);
 
             Tag::create([
                 'name' => 'Etiqueta 3',
                 'description' => 'Descripció',
-                'color' => 'black'
+                'color' => '#000000'
             ]);
         }
     }

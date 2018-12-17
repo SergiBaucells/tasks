@@ -76,17 +76,6 @@ export default {
         })
       }
     },
-    refresh () {
-      this.loading = true
-      window.axios.get(this.uri).then(response => {
-        this.dataTasks = response.data
-        this.$snackbar.showMessage("S'ha refrescat correctament")
-        this.loading = false
-      }).catch(error => {
-        this.$snackbar.showError(error.message)
-        this.loading = false
-      })
-    },
     reset () {
       this.name = ''
       this.description = ''
@@ -96,7 +85,7 @@ export default {
     add () {
       this.loading = true
       window.axios.post(this.uri, {
-        user_id: this.user.id,
+        user_id: (this.user !== null) ? this.user.id : null,
         name: this.name,
         completed: this.completed,
         description: this.description
@@ -106,7 +95,6 @@ export default {
         this.$emit('created', response.data)
         this.$emit('close')
         this.loading = false
-        this.refresh()
       }).catch((error) => {
         this.$snackbar.showError(error.message)
         this.creating = false

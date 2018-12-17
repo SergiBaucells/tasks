@@ -27,7 +27,7 @@ Issues Github:
    - Exemple URL issues: https://github.com/navarropalatsi/tasks/issues
 
 #### TODO possibles millores (opcionals):
-- [ ] Color de les etiquetes: utilitzar un color picker
+- [X] Color de les etiquetes: utilitzar un color picker
 - [X] Validacions Javascript (vuelidate) arreu també a l crear tasca i editar.
 - [ ] inline Edit: Editar amb click/dblick el nom d'una tasca directament sense entrar al formulari de edit
 

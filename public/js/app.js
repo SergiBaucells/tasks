@@ -74123,7 +74123,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.loading = true;
       window.axios.post(this.uri, {
-        user_id: this.user.id,
+        user_id: this.user !== null ? this.user.id : null,
         name: this.name,
         completed: this.completed,
         description: this.description

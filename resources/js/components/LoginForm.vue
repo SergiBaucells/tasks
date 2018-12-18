@@ -42,6 +42,15 @@
             </v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
+        <v-card-text class="text-md-center">
+            Has olvidat la contrasenya?
+        </v-card-text>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" type="submit" href="/password/reset" class="mb-3">Actualitza-la!
+            </v-btn>
+            <v-spacer></v-spacer>
+        </v-card-actions>
     </v-form>
 </template>
 

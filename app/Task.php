@@ -86,6 +86,7 @@ class Task extends Model
             'updated_at_formatted' => $this->updated_at_formatted,
             'updated_at_human' => $this->updated_at_human,
             'updated_at_timestamp' => $this->updated_at_timestamp,
+            'tags' => $this->tags
         ];
     }
 

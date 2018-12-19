@@ -1,16 +1,16 @@
 <template>
     <v-form action="/login" method="POST">
-        <v-toolbar dark color="primary">
-            <v-toolbar-title>Login form</v-toolbar-title>
+        <v-toolbar dark color="yellow darken-3">
+            <v-toolbar-title>Formulari d'inici de sessió</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn flat type="submit" href="/">Go back</v-btn>
+            <v-btn flat type="submit" href="/">Enrere</v-btn>
         </v-toolbar>
         <v-card-text>
             <input type="hidden" name="_token" :value="csrfToken">
             <v-text-field
                     prepend-icon="person"
                     name="email"
-                    label="Login"
+                    label="Iniciar Sessió"
                     type="text"
                     v-model="dataEmail"
                     :error-messages="emailErrors"
@@ -21,7 +21,7 @@
                     id="password"
                     prepend-icon="lock"
                     name="password"
-                    label="Password"
+                    label="Contrasenya"
                     type="password"
                     :error-messages="passwordErrors"
                     @input="$v.password.$touch()"
@@ -30,7 +30,7 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit" :disabled="$v.$invalid">Login</v-btn>
+            <v-btn color="yellow darken-3" type="submit" :disabled="$v.$invalid">Iniciar Sessió</v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
         <v-card-text class="text-md-center">
@@ -38,7 +38,7 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit" href="/register" class="mb-3">Crea el teu compte
+            <v-btn color="yellow darken-3" type="submit" href="/register" class="mb-3">Crea el teu compte
             </v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
@@ -47,7 +47,7 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit" href="/password/reset" class="mb-3">Actualitza-la!
+            <v-btn color="yellow darken-3" type="submit" href="/password/reset" class="mb-3">Actualitza-la!
             </v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>

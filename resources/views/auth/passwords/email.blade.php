@@ -5,10 +5,10 @@
         <v-layout align-center justify-center>
             <v-flex xs12 sm4>
                 <v-card class="elevation-12">
-                    <v-toolbar color="primary" dark>
-                        <v-toolbar-title>{{ __('Reset Password') }}</v-toolbar-title>
+                    <v-toolbar color="yellow darken-3" dark>
+                        <v-toolbar-title>{{ __('Restablir la contrasenya') }}</v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <v-btn flat type="submit" href="/login">Go back</v-btn>
+                        <v-btn flat type="submit" href="/login">Enrere</v-btn>
                     </v-toolbar>
                     <v-card-text>
                         @if (session('status'))
@@ -24,11 +24,11 @@
                                           error-messages="{{ $errors->first('email') }}"
                                           class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                           name="email"
-                                          value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}"
+                                          value="{{ old('email') }}" placeholder="{{ __('Correu Electrònic') }}"
                                           required>
                             </v-text-field>
 
-                            <v-btn type="submit" color="primary">
+                            <v-btn type="submit" color="yellow darken-3">
                                 {{ __('Enviar enllaç per restablir contrasenya') }}
                             </v-btn>
 

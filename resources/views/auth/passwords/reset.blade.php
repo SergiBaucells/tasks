@@ -5,8 +5,8 @@
         <v-layout align-center justify-center>
             <v-flex xs12 sm4>
                 <v-card class="elevation-12">
-                    <v-toolbar color="primary" dark>
-                        <v-toolbar-title>{{ __('Reset Password') }}</v-toolbar-title>
+                    <v-toolbar color="yellow darken-3" dark>
+                        <v-toolbar-title>{{ __('Restablir la contrasenya') }}</v-toolbar-title>
                     </v-toolbar>
 
                     <v-card-text>
@@ -19,7 +19,7 @@
                                           error-messages="{{ $errors->first('email') }}"
                                           class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                           name="email"
-                                          value="{{ $email ?? old('email') }}" placeholder="{{ __('E-Mail Address') }}"
+                                          value="{{ $email ?? old('email') }}" placeholder="{{ __('Correu Electrònic') }}"
                                           required
                                           autofocus>
                             </v-text-field>
@@ -27,15 +27,15 @@
                             <v-text-field id="password" type="password"
                                           error-messages="{{ $errors->first('password') }}"
                                           class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                          name="password" required placeholder="{{ __('Password') }}">
+                                          name="password" required placeholder="{{ __('Contrasenya') }}">
 
                             </v-text-field>
 
                             <v-text-field id="password-confirm" type="password" class="form-control"
                                           name="password_confirmation" required
-                                          placeholder="{{ __('Confirm Password') }}"></v-text-field>
+                                          placeholder="{{ __('Confirmar Contrasenya') }}"></v-text-field>
 
-                            <v-btn type="submit" class="primary">
+                            <v-btn type="submit" class="yellow darken-3">
                                 {{ __('Reinicia Password') }}
                             </v-btn>
 

@@ -128,7 +128,7 @@
             </v-layout>
         </v-card>
     </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app clipped-right clipped-left>
+    <v-toolbar color="yellow darken-3" dark fixed app clipped-right clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Menú</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -152,7 +152,7 @@
             </v-layout>
         </v-container>
     </v-content>
-    <v-footer color="indigo" app>
+    <v-footer color="yellow darken-3" app>
         <span class="white--text pl-2">Created by Sergi Baucells Rodríguez, &copy; 2018 All rights reserved</span>
     </v-footer>
 </v-app>

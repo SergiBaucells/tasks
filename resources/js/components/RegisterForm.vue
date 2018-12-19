@@ -1,9 +1,9 @@
 <template>
     <v-form action="/register" method="POST">
-        <v-toolbar dark color="primary">
-            <v-toolbar-title>Register</v-toolbar-title>
+        <v-toolbar dark color="yellow darken-3">
+            <v-toolbar-title>Registre</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn flat type="submit" href="/">Go back</v-btn>
+            <v-btn flat type="submit" href="/">Enrere</v-btn>
         </v-toolbar>
         <v-card-text>
 
@@ -11,7 +11,7 @@
             <v-text-field
                     prepend-icon="person"
                     name="name"
-                    label="Name"
+                    label="Nom"
                     type="text"
                     v-model="name"
                     :error-messages="nameErrors"
@@ -21,7 +21,7 @@
             <v-text-field
                     prepend-icon="mail_outline"
                     name="email"
-                    label="Email"
+                    label="Correu Electrònic"
                     type="text"
                     v-model="dataEmail"
                     :error-messages="emailErrors"
@@ -32,7 +32,7 @@
                     id="password"
                     prepend-icon="lock"
                     name="password"
-                    label="Password"
+                    label="Contrasenya"
                     type="password"
                     v-model="password"
                     :error-messages="passwordErrors"
@@ -43,7 +43,7 @@
                     id="password_confirmation"
                     prepend-icon="lock"
                     name="password_confirmation"
-                    label="Confirm Password"
+                    label="Confirmar Contrasenya"
                     type="password"
                     v-model="password_confirmation"
                     :error-messages="password_confirmationErrors"
@@ -54,7 +54,7 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit" :disabled="$v.$invalid">Register</v-btn>
+            <v-btn color="yellow darken-3" type="submit" :disabled="$v.$invalid">Registrar</v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
         <v-card-text class="text-md-center">
@@ -62,7 +62,8 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit" href="/login" class="mb-3">Inicia sessió</v-btn>
+            <v-btn color="yellow darken-3
+" type="submit" href="/login" class="mb-3">Inicia sessió</v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
     </v-form>

@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-toolbar color="blue">
+        <v-toolbar color="yellow darken-3">
             <v-menu>
                 <v-btn slot="activator" icon dark>
                     <v-icon>more_vert</v-icon>
@@ -75,7 +75,9 @@
                         </td>
                         <td>
                             <task-completed-toggle :task="task"></task-completed-toggle>
-                            <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
+                        </td>
+                        <td>
+                            <tasks-tags :task="task" :tags="tags"></tasks-tags>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human }}</span>
@@ -137,13 +139,15 @@ import TaskCompletedToggle from './TaskCompletedToggle'
 import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
+import TasksTags from './TasksTags'
 export default {
   name: 'TasksList',
   components: {
     'task-completed-toggle': TaskCompletedToggle,
     'task-destroy': TaskDestroy,
     'task-update': TaskUpdate,
-    'task-show': TaskShow
+    'task-show': TaskShow,
+    'tasks-tags': TasksTags
   },
   data () {
     return {
@@ -176,6 +180,7 @@ export default {
         { text: 'Nom', value: 'name' },
         { text: 'Usuari', value: 'user_id' },
         { text: 'Completat', value: 'completed' },
+        { text: 'Etiquetes', value: 'tags' },
         { text: 'Creat', value: 'created_at_timestamp' },
         { text: 'Modificat', value: 'updated_at_timestamp' },
         { text: 'Accions', sortable: false, value: 'full_search' }
@@ -184,6 +189,10 @@ export default {
   },
   props: {
     tasks: {
+      type: Array,
+      required: true
+    },
+    tags: {
       type: Array,
       required: true
     },

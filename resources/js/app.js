@@ -10,6 +10,7 @@ import Tasques from './components/Tasques.vue'
 import Tags from './components/Tags.vue'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
+import GitInfo from './components/git/GitInfoComponent.vue'
 import UserList from './components/UserList'
 import UserSelect from './components/UserSelect'
 import permissions from './plugins/permissions'
@@ -34,6 +35,7 @@ window.Vue.component('register-form', RegisterForm)
 window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
 window.Vue.component('impersonate', Impersonate)
+window.Vue.component('git-info', GitInfo)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

@@ -1,6 +1,6 @@
 <template>
     <span>
-        <tasks-list :users="users" :uri="uri" :tasks="dataTasks"></tasks-list>
+        <tasks-list :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
         <tasks-create v-if="$can('user.tasks.store')" :users="users" @created="add" :uri="uri"></tasks-create>
     </span>
 </template>
@@ -21,6 +21,10 @@ export default {
   },
   props: {
     tasks: {
+      type: Array,
+      required: true
+    },
+    tags: {
       type: Array,
       required: true
     },

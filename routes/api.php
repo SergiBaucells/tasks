@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\GitController;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -48,4 +49,6 @@ Route::middleware(['auth:api'])->group(function () {
     // Users
     Route::get('/v1/users', 'Api\UsersController@index');
     Route::get('/v1/regular_users', 'Api\RegularUsersController@index');
+
+    Route::get('/v1/git/info','\\' . GitController::class . '@index');
 });

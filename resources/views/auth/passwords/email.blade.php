@@ -5,7 +5,7 @@
         <v-layout align-center justify-center>
             <v-flex xs12 sm4>
                 <v-card class="elevation-12">
-                    <v-toolbar color="yellow darken-3" dark>
+                    <v-toolbar color="primary" dark>
                         <v-toolbar-title>{{ __('Restablir la contrasenya') }}</v-toolbar-title>
                         <v-spacer></v-spacer>
                         <v-btn flat type="submit" href="/login">Enrere</v-btn>
@@ -28,7 +28,7 @@
                                           required>
                             </v-text-field>
 
-                            <v-btn type="submit" color="yellow darken-3">
+                            <v-btn type="submit" color="primary">
                                 {{ __('Enviar enllaç per restablir contrasenya') }}
                             </v-btn>
 

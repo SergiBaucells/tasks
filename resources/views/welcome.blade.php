@@ -11,10 +11,10 @@
             <v-spacer></v-spacer>
             @if (Route::has('login'))
                 @auth
-                    <v-btn dark color="yellow darken-3" href="{{ url('/home') }}">Accedeix</v-btn>
+                    <v-btn dark color="primary" href="{{ url('/home') }}">Accedeix</v-btn>
                 @else
-                    <v-btn dark color="yellow darken-3" href="/login">Login</v-btn>
-                    <v-btn dark color="yellow darken-3" href="/register">Registrar</v-btn>
+                    <v-btn dark color="primary" href="/login">Login</v-btn>
+                    <v-btn dark color="primary" href="/register">Registrar</v-btn>
                 @endauth
             @endif
         </v-toolbar>
@@ -36,7 +36,7 @@
                                     dark
                                     large
                                     href="/home"
-                                    color="yellow darken-3"
+                                    color="primary"
                             >
                                 Accedeix
                             </v-btn>
@@ -46,7 +46,7 @@
                                     large
                                     href="https://github.com/SergiBaucells/tasks"
                                     target="_blank"
-                                    color="yellow darken-3"
+                                    color="primary"
                             >
                                 GitHub
                             </v-btn>
@@ -132,7 +132,7 @@
                                 dark
                                 large
                                 href="/home"
-                                color="yellow darken-3"
+                                color="primary"
                         >
                             Accedeix
                         </v-btn>
@@ -183,7 +183,7 @@
                 </v-container>
             </section>
 
-            <v-footer color="yellow darken-3">
+            <v-footer color="primary">
                 <span class="white--text pl-2">Created by Sergi Baucells Rodríguez, &copy; 2018 All rights reserved</span>
             </v-footer>
         </v-content>

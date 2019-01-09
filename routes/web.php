@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
@@ -25,9 +27,17 @@ Route::middleware(['auth'])->group(function () {
     // Tags
     Route::get('/tags', 'TagsController@index');
 });
+
 Route::post('/login_alt', 'Auth\LoginAltController@login');
+
 Route::post('/register_alt', 'Auth\RegisterAltController@store');
+
 Route::get('/', function () {
     return view('welcome');
 });
+
 Auth::routes();
+
+// Login Facebook
+Route::get('/auth/facebook', '\\' . LoginController::class . '@redirectToProvider');
+Route::get('/auth/facebook/callback', '\\' . LoginController::class . '@handleProviderCallback');

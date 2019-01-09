@@ -5,7 +5,7 @@
         <v-layout align-center justify-center>
             <v-flex xs12 sm4>
                 <v-card class="elevation-12">
-                    <v-toolbar color="yellow darken-3" dark>
+                    <v-toolbar color="primary" dark>
                         <v-toolbar-title>{{ __('Restablir la contrasenya') }}</v-toolbar-title>
                     </v-toolbar>
 
@@ -35,7 +35,7 @@
                                           name="password_confirmation" required
                                           placeholder="{{ __('Confirmar Contrasenya') }}"></v-text-field>
 
-                            <v-btn type="submit" class="yellow darken-3">
+                            <v-btn type="submit" class="primary">
                                 {{ __('Reinicia Password') }}
                             </v-btn>
 

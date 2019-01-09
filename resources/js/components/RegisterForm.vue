@@ -1,6 +1,6 @@
 <template>
     <v-form action="/register" method="POST">
-        <v-toolbar dark color="yellow darken-3">
+        <v-toolbar dark color="primary">
             <v-toolbar-title>Registre</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn flat type="submit" href="/">Enrere</v-btn>
@@ -54,7 +54,7 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="yellow darken-3" type="submit" :disabled="$v.$invalid">Registrar</v-btn>
+            <v-btn color="primary" type="submit" :disabled="$v.$invalid">Registrar</v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
         <v-card-text class="text-md-center">
@@ -62,7 +62,7 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="yellow darken-3
+            <v-btn color="primary
 " type="submit" href="/login" class="mb-3">Inicia sessió</v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>

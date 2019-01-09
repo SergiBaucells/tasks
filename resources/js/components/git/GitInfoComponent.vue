@@ -6,7 +6,7 @@
         >
           <v-card>
             <v-card-title
-                    class="headline yellow darken-3"
+                    class="headline primary"
                     primary-title
             >
               Informació versió de l'aplicació

@@ -26758,7 +26758,89 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 window.Vue = __WEBPACK_IMPORTED_MODULE_0_vue___default.a;
-window.Vue.use(__WEBPACK_IMPORTED_MODULE_1_vuetify___default.a);
+window.Vuetify = __WEBPACK_IMPORTED_MODULE_1_vuetify___default.a;
+
+var PRIMARY_COLOR_KEY = 'primary_color_key';
+var primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2680C2';
+
+window.Vue.use(window.Vuetify, {
+  theme: {
+    primary: {
+      base: primaryColor,
+      lighten1: '#4098D7',
+      lighten2: '#62B0E8',
+      lighten3: '#84C5F4',
+      lighten4: '#B6E0FE',
+      lighten5: '#DCEEFB',
+      darken1: '#186FAF',
+      darken2: '#0F609B',
+      darken3: '#0A558C',
+      darken4: '#003E6B'
+    },
+    secondary: {
+      base: '#2CB1BC',
+      lighten1: '#38BEC9',
+      lighten2: '#54D1DB',
+      lighten3: '#87EAF2',
+      lighten4: '#BEF8FD',
+      lighten5: '#E0FCFF',
+      darken1: '#14919B',
+      darken2: '#0E7C86',
+      darken3: '#0A6C74',
+      darken4: '#044E54'
+    },
+    accent: {
+      base: '#F0B429',
+      lighten1: '#F7C948',
+      lighten2: '#FADB5F',
+      lighten3: '#FCE588',
+      lighten4: '#FFF3C4',
+      lighten5: '#FFFBEA',
+      darken1: '#DE911D',
+      darken2: '#CB6E17',
+      darken3: '#B44D12',
+      darken4: '#8D2B0B'
+    },
+    error: {
+      base: '#BA2525',
+      lighten1: '#D64545',
+      lighten2: '#E66A6A',
+      lighten3: '#F29B9B',
+      lighten4: '#FACDCD',
+      lighten5: '#FFEEEE',
+      darken1: '#A61B1B',
+      darken2: '#911111',
+      darken3: '#780A0A',
+      darken4: '#610404'
+    },
+    // Taken from palete 3
+    success: {
+      base: '#27AB83',
+      lighten1: '#3EBD93',
+      lighten2: '#65D6AD',
+      lighten3: '#8EEDC7',
+      lighten4: '#C6F7E2',
+      lighten5: '#EFFCF6',
+      darken1: '#199473',
+      darken2: '#147D64',
+      darken3: '#0C6B58',
+      darken4: '#014D40'
+    },
+    grey: {
+      base: '#627D98',
+      lighten1: '#829AB1',
+      lighten2: '#9FB3C8',
+      lighten3: '#BCCCDC',
+      lighten4: '#D9E2EC',
+      lighten5: '#F0F4F8',
+      darken1: '#486581',
+      darken2: '#334E68',
+      darken3: '#243B53',
+      darken4: '#102A43'
+    }
+  }
+});
+
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_15__plugins_permissions__["a" /* default */]);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_16__plugins_snackbar__["a" /* default */]);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_17__plugins_confirm__["a" /* default */]);
@@ -78086,7 +78168,7 @@ var render = function() {
     [
       _c(
         "v-toolbar",
-        { attrs: { color: "yellow darken-3" } },
+        { attrs: { color: "primary" } },
         [
           _c(
             "v-menu",
@@ -80049,6 +80131,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -80100,7 +80187,7 @@ var render = function() {
     [
       _c(
         "v-toolbar",
-        { attrs: { dark: "", color: "yellow darken-3" } },
+        { attrs: { dark: "", color: "primary" } },
         [
           _c("v-toolbar-title", [_vm._v("Formulari d'inici de sessió")]),
           _vm._v(" "),
@@ -80184,13 +80271,27 @@ var render = function() {
             "v-btn",
             {
               attrs: {
-                color: "yellow darken-3",
+                color: "primary",
                 type: "submit",
                 disabled: _vm.$v.$invalid
               }
             },
             [_vm._v("Iniciar Sessió")]
           ),
+          _vm._v(" "),
+          _c("v-spacer")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-card-actions",
+        [
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c("v-btn", { attrs: { color: "primary", href: "/auth/facebook" } }, [
+            _vm._v("Login amb Facebook")
+          ]),
           _vm._v(" "),
           _c("v-spacer")
         ],
@@ -80210,11 +80311,7 @@ var render = function() {
             "v-btn",
             {
               staticClass: "mb-3",
-              attrs: {
-                color: "yellow darken-3",
-                type: "submit",
-                href: "/register"
-              }
+              attrs: { color: "primary", type: "submit", href: "/register" }
             },
             [_vm._v("Crea el teu compte\n        ")]
           ),
@@ -80238,7 +80335,7 @@ var render = function() {
             {
               staticClass: "mb-3",
               attrs: {
-                color: "yellow darken-3",
+                color: "primary",
                 type: "submit",
                 href: "/password/reset"
               }
@@ -80461,7 +80558,7 @@ var render = function() {
     [
       _c(
         "v-toolbar",
-        { attrs: { dark: "", color: "yellow darken-3" } },
+        { attrs: { dark: "", color: "primary" } },
         [
           _c("v-toolbar-title", [_vm._v("Registre")]),
           _vm._v(" "),
@@ -80596,7 +80693,7 @@ var render = function() {
             "v-btn",
             {
               attrs: {
-                color: "yellow darken-3",
+                color: "primary",
                 type: "submit",
                 disabled: _vm.$v.$invalid
               }
@@ -80622,11 +80719,7 @@ var render = function() {
             "v-btn",
             {
               staticClass: "mb-3",
-              attrs: {
-                color: "yellow darken-3\n",
-                type: "submit",
-                href: "/login"
-              }
+              attrs: { color: "primary\n", type: "submit", href: "/login" }
             },
             [_vm._v("Inicia sessió")]
           ),
@@ -80821,7 +80914,7 @@ var render = function() {
               _c(
                 "v-card-title",
                 {
-                  staticClass: "headline yellow darken-3",
+                  staticClass: "headline primary",
                   attrs: { "primary-title": "" }
                 },
                 [

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -43,9 +47,9 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()
+    public function redirectToProvider(Request $request, $provider)
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
     /**
@@ -55,8 +59,36 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('facebook')->user();
+        try {
+            $user = Socialite::driver('github')->user();
+        } catch (Exception $e) {
+            return Redirect::to('auth/github');
+        }
 
-        // $user->token;
+        $authUser = $this->findOrCreateUser($user);
+
+        Auth::login($authUser, true);
+        $authUser->assignRole('Tasks');
+
+        return Redirect::to('home');
+    }
+
+    /**
+     * Return user if exists; create and return if doesn't
+     *
+     * @param $githubUser
+     * @return User
+     */
+    private function findOrCreateUser($githubUser)
+    {
+        if ($authUser = User::where('email', $githubUser->email)->first()) {
+            return $authUser;
+        }
+
+        return User::create([
+            'name' => $githubUser->name,
+            'email' => $githubUser->email,
+            'password' => str_random()
+        ]);
     }
 }

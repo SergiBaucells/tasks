@@ -80136,6 +80136,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -80291,6 +80296,20 @@ var render = function() {
           _vm._v(" "),
           _c("v-btn", { attrs: { color: "primary", href: "/auth/facebook" } }, [
             _vm._v("Login amb Facebook")
+          ]),
+          _vm._v(" "),
+          _c("v-spacer")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-card-actions",
+        [
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c("v-btn", { attrs: { color: "primary", href: "/auth/github" } }, [
+            _vm._v("Login amb GitHub")
           ]),
           _vm._v(" "),
           _c("v-spacer")

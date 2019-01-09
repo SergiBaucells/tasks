@@ -11,4 +11,4 @@
 - [ ] inline Edit: Editar amb click/dblick el nom d'una tasca directament sense entrar al formulari de edit
 
 ### Fer en explotació
-- [ ] Configurar .ev
+- [X] Configurar .env

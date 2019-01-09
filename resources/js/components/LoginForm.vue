@@ -38,6 +38,11 @@
             <v-btn color="primary" href="/auth/facebook">Login amb Facebook</v-btn>
             <v-spacer></v-spacer>
         </v-card-actions>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" href="/auth/github">Login amb GitHub</v-btn>
+            <v-spacer></v-spacer>
+        </v-card-actions>
         <v-card-text class="text-md-center">
             Ets nou a la App?
         </v-card-text>

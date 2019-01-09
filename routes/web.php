@@ -39,5 +39,12 @@ Route::get('/', function () {
 Auth::routes();
 
 // Login Facebook
-Route::get('/auth/facebook', '\\' . LoginController::class . '@redirectToProvider');
-Route::get('/auth/facebook/callback', '\\' . LoginController::class . '@handleProviderCallback');
+//Route::get('/auth/facebook', '\\' . LoginController::class . '@redirectToProvider');
+//Route::get('/auth/facebook/callback', '\\' . LoginController::class . '@handleProviderCallback');
+
+// Login GitHub
+//Route::get('/auth/github', '\\' . LoginController::class . '@redirectToProvider');
+//Route::get('/auth/github/callback', '\\' . LoginController::class . '@handleProviderCallback');
+
+Route::get('/auth/{provider}', '\\' . LoginController::class . '@redirectToProvider');
+Route::get('/auth/{provider}/callback', '\\' . LoginController::class . '@handleProviderCallback');

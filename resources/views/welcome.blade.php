@@ -32,21 +32,21 @@
                         <div class="subheading mb-3 text-xs-center">Sergi Baucells Rodríguez</div>
                         <v-layout>
                             <v-btn
-                                    class="blue lighten-2 mt-5"
+                                    class="mt-5"
                                     dark
                                     large
                                     href="/home"
-                                    color="primary"
+                                    color="primary darken-1"
                             >
                                 Accedeix
                             </v-btn>
                             <v-btn
-                                    class="blue lighten-2 mt-5"
+                                    class="mt-5"
                                     dark
                                     large
                                     href="https://github.com/SergiBaucells/tasks"
                                     target="_blank"
-                                    color="primary"
+                                    color="primary darken-1"
                             >
                                 GitHub
                             </v-btn>
@@ -73,7 +73,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="yellow--text">color_lens</v-icon>
+                                            <v-icon x-large class="primary--text">color_lens</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline text-xs-center">Material Design</div>
@@ -88,7 +88,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="red--text">flash_on</v-icon>
+                                            <v-icon x-large class="error--text">flash_on</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline">Fast development</div>
@@ -102,7 +102,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="yellow--text">build</v-icon>
+                                            <v-icon x-large class="primary--text">build</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline text-xs-center">Completely Open Sourced</div>
@@ -128,11 +128,11 @@
                         </div>
                         <em>Accediu a la aplicació!</em>
                         <v-btn
-                                class="blue lighten-2 mt-5"
+                                class="mt-5"
                                 dark
                                 large
                                 href="/home"
-                                color="primary"
+                                color="primary darken-1"
                         >
                             Accedeix
                         </v-btn>
@@ -154,7 +154,7 @@
                                 <v-list class="transparent">
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="yellow--text">phone</v-icon>
+                                            <v-icon class="primary--text">phone</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>+34 645898261</v-list-tile-title>
@@ -162,7 +162,7 @@
                                     </v-list-tile>
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="red--text">place</v-icon>
+                                            <v-icon class="success--text">place</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>Catalunya, CAT</v-list-tile-title>
@@ -170,7 +170,7 @@
                                     </v-list-tile>
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="yellow--text">email</v-icon>
+                                            <v-icon class="primary--text">email</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>sergibaucells@iesebre.com</v-list-tile-title>

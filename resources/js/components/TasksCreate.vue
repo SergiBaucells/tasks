@@ -23,7 +23,7 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-        <v-btn fab bottom right color="purple accent-2" fixed class="white--text"
+        <v-btn fab bottom right color="secondary" fixed class="white--text"
                @click="dialog = true">
             <v-icon>add</v-icon>
         </v-btn>

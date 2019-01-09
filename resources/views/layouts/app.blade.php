@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
+    <meta name="theme-color" content="#2F3BA2"/>
     <link rel="manifest" href="/manifest.json">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link rel="shortcut icon" type="image/png"
@@ -92,7 +93,7 @@
             app
     >
         <v-card>
-            <v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>
+            <v-card-title class="primary white--text"><h4>Perfil</h4></v-card-title>
             <v-layout row wrap>
                 <v-flex xs12>
                     <ul>
@@ -106,7 +107,7 @@
             </v-layout>
         </v-card>
         <v-card>
-            <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
+            <v-card-title class="primary white--text"><h4>Opcions administrador</h4></v-card-title>
 
             <v-layout row wrap>
                 @impersonating

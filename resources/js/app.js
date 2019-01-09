@@ -22,36 +22,12 @@ window.Vue = Vue
 window.Vuetify = Vuetify
 
 const PRIMARY_COLOR_KEY = 'primary_color_key'
-const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2680C2'
+const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#F0B429'
 
 window.Vue.use(window.Vuetify, {
   theme: {
     primary: {
       base: primaryColor,
-      lighten1: '#4098D7',
-      lighten2: '#62B0E8',
-      lighten3: '#84C5F4',
-      lighten4: '#B6E0FE',
-      lighten5: '#DCEEFB',
-      darken1: '#186FAF',
-      darken2: '#0F609B',
-      darken3: '#0A558C',
-      darken4: '#003E6B'
-    },
-    secondary: {
-      base: '#2CB1BC',
-      lighten1: '#38BEC9',
-      lighten2: '#54D1DB',
-      lighten3: '#87EAF2',
-      lighten4: '#BEF8FD',
-      lighten5: '#E0FCFF',
-      darken1: '#14919B',
-      darken2: '#0E7C86',
-      darken3: '#0A6C74',
-      darken4: '#044E54'
-    },
-    accent: {
-      base: '#F0B429',
       lighten1: '#F7C948',
       lighten2: '#FADB5F',
       lighten3: '#FCE588',
@@ -62,17 +38,41 @@ window.Vue.use(window.Vuetify, {
       darken3: '#B44D12',
       darken4: '#8D2B0B'
     },
+    secondary: {
+      base: '#2BB0ED',
+      lighten1: '#40C3F7',
+      lighten2: '#5ED0FA',
+      lighten3: '#81DEFD',
+      lighten4: '#B3ECFF',
+      lighten5: '#E3F8FF',
+      darken1: '#1992D4',
+      darken2: '#127FBF',
+      darken3: '#0B69A3',
+      darken4: '#035388'
+    },
+    accent: {
+      base: '#C65D21',
+      lighten1: '#E67635',
+      lighten2: '#EF8E58',
+      lighten3: '#FAB38B',
+      lighten4: '#FFD3BA',
+      lighten5: '#FFEFE6',
+      darken1: '#AB4E19',
+      darken2: '#8C3D10',
+      darken3: '#77340D',
+      darken4: '#572508'
+    },
     error: {
-      base: '#BA2525',
-      lighten1: '#D64545',
-      lighten2: '#E66A6A',
-      lighten3: '#F29B9B',
-      lighten4: '#FACDCD',
-      lighten5: '#FFEEEE',
-      darken1: '#A61B1B',
-      darken2: '#911111',
-      darken3: '#780A0A',
-      darken4: '#610404'
+      base: '#E12D39',
+      lighten1: '#EF4E4E',
+      lighten2: '#F86A6A',
+      lighten3: '#FF9B9B',
+      lighten4: '#FFBDBD',
+      lighten5: '#FFE3E3',
+      darken1: '#CF1124',
+      darken2: '#AB091E',
+      darken3: '#8A041A',
+      darken4: '#610316'
     },
     // Taken from palete 3
     success: {
@@ -88,16 +88,16 @@ window.Vue.use(window.Vuetify, {
       darken4: '#014D40'
     },
     grey: {
-      base: '#627D98',
-      lighten1: '#829AB1',
-      lighten2: '#9FB3C8',
-      lighten3: '#BCCCDC',
-      lighten4: '#D9E2EC',
-      lighten5: '#F0F4F8',
-      darken1: '#486581',
-      darken2: '#334E68',
-      darken3: '#243B53',
-      darken4: '#102A43'
+      base: '#7E7E7E',
+      lighten1: '#9E9E9E',
+      lighten2: '#B1B1B1',
+      lighten3: '#CFCFCF',
+      lighten4: '#E1E1E1',
+      lighten5: '#F7F7F7',
+      darken1: '#626262',
+      darken2: '#515151',
+      darken3: '#3B3B3B',
+      darken4: '#222222'
     }
   }
 })

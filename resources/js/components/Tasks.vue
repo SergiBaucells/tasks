@@ -5,7 +5,7 @@
                 <v-flex xs12 justify-center>
                     <v-card flat>
                         <v-card-title class="justify-center">
-                            <span class="headline blue-grey--text">Tasques ({{total}})</span>
+                            <span class="headline secondary--text">Tasques ({{total}})</span>
                         </v-card-title>
                         <v-card-text class="px-0">
                             <v-card class="flex flex-col" flat>
@@ -45,13 +45,13 @@
                                     <!--<h3 class="mb-1 mt-2">Filtres</h3>-->
                                     <!--Active filter: {{filter}}-->
                                     <div class="mt-2" v-show="total > 0">
-                                        <v-btn @click="setFilter('all')" color="info">
+                                        <v-btn @click="setFilter('all')" color="secondary">
                                             Totes
                                         </v-btn>
-                                        <v-btn @click="setFilter('completed')" color="info">
+                                        <v-btn @click="setFilter('completed')" color="secondary">
                                             Completades
                                         </v-btn>
-                                        <v-btn @click="setFilter('active')" color="info">
+                                        <v-btn @click="setFilter('active')" color="secondary">
                                             Pendents
                                         </v-btn>
                                     </div>

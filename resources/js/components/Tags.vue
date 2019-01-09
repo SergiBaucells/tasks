@@ -158,7 +158,7 @@
                     :pagination.sync="pagination"
                     class="hidden-md-and-down"
             >
-                <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
+                <v-progress-linear slot="progress" color="secondary" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item: tag}">
                     <tr>
                         <td>{{ tag.id }}</td>
@@ -174,7 +174,7 @@
                             <span :title="tag.updated_at_formatted">{{ tag.updated_at_human }}</span>
                         </td>
                         <td>
-                            <v-btn v-if="$can('tags.show', tags)" icon color="primary" flat
+                            <v-btn v-if="$can('tags.show', tags)" icon color="secondary" flat
                                    title="Mostrar la tag"
                                    @click="showTag(tag)">
                                 <v-icon>visibility</v-icon>
@@ -229,7 +229,7 @@
                 bottom
                 right
                 fixed
-                color="purple accent-2"
+                color="secundary"
                 class="white--text"
         >
             <v-icon>add</v-icon>
@@ -326,7 +326,7 @@ export default {
           title: 'Esteu segurs?',
           buttonTrueText: 'Eliminar',
           buttonFalseText: 'Cancel·lar',
-          color: 'red'
+          color: 'error'
         })
       if (result) {
         this.removing = true

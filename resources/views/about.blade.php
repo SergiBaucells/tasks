@@ -17,7 +17,7 @@
     </v-card-title>
 
     <v-card-actions>
-        <v-btn flat color="blue"><a href="https://github.com/SergiBaucells" style='text-decoration:none'>GitHub</a>
+        <v-btn flat color="primary"><a href="https://github.com/SergiBaucells" style='text-decoration:none'>GitHub</a>
         </v-btn>
     </v-card-actions>
 @endsection

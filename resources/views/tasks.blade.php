@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <v-card>
-        <v-toolbar color="cyan" dark>
+        <v-toolbar color="primary" dark>
 
             <v-toolbar-title>Tasques</v-toolbar-title>
 
@@ -27,7 +27,7 @@
                         @csrf
                         {{ method_field('DELETE') }}
                         <input type="hidden" name="id" value="{{ $task['id']  }}">
-                        <v-btn type="submit" color="warning">
+                        <v-btn type="submit" color="accent">
                             Descompletar
                         </v-btn>
                     </form>
@@ -46,12 +46,12 @@
                     <form action="/taskscompleted/{{$task['id']}}" method="POST">
                         @csrf
                         <input type="hidden" name="id" value="{{ $task['id']  }}">
-                        <v-btn type="submit" color="warning">
+                        <v-btn type="submit" color="accent">
                             Completar
                         </v-btn>
                     </form>
 
-                    <v-btn type="submit" color="info" href="/task_edit/{{ $task['id'] }}">
+                    <v-btn type="submit" color="secondary" href="/task_edit/{{ $task['id'] }}">
                         Modificar
                     </v-btn>
 
@@ -68,7 +68,7 @@
 
             <form action="/tasks" method="POST">
                 @csrf
-                <input name="name" type="text" placeholder="Nova tasca" required>
+                <input style="padding-left: 15px; margin-left: 50%; margin-bottom: 30px; margin-top: 30px; box-shadow: 2px 2px 5px;" name="name" type="text" placeholder="Nova tasca" required>
                 <v-btn type="submit" color="success">
                     Afegir
                 </v-btn>

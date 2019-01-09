@@ -33,7 +33,7 @@
               <v-spacer></v-spacer>
               <v-btn icon small title="Actualitzeu les dades/flush de la cache" @click="refresh"><v-icon>refresh</v-icon></v-btn>
               <v-btn
-                      color="yellow darken-2"
+                      color="primary darken-2"
                       @click="dialog = false"
               >
                 Tancar

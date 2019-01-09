@@ -19,7 +19,7 @@
             </v-card>
         </v-dialog>
         <v-btn v-if="$can('user.tasks.show', task)" icon
-               color="primary" flat
+               color="secondary" flat
                title="Mostrar la tasca" @click="dialog=true">
             <v-icon>visibility</v-icon>
         </v-btn>

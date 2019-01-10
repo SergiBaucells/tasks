@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#F0B429"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="#F0B429">
     <link rel="manifest" href="/manifest.json">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link rel="shortcut icon" type="image/png"

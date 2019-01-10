@@ -45,6 +45,8 @@ class LoginController extends Controller
     /**
      * Redirect the user to the $provider authentication page.
      *
+     * @param Request $request
+     * @param $provider
      * @return \Illuminate\Http\Response
      */
     public function redirectToProvider(Request $request, $provider)
@@ -55,14 +57,16 @@ class LoginController extends Controller
     /**
      * Obtain the user information from GitHub.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $provider
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(Request $request, $provider)
     {
         try {
-            $user = Socialite::driver('github')->user();
+            $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
-            return Redirect::to('auth/github');
+            return Redirect::to('auth/' . $provider);
         }
 
         $authUser = $this->findOrCreateUser($user);
@@ -76,18 +80,18 @@ class LoginController extends Controller
     /**
      * Return user if exists; create and return if doesn't
      *
-     * @param $githubUser
+     * @param $user
      * @return User
      */
-    private function findOrCreateUser($githubUser)
+    private function findOrCreateUser($user)
     {
-        if ($authUser = User::where('email', $githubUser->email)->first()) {
+        if ($authUser = User::where('email', $user->email)->first()) {
             return $authUser;
         }
 
         return User::create([
-            'name' => $githubUser->name,
-            'email' => $githubUser->email,
+            'name' => $user->name,
+            'email' => $user->email,
             'password' => str_random()
         ]);
     }

@@ -43,7 +43,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Redirect the user to the GitHub authentication page.
+     * Redirect the user to the $provider authentication page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -67,8 +67,8 @@ class LoginController extends Controller
 
         $authUser = $this->findOrCreateUser($user);
 
-        Auth::login($authUser, true);
         $authUser->assignRole('Tasks');
+        Auth::login($authUser, true);
 
         return Redirect::to('home');
     }

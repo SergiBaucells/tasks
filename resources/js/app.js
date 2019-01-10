@@ -17,12 +17,17 @@ import permissions from './plugins/permissions'
 import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
 import Impersonate from './components/Impersonate'
+import Color from './components/ColorTheme'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
 
-const PRIMARY_COLOR_KEY = 'primary_color_key'
+const PRIMARY_COLOR_KEY = 'PRIMARY_COLOR_KEY'
+const SECONDARY_COLOR_KEY = 'SECONDARY_COLOR_KEY'
+const DETAILS_COLOR_KEY = 'DETAILS_COLOR_KEY'
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#F0B429'
+const secondaryColor = window.localStorage.getItem(SECONDARY_COLOR_KEY) || '#2BB0ED'
+const detailColor = window.localStorage.getItem(DETAILS_COLOR_KEY) || '#C65D21'
 
 window.Vue.use(window.Vuetify, {
   theme: {
@@ -39,7 +44,7 @@ window.Vue.use(window.Vuetify, {
       darken4: '#8D2B0B'
     },
     secondary: {
-      base: '#2BB0ED',
+      base: secondaryColor,
       lighten1: '#40C3F7',
       lighten2: '#5ED0FA',
       lighten3: '#81DEFD',
@@ -51,7 +56,7 @@ window.Vue.use(window.Vuetify, {
       darken4: '#035388'
     },
     accent: {
-      base: '#C65D21',
+      base: detailColor,
       lighten1: '#E67635',
       lighten2: '#EF8E58',
       lighten3: '#FAB38B',
@@ -118,6 +123,7 @@ window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
 window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
+window.Vue.component('color', Color)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

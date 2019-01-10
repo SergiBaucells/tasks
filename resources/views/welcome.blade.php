@@ -88,7 +88,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="error--text">flash_on</v-icon>
+                                            <v-icon x-large class="success--text">flash_on</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline">Fast development</div>

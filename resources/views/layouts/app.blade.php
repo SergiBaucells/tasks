@@ -129,6 +129,10 @@
                 </v-flex>
             </v-layout>
         </v-card>
+        <v-card>
+            <v-card-title class="primary white--text"><h4>Colors del tema</h4></v-card-title>
+            <color></color>
+        </v-card>
     </v-navigation-drawer>
     <v-toolbar color="primary" dark fixed app clipped-right clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>

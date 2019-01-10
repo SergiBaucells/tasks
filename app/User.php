@@ -12,6 +12,12 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+
+    const DEFAULT_PHOTO = 'default.png';
+//    const PHOTOS_PATH = 'user_photos';
+    const DEFAULT_PHOTO_PATH1 = 'photos/' . self::DEFAULT_PHOTO;
+    const DEFAULT_PHOTO_PATH = 'app/' . self::DEFAULT_PHOTO_PATH1;
+
     use Notifiable, HasApiTokens, HasRoles, Impersonate;
 
     /**
@@ -106,4 +112,28 @@ class User extends Authenticatable
         if ($this->isImpersonated()) return User::findOrFail(Session::get('impersonated_by'));
         return null;
     }
+
+    public function photo()
+    {
+        return $this->hasOne(Photo::class);
+    }
+
+    public function assignPhoto(Photo $photo)
+    {
+        $photo->user_id = $this->id;
+        $photo->save();
+        return $this;
+    }
+
+    public function avatars()
+    {
+        return $this->hasMany(Avatar::class);
+    }
+
+    public function addAvatar(Avatar $avatar)
+    {
+        $this->avatars()->save($avatar);
+        return $this;
+    }
+
 }

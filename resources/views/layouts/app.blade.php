@@ -8,7 +8,6 @@
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
     <meta name="theme-color" content="#F0B429"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="#F0B429">
     <link rel="manifest" href="/manifest.json">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link rel="shortcut icon" type="image/png"

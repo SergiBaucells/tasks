@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ProfileController;
 
 Auth::routes();
 
@@ -26,6 +29,14 @@ Route::middleware(['auth'])->group(function () {
     Route::impersonate();
     // Tags
     Route::get('/tags', 'TagsController@index');
+
+    Route::get('/profile', '\\'. ProfileController::class . '@show');
+
+
+    Route::post('/photo', '\\'. PhotoController::class . '@store');
+
+
+    Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
 });
 
 Route::post('/login_alt', 'Auth\LoginAltController@login');

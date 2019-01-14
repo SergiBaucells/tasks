@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
@@ -37,6 +38,12 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
+
+    //Changelog
+    Route::get('/changelog','\\'. ChangelogController::class . '@index');
+//    Route::get('/changelog/module/{module}','Tenant\Web\ChangelogModuleController@index');
+//    Route::get('/changelog/user/{user}','Tenant\Web\ChangelogUserController@index');
+//    Route::get('/changelog/loggable/{loggable}/{loggableId}','Tenant\Web\ChangelogLoggableController@index');
 });
 
 Route::post('/login_alt', 'Auth\LoginAltController@login');

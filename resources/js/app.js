@@ -19,9 +19,19 @@ import confirm from './plugins/confirm'
 import Impersonate from './components/Impersonate'
 import Color from './components/ColorTheme'
 import Profile from './components/Profile'
+import TreeView from 'vue-json-tree-view'
+import Changelog from './components/changelog/ChangelogComponent.vue'
+import VueTimeago from 'vue-timeago'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
+
+window.Vue.use(VueTimeago, {
+  locale: 'ca', // Default locale
+  locales: {
+    'ca': require('date-fns/locale/ca')
+  }
+})
 
 const PRIMARY_COLOR_KEY = 'PRIMARY_COLOR_KEY'
 const SECONDARY_COLOR_KEY = 'SECONDARY_COLOR_KEY'
@@ -126,6 +136,9 @@ window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
 window.Vue.component('color', Color)
 window.Vue.component('profile', Profile)
+window.Vue.use(TreeView)
+// Changelog
+window.Vue.component('changelog', Changelog)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

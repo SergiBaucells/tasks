@@ -171,7 +171,7 @@ export default {
       ],
       search: '',
       pagination: {
-        rowsPerPage: 25
+        rowsPerPage: 5
       },
       loading: false,
       dataTasks: this.tasks,

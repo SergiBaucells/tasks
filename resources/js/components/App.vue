@@ -1,5 +1,5 @@
 <script>
-export default{
+export default {
   el: '#app',
   name: 'App',
   data: () => ({
@@ -20,7 +20,9 @@ export default{
       },
       { icon: 'turned_in', text: 'Etiquetes', url: 'tags' },
       { icon: 'account_box', text: 'Sobre nosaltres', url: '/about' },
-      { icon: 'date_range', text: 'Calendari', url: '/calendari' }
+      { icon: 'date_range', text: 'Calendari', url: '/calendari' },
+      { icon: 'person', text: 'Perfil', url: '/profile' },
+      { icon: 'update', text: 'ChangeLog', url: '/changelog' }
     ]
   }),
   props: {

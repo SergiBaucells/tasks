@@ -33,16 +33,18 @@
                                 v-model="filter"
                                 item-text="name"
                                 :return-object="true"
+                                v-show="dataTasks.length > 0"
                         ></v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
-                        <user-select :users="dataUsers" label="Usuari"></user-select>
+                        <user-select v-show="dataTasks.length > 0" :users="dataUsers" label="Usuari"></user-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
                                 v-model="search"
+                                v-show="dataTasks.length > 0"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
@@ -112,22 +114,33 @@
                         slot="item"
                         slot-scope="{item:task}"
                         xs12
-                        sm6
-                        md4
                 >
-                    <v-card class="mb-1">
-                        <v-card-title v-text="task.name"></v-card-title>
-                        <v-list dense>
-                            <v-list-tile>
-                              <v-list-tile-content>Completed:</v-list-tile-content>
-                              <v-list-tile-content class="align-end">{{ task.completed }}</v-list-tile-content>
-                            </v-list-tile>
-                            <v-list-tile>
-                              <v-list-tile-content>User:</v-list-tile-content>
-                              <v-list-tile-content class="align-end">{{ task.user_id }}</v-list-tile-content>
-                            </v-list-tile>
-                        </v-list>
-                    </v-card>
+                    <v-flex xs12 pb-1>
+                      <v-card color="secondary lighten-4">
+                        <v-layout>
+                          <v-flex xs5>
+                            <v-img :src="(task.user !== null) ? task.user_gravatar : 'img/user_profile.png'" height="125px" contain></v-img>
+                          </v-flex>
+                          <v-flex xs7>
+                            <v-card-title primary-title>
+                              <div>
+                                <div class="headline">{{ task.user_name }}</div>
+                                <div>{{ task.name }}</div>
+                                <div>{{ task.completed ? 'Completada' : 'Pendent' }}</div>
+                              </div>
+                            </v-card-title>
+                          </v-flex>
+                        </v-layout>
+                        <v-divider light></v-divider>
+                        <v-card-actions class="pa-3">
+                          {{ task.user_email }}
+                          <v-spacer></v-spacer>
+                            <task-show v-if="$can('user.tasks.show')" :users="users" :task="task" :uri="uri" :loading="showing" :disabled="showing"></task-show>
+                            <task-update v-if="$can('user.tasks.update')" :users="users" :task="task" @updated="updateTask" :uri="uri" :loading="editing" :disabled="editing"></task-update>
+                            <task-destroy v-if="$can('user.tasks.destroy')" :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+                        </v-card-actions>
+                      </v-card>
+                    </v-flex>
                 </v-flex>
             </v-data-iterator>
         </v-card>

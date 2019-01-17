@@ -6,7 +6,7 @@
         >
           <v-card>
             <v-card-title
-                    class="headline primary"
+                    class="headline primary white--text"
                     primary-title
             >
               Informació versió de l'aplicació
@@ -33,7 +33,6 @@
               <v-spacer></v-spacer>
               <v-btn icon small title="Actualitzeu les dades/flush de la cache" @click="refresh"><v-icon>refresh</v-icon></v-btn>
               <v-btn
-                      color="primary darken-2"
                       @click="dialog = false"
               >
                 Tancar

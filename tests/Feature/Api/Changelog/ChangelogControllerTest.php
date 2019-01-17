@@ -31,7 +31,7 @@ class ChangelogControllerTest extends TestCase {
         $response =  $this->json('GET','/api/v1/changelog');
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
-//        dd($response);
+//        dd($result);
         $this->assertCount(4,$result);
 
         $this->assertEquals($logs[0]->id,$result[0]->id);

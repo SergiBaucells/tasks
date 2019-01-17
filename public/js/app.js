@@ -76030,6 +76030,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -78654,6 +78667,14 @@ var render = function() {
                     { staticClass: "pr-2", attrs: { lg3: "" } },
                     [
                       _c("v-select", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.dataTasks.length > 0,
+                            expression: "dataTasks.length > 0"
+                          }
+                        ],
                         attrs: {
                           label: "Filtres",
                           items: _vm.filters,
@@ -78677,6 +78698,14 @@ var render = function() {
                     { staticClass: "pr-2", attrs: { lg4: "" } },
                     [
                       _c("user-select", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.dataTasks.length > 0,
+                            expression: "dataTasks.length > 0"
+                          }
+                        ],
                         attrs: { users: _vm.dataUsers, label: "Usuari" }
                       })
                     ],
@@ -78688,6 +78717,14 @@ var render = function() {
                     { attrs: { lg5: "" } },
                     [
                       _c("v-text-field", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.dataTasks.length > 0,
+                            expression: "dataTasks.length > 0"
+                          }
+                        ],
                         attrs: { "append-icon": "search", label: "Buscar" },
                         model: {
                           value: _vm.search,
@@ -78907,46 +78944,119 @@ var render = function() {
                   var task = ref.item
                   return _c(
                     "v-flex",
-                    { attrs: { xs12: "", sm6: "", md4: "" } },
+                    { attrs: { xs12: "" } },
                     [
                       _c(
-                        "v-card",
-                        { staticClass: "mb-1" },
+                        "v-flex",
+                        { attrs: { xs12: "", "pb-1": "" } },
                         [
-                          _c("v-card-title", {
-                            domProps: { textContent: _vm._s(task.name) }
-                          }),
-                          _vm._v(" "),
                           _c(
-                            "v-list",
-                            { attrs: { dense: "" } },
+                            "v-card",
+                            { attrs: { color: "secondary lighten-4" } },
                             [
                               _c(
-                                "v-list-tile",
+                                "v-layout",
                                 [
-                                  _c("v-list-tile-content", [
-                                    _vm._v("Completed:")
-                                  ]),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { xs5: "" } },
+                                    [
+                                      _c("v-img", {
+                                        attrs: {
+                                          src:
+                                            task.user !== null
+                                              ? task.user_gravatar
+                                              : "img/user_profile.png",
+                                          height: "125px",
+                                          contain: ""
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
                                   _vm._v(" "),
                                   _c(
-                                    "v-list-tile-content",
-                                    { staticClass: "align-end" },
-                                    [_vm._v(_vm._s(task.completed))]
+                                    "v-flex",
+                                    { attrs: { xs7: "" } },
+                                    [
+                                      _c(
+                                        "v-card-title",
+                                        { attrs: { "primary-title": "" } },
+                                        [
+                                          _c("div", [
+                                            _c(
+                                              "div",
+                                              { staticClass: "headline" },
+                                              [_vm._v(_vm._s(task.user_name))]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("div", [
+                                              _vm._v(_vm._s(task.name))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("div", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  task.completed
+                                                    ? "Completada"
+                                                    : "Pendent"
+                                                )
+                                              )
+                                            ])
+                                          ])
+                                        ]
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
                               ),
                               _vm._v(" "),
+                              _c("v-divider", { attrs: { light: "" } }),
+                              _vm._v(" "),
                               _c(
-                                "v-list-tile",
+                                "v-card-actions",
+                                { staticClass: "pa-3" },
                                 [
-                                  _c("v-list-tile-content", [_vm._v("User:")]),
+                                  _vm._v(
+                                    "\n                      " +
+                                      _vm._s(task.user_email) +
+                                      "\n                      "
+                                  ),
+                                  _c("v-spacer"),
                                   _vm._v(" "),
-                                  _c(
-                                    "v-list-tile-content",
-                                    { staticClass: "align-end" },
-                                    [_vm._v(_vm._s(task.user_id))]
-                                  )
+                                  _vm.$can("user.tasks.show")
+                                    ? _c("task-show", {
+                                        attrs: {
+                                          users: _vm.users,
+                                          task: task,
+                                          uri: _vm.uri,
+                                          loading: _vm.showing,
+                                          disabled: _vm.showing
+                                        }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.$can("user.tasks.update")
+                                    ? _c("task-update", {
+                                        attrs: {
+                                          users: _vm.users,
+                                          task: task,
+                                          uri: _vm.uri,
+                                          loading: _vm.editing,
+                                          disabled: _vm.editing
+                                        },
+                                        on: { updated: _vm.updateTask }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.$can("user.tasks.destroy")
+                                    ? _c("task-destroy", {
+                                        attrs: { task: task, uri: _vm.uri },
+                                        on: { removed: _vm.removeTask }
+                                      })
+                                    : _vm._e()
                                 ],
                                 1
                               )
@@ -81274,7 +81384,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GitInfoComponent',
@@ -81347,7 +81456,7 @@ var render = function() {
               _c(
                 "v-card-title",
                 {
-                  staticClass: "headline primary",
+                  staticClass: "headline primary white--text",
                   attrs: { "primary-title": "" }
                 },
                 [
@@ -81436,7 +81545,6 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "primary darken-2" },
                       on: {
                         click: function($event) {
                           _vm.dialog = false
@@ -82464,7 +82572,7 @@ var render = function() {
       { staticClass: "text-xs-center" },
       [
         _c("v-card-title", { staticClass: "justify-center" }, [
-          _vm._v("Color principal:")
+          _vm._v("Color principal")
         ]),
         _vm._v(" "),
         _c("swatches", {
@@ -82478,7 +82586,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("v-card-title", { staticClass: "justify-center" }, [
-          _vm._v("Color secundari:")
+          _vm._v("Color secundari")
         ]),
         _vm._v(" "),
         _c("swatches", {
@@ -82492,7 +82600,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("v-card-title", { staticClass: "justify-center" }, [
-          _vm._v("Color detalls:")
+          _vm._v("Color detalls")
         ]),
         _vm._v(" "),
         _c("swatches", {
@@ -82516,7 +82624,7 @@ var render = function() {
             }
           },
           [
-            _c("v-icon", { staticClass: "mr-1" }, [_vm._v("save")]),
+            _c("v-icon", [_vm._v("save")]),
             _vm._v("\n            Aplicar\n        ")
           ],
           1
@@ -82591,6 +82699,10 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_MaterialCard__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_MaterialCard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ui_MaterialCard__);
+//
+//
+//
+//
 //
 //
 //
@@ -83368,14 +83480,7 @@ var render = function() {
                       attrs: { slot: "offset", size: "130" },
                       slot: "offset"
                     },
-                    [
-                      _c("img", {
-                        attrs: {
-                          src:
-                            "https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
-                        }
-                      })
-                    ]
+                    [_c("img", { attrs: { src: "/user/avatar" } })]
                   ),
                   _vm._v(" "),
                   _c(
@@ -83384,15 +83489,36 @@ var render = function() {
                     [
                       _c("p", [_vm._v("Username here")]),
                       _vm._v(" "),
-                      _c("input", {
-                        ref: "avatar",
-                        attrs: {
-                          type: "file",
-                          name: "avatar",
-                          id: "avatar-file-input",
-                          accept: "image/*"
-                        }
-                      }),
+                      _c(
+                        "form",
+                        {
+                          attrs: {
+                            action: "/avatar",
+                            method: "POST",
+                            enctype: "multipart/form-data"
+                          }
+                        },
+                        [
+                          _c("input", {
+                            ref: "avatar",
+                            attrs: {
+                              type: "file",
+                              name: "avatar",
+                              id: "avatar-file-input",
+                              accept: "image/*"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.csrf_token }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "submit", value: "Pujar" }
+                          })
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
                         "v-btn",

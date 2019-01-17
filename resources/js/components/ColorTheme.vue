@@ -1,17 +1,17 @@
 <template>
     <span>
         <div class="text-xs-center">
-            <v-card-title class="justify-center">Color principal:</v-card-title>
+            <v-card-title class="justify-center">Color principal</v-card-title>
             <swatches v-model="colorPrincipal"></swatches>
-            <v-card-title class="justify-center">Color secundari:</v-card-title>
+            <v-card-title class="justify-center">Color secundari</v-card-title>
             <swatches v-model="colorSecundari"></swatches>
-            <v-card-title class="justify-center">Color detalls:</v-card-title>
+            <v-card-title class="justify-center">Color detalls</v-card-title>
             <swatches v-model="colorDetalls"></swatches>
             <v-btn style="margin-bottom: 15px"
                    color="success"
                    value="Refresh Page"
                    onClick="window.location.reload()">
-                <v-icon class="mr-1" >save</v-icon>
+                <v-icon>save</v-icon>
                 Aplicar
             </v-btn>
         </div>

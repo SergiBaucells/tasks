@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DestroyTaskCompleted;
 use App\Http\Requests\StoreTaskCompleted;
+use App\Events\TaskUncompleted;
 use App\Task;
-use Illuminate\Http\Request;
 
 class TasksCompletedController extends Controller
 {
@@ -21,5 +21,7 @@ class TasksCompletedController extends Controller
     {
         $task->completed = false;
         $task->save();
+        // HOOK -> EVENT
+        event(new TaskUncompleted($task));
     }
 }

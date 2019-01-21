@@ -18,6 +18,7 @@ class PhotoControllerTest extends TestCase
      */
     public function upload_photo()
     {
+        $this->withoutExceptionHandling();
         Storage::fake('local');
         Storage::fake('google');
 

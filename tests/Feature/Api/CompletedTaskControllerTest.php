@@ -2,13 +2,16 @@
 
 namespace Tests\Feature\Api;
 
+use App\Events\TaskUncompleted;
 use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
 class CompletedTaskControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, CanLogin;
 
     /**
      * @test
@@ -48,21 +51,20 @@ class CompletedTaskControllerTest extends TestCase
      */
     public function can_uncomplete_a_task()
     {
-        initialize_roles();
-        $user = login($this, 'api');
-        $user->assignRole('Tasks');
-        //1
-        $task = Task::create([
+        $user = $this->loginAsTaskManager('api');
+        $task= Task::create([
             'name' => 'comprar pa',
             'completed' => true
         ]);
         //2
-        $response = $this->json('DELETE', '/api/v1/completed_task/' . $task->id);
+        Event::fake();
+        $response = $this->json('DELETE','/api/v1/completed_task/' . $task->id);
         $response->assertSuccessful();
-        //3 Dos opcions: 1) Comprovar base de dades directament
-        // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
-        $this->assertEquals((boolean)$task->completed, false);
+        $this->assertEquals((boolean) $task->completed, false);
+        Event::assertDispatched(TaskUncompleted::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
 
     /**

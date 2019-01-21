@@ -4,13 +4,21 @@ use App\Log;
 use App\Tag;
 use App\Task;
 use App\User;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+
+if (! function_exists('ellipsis')) {
+    function ellipsis($text,$max=50)
+    {
+        $ellipted = strlen($text) > $max ? substr($text,0,$max)."..." : $text;
+        return $ellipted;
+    }
+}
 
 if (!function_exists('create_primary_user')) {
     function create_primary_user()

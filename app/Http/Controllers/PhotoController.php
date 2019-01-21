@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Photos\AvatarStore;
+use App\Http\Requests\Photos\PhotoStore;
 use App\Photo;
 
 class PhotoController extends Controller
 {
 
-    public function store(AvatarStore $request)
+    public function store(PhotoStore $request)
     {
         $extension = $request->file('photo')->getClientOriginalExtension();
         $path = $request->file('photo')->storeAs(
@@ -29,7 +29,7 @@ class PhotoController extends Controller
         return back();
     }
 
-    public function storeExamples(AvatarStore $request)
+    public function storeExamples(PhotoStore $request)
     {
         //Nom definit per Laravel amb un sistema per evitar colisions:
         $path = $request->file('photo')->store('photos');

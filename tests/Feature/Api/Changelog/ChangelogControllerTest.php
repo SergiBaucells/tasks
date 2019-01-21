@@ -21,19 +21,16 @@ class ChangelogControllerTest extends TestCase {
      */
     public function can_list_logs()
     {
-        $this->withoutExceptionHandling();
         $logs = sample_logs();
         $user = factory(User::class)->create();
         $role = Role::firstOrCreate(['name' => 'ChangelogManager']);
         $user->assignRole($role);
         $this->actingAs($user,'api');
-
         $response =  $this->json('GET','/api/v1/changelog');
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
-//        dd($result);
+//        dump($result);
         $this->assertCount(4,$result);
-
         $this->assertEquals($logs[0]->id,$result[0]->id);
         $this->assertEquals($logs[0]->text,$result[0]->text);
         $this->assertNotNull($result[0]->time);

@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\GitController;
-use App\Http\Controllers\ChangelogController;
 use App\Task;
 use Illuminate\Http\Request;
 

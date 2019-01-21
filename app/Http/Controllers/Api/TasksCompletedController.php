@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\TaskCompleted;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DestroyTaskCompleted;
 use App\Http\Requests\StoreTaskCompleted;
@@ -15,6 +16,7 @@ class TasksCompletedController extends Controller
     {
         $task->completed = true;
         $task->save();
+        event(new TaskCompleted($task));
     }
 
     public function destroy(DestroyTaskCompleted $request, Task $task)

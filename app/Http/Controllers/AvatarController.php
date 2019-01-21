@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Avatar;
 use App\Http\Requests\Avatar\AvatarStore;
+use App\Avatar;
 
 class AvatarController extends Controller
 {
@@ -12,7 +12,7 @@ class AvatarController extends Controller
     {
         $extension = $request->file('avatar')->getClientOriginalExtension();
         $path = $request->file('avatar')->storeAs(
-            'avatar', $request->user()->id. '.'. $extension
+            'avatars', $request->user()->id. '.'. $extension
         );
         $request->file('avatar')->storeAs(
             '',$request->user()->id. '.'. $extension,'google'

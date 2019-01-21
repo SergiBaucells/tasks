@@ -19,7 +19,7 @@ class User extends Authenticatable
     const DEFAULT_PHOTO_PATH = 'app/' . self::DEFAULT_PHOTO_PATH1;
 
     const DEFAULT_AVATAR = 'default.png';
-    const DEFAULT_AVATAR_PATH1 = 'avatar/' . self::DEFAULT_AVATAR;
+    const DEFAULT_AVATAR_PATH1 = 'avatars/' . self::DEFAULT_AVATAR;
     const DEFAULT_AVATAR_PATH = 'app/' . self::DEFAULT_AVATAR_PATH1;
 
     use Notifiable, HasApiTokens, HasRoles, Impersonate;

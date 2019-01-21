@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Avatar;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class AvatarStore extends FormRequest
 {

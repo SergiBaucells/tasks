@@ -22,6 +22,7 @@ import Profile from './components/Profile'
 import TreeView from 'vue-json-tree-view'
 import Changelog from './components/changelog/ChangelogComponent.vue'
 import VueTimeago from 'vue-timeago'
+import ServiceWorker from './components/ServiceWorker.vue'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -137,6 +138,7 @@ window.Vue.component('git-info', GitInfo)
 window.Vue.component('color', Color)
 window.Vue.component('profile', Profile)
 window.Vue.use(TreeView)
+window.Vue.component('service-worker', ServiceWorker)
 // Changelog
 window.Vue.component('changelog', Changelog)
 

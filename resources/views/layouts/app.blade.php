@@ -20,6 +20,7 @@
 <body>
 <v-app id="app" v-cloak>
     <snackbar></snackbar>
+    <service-worker></service-worker>
     <v-navigation-drawer
             v-model="drawer"
             fixed

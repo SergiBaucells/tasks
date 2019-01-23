@@ -146,6 +146,31 @@ class TaskTest extends TestCase
     /**
      * @test
      */
+    public function a_assign_tag_to_task_using_id()
+    {
+        // 1 Prepare
+        $task = Task::create([
+            'name' => 'Comprar pa'
+        ]);
+
+        $tag = Tag::create([
+            'name' => 'home',
+            'description' => 'Descripció',
+            'color' => '#000000'
+        ]);
+
+        // execució
+        $task->addTag($tag->id);
+
+        // Assertion
+        $tags = $task->tags;
+
+        $this->assertTrue($tags[0]->is($tag));
+    }
+
+    /**
+     * @test
+     */
     public function a_task_file_returns_null_when_no_file_is_assigned()
     {
         //1

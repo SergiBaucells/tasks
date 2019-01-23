@@ -40,10 +40,12 @@ class Task extends Model
 
     public function addTag($tag)
     {
+        !is_int($tag) ?: $tag = Tag::findOrFail($tag);
         $this->tags()->save($tag);
+        return $this;
     }
 
-    public function addTags(array $tags)
+    public function addTags($tags)
     {
         $this->tags()->saveMany($tags);
     }

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
-class TagControllerTest extends TestCase
+class TagsControllerTest extends TestCase
 {
     use RefreshDatabase, CanLogin;
 

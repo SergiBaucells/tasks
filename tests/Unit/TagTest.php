@@ -9,6 +9,7 @@
 namespace Tests\Unit;
 
 use App\Tag;
+use App\Task;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -32,6 +33,44 @@ class TagTest extends TestCase
         $this->assertEquals($mappedTask['name'],'Etiqueta');
         $this->assertEquals($mappedTask['description'],'Descripció');
         $this->assertEquals($mappedTask['color'],'#000000');
+    }
+
+    /**
+     * @test
+     */
+    public function can_add_a_task_to_tag()
+    {
+        // 1 Prepare
+        $task = Task::create([
+            'name' => 'Comprar pa'
+        ]);
+
+        $task2 = Task::create([
+            'name' => 'Comprar llet'
+        ]);
+
+        $tag = Tag::create([
+            'name' => 'home',
+            'description' => 'Descripció',
+            'color' => '#000000'
+        ]);
+
+        // execució
+        $tag->addTask($task);
+
+        // Assertion
+        $tasks = $tag->tasks;
+
+        $this->assertTrue($tasks[0]->is($task));
+
+        // execució
+        $tag->addTask($task2->id);
+
+//        // Assertion
+//        $tasks = $tag->tasks;
+//
+//        $this->assertTrue($tasks[1]->is($task2));
+
     }
 
 }

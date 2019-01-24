@@ -33,18 +33,16 @@
                                 v-model="filter"
                                 item-text="name"
                                 :return-object="true"
-                                v-show="dataTasks.length > 0"
                         ></v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
-                        <user-select v-show="dataTasks.length > 0" :users="dataUsers" label="Usuari"></user-select>
+                        <user-select :users="dataUsers" label="Usuari"></user-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
                                 v-model="search"
-                                v-show="dataTasks.length > 0"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>

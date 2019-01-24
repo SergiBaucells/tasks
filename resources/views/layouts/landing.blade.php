@@ -14,6 +14,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/images/icons2/favicon-16x16.png">
     <link rel="mask-icon" href="img/images/icons2/safari-pinned-tab.svg" color="#d0c300">
     <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-TileImage" content="img/images/icons2/mstile-144x144.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <style>

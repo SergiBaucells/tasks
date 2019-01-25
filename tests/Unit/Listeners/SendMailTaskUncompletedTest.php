@@ -27,7 +27,7 @@ class SendMailTaskUncompletedTest extends TestCase
         // Executar
 //        event(new TaskUncompleted($task));
         Mail::fake();
-        $listener = new \App\Listeners\SendMailTaskUncompleted();
+        $listener = new \App\Listeners\EmailTaskUncompleted();
         $listener->handle(new \App\Events\TaskUncompleted($task));
         // 3 ASSERT
         Mail::assertSent(TaskUncompleted::class, function ($mail) use ($task, $user) {

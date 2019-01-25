@@ -4,6 +4,7 @@
             v-model="dataValue"
             :label="dataValue ? activeText : unactiveText"
             :loading="loading"
+            :disabled="loading"
     ></v-switch>
 </template>
 

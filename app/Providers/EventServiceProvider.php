@@ -7,10 +7,10 @@ use App\Events\TaskDelete;
 use App\Events\TaskStored;
 use App\Events\TaskUpdate;
 use App\Listeners\AddRolesToRegisterUser;
-use App\Listeners\SendMailTaskCompleted;
+use App\Listeners\EmailTaskCompleted;
+use App\Listeners\EmailTaskUncompleted;
 use App\Listeners\EmailTaskDelete;
 use App\Listeners\EmailTaskStored;
-use App\Listeners\SendMailTaskUncompleted;
 use App\Listeners\EmailTaskUpdated;
 use App\Listeners\LogTaskCompleted;
 use App\Listeners\LogTaskDelete;
@@ -36,11 +36,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         TaskUncompleted::class => [
             LogTaskUncompleted::class,
-            SendMailTaskUncompleted::class
+            EmailTaskUncompleted::class
         ],
         TaskCompleted::class => [
             LogTaskCompleted::class,
-            SendMailTaskCompleted::class
+            EmailTaskCompleted::class
         ],
         TaskStored::class => [
             LogTaskStored::class,

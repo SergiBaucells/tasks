@@ -1,7 +1,8 @@
 <template>
     <span>
         <v-btn v-if="$can('user.tasks.destroy', task)" :loading="removing"
-               :disabled="removing" icon
+               :disabled="removing"
+               icon
                color="error"
                flat
                title="Eliminar la tasca" @click="destroy(task)">

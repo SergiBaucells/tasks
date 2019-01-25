@@ -13,7 +13,7 @@ process_name=%(program_name)s_%(process_num)02d
 command=php /home/sergi/Code/baucells/tasks/artisan queue:work redis --sleep=3 --tries=3
 autostart=true
 autorestart=true
-user=Sergi
+user=sergi
 numprocs=8
 redirect_stderr=true
 stdout_logfile=/home/sergi/Code/baucells/tasks/storage/logs/worker.log

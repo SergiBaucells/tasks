@@ -1,10 +1,10 @@
 @component('mail::message')
-# Tasca descompletada
+# Tasca eliminada
 
-S'ha marcat com a pendent la tasca: {{ $task->name }}
+S'ha esborrat la tasca: {{ $task->name }}
 
 @component('mail::button', ['url' => url('/tasques')])
-Veure tasca
+Veure tasques
 @endcomponent
 
 Gracies,<br>

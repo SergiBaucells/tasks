@@ -229,7 +229,7 @@
                 bottom
                 right
                 fixed
-                color="secundary"
+                color="secondary"
                 class="white--text"
         >
             <v-icon>add</v-icon>

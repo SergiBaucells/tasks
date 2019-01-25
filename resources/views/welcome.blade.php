@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-    <v-app light>
+    <v-app light style="background: #F0F4F8;background: -webkit-linear-gradient(to right, #F0F4F8, #D9E2EC, #BCCCDC);
+            background: linear-gradient(to right, #F0F4F8, #D9E2EC, #BCCCDC);">
         <v-toolbar>
             <v-toolbar-title>App de Tasques Catalanes</v-toolbar-title>
             <v-spacer></v-spacer>
@@ -28,7 +29,13 @@
                             class="white--text"
                     >
                         <img src="img/catalunya.png" alt="Vuetify.js" height="200">
-                        <h1 class="white--text mb-2 display-1 text-xs-center">App de Tasques Catalanes</h1>
+                        <h1 style="
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 30px;
+                        text-shadow: rgba(0,0,0,40) 0 0 50px;"
+                        class="white--text mb-2 text-xs-center">
+                            App de Tasques Catalanes
+                        </h1>
                         <div class="subheading mb-3 text-xs-center">Sergi Baucells Rodríguez</div>
                         <v-layout>
                             <v-btn
@@ -123,10 +130,14 @@
             <section>
                 <v-parallax src="img/portada2.jpg" height="380">
                     <v-layout column align-center justify-center>
-                        <div class="headline white--text mb-3 text-xs-center">El desenvolupament web mai no ha estat tan
-                            fàcil
-                        </div>
-                        <em>Accediu a la aplicació!</em>
+                        <h1 style="
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 30px;
+                        text-shadow: rgba(0,0,0,40) 0 0 50px;"
+                            class="white--text mb-2 text-xs-center">
+                            El desenvolupament web mai ha estat tan fàcil
+                        </h1>
+                        <div style="text-shadow: rgba(0,0,0,40) 0 0 50px;" class="subheading mb-3 text-xs-center">Accediu a la aplicació!</div>
                         <v-btn
                                 class="mt-5"
                                 dark

@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#F0B429"/>
     <link rel="manifest" href="/manifest.json">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="img/images/icons2/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/images/icons2/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/images/icons2/favicon-16x16.png">

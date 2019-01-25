@@ -80694,7 +80694,7 @@ var render = function() {
                 bottom: "",
                 right: "",
                 fixed: "",
-                color: "secundary"
+                color: "secondary"
               },
               on: { click: _vm.showCreate }
             },

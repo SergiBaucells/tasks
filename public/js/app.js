@@ -76215,6 +76215,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'toggle',
@@ -76291,7 +76292,8 @@ var render = function() {
   return _c("v-switch", {
     attrs: {
       label: _vm.dataValue ? _vm.activeText : _vm.unactiveText,
-      loading: _vm.loading
+      loading: _vm.loading,
+      disabled: _vm.loading
     },
     model: {
       value: _vm.dataValue,
@@ -76371,6 +76373,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //

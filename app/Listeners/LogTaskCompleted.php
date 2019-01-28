@@ -6,7 +6,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Carbon;
 
-class LogTaskCompleted
+class LogTaskCompleted implements ShouldQueue
 {
     /**
      * Create the event listener.

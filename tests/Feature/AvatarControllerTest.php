@@ -37,7 +37,7 @@ class AvatarControllerTest extends TestCase
         $this->assertEquals($user->id, $avatar->user->id);
         $user = $user->fresh();
 //        dd($user->avatar);
-        $this->assertNotNull($user->avatar);
+        $this->assertNotNull($user->avatars);
         $this->assertEquals($avatarUrl, $user->avatar->url);
     }
 

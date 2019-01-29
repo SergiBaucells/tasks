@@ -116,6 +116,7 @@
                             size="130"
                     >
                         <img
+                                ref="img_avatar"
                                 src="/user/avatar"
                         >
                     </v-avatar>
@@ -141,13 +142,15 @@
                             size="130"
                     >
                         <img
+                                ref="img_photo"
                                 src="/user/photo"
+                                @click="selectFiles"
                         >
                     </v-avatar>
                     <v-card-text class="text-xs-center">
                         <p>Username here</p>
                         <form action="/photo" method="POST" enctype="multipart/form-data">
-                            <input type="file" name="photo" id="photo-file-input" ref="avatar" accept="image/*">
+                            <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*" capture @change="upload">
                             <input type="hidden" name="_token" :value="csrf_token">
                             <input type="submit" value="Pujar">
                         </form>
@@ -155,6 +158,9 @@
                                 color="success"
                                 round
                                 class="font-weight-light"
+                                @click="selectFiles"
+                                :loading="uploading"
+                                :disabled="uploading"
                         >Upload Photo</v-btn>
                     </v-card-text>
                 </material-card>
@@ -167,11 +173,72 @@
 import MaterialCard from './ui/MaterialCard'
 export default {
   name: 'Profile',
+  data () {
+    return {
+      uploading: false,
+      percentCompleted: 0
+    }
+  },
   components: {
     'material-card': MaterialCard
+  },
+  methods: {
+    preview () {
+      if (this.$refs.photo.files && this.$refs.photo.files[0]) {
+        var reader = new FileReader()
+        // Asincornament definim que executem un cop imatge sigui llegida
+        reader.onload = e => {
+          // Canviem la imatge que mostra la foto utilitzant el resultat de llegir el fitxer capturar per l'input de tipus file
+          this.$refs.img_photo.setAttribute('src', e.target.result)
+        }
+        // Definim la font de l'strema com una URL. Començara llegir i un cop llegit executar onload event definit a la línia anterior
+        reader.readAsDataURL(this.$refs.photo.files[0])
+      }
+    },
+    save (formData) {
+      this.uploading = true
+
+      var config = {
+        onUploadProgress: progressEvent => {
+          this.percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+        }
+      }
+
+      window.axios.post('/api/v1/user/photo', formData, config)
+        .then(() => {
+          this.uploading = false
+          this.$snackbar.showMessage('Ok!')
+        })
+        .catch(error => {
+          console.log(error)
+          this.$snackbar.showError(error)
+          this.uploading = false
+        })
+    },
+    selectFiles () {
+      this.$refs.photo.click()
+    },
+    upload () {
+      // handle input photo changes
+      const formData = new FormData()
+      formData.append('photo', this.$refs.photo.files[0])
+
+      // Preview it
+      this.preview()
+
+      // save it
+      this.save(formData)
+    }
   },
   created () {
     this.csrf_token = window.csrf_token
   }
 }
 </script>
+
+<style scoped>
+    input[type=file] {
+        position: absolute;
+        left: -99999px;
+    }
+</style>

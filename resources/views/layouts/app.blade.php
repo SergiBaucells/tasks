@@ -105,6 +105,8 @@
         <v-toolbar-title>Menú</v-toolbar-title>
         <v-spacer></v-spacer>
 
+        <notifications-widget></notifications-widget>
+
         <span class="mr-4 hidden-xs-only" v-role="'SuperAdmin'"><git-info></git-info></span>
 
         <v-avatar @click.stop="drawerRight = !drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}})">

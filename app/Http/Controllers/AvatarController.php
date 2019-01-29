@@ -14,7 +14,6 @@ class AvatarController extends Controller
         $path = $request->file('avatar')->storeAs(
             'avatars', $request->user()->id. '.'. $extension
         );
-        dump($path);
         $request->file('avatar')->storeAs(
             '',$request->user()->id. '.'. $extension,'google'
         );

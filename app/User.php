@@ -134,6 +134,11 @@ class User extends Authenticatable
         return $this->hasMany(Avatar::class);
     }
 
+    public function lastAvatar()
+    {
+        return Avatar::where('user_id',$this->id)->orderBy('created_at','DESC')->first()->url;
+    }
+
     public function addAvatar(Avatar $avatar)
     {
         $this->avatars()->save($avatar);

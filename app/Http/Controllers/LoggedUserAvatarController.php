@@ -11,6 +11,7 @@ class LoggedUserAvatarController extends Controller
 {
     public function show(Request $request)
     {
+        $request->user()->lastAvatar();
         $avatar = $this->userAvatarExists($request->user()) ? $request->user()->avatars[0]->url : $this->defaultAvatar();
 //        dd($avatar);
         return response()->file(Storage::disk('local')->path($avatar), [

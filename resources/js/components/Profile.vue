@@ -237,8 +237,8 @@ export default {
 </script>
 
 <style scoped>
-    /*input[type=file] {*/
-        /*position: absolute;*/
-        /*left: -99999px;*/
-    /*}*/
+    input[type=file] {
+        position: absolute;
+        left: -99999px;
+    }
 </style>

@@ -7,6 +7,8 @@
 - [ ] Resaltar botó seleccionats al menú
 - [ ] Actualitzacio Avatar igual que Photo
 - [ ] Barra de progrés al muntar Photo/Avatar
+- [ ] notification.onclick -> developer.mozilla -> a les notificacions
+- [ ] Afegir al crear tasca poder afegir una etiqueta + test corresponent
 #### TODO possibles millores (opcionals):
 - [ ] inline Edit: Editar amb click/dblick el nom d'una tasca directament sense entrar al formulari de edit
 

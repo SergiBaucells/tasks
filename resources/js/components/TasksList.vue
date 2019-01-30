@@ -77,7 +77,7 @@
                             <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
                         </td>
                         <td>
-                            <tasks-tags :task="task" :tags="tags"></tasks-tags>
+                            <tasks-tags :task="task" :task-tags="task.tags" :tags="tags" @change="refresh(false)"></tasks-tags>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human }}</span>
@@ -225,11 +225,11 @@ export default {
     }
   },
   methods: {
-    refresh () {
+    refresh (message = true) {
       this.loading = true
       window.axios.get(this.uri).then(response => {
         this.dataTasks = response.data
-        this.$snackbar.showMessage("S'ha refrescat correctament")
+        if (message) this.$snackbar.showMessage("S'ha refrescat correctament")
         this.loading = false
       }).catch(error => {
         this.$snackbar.showError(error.message)

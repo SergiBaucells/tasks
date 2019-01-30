@@ -76135,10 +76135,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     refresh: function refresh() {
       var _this2 = this;
 
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
       this.loading = true;
       window.axios.get(this.uri).then(function (response) {
         _this2.dataTasks = response.data;
-        _this2.$snackbar.showMessage("S'ha refrescat correctament");
+        if (message) _this2.$snackbar.showMessage("S'ha refrescat correctament");
         _this2.loading = false;
       }).catch(function (error) {
         _this2.$snackbar.showError(error.message);
@@ -78401,13 +78403,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TasksTags',
   data: function data() {
     return {
       dialog: false,
-      selectedTags: []
+      loading: false,
+      selectedTags: [],
+      dataTaskTags: this.taskTags
     };
   },
 
@@ -78419,17 +78425,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     tags: {
       type: Array,
       required: true
+    },
+    taskTags: {
+      type: Array,
+      required: true
+    }
+  },
+  watch: {
+    taskTags: function taskTags(_taskTags) {
+      this.dataTaskTags = _taskTags;
     }
   },
   methods: {
     addTag: function addTag() {
       var _this = this;
 
-      var tag = {};
-      window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', tag).then(function (response) {
-        _this.$snackbar.showMessage('Etiqueta afegida correctament');
+      this.loading = true;
+      window.axios.put('/api/v1/tasks/' + this.task.id + '/tags', {
+        tags: this.selectedTags.map(function (tag) {
+          if (tag.id) {
+            return tag.id;
+          } else {
+            return tag.name;
+          }
+        })
+      }).then(function () {
+        _this.$snackbar.showMessage('Etiqueta/es afegida/es correctament');
+        _this.dialog = false;
+        _this.loading = false;
+        _this.$emit('change', _this.selectedTags);
       }).catch(function (error) {
         _this.$snackbar.showError(error.message);
+        _this.dialog = false;
+        _this.loading = false;
       });
     },
     removeTag: function removeTag() {
@@ -78437,11 +78465,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       // TODO ASYNC PRIMER EXECUTAR UN CONFIRM
       console.log('TODO REMOVE TAG');
-      window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag', +this.tag).then(function (response) {
-        _this2.$snackbar.showMessage('Etiqueta eliminada correctament');
+      window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag' + this.tag).then(function () {
+        _this2.$snackbar.showMessage('Etiqueta/es eliminada/es correctament');
       }).catch(function (error) {
         _this2.$snackbar.showError(error.message);
       });
+    },
+    formatTag: function formatTag(event) {
+      var value = this.selectedTags[this.selectedTags.length - 1];
+      if (typeof value === 'string') {
+        this.selectedTags[this.selectedTags.length - 1] = {
+          'color': 'grey',
+          'name': this.selectedTags[this.selectedTags.length - 1]
+        };
+      }
     }
   }
 });
@@ -78457,7 +78494,7 @@ var render = function() {
   return _c(
     "span",
     [
-      _vm._l(_vm.task.tags, function(tag) {
+      _vm._l(_vm.taskTags, function(tag) {
         return _c("v-chip", {
           key: tag.id,
           attrs: { color: tag.color },
@@ -78510,7 +78547,7 @@ var render = function() {
           _c(
             "v-card",
             [
-              _c("v-card-title", [_vm._v("Afegir etiquetes a la tasca")]),
+              _c("v-card-title", [_vm._v("Afegiu etiquetes a la tasca")]),
               _vm._v(" "),
               _c(
                 "v-card-text",
@@ -78518,10 +78555,11 @@ var render = function() {
                   _c("v-combobox", {
                     attrs: {
                       items: _vm.tags,
-                      simple: "",
+                      multiple: "",
                       chips: "",
                       "item-text": "name"
                     },
+                    on: { change: _vm.formatTag },
                     scopedSlots: _vm._u([
                       {
                         key: "selection",
@@ -78533,6 +78571,7 @@ var render = function() {
                                 key: JSON.stringify(data.item),
                                 staticClass: "v-chip--select-multi",
                                 attrs: {
+                                  color: data.item.color,
                                   selected: data.selected,
                                   disabled: data.disabled
                                 },
@@ -78544,7 +78583,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                            " +
+                                  " " +
                                     _vm._s(data.item.name) +
                                     "\n                        "
                                 )
@@ -78576,20 +78615,24 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "error", flat: "" },
+                      attrs: {
+                        flat: "",
+                        loading: _vm.loading,
+                        disabled: _vm.loading
+                      },
                       on: {
                         click: function($event) {
                           _vm.dialog = false
                         }
                       }
                     },
-                    [_vm._v("Cancelar")]
+                    [_vm._v("Cancel·lar")]
                   ),
                   _vm._v(" "),
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "success", flat: "" },
+                      attrs: { color: "primary", flat: "" },
                       on: { click: _vm.addTag }
                     },
                     [_vm._v("Afegir")]
@@ -78859,7 +78902,16 @@ var render = function() {
                           "td",
                           [
                             _c("tasks-tags", {
-                              attrs: { task: task, tags: _vm.tags }
+                              attrs: {
+                                task: task,
+                                "task-tags": task.tags,
+                                tags: _vm.tags
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.refresh(false)
+                                }
+                              }
                             })
                           ],
                           1

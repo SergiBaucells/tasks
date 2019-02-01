@@ -76135,10 +76135,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     refresh: function refresh() {
       var _this2 = this;
 
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
       this.loading = true;
       window.axios.get(this.uri).then(function (response) {
         _this2.dataTasks = response.data;
-        _this2.$snackbar.showMessage("S'ha refrescat correctament");
+        if (message) _this2.$snackbar.showMessage("S'ha refrescat correctament");
         _this2.loading = false;
       }).catch(function (error) {
         _this2.$snackbar.showError(error.message);
@@ -78401,13 +78403,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TasksTags',
   data: function data() {
     return {
       dialog: false,
-      selectedTags: []
+      loading: false,
+      selectedTags: [],
+      dataTaskTags: this.taskTags
     };
   },
 
@@ -78419,17 +78425,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     tags: {
       type: Array,
       required: true
+    },
+    taskTags: {
+      type: Array,
+      required: true
+    }
+  },
+  watch: {
+    taskTags: function taskTags(_taskTags) {
+      this.dataTaskTags = _taskTags;
     }
   },
   methods: {
     addTag: function addTag() {
       var _this = this;
 
-      var tag = {};
-      window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', tag).then(function (response) {
-        _this.$snackbar.showMessage('Etiqueta afegida correctament');
+      this.loading = true;
+      window.axios.put('/api/v1/tasks/' + this.task.id + '/tags', {
+        tags: this.selectedTags.map(function (tag) {
+          if (tag.id) {
+            return tag.id;
+          } else {
+            return tag.name;
+          }
+        })
+      }).then(function () {
+        _this.$snackbar.showMessage('Etiqueta/es afegida/es correctament');
+        _this.dialog = false;
+        _this.loading = false;
+        _this.$emit('change', _this.selectedTags);
       }).catch(function (error) {
         _this.$snackbar.showError(error.message);
+        _this.dialog = false;
+        _this.loading = false;
       });
     },
     removeTag: function removeTag() {
@@ -78437,11 +78465,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       // TODO ASYNC PRIMER EXECUTAR UN CONFIRM
       console.log('TODO REMOVE TAG');
-      window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag', +this.tag).then(function (response) {
-        _this2.$snackbar.showMessage('Etiqueta eliminada correctament');
+      window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag' + this.tag).then(function () {
+        _this2.$snackbar.showMessage('Etiqueta/es eliminada/es correctament');
       }).catch(function (error) {
         _this2.$snackbar.showError(error.message);
       });
+    },
+    formatTag: function formatTag(event) {
+      var value = this.selectedTags[this.selectedTags.length - 1];
+      if (typeof value === 'string') {
+        this.selectedTags[this.selectedTags.length - 1] = {
+          'color': 'grey',
+          'name': this.selectedTags[this.selectedTags.length - 1]
+        };
+      }
     }
   }
 });
@@ -78457,7 +78494,7 @@ var render = function() {
   return _c(
     "span",
     [
-      _vm._l(_vm.task.tags, function(tag) {
+      _vm._l(_vm.taskTags, function(tag) {
         return _c("v-chip", {
           key: tag.id,
           attrs: { color: tag.color },
@@ -78510,7 +78547,7 @@ var render = function() {
           _c(
             "v-card",
             [
-              _c("v-card-title", [_vm._v("Afegir etiquetes a la tasca")]),
+              _c("v-card-title", [_vm._v("Afegiu etiquetes a la tasca")]),
               _vm._v(" "),
               _c(
                 "v-card-text",
@@ -78518,10 +78555,11 @@ var render = function() {
                   _c("v-combobox", {
                     attrs: {
                       items: _vm.tags,
-                      simple: "",
+                      multiple: "",
                       chips: "",
                       "item-text": "name"
                     },
+                    on: { change: _vm.formatTag },
                     scopedSlots: _vm._u([
                       {
                         key: "selection",
@@ -78533,6 +78571,7 @@ var render = function() {
                                 key: JSON.stringify(data.item),
                                 staticClass: "v-chip--select-multi",
                                 attrs: {
+                                  color: data.item.color,
                                   selected: data.selected,
                                   disabled: data.disabled
                                 },
@@ -78544,7 +78583,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                            " +
+                                  " " +
                                     _vm._s(data.item.name) +
                                     "\n                        "
                                 )
@@ -78576,20 +78615,24 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "error", flat: "" },
+                      attrs: {
+                        flat: "",
+                        loading: _vm.loading,
+                        disabled: _vm.loading
+                      },
                       on: {
                         click: function($event) {
                           _vm.dialog = false
                         }
                       }
                     },
-                    [_vm._v("Cancelar")]
+                    [_vm._v("Cancel·lar")]
                   ),
                   _vm._v(" "),
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "success", flat: "" },
+                      attrs: { color: "primary", flat: "" },
                       on: { click: _vm.addTag }
                     },
                     [_vm._v("Afegir")]
@@ -78859,7 +78902,16 @@ var render = function() {
                           "td",
                           [
                             _c("tasks-tags", {
-                              attrs: { task: task, tags: _vm.tags }
+                              attrs: {
+                                task: task,
+                                "task-tags": task.tags,
+                                tags: _vm.tags
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.refresh(false)
+                                }
+                              }
                             })
                           ],
                           1
@@ -83092,35 +83144,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'material-card': __WEBPACK_IMPORTED_MODULE_0__ui_MaterialCard___default.a
+  },
   name: 'Profile',
   data: function data() {
     return {
       uploading: false,
-      percentCompleted: 0
+      uploadingAvatar: false,
+      percentCompletedAvatar: 0,
+      percentCompleted: 0,
+      name: window.laravel_user.name,
+      email: window.laravel_user.email,
+      roles: window.laravel_user.roles,
+      permissions: window.laravel_user.permissions,
+      admin: window.laravel_user.admin,
+      username: window.laravel_user.userName
     };
   },
 
-  components: {
-    'material-card': __WEBPACK_IMPORTED_MODULE_0__ui_MaterialCard___default.a
-  },
   methods: {
     preview: function preview() {
       var _this = this;
 
       if (this.$refs.photo.files && this.$refs.photo.files[0]) {
         var reader = new FileReader();
-        // Asincornament definim que executem un cop imatge sigui llegida
         reader.onload = function (e) {
-          // Canviem la imatge que mostra la foto utilitzant el resultat de llegir el fitxer capturar per l'input de tipus file
           _this.$refs.img_photo.setAttribute('src', e.target.result);
         };
-        // Definim la font de l'strema com una URL. Començara llegir i un cop llegit executar onload event definit a la línia anterior
         reader.readAsDataURL(this.$refs.photo.files[0]);
       }
     },
@@ -83128,16 +83183,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.uploading = true;
-
       var config = {
         onUploadProgress: function onUploadProgress(progressEvent) {
           _this2.percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
         }
       };
-
       window.axios.post('/api/v1/user/photo', formData, config).then(function () {
         _this2.uploading = false;
-        _this2.$snackbar.showMessage('Ok!');
+        _this2.$snackbar.showMessage("La foto s'ha pujat correctament!");
       }).catch(function (error) {
         console.log(error);
         _this2.$snackbar.showError(error);
@@ -83148,15 +83201,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$refs.photo.click();
     },
     upload: function upload() {
-      // handle input photo changes
       var formData = new FormData();
       formData.append('photo', this.$refs.photo.files[0]);
-
       // Preview it
       this.preview();
-
       // save it
       this.save(formData);
+    },
+    previewAvatar: function previewAvatar() {
+      var _this3 = this;
+
+      if (this.$refs.avatar.files && this.$refs.avatar.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          _this3.$refs.img_avatar.setAttribute('src', e.target.result);
+        };
+        reader.readAsDataURL(this.$refs.avatar.files[0]);
+      }
+    },
+    saveAvatar: function saveAvatar(formData) {
+      var _this4 = this;
+
+      this.uploadingAvatar = true;
+      var config = {
+        onUploadProgress: function onUploadProgress(progressEvent) {
+          _this4.percentCompletedAvatar = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+        }
+      };
+      window.axios.post('/api/v1/user/avatar', formData, config).then(function () {
+        _this4.uploadingAvatar = false;
+        _this4.$snackbar.showMessage("L'avatar s'ha pujat correctament!");
+      }).catch(function (error) {
+        console.log(error);
+        _this4.$snackbar.showError(error);
+        _this4.uploadingAvatar = false;
+      });
+    },
+    selectFilesAvatar: function selectFilesAvatar() {
+      this.$refs.avatar.click();
+    },
+    uploadAvatar: function uploadAvatar() {
+      var formData = new FormData();
+      formData.append('avatar', this.$refs.avatar.files[0]);
+      // Preview it
+      this.previewAvatar();
+      // save it
+      this.saveAvatar(formData);
     }
   },
   created: function created() {
@@ -83664,7 +83754,14 @@ var render = function() {
                                 [
                                   _c("v-text-field", {
                                     staticClass: "purple-input",
-                                    attrs: { label: "User Name" }
+                                    attrs: { label: "User Name" },
+                                    model: {
+                                      value: _vm.name,
+                                      callback: function($$v) {
+                                        _vm.name = $$v
+                                      },
+                                      expression: "name"
+                                    }
                                   })
                                 ],
                                 1
@@ -83676,7 +83773,14 @@ var render = function() {
                                 [
                                   _c("v-text-field", {
                                     staticClass: "purple-input",
-                                    attrs: { label: "Email Address" }
+                                    attrs: { label: "Email Address" },
+                                    model: {
+                                      value: _vm.email,
+                                      callback: function($$v) {
+                                        _vm.email = $$v
+                                      },
+                                      expression: "email"
+                                    }
                                   })
                                 ],
                                 1
@@ -83688,7 +83792,14 @@ var render = function() {
                                 [
                                   _c("v-text-field", {
                                     staticClass: "purple-input",
-                                    attrs: { label: "Admin" }
+                                    attrs: { label: "Admin" },
+                                    model: {
+                                      value: _vm.admin,
+                                      callback: function($$v) {
+                                        _vm.admin = $$v
+                                      },
+                                      expression: "admin"
+                                    }
                                   })
                                 ],
                                 1
@@ -83700,7 +83811,14 @@ var render = function() {
                                 [
                                   _c("v-text-field", {
                                     staticClass: "purple-input",
-                                    attrs: { label: "Roles" }
+                                    attrs: { label: "Roles" },
+                                    model: {
+                                      value: _vm.roles,
+                                      callback: function($$v) {
+                                        _vm.roles = $$v
+                                      },
+                                      expression: "roles"
+                                    }
                                   })
                                 ],
                                 1
@@ -83712,7 +83830,14 @@ var render = function() {
                                 [
                                   _c("v-text-field", {
                                     staticClass: "purple-input",
-                                    attrs: { label: "Permissions" }
+                                    attrs: { label: "Permissions" },
+                                    model: {
+                                      value: _vm.permissions,
+                                      callback: function($$v) {
+                                        _vm.permissions = $$v
+                                      },
+                                      expression: "permissions"
+                                    }
                                   })
                                 ],
                                 1
@@ -83771,7 +83896,8 @@ var render = function() {
                     [
                       _c("img", {
                         ref: "img_avatar",
-                        attrs: { src: "/user/avatar" }
+                        attrs: { src: "/user/avatar" },
+                        on: { click: _vm.selectFilesAvatar }
                       })
                     ]
                   ),
@@ -83780,7 +83906,7 @@ var render = function() {
                     "v-card-text",
                     { staticClass: "text-xs-center" },
                     [
-                      _c("p", [_vm._v("Username here")]),
+                      _c("p", [_vm._v(_vm._s(_vm.name))]),
                       _vm._v(" "),
                       _c(
                         "form",
@@ -83799,16 +83925,13 @@ var render = function() {
                               name: "avatar",
                               id: "avatar-file-input",
                               accept: "image/*"
-                            }
+                            },
+                            on: { change: _vm.uploadAvatar }
                           }),
                           _vm._v(" "),
                           _c("input", {
                             attrs: { type: "hidden", name: "_token" },
                             domProps: { value: _vm.csrf_token }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "submit", value: "Pujar" }
                           })
                         ]
                       ),
@@ -83817,12 +83940,31 @@ var render = function() {
                         "v-btn",
                         {
                           staticClass: "font-weight-light",
-                          attrs: { color: "success", round: "" }
+                          attrs: {
+                            color: "success",
+                            round: "",
+                            loading: _vm.uploadingAvatar,
+                            disabled: _vm.uploadingAvatar
+                          },
+                          on: { click: _vm.selectFilesAvatar }
                         },
-                        [_vm._v("Upload Avatar")]
+                        [_vm._v("Upload Avatar\n                    ")]
                       ),
                       _vm._v(" "),
-                      _c("p", [_vm._v("TODO LIST AVATARS here")])
+                      _c("v-progress-linear", {
+                        attrs: {
+                          active: _vm.uploadingAvatar,
+                          "background-color": "success lighten-3",
+                          color: "success lighten-1"
+                        },
+                        model: {
+                          value: _vm.percentCompletedAvatar,
+                          callback: function($$v) {
+                            _vm.percentCompletedAvatar = $$v
+                          },
+                          expression: "percentCompletedAvatar"
+                        }
+                      })
                     ],
                     1
                   )
@@ -83854,7 +83996,7 @@ var render = function() {
                     "v-card-text",
                     { staticClass: "text-xs-center" },
                     [
-                      _c("p", [_vm._v("Username here")]),
+                      _c("p", [_vm._v(_vm._s(_vm.name))]),
                       _vm._v(" "),
                       _c(
                         "form",
@@ -83872,8 +84014,7 @@ var render = function() {
                               type: "file",
                               name: "photo",
                               id: "photo-file-input",
-                              accept: "image/*",
-                              capture: ""
+                              accept: "image/*"
                             },
                             on: { change: _vm.upload }
                           }),
@@ -83881,10 +84022,6 @@ var render = function() {
                           _c("input", {
                             attrs: { type: "hidden", name: "_token" },
                             domProps: { value: _vm.csrf_token }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "submit", value: "Pujar" }
                           })
                         ]
                       ),
@@ -83901,8 +84038,23 @@ var render = function() {
                           },
                           on: { click: _vm.selectFiles }
                         },
-                        [_vm._v("Upload Photo")]
-                      )
+                        [_vm._v("Upload Photo\n                    ")]
+                      ),
+                      _vm._v(" "),
+                      _c("v-progress-linear", {
+                        attrs: {
+                          active: _vm.uploading,
+                          "background-color": "success lighten-3",
+                          color: "success lighten-1"
+                        },
+                        model: {
+                          value: _vm.percentCompleted,
+                          callback: function($$v) {
+                            _vm.percentCompleted = $$v
+                          },
+                          expression: "percentCompleted"
+                        }
+                      })
                     ],
                     1
                   )
@@ -87448,8 +87600,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'icon-alt': 'keyboard_arrow_down',
         text: 'Tasques',
         model: true,
-        children: [{ icon: 'assignment', text: 'Tasques PHP', url: '/tasks' }, { icon: 'assignment', text: 'Tasques Tailwind', url: '/tasks_vue' }, { icon: 'assignment', text: 'Tasques', url: 'tasques' }]
-      }, { icon: 'turned_in', text: 'Etiquetes', url: 'tags' }, { icon: 'account_box', text: 'Sobre nosaltres', url: '/about' }, { icon: 'date_range', text: 'Calendari', url: '/calendari' }, { icon: 'person', text: 'Perfil', url: '/profile' }, { icon: 'update', text: 'ChangeLog', url: '/changelog' }]
+        children: [{ icon: 'assignment', text: 'Tasques PHP', url: '/tasks' }, { icon: 'assignment', text: 'Tasques Tailwind', url: '/tasks_vue' }, { icon: 'assignment', text: 'Tasques', url: '/tasques' }]
+      }, { icon: 'turned_in', text: 'Etiquetes', url: '/tags' }, { icon: 'account_box', text: 'Sobre nosaltres', url: '/about' }, { icon: 'date_range', text: 'Calendari', url: '/calendari' }, { icon: 'person', text: 'Perfil', url: '/profile' }, { icon: 'update', text: 'ChangeLog', url: '/changelog' }]
     };
   },
 
@@ -87470,6 +87622,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   model: {
     prop: 'drawer',
     event: 'input'
+  },
+  methods: {
+    setSelectedItem: function setSelectedItem() {
+      var currentPath = window.location.pathname;
+      var selected = this.items.indexOf(this.items.find(function (item) {
+        return item.url === currentPath;
+      }));
+      this.items[selected].selected = true;
+    },
+    selectedStyle: function selectedStyle(item) {
+      if (item.selected) {
+        return {
+          'border-left': '5px solid #F0B429',
+          'background-color': '#F0F4F8',
+          'font-size': '1em'
+        };
+      }
+    }
+  },
+  created: function created() {
+    this.setSelectedItem();
   }
 });
 
@@ -87623,7 +87796,11 @@ var render = function() {
                     )
                   : _c(
                       "v-list-tile",
-                      { key: item.text, attrs: { href: item.url } },
+                      {
+                        key: item.text,
+                        style: _vm.selectedStyle(item),
+                        attrs: { href: item.url }
+                      },
                       [
                         _c(
                           "v-list-tile-action",
@@ -87769,7 +87946,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           });
         }
         if (Notification.permission === 'granted') {
-          new Notification('Hi there!');
+          new Notification('Hi there!').onclick = function () {
+            window.open('/');
+          };
         }
       }
     }

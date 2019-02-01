@@ -11,9 +11,7 @@ class LoggedUserAvatarController extends Controller
 {
     public function show(Request $request)
     {
-        $request->user()->lastAvatar();
-        $avatar = $this->userAvatarExists($request->user()) ? $request->user()->avatars[0]->url : $this->defaultAvatar();
-//        dd($avatar);
+        $avatar = $this->userAvatarExists($request->user()) ? $request->user()->lastAvatar() : $this->defaultAvatar();
         return response()->file(Storage::disk('local')->path($avatar), [
             'Cache-Control' => 'no-cache, must-revalidate, no-store, max-age=0, private',
             'Pragma' => 'no-cache'
@@ -22,7 +20,7 @@ class LoggedUserAvatarController extends Controller
 
     protected function userAvatarExists($user)
     {
-        return $user->avatars && Storage::disk('local')->exists($user->avatars[0]->url);
+        return $user->avatars && Storage::disk('local')->exists($user->lastAvatar());
     }
 
     protected function defaultAvatar()

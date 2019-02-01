@@ -16,7 +16,7 @@ class TasksTagsControllerTest extends TestCase
     /**
      * @test
      */
-    public function can_add_tag_to_task()
+    public function can_add_tags_to_task()
     {
         $this->withoutExceptionHandling();
         $this->loginAsTaskManager('api');
@@ -30,21 +30,39 @@ class TasksTagsControllerTest extends TestCase
             'description' => 'Descripció',
             'color' => '#000000'
         ]);
+        $tag2 = Tag::create([
+            'name' => 'prova',
+            'description' => 'Descripció',
+            'color' => 'green'
+        ]);
+
 
         $this->assertCount(0, $task->tags);
 
         $response = $this->json('PUT', '/api/v1/tasks/' . $task->id . '/tags/', [
-            'tags' => [$tag->id]
+            'tags' => [$tag->id, $tag2->id, 'Etiqueta Nova']
         ]);
 
         $response->assertSuccessful();
 
         $task = $task->fresh();
 
-        $this->assertCount(1, $task->tags);
+        $this->assertCount(3, $task->tags);
         $this->assertEquals('home', $task->tags[0]->name);
         $this->assertEquals($task->tags[0]->id , $tag->id);
         $this->assertTrue($task->tags[0]->is($tag));
+        $this->assertEquals('prova', $task->tags[1]->name);
+        $this->assertEquals($task->tags[1]->id , $tag2->id);
+        $this->assertTrue($task->tags[1]->is($tag2));
+        $this->assertEquals('Etiqueta Nova', $task->tags[2]->name);
+        $this->assertEquals('grey', $task->tags[2]->color);
+        $this->assertNotNull(Tag::where('name', 'Etiqueta Nova'));
+
+        $response = $this->json('PUT', '/api/v1/tasks/' . $task->id . '/tags/', [
+            'tags' => [$tag->id]
+        ]);
+
+        $response->assertSuccessful();
 
     }
 

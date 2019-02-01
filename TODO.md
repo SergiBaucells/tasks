@@ -2,7 +2,7 @@
 
 #### TODO comú:
 - [ ] Filtre tasques d'un usuari concret
-- [ ] Resaltar botons seleccionats al menú, falta botons seleccionats children
+- [ ] Resaltar botó seleccionats al menú, falta botons seleccionats children
 - [ ] Afegir al crear tasca poder afegir una etiqueta + test corresponent
 - [ ] UserCard
 - [ ] Acabar de fer tots els logs

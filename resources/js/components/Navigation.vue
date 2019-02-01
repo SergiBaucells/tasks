@@ -51,7 +51,7 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
-                <v-list-tile v-else :key="item.text" :href="item.url">
+                <v-list-tile v-else :key="item.text" :href="item.url" :style="selectedStyle(item)">
                     <v-list-tile-action>
                         <v-icon>{{ item.icon }}</v-icon>
                     </v-list-tile-action>
@@ -82,10 +82,10 @@ export default {
           children: [
             { icon: 'assignment', text: 'Tasques PHP', url: '/tasks' },
             { icon: 'assignment', text: 'Tasques Tailwind', url: '/tasks_vue' },
-            { icon: 'assignment', text: 'Tasques', url: 'tasques' }
+            { icon: 'assignment', text: 'Tasques', url: '/tasques' }
           ]
         },
-        { icon: 'turned_in', text: 'Etiquetes', url: 'tags' },
+        { icon: 'turned_in', text: 'Etiquetes', url: '/tags' },
         { icon: 'account_box', text: 'Sobre nosaltres', url: '/about' },
         { icon: 'date_range', text: 'Calendari', url: '/calendari' },
         { icon: 'person', text: 'Perfil', url: '/profile' },
@@ -110,6 +110,25 @@ export default {
   model: {
     prop: 'drawer',
     event: 'input'
+  },
+  methods: {
+    setSelectedItem () {
+      const currentPath = window.location.pathname
+      const selected = this.items.indexOf(this.items.find(item => item.url === currentPath))
+      this.items[selected].selected = true
+    },
+    selectedStyle (item) {
+      if (item.selected) {
+        return {
+          'border-left': '5px solid #F0B429',
+          'background-color': '#F0F4F8',
+          'font-size': '1em'
+        }
+      }
+    }
+  },
+  created () {
+    this.setSelectedItem()
   }
 }
 </script>

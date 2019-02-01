@@ -48,7 +48,7 @@ export default {
           })
         }
         if (Notification.permission === 'granted') {
-          new Notification('Hi there!')
+          new Notification('Hi there!').onclick = function () { window.open('/') }
         }
       }
     }

@@ -136,7 +136,7 @@ class User extends Authenticatable
 
     public function lastAvatar()
     {
-        return Avatar::where('user_id',$this->id)->orderBy('created_at','DESC')->first()->url;
+        return Avatar::where('user_id',$this->id)->orderBy('created_at','DESC')->first()->url ?? null;
     }
 
     public function addAvatar(Avatar $avatar)

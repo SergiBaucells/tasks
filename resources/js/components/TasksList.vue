@@ -114,7 +114,7 @@
                         xs12
                 >
                     <v-flex xs12 pb-1>
-                      <v-card color="secondary lighten-4">
+                      <v-card color="grey lighten-4">
                         <v-layout>
                           <v-flex xs5>
                             <v-img :src="(task.user !== null) ? task.user_gravatar : 'img/user_profile.png'" height="125px" contain></v-img>
@@ -123,8 +123,9 @@
                             <v-card-title primary-title>
                               <div>
                                 <div class="headline">{{ task.user_name }}</div>
-                                <div>{{ task.name }}</div>
-                                <div>{{ task.completed ? 'Completada' : 'Pendent' }}</div>
+                                <div class="subheading">{{ task.name }}</div>
+                                <div v-if="task.completed" style="color: #1abf00">Completada</div>
+                                <div v-else style="color: #8C3D10">Pendent</div>
                               </div>
                             </v-card-title>
                           </v-flex>

@@ -78616,11 +78616,7 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: {
-                        flat: "",
-                        loading: _vm.loading,
-                        disabled: _vm.loading
-                      },
+                      attrs: { loading: _vm.loading, disabled: _vm.loading },
                       on: {
                         click: function($event) {
                           _vm.dialog = false
@@ -78632,10 +78628,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-btn",
-                    {
-                      attrs: { color: "primary", flat: "" },
-                      on: { click: _vm.addTag }
-                    },
+                    { attrs: { color: "success" }, on: { click: _vm.addTag } },
                     [_vm._v("Afegir")]
                   )
                 ],

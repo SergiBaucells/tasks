@@ -34,8 +34,8 @@
                 <v-divider></v-divider>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn flat @click="dialog = false" :loading="loading" :disabled="loading">Cancel·lar</v-btn>
-                    <v-btn color="primary" flat @click="addTag">Afegir</v-btn>
+                    <v-btn @click="dialog = false" :loading="loading" :disabled="loading">Cancel·lar</v-btn>
+                    <v-btn color="success" @click="addTag">Afegir</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

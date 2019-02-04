@@ -76067,6 +76067,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -79029,7 +79030,7 @@ var render = function() {
                         [
                           _c(
                             "v-card",
-                            { attrs: { color: "secondary lighten-4" } },
+                            { attrs: { color: "grey lighten-4" } },
                             [
                               _c(
                                 "v-layout",
@@ -79067,19 +79068,31 @@ var render = function() {
                                               [_vm._v(_vm._s(task.user_name))]
                                             ),
                                             _vm._v(" "),
-                                            _c("div", [
-                                              _vm._v(_vm._s(task.name))
-                                            ]),
+                                            _c(
+                                              "div",
+                                              { staticClass: "subheading" },
+                                              [_vm._v(_vm._s(task.name))]
+                                            ),
                                             _vm._v(" "),
-                                            _c("div", [
-                                              _vm._v(
-                                                _vm._s(
-                                                  task.completed
-                                                    ? "Completada"
-                                                    : "Pendent"
+                                            task.completed
+                                              ? _c(
+                                                  "div",
+                                                  {
+                                                    staticStyle: {
+                                                      color: "#1abf00"
+                                                    }
+                                                  },
+                                                  [_vm._v("Completada")]
                                                 )
-                                              )
-                                            ])
+                                              : _c(
+                                                  "div",
+                                                  {
+                                                    staticStyle: {
+                                                      color: "#8C3D10"
+                                                    }
+                                                  },
+                                                  [_vm._v("Pendent")]
+                                                )
                                           ])
                                         ]
                                       )
@@ -87589,6 +87602,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Navigation',
@@ -87624,15 +87638,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     event: 'input'
   },
   methods: {
-    setSelectedItem: function setSelectedItem() {
+    isSelected: function isSelected(item) {
       var currentPath = window.location.pathname;
-      var selected = this.items.indexOf(this.items.find(function (item) {
-        return item.url === currentPath;
-      }));
-      this.items[selected].selected = true;
-    },
-    selectedStyle: function selectedStyle(item) {
-      if (item.selected) {
+      if (item.url === currentPath) {
         return {
           'border-left': '5px solid #F0B429',
           'background-color': '#F0F4F8',
@@ -87640,9 +87648,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
       }
     }
-  },
-  created: function created() {
-    this.setSelectedItem();
   }
 });
 
@@ -87762,7 +87767,11 @@ var render = function() {
                         _vm._l(item.children, function(child, i) {
                           return _c(
                             "v-list-tile",
-                            { key: i, attrs: { href: child.url } },
+                            {
+                              key: i,
+                              style: _vm.isSelected(child),
+                              attrs: { href: child.url }
+                            },
                             [
                               child.icon
                                 ? _c(
@@ -87798,7 +87807,7 @@ var render = function() {
                       "v-list-tile",
                       {
                         key: item.text,
-                        style: _vm.selectedStyle(item),
+                        style: _vm.isSelected(item),
                         attrs: { href: item.url }
                       },
                       [

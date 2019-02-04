@@ -7,6 +7,7 @@ use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Task;
 
 Auth::routes();
 
@@ -33,18 +34,18 @@ Route::middleware(['auth'])->group(function () {
     // Tags
     Route::get('/tags', 'TagsController@index');
 
-    Route::get('/profile', '\\'. ProfileController::class . '@show');
+    Route::get('/profile', '\\' . ProfileController::class . '@show');
 
 
-    Route::post('/photo', '\\'. PhotoController::class . '@store');
-    Route::post('/avatar', '\\'. AvatarController::class . '@store');
+    Route::post('/photo', '\\' . PhotoController::class . '@store');
+    Route::post('/avatar', '\\' . AvatarController::class . '@store');
 
 
-    Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
-    Route::get('/user/avatar', '\\'. LoggedUserAvatarController::class . '@show');
+    Route::get('/user/photo', '\\' . LoggedUserPhotoController::class . '@show');
+    Route::get('/user/avatar', '\\' . LoggedUserAvatarController::class . '@show');
 
     //Changelog
-    Route::get('/changelog','\\'. ChangelogController::class . '@index');
+    Route::get('/changelog', '\\' . ChangelogController::class . '@index');
 //    Route::get('/changelog/module/{module}','Tenant\Web\ChangelogModuleController@index');
 //    Route::get('/changelog/user/{user}','Tenant\Web\ChangelogUserController@index');
 //    Route::get('/changelog/loggable/{loggable}/{loggableId}','Tenant\Web\ChangelogLoggableController@index');
@@ -71,7 +72,16 @@ Auth::routes();
 Route::get('/auth/{provider}', '\\' . LoginController::class . '@redirectToProvider');
 Route::get('/auth/{provider}/callback', '\\' . LoginController::class . '@handleProviderCallback');
 
-Route::get('/prova_cua', function (){
+Route::get('/prova_cua', function () {
     dump('SHIT!');
     \App\Jobs\SleepJob::dispatch();
+});
+
+Route::get('/omplir', function () {
+    // 10 000
+    for ($i = 1; $i <= 10000; $i++) {
+        Task::create([
+            'name' => 'Prova'
+        ]);
+    }
 });

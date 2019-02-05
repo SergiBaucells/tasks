@@ -1,8 +1,8 @@
 <template>
-    <v-menu>
+    <v-menu offset-y>
         <v-badge slot="activator" left color="accent" overlap>
             <span slot="badge">4</span>
-            <v-btn color="primary">
+            <v-btn icon color="primary">
                 <v-icon>notifications_none</v-icon>
             </v-btn>
         </v-badge>

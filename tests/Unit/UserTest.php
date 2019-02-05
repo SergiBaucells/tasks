@@ -227,8 +227,8 @@ class UserTest extends TestCase
         $user->assignPhoto($photo);
         $user = $user->fresh();
         $this->assertNotNull($user->photo);
-        $this->assertEquals('/photo1.png',$user->photo->url);
-        $this->assertEquals($user->id,$user->photo->user_id);
+        $this->assertEquals('/photo1.png', $user->photo->url);
+        $this->assertEquals($user->id, $user->photo->user_id);
     }
 
     /**
@@ -237,15 +237,25 @@ class UserTest extends TestCase
     public function addAvatar()
     {
         $user = factory(User::class)->create();
-        $this->assertCount(0,$user->avatars);
+        $this->assertCount(0, $user->avatars);
         $avatar = Avatar::create([
             'url' => '/avatar.png',
         ]);
         $user->addTask($avatar);
         $user = $user->fresh();
-        $this->assertCount(1,$user->avatars);
-        $this->assertEquals('/avatar.png',$user->avatars[0]->url);
-        $this->assertEquals($user->id,$user->avatars[0]->id);
+        $this->assertCount(1, $user->avatars);
+        $this->assertEquals('/avatar.png', $user->avatars[0]->url);
+        $this->assertEquals($user->id, $user->avatars[0]->id);
+    }
+
+    /**
+     * @test
+     */
+    public function hash_id()
+    {
+        $user = factory(User::class)->create();
+        $hashids = new \Hashids\Hashids(config('tasks.salt'));
+        $this->assertEquals($user->hashid, $hashids->encode($user->getKey()));
     }
 
 }

@@ -90,7 +90,8 @@ export default {
         { icon: 'account_box', text: 'Sobre nosaltres', url: '/about' },
         { icon: 'date_range', text: 'Calendari', url: '/calendari' },
         { icon: 'person', text: 'Perfil', url: '/profile' },
-        { icon: 'update', text: 'ChangeLog', url: '/changelog' }
+        { icon: 'update', text: 'ChangeLog', url: '/changelog' },
+        { icon: 'notifications', text: 'Notificacions', url: '/notifications' }
       ]
     }
   },

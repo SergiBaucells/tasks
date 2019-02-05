@@ -5,6 +5,7 @@ use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Task;
@@ -49,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
 //    Route::get('/changelog/module/{module}','Tenant\Web\ChangelogModuleController@index');
 //    Route::get('/changelog/user/{user}','Tenant\Web\ChangelogUserController@index');
 //    Route::get('/changelog/loggable/{loggable}/{loggableId}','Tenant\Web\ChangelogLoggableController@index');
+    Route::get('/notifications', '\\' . NotificationController::class . '@index');
 });
 
 Route::post('/login_alt', 'Auth\LoginAltController@login');

@@ -4,15 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class TasksController extends Controller
 {
     public function index()
     {
-        $tasks = Cache::rememberForever(Task::TASKS_CACHE_KEY, function () {
-            return map_collection(Task::orderBy('created_at', 'desc')->get());
-        });
+        $tasks = map_collection(Task::orderBy('created_at', 'desc')->get());
         return view('tasks', ['tasks' => $tasks]);
     }
 

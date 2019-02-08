@@ -27444,7 +27444,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(31);
-module.exports = __webpack_require__(283);
+module.exports = __webpack_require__(286);
 
 
 /***/ }),
@@ -27505,6 +27505,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_notifications_Notifications__ = __webpack_require__(245);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_notifications_Notifications___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27__components_notifications_Notifications__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_ShareFab__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_ShareFab___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__components_ShareFab__);
+
 
 
 
@@ -27540,7 +27543,7 @@ window.Vuetify = __WEBPACK_IMPORTED_MODULE_1_vuetify___default.a;
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_23_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(280)
+    'ca': __webpack_require__(283)
   }
 });
 
@@ -27650,6 +27653,7 @@ window.Vue.component('profile', __WEBPACK_IMPORTED_MODULE_20__components_Profile
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_21_vue_json_tree_view___default.a);
 window.Vue.component('service-worker', __WEBPACK_IMPORTED_MODULE_24__components_ServiceWorker_vue___default.a);
 window.Vue.component('navigation', __WEBPACK_IMPORTED_MODULE_25__components_Navigation___default.a);
+window.Vue.component('share-fab', __WEBPACK_IMPORTED_MODULE_28__components_ShareFab___default.a);
 // Changelog
 window.Vue.component('changelog', __WEBPACK_IMPORTED_MODULE_22__components_changelog_ChangelogComponent_vue___default.a);
 window.Vue.component('notifications-widget', __WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue___default.a);
@@ -87574,9 +87578,126 @@ module.exports = Component.exports
 
 /***/ }),
 /* 240 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token, expected , (95:4)\n\n\u001b[0m \u001b[90m 93 | \u001b[39m        { icon\u001b[33m:\u001b[39m \u001b[32m'update'\u001b[39m\u001b[33m,\u001b[39m text\u001b[33m:\u001b[39m \u001b[32m'ChangeLog'\u001b[39m\u001b[33m,\u001b[39m url\u001b[33m:\u001b[39m \u001b[32m'/changelog'\u001b[39m }\u001b[33m,\u001b[39m\n \u001b[90m 94 | \u001b[39m        { icon\u001b[33m:\u001b[39m \u001b[32m'notifications'\u001b[39m\u001b[33m,\u001b[39m text\u001b[33m:\u001b[39m \u001b[32m'Notificacions'\u001b[39m\u001b[33m,\u001b[39m url\u001b[33m:\u001b[39m \u001b[32m'/notifications'\u001b[39m }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 95 | \u001b[39m    }\n \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 96 | \u001b[39m  }\u001b[33m,\u001b[39m\n \u001b[90m 97 | \u001b[39m  props\u001b[33m:\u001b[39m {\n \u001b[90m 98 | \u001b[39m    drawer\u001b[33m:\u001b[39m {\u001b[0m\n");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Navigation',
+  data: function data() {
+    return {
+      dataDrawer: this.drawer,
+      items: [{ icon: 'account_balance', text: 'Welcome', url: '/' }, {
+        icon: 'keyboard_arrow_up',
+        'icon-alt': 'keyboard_arrow_down',
+        text: 'Tasques',
+        model: true,
+        children: [{ icon: 'assignment', text: 'Tasques PHP', url: '/tasks' }, { icon: 'assignment', text: 'Tasques Tailwind', url: '/tasks_vue' }, { icon: 'assignment', text: 'Tasques', url: '/tasques' }]
+      }, { icon: 'turned_in', text: 'Etiquetes', url: '/tags' }, { icon: 'account_box', text: 'Sobre nosaltres', url: '/about' }, { icon: 'date_range', text: 'Calendari', url: '/calendari' }, { icon: 'person', text: 'Perfil', url: '/profile' }, { icon: 'update', text: 'ChangeLog', url: '/changelog' }, { icon: 'notifications', text: 'Notificacions', url: '/notifications' }]
+    };
+  },
+
+  props: {
+    drawer: {
+      Type: Boolean,
+      default: false
+    }
+  },
+  watch: {
+    dataDrawer: function dataDrawer(drawer) {
+      this.$emit('input', drawer);
+    },
+    drawer: function drawer(_drawer) {
+      this.dataDrawer = _drawer;
+    }
+  },
+  model: {
+    prop: 'drawer',
+    event: 'input'
+  },
+  methods: {
+    isSelected: function isSelected(item) {
+      var currentPath = window.location.pathname;
+      if (item.url === currentPath) {
+        return {
+          'border-left': '5px solid #F0B429',
+          'background-color': '#F0F4F8',
+          'font-size': '1em'
+        };
+      }
+    }
+  }
+});
 
 /***/ }),
 /* 241 */
@@ -90995,8 +91116,154 @@ if (false) {
 /* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(281)
-var buildFormatLocale = __webpack_require__(282)
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(281)
+/* template */
+var __vue_template__ = __webpack_require__(282)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ShareFab.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7fdf77da", Component.options)
+  } else {
+    hotAPI.reload("data-v-7fdf77da", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 281 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'ShareFab',
+  data: function data() {
+    return {
+      fab: false
+    };
+  },
+
+  methods: {
+    show: function show() {
+      if ('share' in navigator) return true;
+      return false;
+    },
+    share: function share() {
+      if (!('share' in navigator)) {
+        return;
+      }
+      navigator.share({
+        title: 'App Tasques catalanes',
+        text: 'Aplicació per gestionar tasques!',
+        url: 'https://tasks.sergibaucells.scool.cat'
+      }).then(function () {
+        return console.log('Successful share');
+      }).catch(function (error) {
+        return console.log('Error sharing:', error);
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 282 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.show()
+    ? _c(
+        "v-btn",
+        {
+          attrs: {
+            color: "accent",
+            dark: "",
+            fab: "",
+            fixed: "",
+            bottom: "",
+            right: "",
+            large: ""
+          },
+          on: { click: _vm.share },
+          model: {
+            value: _vm.fab,
+            callback: function($$v) {
+              _vm.fab = $$v
+            },
+            expression: "fab"
+          }
+        },
+        [_c("v-icon", [_vm._v("share")])],
+        1
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7fdf77da", module.exports)
+  }
+}
+
+/***/ }),
+/* 283 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var buildDistanceInWordsLocale = __webpack_require__(284)
+var buildFormatLocale = __webpack_require__(285)
 
 /**
  * @category Locales
@@ -91010,7 +91277,7 @@ module.exports = {
 
 
 /***/ }),
-/* 281 */
+/* 284 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -91115,7 +91382,7 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 282 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildFormattingTokensRegExp = __webpack_require__(28)
@@ -91205,7 +91472,7 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 283 */
+/* 286 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -6,6 +6,7 @@ namespace Tests\Feature;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -24,19 +25,25 @@ class TasksControllerTest extends TestCase
         //1 Prepare
         create_example_tasks();
         login($this);
-//        $this->actingAs($user,'api');
-//        dd(Task::find(1));
+
+        // Si el que executem acaba executanr altres caches -> PETARÀ
         // 2 execute
+        // TODO
+//        Cache::shouldReceive('remember')
+//            ->once()
+//            ->with('git_info', 5, \Closure::class)
+//            ->andReturn([collect([])]);
+//        Cache::shouldReceive('rememberForever')
+//            ->once()
+//            ->with(Task::TASKS_CACHE_KEY, \Closure::class)
+//            ->andReturn(map_collection(Task::orderBy('created_at', 'desc')->get()));
         $response = $this->get('/tasks');
-//        dd($response->getContent());
         //3 Comprovar
         $response->assertSuccessful();
         $response->assertSee('Tasques');
         $response->assertSee('comprar pa');
         $response->assertSee('comprar llet');
         $response->assertSee('Estudiar PHP');
-        // Comprovar que es veuen les tasques que hi ha a la
-        // base dades
 
     }
 

@@ -12,6 +12,7 @@ use App\Listeners\EmailTaskUncompleted;
 use App\Listeners\EmailTaskDelete;
 use App\Listeners\EmailTaskStored;
 use App\Listeners\EmailTaskUpdated;
+use App\Listeners\ForgetTasksCache;
 use App\Listeners\LogTaskCompleted;
 use App\Listeners\LogTaskDelete;
 use App\Listeners\LogTaskStored;
@@ -32,27 +33,33 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-            AddRolesToRegisterUser::class
+            AddRolesToRegisterUser::class,
+            ForgetTasksCache::class
         ],
         TaskUncompleted::class => [
             LogTaskUncompleted::class,
-            EmailTaskUncompleted::class
+            EmailTaskUncompleted::class,
+            ForgetTasksCache::class
         ],
         TaskCompleted::class => [
             LogTaskCompleted::class,
-            EmailTaskCompleted::class
+            EmailTaskCompleted::class,
+            ForgetTasksCache::class
         ],
         TaskStored::class => [
             LogTaskStored::class,
             EmailTaskStored::class,
+            ForgetTasksCache::class
         ],
         TaskUpdate::class => [
             LogTaskUpdated::class,
-            EmailTaskUpdated::class
+            EmailTaskUpdated::class,
+            ForgetTasksCache::class
         ],
         TaskDelete::class => [
             LogTaskDelete::class,
-            EmailTaskDelete::class
+            EmailTaskDelete::class,
+            ForgetTasksCache::class
         ]
     ];
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Notifications;
 
-use Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class NotificationsIndex.
@@ -19,7 +19,7 @@ class NotificationsIndex extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->can('notifications.index');
     }
 
     /**

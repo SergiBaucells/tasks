@@ -26,6 +26,7 @@ import ServiceWorker from './components/ServiceWorker.vue'
 import Navigation from './components/Navigation'
 import NotificationsWidget from './components/NotificationsWidget.vue'
 import Notifications from './components/notifications/Notifications'
+import ShareFab from './components/ShareFab'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -143,6 +144,7 @@ window.Vue.component('profile', Profile)
 window.Vue.use(TreeView)
 window.Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation', Navigation)
+window.Vue.component('share-fab', ShareFab)
 // Changelog
 window.Vue.component('changelog', Changelog)
 window.Vue.component('notifications-widget', NotificationsWidget)

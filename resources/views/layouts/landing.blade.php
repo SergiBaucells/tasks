@@ -16,6 +16,14 @@
     <meta name="msapplication-TileColor" content="#ffc40d">
     <meta name="msapplication-TileImage" content="img/images/icons2/mstile-144x144.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Carta compartida -->
+    <meta property="og:image" content="/img/catalunya.png">
+    <meta property="og:image:width" content="1190">
+    <meta property="og:image:height" content="623">
+    <meta property="og:description" content="Aplicaci&oacute; de tasques catalanes">
+    <meta property="og:title" content="Tasques - Sergi Baucells Rordiguez">
+    <meta property="og:url" content="https://tasks.sergibaucells.scool.cat">
+    <meta property="og:type" content="website">
     <title>@yield('title')</title>
     <style>
         [v-cloak] {

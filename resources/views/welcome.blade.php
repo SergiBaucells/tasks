@@ -195,9 +195,72 @@
                 </v-container>
             </section>
 
-            <v-footer color="primary">
-                <span class="white--text pl-2">Created by Sergi Baucells Rodríguez, &copy; 2018 All rights reserved</span>
-            </v-footer>
+            <footer class="footer-distributed">
+
+                <div class="footer-left">
+
+                    <h3>Aplicació de <span>Tasques</span></h3>
+
+                    <p class="footer-links">
+                        <a href="/">Home</a>
+                        ·
+                        <a href="/tasques">Tasques</a>
+                        ·
+                        <a href="/tasks">Tasques PHP</a>
+                        ·
+                        <a href="/tasks_vue">Tasques Tailwind</a>
+                        ·
+                        <a href="/tags">Etiquetes</a>
+                        ·
+                        <a href="/about">Sobre Nosaltres</a>
+                    </p>
+
+                    <p class="footer-company-name">IES del Ebre Sergi Baucells Rodríguez &copy; 2019</p>
+                </div>
+
+                <div class="footer-center">
+
+                    <div>
+                        <i class="fa fa-map-marker"></i>
+                        <p><span>Av. de Cristòfol Colom, 34-42, 43500</span> Tortosa, Catalunya</p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-phone"></i>
+                        <p>+32 645898261</p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-envelope"></i>
+                        <p><a href="mailto:sergibaucells@iesebre.com">sergibaucells@iesebre.com</a></p>
+                    </div>
+
+                </div>
+
+                <div class="footer-right">
+
+                    <p class="footer-company-about">
+                        <span>Sobre l'empresa</span>
+                        Estudiants de DAM del Intitut IES del Ebre.
+                    </p>
+
+                    <div class="footer-icons">
+
+                        <a target="_blank" href="https://www.facebook.com/Baucells">
+                            <img alt="facebook" src="/img/icons_welcome_page/facebook-logo.svg">
+                        </a>
+                        <a target="_blank" href="https://twitter.com/94xixa">
+                            <img alt="twitter" src="/img/icons_welcome_page/logo-de-twitter.svg">
+                        </a>
+                        <a target="_blank" href="https://github.com/SergiBaucells">
+                            <img alt="github" src="/img/icons_welcome_page/github-signo.svg">
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </footer>
         </v-content>
     </v-app>
 @endsection

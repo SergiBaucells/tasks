@@ -1,6 +1,6 @@
 <template>
     <v-menu offset-y>
-        <v-badge slot="activator" bottom left overlap color="error" class="ml-3 mr-2">
+        <v-badge slot="activator" bottom left overlap color="accent" class="ml-3 mr-2">
             <span slot="badge" v-text="amount"></span>
             <v-tooltip bottom >
                 <v-btn icon slot="activator" :loading="loading" :disabled="loading">

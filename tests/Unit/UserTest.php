@@ -6,6 +6,7 @@ use App\Avatar;
 use App\Photo;
 use App\Task;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -97,26 +98,6 @@ class UserTest extends TestCase
     }
 
     /**
-     * @ test
-     */
-    public function haveTask()
-    {
-        $this->markTestSkipped();
-        // 2
-        $user->haveTask();
-    }
-
-    /**
-     * @ test
-     */
-    public function removeTask()
-    {
-        $this->markTestSkipped();
-        // 2
-        $user->removeTask();
-    }
-
-    /**
      * @test
      */
     public function isSuperAdmin()
@@ -174,13 +155,27 @@ class UserTest extends TestCase
         $mappeduser = $user->map();
         $this->assertCount(2, $mappeduser['roles']);
         $this->assertCount(2, $mappeduser['permissions']);
+
+        $this->assertEquals(false, $mappeduser['online']);
+
         $this->assertEquals($mappeduser['admin'], true);
         $this->assertEquals($mappeduser['roles'][0], 'Rol1');
         $this->assertEquals($mappeduser['roles'][1], 'Rol2');
         $this->assertEquals($mappeduser['permissions'][0], 'Permission1');
         $this->assertEquals($mappeduser['permissions'][1], 'Permission2');
 
+    }
 
+    /**
+     * @test
+     */
+    public function mapOnline()
+    {
+        $user = factory(User::class)->create();
+        Cache::shouldReceive('has')
+            ->andReturn(true);
+        $mappedUser = $user->map();
+        $this->assertEquals(true, $mappedUser['online']);
     }
 
     /**

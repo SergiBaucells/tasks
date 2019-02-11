@@ -11,7 +11,7 @@ class Task extends Model
 //    protected $fillable = ['name','completed'];
     use FormattedDates;
     protected $guarded = [];
-    const TASKS_CACHE_KEY = 'tasks.sergibaucells.scool.cat';
+    const TASKS_CACHE_KEY = 'tasks.sergibaucells.scool.cat.user';
 
     /**
      * The attributes that should be hidden for arrays.

@@ -76250,7 +76250,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       search: '',
       pagination: {
-        rowsPerPage: 5
+        rowsPerPage: -1
       },
       loading: false,
       dataTasks: this.tasks,
@@ -88110,7 +88110,7 @@ var render = function() {
             bottom: "",
             left: "",
             overlap: "",
-            color: "error"
+            color: "accent"
           },
           slot: "activator"
         },

@@ -87988,26 +87988,103 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'NotificationsWidget',
+  data: function data() {
+    return {
+      dataNotifications: [],
+      loading: false
+    };
+  },
+
+  props: {
+    notifications: {
+      type: Array,
+      required: false
+    }
+  },
+  computed: {
+    large: function large() {
+      if (this.dataNotifications) return this.dataNotifications.length > 0;
+      return false;
+    },
+    amount: function amount() {
+      if (this.dataNotifications) return this.dataNotifications.length;
+      return 0;
+    }
+  },
   methods: {
-    notify: function notify() {
-      if (!('Notification' in window)) {
-        this.$snackbar.showError('This browser does not support desktop notification');
-      } else {
-        if (Notification.permission === 'default') {
-          Notification.requestPermission().then(function (result) {
-            console.log(result);
-            new Notification('Hi there!');
-          });
-        }
-        if (Notification.permission === 'granted') {
-          new Notification('Hi there!').onclick = function () {
-            window.open('/');
-          };
-        }
-      }
+    refresh: function refresh() {
+      var _this = this;
+
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      this.loading = true;
+      window.axios.get('/api/v1/user/unread_notifications/').then(function (response) {
+        _this.dataNotifications = response.data;
+        _this.loading = false;
+        if (message) _this.$snackbar.showMessage('Notificacions actualitzades correctament');
+      }).catch(function (error) {
+        _this.loading = false;
+        _this.$snackbar.showError(error);
+      });
+    },
+    markAsReaded: function markAsReaded(notification) {
+      var _this2 = this;
+
+      this.loading = true;
+      window.axios.delete('/api/v1/user/unread_notifications/' + notification.id).then(function () {
+        _this2.loading = false;
+        _this2.refresh();
+      }).catch(function (error) {
+        _this2.loading = false;
+        _this2.$snackbar(error);
+      });
+    },
+    markAllAsReaded: function markAllAsReaded() {
+      var _this3 = this;
+
+      this.loading = true;
+      this.loading = true;
+      window.axios.delete('/api/v1/user/unread_notifications/all').then(function () {
+        _this3.loading = false;
+        _this3.refresh();
+      }).catch(function (error) {
+        _this3.loading = false;
+        _this3.$snackbar(error);
+      });
+    }
+  },
+  created: function created() {
+    var _this4 = this;
+
+    if (this.notifications) {
+      this.dataNotifications = this.notifications;
+    } else {
+      this.loading = true;
+      window.axios.get('/api/v1/user/unread_notifications').then(function (response) {
+        _this4.dataNotifications = response.data;
+        _this4.loading = false;
+      }).catch(function (error) {
+        _this4.$snackbar.showError(error);
+        _this4.loading = false;
+      });
     }
   }
 });
@@ -88027,18 +88104,50 @@ var render = function() {
       _c(
         "v-badge",
         {
-          attrs: { slot: "activator", left: "", color: "accent", overlap: "" },
+          staticClass: "ml-3 mr-2",
+          attrs: {
+            slot: "activator",
+            bottom: "",
+            left: "",
+            overlap: "",
+            color: "error"
+          },
           slot: "activator"
         },
         [
-          _c("span", { attrs: { slot: "badge" }, slot: "badge" }, [
-            _vm._v("4")
-          ]),
+          _c("span", {
+            attrs: { slot: "badge" },
+            domProps: { textContent: _vm._s(_vm.amount) },
+            slot: "badge"
+          }),
           _vm._v(" "),
           _c(
-            "v-btn",
-            { attrs: { icon: "", color: "primary" } },
-            [_c("v-icon", [_vm._v("notifications_none")])],
+            "v-tooltip",
+            { attrs: { bottom: "" } },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: {
+                    slot: "activator",
+                    icon: "",
+                    loading: _vm.loading,
+                    disabled: _vm.loading
+                  },
+                  slot: "activator"
+                },
+                [
+                  _c("v-icon", { attrs: { large: _vm.large } }, [
+                    _vm._v("notifications")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("span", [
+                _vm._v("\n                    Notificacions\n                ")
+              ])
+            ],
             1
           )
         ],
@@ -88048,57 +88157,119 @@ var render = function() {
       _c(
         "v-list",
         [
-          _c(
-            "v-list-tile",
-            [
-              _c("v-list-tile-title", { on: { click: _vm.notify } }, [
-                _vm._v("\n                Notify\n            ")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile",
-            [
-              _c(
-                "v-list-tile-title",
+          _vm.dataNotifications.length > 0
+            ? _c(
+                "v-list-tile",
                 [
-                  _c("v-tooltip", { attrs: { bottom: "" } }, [
-                    _c(
-                      "span",
-                      { attrs: { slot: "activator" }, slot: "activator" },
-                      [_vm._v("Notification 1")]
-                    ),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Prova")])
+                  _c("v-list-tile-title", [
+                    _vm.dataNotifications.length === 1
+                      ? _c("span", [
+                          _vm._v(
+                            "\n                    Teniu " +
+                              _vm._s(_vm.dataNotifications.length) +
+                              " notificació pendent:\n                "
+                          )
+                        ])
+                      : _c("span", [
+                          _vm._v(
+                            "\n                    Teniu " +
+                              _vm._s(_vm.dataNotifications.length) +
+                              " notificacións pendents:\n                "
+                          )
+                        ])
                   ])
                 ],
                 1
               )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.dataNotifications.length > 0 ? _c("v-divider") : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.dataNotifications, function(notification, index) {
+            return _vm.dataNotifications.length > 0
+              ? _c(
+                  "v-list-tile",
+                  {
+                    key: index,
+                    on: {
+                      click: function($event) {
+                        _vm.markAsReaded(notification)
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "v-list-tile-title",
+                      {
+                        staticStyle: {
+                          "max-width": "450px",
+                          "white-space": "nowrap",
+                          overflow: "hidden",
+                          "text-overflow": "ellipsis"
+                        }
+                      },
+                      [_vm._v(_vm._s(notification.data.title))]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e()
+          }),
+          _vm._v(" "),
+          _vm.dataNotifications.length === 0
+            ? _c(
+                "v-list-tile",
+                [
+                  _c("v-list-tile-title", [
+                    _vm._v("No hi ha cap notificació pendent de llegir")
+                  ])
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-list-tile",
+            [
+              _c("v-list-tile-title", { staticClass: "caption" }, [
+                _c("a", { attrs: { href: "/notifications" } }, [
+                  _vm._v("Veure totes")
+                ]),
+                _vm._v(" |\n                "),
+                _vm.dataNotifications.length > 0
+                  ? _c("span", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: { click: _vm.markAllAsReaded }
+                        },
+                        [_vm._v("Marcar totes com a llegides")]
+                      ),
+                      _vm._v(" |\n                ")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.refresh(true)
+                      }
+                    }
+                  },
+                  [_vm._v("Actualitzar")]
+                )
+              ])
             ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile",
-            [_c("v-list-tile-title", [_vm._v("Notification 2")])],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile",
-            [_c("v-list-tile-title", [_vm._v("Notification 3")])],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile",
-            [_c("v-list-tile-title", [_vm._v("Notification 4")])],
             1
           )
         ],
-        1
+        2
       )
     ],
     1

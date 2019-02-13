@@ -1,5 +1,9 @@
 @extends('layouts.login')
 
+@section('title')
+    Reset Password
+@endsection
+
 @section('content')
     <v-container fluid fill-height>
         <v-layout align-center justify-center>

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Changelog
+@endsection
+
 @php
 $channel = 'App.Log.User.' . studly_case($user->id);
 $title = "Registre de canvis de l'usuari: " . $user->name;

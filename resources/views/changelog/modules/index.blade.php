@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Changelog
+@endsection
+
 @php
 $channel = 'App.Log.Module.' . studly_case($module->name);
 $title = 'Registre de canvis mòdul: ' . $module->name;

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Changelog
+@endsection
+
 @php
 $channel = 'App.Log.Loggable.Incidents.' . $loggable->id;
 $title = "Registre de canvis";

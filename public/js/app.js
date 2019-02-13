@@ -76378,7 +76378,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'toggle',
+  name: 'TaskCompletedToggle',
   data: function data() {
     return {
       dataValue: this.value,
@@ -76413,6 +76413,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (_dataValue !== oldDataValue) {
         if (_dataValue) this.completeTask();else this.uncompleteTask();
       }
+    },
+    value: function value(_value) {
+      this.dataValue = _value;
     }
   },
   methods: {

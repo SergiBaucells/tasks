@@ -183,7 +183,7 @@ export default {
       ],
       search: '',
       pagination: {
-        rowsPerPage: -1
+        rowsPerPage: 5
       },
       loading: false,
       dataTasks: this.tasks,

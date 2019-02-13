@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'toggle',
+  name: 'TaskCompletedToggle',
   data () {
     return {
       dataValue: this.value,
@@ -45,6 +45,9 @@ export default {
         if (dataValue) this.completeTask()
         else this.uncompleteTask()
       }
+    },
+    value (value) {
+      this.dataValue = value
     }
   },
   methods: {

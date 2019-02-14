@@ -1,6 +1,6 @@
 {
   "name": "App de Tasques Catalanes",
-  "short_name": "Tasques",
+  "short_name": "Tasques Sergi Baucells",
   "icons": [
     {
       "src": "img/images/icons2/android-chrome-36x36.png",
@@ -51,5 +51,5 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFBEA",
-  "theme_color": "#F0B429"
+  "theme_color": "#F7C948"
 }

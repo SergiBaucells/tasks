@@ -34,7 +34,7 @@
                         font-family: 'Montserrat', sans-serif;
                         font-size: 30px;
                         text-shadow: rgba(0,0,0,40) 0 0 50px;"
-                        class="white--text mb-2 text-xs-center">
+                            class="white--text mb-2 text-xs-center">
                             App de Tasques Catalanes
                         </h1>
                         <div class="subheading mb-3 text-xs-center">Sergi Baucells Rodríguez</div>
@@ -138,7 +138,9 @@
                             class="white--text mb-2 text-xs-center">
                             El desenvolupament web mai ha estat tan fàcil
                         </h1>
-                        <div style="text-shadow: rgba(0,0,0,40) 0 0 50px;" class="subheading mb-3 text-xs-center">Accediu a la aplicació!</div>
+                        <div style="text-shadow: rgba(0,0,0,40) 0 0 50px;" class="subheading mb-3 text-xs-center">
+                            Accediu a la aplicació!
+                        </div>
                         <v-btn
                                 class="mt-5"
                                 dark

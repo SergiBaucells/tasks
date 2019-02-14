@@ -79175,11 +79175,14 @@ var render = function() {
                     [
                       _c(
                         "v-flex",
-                        { attrs: { xs12: "", "pb-1": "" } },
+                        { attrs: { xs12: "", "pb-3": "" } },
                         [
                           _c(
                             "v-card",
-                            { attrs: { color: "grey lighten-4" } },
+                            {
+                              staticClass: "elevation-5 mr-2 ml-2",
+                              attrs: { color: "grey lighten-4" }
+                            },
                             [
                               _c(
                                 "v-layout",
@@ -79256,7 +79259,7 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "v-card-actions",
-                                { staticClass: "pa-3" },
+                                { staticClass: "pa-3 elevation-5" },
                                 [
                                   _vm._v(
                                     "\n                      " +

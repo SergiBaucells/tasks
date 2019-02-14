@@ -113,8 +113,8 @@
                         slot-scope="{item:task}"
                         xs12
                 >
-                    <v-flex xs12 pb-1>
-                      <v-card color="grey lighten-4">
+                    <v-flex xs12 pb-3>
+                      <v-card color="grey lighten-4" class="elevation-5 mr-2 ml-2">
                         <v-layout>
                           <v-flex xs5>
                             <v-img :src="(task.user !== null) ? task.user_gravatar : 'img/user_profile.png'" height="125px" contain></v-img>
@@ -131,7 +131,7 @@
                           </v-flex>
                         </v-layout>
                         <v-divider light></v-divider>
-                        <v-card-actions class="pa-3">
+                        <v-card-actions class="pa-3 elevation-5">
                           {{ task.user_email }}
                           <v-spacer></v-spacer>
                             <task-show v-if="$can('user.tasks.show')" :users="users" :task="task" :uri="uri" :loading="showing" :disabled="showing"></task-show>

@@ -8,7 +8,7 @@
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
     <meta name="theme-color" content="#F7C948"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="#F7C948">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Tasques Sergi Baucells">
     <link rel="apple-touch-startup-image" href="img/images/icons2/apple-touch-icon.png">

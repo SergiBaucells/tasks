@@ -14,7 +14,7 @@
                         <v-spacer></v-spacer>
                         <v-btn flat type="submit" href="/login">Enrere</v-btn>
                     </v-toolbar>
-                    <v-card-text>
+                    <v-card-text class="text-xs-center">
                         @if (session('status'))
                             <v-alert type="success" :value="true">
                                 {{ session('status') }}
@@ -33,7 +33,7 @@
                             </v-text-field>
 
                             <v-btn type="submit" color="primary">
-                                {{ __('Enviar enllaç per restablir contrasenya') }}
+                                {{ __('Enviar enllaç') }}
                             </v-btn>
 
                         </v-form>

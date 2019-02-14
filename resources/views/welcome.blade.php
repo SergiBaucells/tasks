@@ -8,6 +8,7 @@
     <v-app light style="background: #F0F4F8;background: -webkit-linear-gradient(to right, #F0F4F8, #D9E2EC, #BCCCDC);
             background: linear-gradient(to right, #F0F4F8, #D9E2EC, #BCCCDC);">
         <share-fab></share-fab>
+        <service-worker></service-worker>
         <v-toolbar>
             <v-toolbar-title>App de Tasques Catalanes</v-toolbar-title>
             <v-spacer></v-spacer>

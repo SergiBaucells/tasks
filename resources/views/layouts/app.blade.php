@@ -136,7 +136,7 @@
         </v-avatar>
         <v-form action="logout" method="POST">
             @csrf
-            <v-btn color="error" type="submit">Logout</v-btn>
+            <v-btn type="submit" icon><v-icon>exit_to_app</v-icon></v-btn>
         </v-form>
     </v-toolbar>
     <v-content>

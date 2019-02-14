@@ -118,7 +118,8 @@
         <span class="mr-4 hidden-xs-only" v-role="'SuperAdmin'"><git-info></git-info></span>
 
         <v-avatar @click.stop="drawerRight = !drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
-            <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+            <img v-if="{{ Auth::user()->online }}" style="border: lawngreen 2px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+            <img v-else style="border: red 2px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
         </v-avatar>
         <v-form action="logout" method="POST">
             @csrf

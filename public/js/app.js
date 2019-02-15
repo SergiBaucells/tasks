@@ -79222,7 +79222,15 @@ var render = function() {
                                             _vm._v(" "),
                                             _c(
                                               "div",
-                                              { staticClass: "subheading" },
+                                              {
+                                                staticClass: "subheading",
+                                                staticStyle: {
+                                                  width: "160px",
+                                                  "white-space": "nowrap",
+                                                  overflow: "hidden",
+                                                  "text-overflow": "ellipsis"
+                                                }
+                                              },
                                               [_vm._v(_vm._s(task.name))]
                                             ),
                                             _vm._v(" "),

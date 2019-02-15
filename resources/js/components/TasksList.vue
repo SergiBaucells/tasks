@@ -123,7 +123,7 @@
                             <v-card-title primary-title>
                               <div>
                                 <div class="headline">{{ task.user_name }}</div>
-                                <div class="subheading">{{ task.name }}</div>
+                                <div class="subheading" style="width:160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ task.name }}</div>
                                 <div v-if="task.completed" style="color: #1abf00">Completada</div>
                                 <div v-else style="color: #8C3D10">Pendent</div>
                               </div>

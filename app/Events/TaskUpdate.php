@@ -21,7 +21,9 @@ class TaskUpdate
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param $old_task
+     * @param Task $task
+     * @param User $user
      */
     public function __construct($old_task, Task $task, User $user)
     {

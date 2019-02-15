@@ -78959,7 +78959,7 @@ var render = function() {
           _c(
             "v-data-table",
             {
-              staticClass: "hidden-md-and-down",
+              staticClass: "hidden-sm-and-down",
               attrs: {
                 headers: _vm.headers,
                 items: _vm.getFilteredTasks,
@@ -79141,7 +79141,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("v-data-iterator", {
-            staticClass: "hidden-lg-and-up",
+            staticClass: "hidden-md-and-up",
             attrs: {
               items: _vm.dataTasks,
               search: _vm.search,

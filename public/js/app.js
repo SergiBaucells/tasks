@@ -91411,6 +91411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log('Error sharing:', error);
         _this.loading = false;
       });
+      this.loading = false;
     }
   }
 });

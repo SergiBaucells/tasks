@@ -49,7 +49,6 @@ export default {
           console.log('Error sharing:', error)
           this.loading = false
         })
-      this.loading = false
     }
   }
 }

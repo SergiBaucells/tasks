@@ -41,10 +41,14 @@ export default {
         text: 'Aplicació per gestionar tasques!',
         url: 'https://tasks.sergibaucells.scool.cat'
       })
-        .then(() => console.log('Successful share'))
-      this.loading = false
-        .catch(error => console.log('Error sharing:', error))
-      this.loading = false
+        .then(() => {
+          console.log('Successful share')
+          this.loading = false
+        })
+        .catch(error => {
+          console.log('Error sharing:', error)
+          this.loading = false
+        })
     }
   }
 }

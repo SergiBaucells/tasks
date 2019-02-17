@@ -91394,6 +91394,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return false;
     },
     share: function share() {
+      var _this = this;
+
       this.loading = true;
       if (!('share' in navigator)) {
         return;
@@ -91403,12 +91405,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         text: 'Aplicació per gestionar tasques!',
         url: 'https://tasks.sergibaucells.scool.cat'
       }).then(function () {
-        return console.log('Successful share');
+        console.log('Successful share');
+        _this.loading = false;
+      }).catch(function (error) {
+        console.log('Error sharing:', error);
+        _this.loading = false;
       });
-      this.loading = false.catch(function (error) {
-        return console.log('Error sharing:', error);
-      });
-      this.loading = false;
     }
   }
 });

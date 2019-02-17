@@ -10,6 +10,8 @@
             right
             large
             @click="share"
+            :disabled="loading"
+            :loading="loading"
     >
         <v-icon>share</v-icon>
     </v-btn>
@@ -20,7 +22,8 @@ export default {
   name: 'ShareFab',
   data () {
     return {
-      fab: false
+      fab: false,
+      loading: false
     }
   },
   methods: {
@@ -29,6 +32,7 @@ export default {
       return false
     },
     share () {
+      this.loading = true
       if (!('share' in navigator)) {
         return
       }
@@ -38,7 +42,9 @@ export default {
         url: 'https://tasks.sergibaucells.scool.cat'
       })
         .then(() => console.log('Successful share'))
+      this.loading = false
         .catch(error => console.log('Error sharing:', error))
+      this.loading = false
     }
   }
 }

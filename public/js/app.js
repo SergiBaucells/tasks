@@ -91376,12 +91376,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ShareFab',
   data: function data() {
     return {
-      fab: false
+      fab: false,
+      loading: false
     };
   },
 
@@ -91391,6 +91394,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return false;
     },
     share: function share() {
+      this.loading = true;
       if (!('share' in navigator)) {
         return;
       }
@@ -91400,9 +91404,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         url: 'https://tasks.sergibaucells.scool.cat'
       }).then(function () {
         return console.log('Successful share');
-      }).catch(function (error) {
+      });
+      this.loading = false.catch(function (error) {
         return console.log('Error sharing:', error);
       });
+      this.loading = false;
     }
   }
 });
@@ -91426,7 +91432,9 @@ var render = function() {
             fixed: "",
             bottom: "",
             right: "",
-            large: ""
+            large: "",
+            disabled: _vm.loading,
+            loading: _vm.loading
           },
           on: { click: _vm.share },
           model: {

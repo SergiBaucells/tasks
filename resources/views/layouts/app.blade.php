@@ -175,6 +175,6 @@
     </v-footer>
 </v-app>
 
-<script src="{{ mix('/js/app.js') }}"></script>
+<script defer src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>

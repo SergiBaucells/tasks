@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import './bootstrap'
 import AppComponent from './components/App.vue'
 import ExampleComponent from './components/ExampleComponent.vue'
@@ -27,6 +26,9 @@ import Navigation from './components/Navigation'
 import NotificationsWidget from './components/NotificationsWidget.vue'
 import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
+import 'typeface-montserrat/index.css'
+import 'typeface-roboto/index.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 window.Vue = Vue
 window.Vuetify = Vuetify

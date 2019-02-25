@@ -3,7 +3,6 @@
 #### TODO comú:
 - [ ] Filtre tasques d'un usuari concret
 - [ ] Acabar de fer tots els logs 
-- [ ] Imatges converitdes per que el tamany baixe, components scool, VParallax i ImgWebp
 - [ ] https://laravel-mix.com/docs/4.0/upgrade actualitzar laravel mix
 
 #### TODO possibles millores (opcionals):   

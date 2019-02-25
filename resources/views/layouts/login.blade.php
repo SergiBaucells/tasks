@@ -35,6 +35,7 @@
     <meta property="og:title" content="Tasques - Sergi Baucells Rordiguez">
     <meta property="og:url" content="https://tasks.sergibaucells.scool.cat">
     <meta property="og:type" content="website">
+    <meta name="Description" content="Login">
     <title>@yield('title')</title>
     <style>
         [v-cloak] > * { display:none; }

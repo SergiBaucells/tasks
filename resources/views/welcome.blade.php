@@ -23,14 +23,14 @@
         </v-toolbar>
         <v-content>
             <section>
-                <v-parallax-webp src="img/portada.webp" height="600">
+                <v-parallax-webp src="img/portada.webp" height="600" alt-format="jpg">
                     <v-layout
                             column
                             align-center
                             justify-center
                             class="white--text"
                     >
-                        <img-webp src="img/catalunya.webp" alt="Vuetify.js" height="200"></img-webp>
+                        <img-webp src="img/catalunya.webp" alt="Vuetify.js" height="200" alt-format="png"></img-webp>
                         <h1 style="
                         font-family: 'Montserrat', sans-serif;
                         font-size: 30px;
@@ -131,7 +131,7 @@
             </section>
 
             <section>
-                <v-parallax-webp src="img/portada2.webp" height="380">
+                <v-parallax-webp src="img/portada2.webp" height="380" alt-format="jpg">
                     <v-layout column align-center justify-center>
                         <h1 style="
                         font-family: 'Montserrat', sans-serif;

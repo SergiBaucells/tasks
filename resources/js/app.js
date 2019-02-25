@@ -26,6 +26,8 @@ import Navigation from './components/Navigation'
 import NotificationsWidget from './components/NotificationsWidget.vue'
 import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
+import ImgWebp from './components/ImgWebp.vue'
+import VParallaxWebp from './components/VParallaxWebp.vue'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -151,6 +153,9 @@ window.Vue.component('share-fab', ShareFab)
 window.Vue.component('changelog', Changelog)
 window.Vue.component('notifications-widget', NotificationsWidget)
 window.Vue.component('notifications', Notifications)
+// Images
+window.Vue.component('img-webp', ImgWebp)
+window.Vue.component('v-parallax-webp', VParallaxWebp)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

@@ -55,6 +55,7 @@
                                     large
                                     href="https://github.com/SergiBaucells/tasks"
                                     target="_blank"
+                                    rel="noopener"
                                     color="primary darken-1"
                             >
                                 GitHub
@@ -249,13 +250,13 @@
 
                     <div class="footer-icons">
 
-                        <a target="_blank" href="https://www.facebook.com/Baucells">
+                        <a target="_blank" rel="noopener" href="https://www.facebook.com/Baucells">
                             <img alt="facebook" src="/img/icons_welcome_page/facebook-logo.svg">
                         </a>
-                        <a target="_blank" href="https://twitter.com/94xixa">
+                        <a target="_blank" rel="noopener" href="https://twitter.com/94xixa">
                             <img alt="twitter" src="/img/icons_welcome_page/logo-de-twitter.svg">
                         </a>
-                        <a target="_blank" href="https://github.com/SergiBaucells">
+                        <a target="_blank" rel="noopener" href="https://github.com/SergiBaucells">
                             <img alt="github" src="/img/icons_welcome_page/github-signo.svg">
                         </a>
 

@@ -1,3 +1,5 @@
+importScripts("/service-worker/precache-manifest.0125e9ff21f4df0d4e55a96523d2ffcf.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+
 workbox.skipWaiting()
 workbox.clientsClaim()
 
@@ -27,3 +29,4 @@ workbox.routing.registerRoute(
   '/css/footer.css',
   workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
 )
+

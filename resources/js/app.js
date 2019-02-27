@@ -28,6 +28,8 @@ import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
 import ImgWebp from './components/ImgWebp.vue'
 import VParallaxWebp from './components/VParallaxWebp.vue'
+import Vibrate from './components/mobile/Vibrate.vue'
+import BatteryStatus from './components/mobile/BatteryStatus.vue'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -156,6 +158,9 @@ window.Vue.component('notifications', Notifications)
 // Images
 window.Vue.component('img-webp', ImgWebp)
 window.Vue.component('v-parallax-webp', VParallaxWebp)
+// Mobile
+window.Vue.component('vibrate', Vibrate)
+window.Vue.component('battery-status', BatteryStatus)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

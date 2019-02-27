@@ -91,7 +91,8 @@ export default {
         { icon: 'date_range', text: 'Calendari', url: '/calendari' },
         { icon: 'person', text: 'Perfil', url: '/profile' },
         { icon: 'update', text: 'ChangeLog', url: '/changelog' },
-        { icon: 'notifications', text: 'Notificacions', url: '/notifications' }
+        { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
+        { icon: 'stay_primary_portrait', text: 'Mobile', url: '/mobile' }
       ]
     }
   },

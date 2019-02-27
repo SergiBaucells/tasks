@@ -109226,7 +109226,7 @@ module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700.w
 /* 443 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700italic.woff2?d41d8cd98f00b204e9800998ecf8427e";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700italic.woff2?283438e9577fe6a684466bb100e105ec";
 
 /***/ }),
 /* 444 */

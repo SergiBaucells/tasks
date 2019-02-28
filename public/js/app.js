@@ -44425,7 +44425,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(162);
-module.exports = __webpack_require__(494);
+module.exports = __webpack_require__(496);
 
 
 /***/ }),
@@ -44494,12 +44494,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_mobile_Vibrate_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__components_mobile_Vibrate_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_mobile_BatteryStatus_vue__ = __webpack_require__(418);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_mobile_BatteryStatus_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__components_mobile_BatteryStatus_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_typeface_montserrat_index_css__ = __webpack_require__(421);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_typeface_montserrat_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32_typeface_montserrat_index_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_typeface_roboto_index_css__ = __webpack_require__(459);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_typeface_roboto_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33_typeface_roboto_index_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_material_design_icons_iconfont_dist_material_design_icons_css__ = __webpack_require__(485);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_material_design_icons_iconfont_dist_material_design_icons_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34_material_design_icons_iconfont_dist_material_design_icons_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__img_catalunya_webp__ = __webpack_require__(421);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__img_catalunya_webp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__img_catalunya_webp__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__img_catalunya_png__ = __webpack_require__(422);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__img_catalunya_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__img_catalunya_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_typeface_montserrat_index_css__ = __webpack_require__(423);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_typeface_montserrat_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34_typeface_montserrat_index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35_typeface_roboto_index_css__ = __webpack_require__(461);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35_typeface_roboto_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_35_typeface_roboto_index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_material_design_icons_iconfont_dist_material_design_icons_css__ = __webpack_require__(487);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_material_design_icons_iconfont_dist_material_design_icons_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36_material_design_icons_iconfont_dist_material_design_icons_css__);
+
+
 
 
 
@@ -44542,7 +44548,7 @@ window.Vuetify = __WEBPACK_IMPORTED_MODULE_1_vuetify___default.a;
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_22_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(491)
+    'ca': __webpack_require__(493)
   }
 });
 
@@ -96154,11 +96160,19 @@ var render = function() {
                                 "v-card-actions",
                                 { staticClass: "pa-3 elevation-5" },
                                 [
-                                  _vm._v(
-                                    "\n                      " +
-                                      _vm._s(task.user_email) +
-                                      "\n                      "
+                                  _c(
+                                    "p",
+                                    {
+                                      staticStyle: {
+                                        width: "200px",
+                                        "white-space": "nowrap",
+                                        overflow: "hidden",
+                                        "text-overflow": "ellipsis"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(task.user_email))]
                                   ),
+                                  _vm._v(" "),
                                   _c("v-spacer"),
                                   _vm._v(" "),
                                   _vm.$can("user.tasks.show")
@@ -109239,12 +109253,24 @@ if (false) {
 
 /***/ }),
 /* 421 */
+/***/ (function(module, exports) {
+
+throw new Error("Module parse failed: Unexpected character '@' (1:4)\nYou may need an appropriate loader to handle this file type.\n(Source code omitted for this binary file)");
+
+/***/ }),
+/* 422 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/catalunya.png?7ec69edfb34e4866dab9dbdffcc23aba";
+
+/***/ }),
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(422);
+var content = __webpack_require__(424);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -109269,7 +109295,7 @@ if(false) {
 }
 
 /***/ }),
-/* 422 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(17);
@@ -109278,235 +109304,235 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "/* montserrat-100normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 100;\n  src:\n    local('Montserrat Thin '),\n    local('Montserrat-Thin'),\n    url(" + escape(__webpack_require__(423)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(424)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-100italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 100;\n  src:\n    local('Montserrat Thin italic'),\n    local('Montserrat-Thinitalic'),\n    url(" + escape(__webpack_require__(425)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(426)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-200normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 200;\n  src:\n    local('Montserrat Extra Light '),\n    local('Montserrat-Extra Light'),\n    url(" + escape(__webpack_require__(427)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(428)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-200italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 200;\n  src:\n    local('Montserrat Extra Light italic'),\n    local('Montserrat-Extra Lightitalic'),\n    url(" + escape(__webpack_require__(429)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(430)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-300normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 300;\n  src:\n    local('Montserrat Light '),\n    local('Montserrat-Light'),\n    url(" + escape(__webpack_require__(431)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(432)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-300italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 300;\n  src:\n    local('Montserrat Light italic'),\n    local('Montserrat-Lightitalic'),\n    url(" + escape(__webpack_require__(433)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(434)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-400normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 400;\n  src:\n    local('Montserrat Regular '),\n    local('Montserrat-Regular'),\n    url(" + escape(__webpack_require__(435)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(436)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-400italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 400;\n  src:\n    local('Montserrat Regular italic'),\n    local('Montserrat-Regularitalic'),\n    url(" + escape(__webpack_require__(437)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(438)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-500normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 500;\n  src:\n    local('Montserrat Medium '),\n    local('Montserrat-Medium'),\n    url(" + escape(__webpack_require__(439)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(440)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-500italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 500;\n  src:\n    local('Montserrat Medium italic'),\n    local('Montserrat-Mediumitalic'),\n    url(" + escape(__webpack_require__(441)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(442)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-600normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 600;\n  src:\n    local('Montserrat SemiBold '),\n    local('Montserrat-SemiBold'),\n    url(" + escape(__webpack_require__(443)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(444)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-600italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 600;\n  src:\n    local('Montserrat SemiBold italic'),\n    local('Montserrat-SemiBolditalic'),\n    url(" + escape(__webpack_require__(445)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(446)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-700normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 700;\n  src:\n    local('Montserrat Bold '),\n    local('Montserrat-Bold'),\n    url(" + escape(__webpack_require__(447)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(448)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-700italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 700;\n  src:\n    local('Montserrat Bold italic'),\n    local('Montserrat-Bolditalic'),\n    url(" + escape(__webpack_require__(449)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(450)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-800normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 800;\n  src:\n    local('Montserrat ExtraBold '),\n    local('Montserrat-ExtraBold'),\n    url(" + escape(__webpack_require__(451)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(452)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-800italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 800;\n  src:\n    local('Montserrat ExtraBold italic'),\n    local('Montserrat-ExtraBolditalic'),\n    url(" + escape(__webpack_require__(453)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(454)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-900normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 900;\n  src:\n    local('Montserrat Black '),\n    local('Montserrat-Black'),\n    url(" + escape(__webpack_require__(455)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(456)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-900italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 900;\n  src:\n    local('Montserrat Black italic'),\n    local('Montserrat-Blackitalic'),\n    url(" + escape(__webpack_require__(457)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(458)) + ") format('woff'); /* Modern Browsers */\n}\n\n", ""]);
+exports.push([module.i, "/* montserrat-100normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 100;\n  src:\n    local('Montserrat Thin '),\n    local('Montserrat-Thin'),\n    url(" + escape(__webpack_require__(425)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(426)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-100italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 100;\n  src:\n    local('Montserrat Thin italic'),\n    local('Montserrat-Thinitalic'),\n    url(" + escape(__webpack_require__(427)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(428)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-200normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 200;\n  src:\n    local('Montserrat Extra Light '),\n    local('Montserrat-Extra Light'),\n    url(" + escape(__webpack_require__(429)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(430)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-200italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 200;\n  src:\n    local('Montserrat Extra Light italic'),\n    local('Montserrat-Extra Lightitalic'),\n    url(" + escape(__webpack_require__(431)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(432)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-300normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 300;\n  src:\n    local('Montserrat Light '),\n    local('Montserrat-Light'),\n    url(" + escape(__webpack_require__(433)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(434)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-300italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 300;\n  src:\n    local('Montserrat Light italic'),\n    local('Montserrat-Lightitalic'),\n    url(" + escape(__webpack_require__(435)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(436)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-400normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 400;\n  src:\n    local('Montserrat Regular '),\n    local('Montserrat-Regular'),\n    url(" + escape(__webpack_require__(437)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(438)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-400italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 400;\n  src:\n    local('Montserrat Regular italic'),\n    local('Montserrat-Regularitalic'),\n    url(" + escape(__webpack_require__(439)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(440)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-500normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 500;\n  src:\n    local('Montserrat Medium '),\n    local('Montserrat-Medium'),\n    url(" + escape(__webpack_require__(441)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(442)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-500italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 500;\n  src:\n    local('Montserrat Medium italic'),\n    local('Montserrat-Mediumitalic'),\n    url(" + escape(__webpack_require__(443)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(444)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-600normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 600;\n  src:\n    local('Montserrat SemiBold '),\n    local('Montserrat-SemiBold'),\n    url(" + escape(__webpack_require__(445)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(446)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-600italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 600;\n  src:\n    local('Montserrat SemiBold italic'),\n    local('Montserrat-SemiBolditalic'),\n    url(" + escape(__webpack_require__(447)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(448)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-700normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 700;\n  src:\n    local('Montserrat Bold '),\n    local('Montserrat-Bold'),\n    url(" + escape(__webpack_require__(449)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(450)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-700italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 700;\n  src:\n    local('Montserrat Bold italic'),\n    local('Montserrat-Bolditalic'),\n    url(" + escape(__webpack_require__(451)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(452)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-800normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 800;\n  src:\n    local('Montserrat ExtraBold '),\n    local('Montserrat-ExtraBold'),\n    url(" + escape(__webpack_require__(453)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(454)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-800italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 800;\n  src:\n    local('Montserrat ExtraBold italic'),\n    local('Montserrat-ExtraBolditalic'),\n    url(" + escape(__webpack_require__(455)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(456)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-900normal - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 900;\n  src:\n    local('Montserrat Black '),\n    local('Montserrat-Black'),\n    url(" + escape(__webpack_require__(457)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(458)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* montserrat-900italic - latin */\n@font-face {\n  font-family: 'Montserrat';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 900;\n  src:\n    local('Montserrat Black italic'),\n    local('Montserrat-Blackitalic'),\n    url(" + escape(__webpack_require__(459)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(460)) + ") format('woff'); /* Modern Browsers */\n}\n\n", ""]);
 
 // exports
 
-
-/***/ }),
-/* 423 */
-/***/ (function(module, exports) {
-
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-100.woff2?4124805c0503dbfe42dd67d7f5715964";
-
-/***/ }),
-/* 424 */
-/***/ (function(module, exports) {
-
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-100.woff?c8fb2f714bbc7bc3e8dfffa916b286dc";
 
 /***/ }),
 /* 425 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-100italic.woff2?e4bf47bd171a9b2a72dd84c58bf90edf";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-100.woff2?4124805c0503dbfe42dd67d7f5715964";
 
 /***/ }),
 /* 426 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-100italic.woff?d1f3f2d02ee4d7d2d4b1ad865014f189";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-100.woff?c8fb2f714bbc7bc3e8dfffa916b286dc";
 
 /***/ }),
 /* 427 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-200.woff2?444ae007121264bc1969d49b4031f9b2";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-100italic.woff2?e4bf47bd171a9b2a72dd84c58bf90edf";
 
 /***/ }),
 /* 428 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-200.woff?edbce16a90aa22c297a0307b85789837";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-100italic.woff?d1f3f2d02ee4d7d2d4b1ad865014f189";
 
 /***/ }),
 /* 429 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-200italic.woff2?f316c5d1ec40f3e68654c3f38b3999f3";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-200.woff2?444ae007121264bc1969d49b4031f9b2";
 
 /***/ }),
 /* 430 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-200italic.woff?d7bbb730d9b5e11720b3eb32326dcca7";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-200.woff?edbce16a90aa22c297a0307b85789837";
 
 /***/ }),
 /* 431 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-300.woff2?0a7c6df06e85d978d096d4d18fd8d43d";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-200italic.woff2?f316c5d1ec40f3e68654c3f38b3999f3";
 
 /***/ }),
 /* 432 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-300.woff?5e86df2cad22d2ef2b03516334afae5e";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-200italic.woff?d7bbb730d9b5e11720b3eb32326dcca7";
 
 /***/ }),
 /* 433 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-300italic.woff2?c076c4892bc7a4be7b9097e97a35012d";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-300.woff2?0a7c6df06e85d978d096d4d18fd8d43d";
 
 /***/ }),
 /* 434 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-300italic.woff?37c74a8d2d0d36a0a2c6e9a37ee15b0c";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-300.woff?5e86df2cad22d2ef2b03516334afae5e";
 
 /***/ }),
 /* 435 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-400.woff2?501ce09c42716a2f6e1503a25eb174c9";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-300italic.woff2?c076c4892bc7a4be7b9097e97a35012d";
 
 /***/ }),
 /* 436 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-400.woff?f29d2b8559699b6beb5b29b25b8bc572";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-300italic.woff?37c74a8d2d0d36a0a2c6e9a37ee15b0c";
 
 /***/ }),
 /* 437 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-400italic.woff2?882908d9950d9c86ebd380877f293d95";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-400.woff2?501ce09c42716a2f6e1503a25eb174c9";
 
 /***/ }),
 /* 438 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-400italic.woff?22e7b04e5f2a901d49d4d342315a715a";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-400.woff?f29d2b8559699b6beb5b29b25b8bc572";
 
 /***/ }),
 /* 439 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-500.woff2?f0f2716c5fe401d175b88715e7d28685";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-400italic.woff2?882908d9950d9c86ebd380877f293d95";
 
 /***/ }),
 /* 440 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-500.woff?991b453bf90a0980e78966d2af7e3d3a";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-400italic.woff?22e7b04e5f2a901d49d4d342315a715a";
 
 /***/ }),
 /* 441 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-500italic.woff2?4590ebba421b3288c305305d7fa7b504";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-500.woff2?f0f2716c5fe401d175b88715e7d28685";
 
 /***/ }),
 /* 442 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-500italic.woff?f3d41e4cdcc2314e49ddcea751d6f87f";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-500.woff?991b453bf90a0980e78966d2af7e3d3a";
 
 /***/ }),
 /* 443 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-600.woff2?15c24f7109941777774ddd2c636c6a50";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-500italic.woff2?4590ebba421b3288c305305d7fa7b504";
 
 /***/ }),
 /* 444 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-600.woff?f6dc6096f48956908c1787d9a722570a";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-500italic.woff?f3d41e4cdcc2314e49ddcea751d6f87f";
 
 /***/ }),
 /* 445 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-600italic.woff2?6d10b80529d5c36c7c09fca7193af0fc";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-600.woff2?15c24f7109941777774ddd2c636c6a50";
 
 /***/ }),
 /* 446 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-600italic.woff?02c4833312d94b1b0866f073023a250e";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-600.woff?f6dc6096f48956908c1787d9a722570a";
 
 /***/ }),
 /* 447 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700.woff2?79982cd1f74c6fa7451bf9b37ead09ff";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-600italic.woff2?6d10b80529d5c36c7c09fca7193af0fc";
 
 /***/ }),
 /* 448 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700.woff?957e93fbbe131a59791cd820d98b7109";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-600italic.woff?02c4833312d94b1b0866f073023a250e";
 
 /***/ }),
 /* 449 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700italic.woff2?283438e9577fe6a684466bb100e105ec";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700.woff2?79982cd1f74c6fa7451bf9b37ead09ff";
 
 /***/ }),
 /* 450 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700italic.woff?ca627c5ccc65cf80c2ecaea44b997de9";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700.woff?957e93fbbe131a59791cd820d98b7109";
 
 /***/ }),
 /* 451 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-800.woff2?35386154b78d046218fc8f88a44ff515";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700italic.woff2?283438e9577fe6a684466bb100e105ec";
 
 /***/ }),
 /* 452 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-800.woff?756655905d91b77960888262e7d58d35";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-700italic.woff?ca627c5ccc65cf80c2ecaea44b997de9";
 
 /***/ }),
 /* 453 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-800italic.woff2?e1b52a7bd83e2324db6d92bdc206844c";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-800.woff2?35386154b78d046218fc8f88a44ff515";
 
 /***/ }),
 /* 454 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-800italic.woff?a69f0add9d86c1a84311d7dd8693ba4a";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-800.woff?756655905d91b77960888262e7d58d35";
 
 /***/ }),
 /* 455 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-900.woff2?260c2ea3ef57feb82251952e605a36d5";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-800italic.woff2?e1b52a7bd83e2324db6d92bdc206844c";
 
 /***/ }),
 /* 456 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-900.woff?186cae8091da578150d81958e217714a";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-800italic.woff?a69f0add9d86c1a84311d7dd8693ba4a";
 
 /***/ }),
 /* 457 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-900italic.woff2?d785fb9fc74588ffb7f306799709a97d";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-900.woff2?260c2ea3ef57feb82251952e605a36d5";
 
 /***/ }),
 /* 458 */
 /***/ (function(module, exports) {
 
-module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-900italic.woff?43b527fe77254f97ea36e2b54e845ec4";
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-900.woff?186cae8091da578150d81958e217714a";
 
 /***/ }),
 /* 459 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-900italic.woff2?d785fb9fc74588ffb7f306799709a97d";
+
+/***/ }),
+/* 460 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/vendor/typeface-montserrat/files/montserrat-latin-900italic.woff?43b527fe77254f97ea36e2b54e845ec4";
+
+/***/ }),
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(460);
+var content = __webpack_require__(462);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -109531,7 +109557,7 @@ if(false) {
 }
 
 /***/ }),
-/* 460 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(17);
@@ -109540,163 +109566,163 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "/* roboto-100normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 100;\n  src:\n    local('Roboto Thin '),\n    local('Roboto-Thin'),\n    url(" + escape(__webpack_require__(461)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(462)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-100italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 100;\n  src:\n    local('Roboto Thin italic'),\n    local('Roboto-Thinitalic'),\n    url(" + escape(__webpack_require__(463)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(464)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-300normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 300;\n  src:\n    local('Roboto Light '),\n    local('Roboto-Light'),\n    url(" + escape(__webpack_require__(465)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(466)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-300italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 300;\n  src:\n    local('Roboto Light italic'),\n    local('Roboto-Lightitalic'),\n    url(" + escape(__webpack_require__(467)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(468)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-400normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 400;\n  src:\n    local('Roboto Regular '),\n    local('Roboto-Regular'),\n    url(" + escape(__webpack_require__(469)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(470)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-400italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 400;\n  src:\n    local('Roboto Regular italic'),\n    local('Roboto-Regularitalic'),\n    url(" + escape(__webpack_require__(471)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(472)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-500normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 500;\n  src:\n    local('Roboto Medium '),\n    local('Roboto-Medium'),\n    url(" + escape(__webpack_require__(473)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(474)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-500italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 500;\n  src:\n    local('Roboto Medium italic'),\n    local('Roboto-Mediumitalic'),\n    url(" + escape(__webpack_require__(475)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(476)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-700normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 700;\n  src:\n    local('Roboto Bold '),\n    local('Roboto-Bold'),\n    url(" + escape(__webpack_require__(477)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(478)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-700italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 700;\n  src:\n    local('Roboto Bold italic'),\n    local('Roboto-Bolditalic'),\n    url(" + escape(__webpack_require__(479)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(480)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-900normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 900;\n  src:\n    local('Roboto Black '),\n    local('Roboto-Black'),\n    url(" + escape(__webpack_require__(481)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(482)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-900italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 900;\n  src:\n    local('Roboto Black italic'),\n    local('Roboto-Blackitalic'),\n    url(" + escape(__webpack_require__(483)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(484)) + ") format('woff'); /* Modern Browsers */\n}\n\n", ""]);
+exports.push([module.i, "/* roboto-100normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 100;\n  src:\n    local('Roboto Thin '),\n    local('Roboto-Thin'),\n    url(" + escape(__webpack_require__(463)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(464)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-100italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 100;\n  src:\n    local('Roboto Thin italic'),\n    local('Roboto-Thinitalic'),\n    url(" + escape(__webpack_require__(465)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(466)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-300normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 300;\n  src:\n    local('Roboto Light '),\n    local('Roboto-Light'),\n    url(" + escape(__webpack_require__(467)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(468)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-300italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 300;\n  src:\n    local('Roboto Light italic'),\n    local('Roboto-Lightitalic'),\n    url(" + escape(__webpack_require__(469)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(470)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-400normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 400;\n  src:\n    local('Roboto Regular '),\n    local('Roboto-Regular'),\n    url(" + escape(__webpack_require__(471)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(472)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-400italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 400;\n  src:\n    local('Roboto Regular italic'),\n    local('Roboto-Regularitalic'),\n    url(" + escape(__webpack_require__(473)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(474)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-500normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 500;\n  src:\n    local('Roboto Medium '),\n    local('Roboto-Medium'),\n    url(" + escape(__webpack_require__(475)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(476)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-500italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 500;\n  src:\n    local('Roboto Medium italic'),\n    local('Roboto-Mediumitalic'),\n    url(" + escape(__webpack_require__(477)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(478)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-700normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 700;\n  src:\n    local('Roboto Bold '),\n    local('Roboto-Bold'),\n    url(" + escape(__webpack_require__(479)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(480)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-700italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 700;\n  src:\n    local('Roboto Bold italic'),\n    local('Roboto-Bolditalic'),\n    url(" + escape(__webpack_require__(481)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(482)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-900normal - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 900;\n  src:\n    local('Roboto Black '),\n    local('Roboto-Black'),\n    url(" + escape(__webpack_require__(483)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(484)) + ") format('woff'); /* Modern Browsers */\n}\n\n/* roboto-900italic - latin */\n@font-face {\n  font-family: 'Roboto';\n  font-style: italic;\n  font-display: swap;\n  font-weight: 900;\n  src:\n    local('Roboto Black italic'),\n    local('Roboto-Blackitalic'),\n    url(" + escape(__webpack_require__(485)) + ") format('woff2'), \n    url(" + escape(__webpack_require__(486)) + ") format('woff'); /* Modern Browsers */\n}\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 461 */
+/* 463 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-100.woff2?987b84570ea69ee660455b8d5e91f5f1";
 
 /***/ }),
-/* 462 */
+/* 464 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-100.woff?e9dbbe8a693dd275c16d32feb101f1c1";
 
 /***/ }),
-/* 463 */
+/* 465 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-100italic.woff2?6232f43d15b0e7a0bf0fe82e295bdd06";
 
 /***/ }),
-/* 464 */
+/* 466 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-100italic.woff?d704bb3d579b7d5e40880c75705c8a71";
 
 /***/ }),
-/* 465 */
+/* 467 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-300.woff2?55536c8e9e9a532651e3cf374f290ea3";
 
 /***/ }),
-/* 466 */
+/* 468 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-300.woff?a1471d1d6431c893582a5f6a250db3f9";
 
 /***/ }),
-/* 467 */
+/* 469 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-300italic.woff2?d69924b98acd849cdeba9fbff3f88ea6";
 
 /***/ }),
-/* 468 */
+/* 470 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-300italic.woff?210a7c781f5a354a0e4985656ab456d9";
 
 /***/ }),
-/* 469 */
+/* 471 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-400.woff2?5d4aeb4e5f5ef754e307d7ffaef688bd";
 
 /***/ }),
-/* 470 */
+/* 472 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-400.woff?bafb105baeb22d965c70fe52ba6b49d9";
 
 /***/ }),
-/* 471 */
+/* 473 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-400italic.woff2?d8bcbe724fd6f4ba44d0ee6a2675890f";
 
 /***/ }),
-/* 472 */
+/* 474 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-400italic.woff?9680d5a0c32d2fd084e07bbc4c8b2923";
 
 /***/ }),
-/* 473 */
+/* 475 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-500.woff2?285467176f7fe6bb6a9c6873b3dad2cc";
 
 /***/ }),
-/* 474 */
+/* 476 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-500.woff?de8b7431b74642e830af4d4f4b513ec9";
 
 /***/ }),
-/* 475 */
+/* 477 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-500italic.woff2?510dec37fa69fba39593e01a469ee018";
 
 /***/ }),
-/* 476 */
+/* 478 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-500italic.woff?ffcc050b2d92d4b14a4fcb527ee0bcc8";
 
 /***/ }),
-/* 477 */
+/* 479 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-700.woff2?037d830416495def72b7881024c14b7b";
 
 /***/ }),
-/* 478 */
+/* 480 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-700.woff?cf6613d1adf490972c557a8e318e0868";
 
 /***/ }),
-/* 479 */
+/* 481 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-700italic.woff2?010c1aeee3c6d1cbb1d5761d80353823";
 
 /***/ }),
-/* 480 */
+/* 482 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-700italic.woff?846d1890aee87fde5d8ced8eba360c3a";
 
 /***/ }),
-/* 481 */
+/* 483 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-900.woff2?19b7a0adfdd4f808b53af7e2ce2ad4e5";
 
 /***/ }),
-/* 482 */
+/* 484 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-900.woff?8c2ade503b34e31430d6c98aa29a52a3";
 
 /***/ }),
-/* 483 */
+/* 485 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-900italic.woff2?7b770d6c53423deb1a8e49d3c9175184";
 
 /***/ }),
-/* 484 */
+/* 486 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/typeface-roboto/files/roboto-latin-900italic.woff?bc833e725c137257c2c42a789845d82f";
 
 /***/ }),
-/* 485 */
+/* 487 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(486);
+var content = __webpack_require__(488);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -109721,7 +109747,7 @@ if(false) {
 }
 
 /***/ }),
-/* 486 */
+/* 488 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(17);
@@ -109730,41 +109756,41 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: 'Material Icons';\n  font-style: normal;\n  font-weight: 400;\n  src: url(" + escape(__webpack_require__(487)) + ");\n  /* For IE6-8 */\n  src: local(\"Material Icons\"), local(\"MaterialIcons-Regular\"), url(" + escape(__webpack_require__(488)) + ") format(\"woff2\"), url(" + escape(__webpack_require__(489)) + ") format(\"woff\"), url(" + escape(__webpack_require__(490)) + ") format(\"truetype\"); }\n.material-icons {\n  font-family: 'Material Icons';\n  font-weight: normal;\n  font-style: normal;\n  font-size: 24px;\n  /* Preferred icon size */\n  display: inline-block;\n  line-height: 1;\n  text-transform: none;\n  letter-spacing: normal;\n  word-wrap: normal;\n  white-space: nowrap;\n  direction: ltr;\n  /* Support for all WebKit browsers. */\n  -webkit-font-smoothing: antialiased;\n  /* Support for Safari and Chrome. */\n  text-rendering: optimizeLegibility;\n  /* Support for Firefox. */\n  -moz-osx-font-smoothing: grayscale;\n  /* Support for IE. */\n  font-feature-settings: 'liga'; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: 'Material Icons';\n  font-style: normal;\n  font-weight: 400;\n  src: url(" + escape(__webpack_require__(489)) + ");\n  /* For IE6-8 */\n  src: local(\"Material Icons\"), local(\"MaterialIcons-Regular\"), url(" + escape(__webpack_require__(490)) + ") format(\"woff2\"), url(" + escape(__webpack_require__(491)) + ") format(\"woff\"), url(" + escape(__webpack_require__(492)) + ") format(\"truetype\"); }\n.material-icons {\n  font-family: 'Material Icons';\n  font-weight: normal;\n  font-style: normal;\n  font-size: 24px;\n  /* Preferred icon size */\n  display: inline-block;\n  line-height: 1;\n  text-transform: none;\n  letter-spacing: normal;\n  word-wrap: normal;\n  white-space: nowrap;\n  direction: ltr;\n  /* Support for all WebKit browsers. */\n  -webkit-font-smoothing: antialiased;\n  /* Support for Safari and Chrome. */\n  text-rendering: optimizeLegibility;\n  /* Support for Firefox. */\n  -moz-osx-font-smoothing: grayscale;\n  /* Support for IE. */\n  font-feature-settings: 'liga'; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 487 */
+/* 489 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/material-design-icons-icondist/MaterialIcons-Regular.eot?e79bfd88537def476913f3ed52f4f4b3";
 
 /***/ }),
-/* 488 */
+/* 490 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/material-design-icons-icondist/MaterialIcons-Regular.woff2?570eb83859dc23dd0eec423a49e147fe";
 
 /***/ }),
-/* 489 */
+/* 491 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/material-design-icons-icondist/MaterialIcons-Regular.woff?012cf6a10129e2275d79d6adac7f3b02";
 
 /***/ }),
-/* 490 */
+/* 492 */
 /***/ (function(module, exports) {
 
 module.exports = "/fonts/vendor/material-design-icons-icondist/MaterialIcons-Regular.ttf?a37b0c01c0baf1888ca812cc0508f6e2";
 
 /***/ }),
-/* 491 */
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(492)
-var buildFormatLocale = __webpack_require__(493)
+var buildDistanceInWordsLocale = __webpack_require__(494)
+var buildFormatLocale = __webpack_require__(495)
 
 /**
  * @category Locales
@@ -109778,7 +109804,7 @@ module.exports = {
 
 
 /***/ }),
-/* 492 */
+/* 494 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -109883,7 +109909,7 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 493 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildFormattingTokensRegExp = __webpack_require__(31)
@@ -109973,7 +109999,7 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 494 */
+/* 496 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

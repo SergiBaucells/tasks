@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.10d806feaec69b53bf01be27f0cab877.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.595e2ef1c856b19938f3e744833cbc00.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 workbox.skipWaiting()
 workbox.clientsClaim()
@@ -8,7 +8,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest)
 
 // images
 workbox.routing.registerRoute(
-  new RegExp('.(?:jpg|jpeg|png|gif|svg|webp)$'),
+  new RegExp('/img/*.*(?:jpg|jpeg|png|gif|svg|webp)$'),
   workbox.strategies.cacheFirst({
     cacheName: 'images',
     plugins: [

@@ -30,7 +30,7 @@
                             justify-center
                             class="white--text"
                     >
-                        <img-webp src="img/catalunya.webp" alt="Vuetify.js" height="200" alt-format="png"></img-webp>
+                        <img-webp src="/images/catalunya.webp" alt="Vuetify.js" height="200" alt-format="png"></img-webp>
                         <h1 style="
                         font-family: 'Montserrat', sans-serif;
                         font-size: 30px;

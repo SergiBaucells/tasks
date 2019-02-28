@@ -7,6 +7,8 @@
 - [ ] Títol i botó Login, amagar per a dispositius menuts.
 - [ ] Expansion panel filtres tasques->IncidentsComponent
 - [ ] FloatingAddComponent -> TaskForm que no sugui full screen
+- [ ] Share de una tasca concreta
+- [ ] Fer inports imatges app.js, copiar de public->img a resources->img i canviar a la welcome page
 #### TODO possibles millores (opcionals):   
 - [ ] inline Edit: Editar amb click/dblick el nom d'una tasca directament sense entrar al formulari de edit
 

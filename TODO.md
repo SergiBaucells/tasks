@@ -3,9 +3,6 @@
 #### TODO comú:
 - [ ] Filtre tasques d'un usuari concret
 - [ ] Acabar de fer tots els logs 
-- [ ] https://laravel-mix.com/docs/4.0/upgrade actualitzar laravel mix
-- [ ] Títol i botó Login, amagar per a dispositius menuts.
-- [ ] Expansion panel filtres tasques->IncidentsComponent
 - [ ] FloatingAddComponent -> TaskForm que no sugui full screen
 - [ ] Share de una tasca concreta
 - [ ] Opreacions touch mobile, arrastrar per borrar

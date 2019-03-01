@@ -10,7 +10,7 @@
         <share-fab></share-fab>
         <service-worker></service-worker>
         <v-toolbar>
-            <v-toolbar-title>App de Tasques Catalanes</v-toolbar-title>
+            <v-toolbar-title v-if="$vuetify.breakpoint.smAndUp">App de Tasques Catalanes</v-toolbar-title>
             <v-spacer></v-spacer>
             @if (Route::has('login'))
                 @auth

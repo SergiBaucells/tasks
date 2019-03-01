@@ -1,26 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
     "/js/manifest.js": "/js/manifest.js",
-    "/js/vendor.js": "/js/vendor.js",
-    "/js/app.9b943def7bfcebca3922.hot-update.js": "/js/app.9b943def7bfcebca3922.hot-update.js",
-    "/js/app.263e00c5cb4537fa88af.hot-update.js": "/js/app.263e00c5cb4537fa88af.hot-update.js",
-    "/js/app.ebb3fefe5ecec51edb92.hot-update.js": "/js/app.ebb3fefe5ecec51edb92.hot-update.js",
-    "/js/app.967506e71da68a5f59be.hot-update.js": "/js/app.967506e71da68a5f59be.hot-update.js",
-    "/js/app.9260bee3c150c0af0d6e.hot-update.js": "/js/app.9260bee3c150c0af0d6e.hot-update.js",
-    "/js/app.f7f30ed64c84ddde0ebe.hot-update.js": "/js/app.f7f30ed64c84ddde0ebe.hot-update.js",
-    "/js/app.9d752bcad0c92c4abe26.hot-update.js": "/js/app.9d752bcad0c92c4abe26.hot-update.js",
-    "/js/app.c301e68fcecb6b3d5b3c.hot-update.js": "/js/app.c301e68fcecb6b3d5b3c.hot-update.js",
-    "/js/app.c5d3cb6f66ebcc248963.hot-update.js": "/js/app.c5d3cb6f66ebcc248963.hot-update.js",
-    "/js/app.23ed70bdd98dcdf5517f.hot-update.js": "/js/app.23ed70bdd98dcdf5517f.hot-update.js",
-    "/js/app.a05778c60ce710f030ec.hot-update.js": "/js/app.a05778c60ce710f030ec.hot-update.js",
-    "/js/app.e1cbb63c2d6abaec1755.hot-update.js": "/js/app.e1cbb63c2d6abaec1755.hot-update.js",
-    "/js/app.23adb7e4d49e6e3208c5.hot-update.js": "/js/app.23adb7e4d49e6e3208c5.hot-update.js",
-    "/js/app.1eaf229864821e526063.hot-update.js": "/js/app.1eaf229864821e526063.hot-update.js",
-    "/js/app.6dc72710528c8749b638.hot-update.js": "/js/app.6dc72710528c8749b638.hot-update.js",
-    "/js/app.af8b1cc0ce9fb1df8ced.hot-update.js": "/js/app.af8b1cc0ce9fb1df8ced.hot-update.js",
-    "/js/app.b880107367759faad388.hot-update.js": "/js/app.b880107367759faad388.hot-update.js",
-    "/js/app.3ab71105f6974b53ac8e.hot-update.js": "/js/app.3ab71105f6974b53ac8e.hot-update.js",
-    "/js/app.dec15cae031269f4c776.hot-update.js": "/js/app.dec15cae031269f4c776.hot-update.js",
-    "/js/app.353ab46cab016e253769.hot-update.js": "/js/app.353ab46cab016e253769.hot-update.js",
-    "/js/app.7d71ffc0310cb8ba96e7.hot-update.js": "/js/app.7d71ffc0310cb8ba96e7.hot-update.js"
+    "/js/vendor.js": "/js/vendor.js"
 }

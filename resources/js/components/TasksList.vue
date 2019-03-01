@@ -25,7 +25,33 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout wrap>
+                <v-expansion-panel v-if="$vuetify.breakpoint.smAndDown">
+                    <v-expansion-panel-content>
+                        <div slot="header">Filtres</div>
+                        <v-layout wrap>
+                            <v-flex lg3 class="pr-2">
+                                <v-select
+                                        label="Filtres"
+                                        :items="filters"
+                                        v-model="filter"
+                                        item-text="name"
+                                        :return-object="true"
+                                ></v-select>
+                            </v-flex>
+                            <v-flex lg4 class="pr-2">
+                                <user-select :users="dataUsers" label="Usuari"></user-select>
+                            </v-flex>
+                            <v-flex lg5>
+                                <v-text-field
+                                        append-icon="search"
+                                        label="Buscar"
+                                        v-model="search"
+                                ></v-text-field>
+                            </v-flex>
+                        </v-layout>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+                <v-layout v-else wrap>
                     <v-flex lg3 class="pr-2">
                         <v-select
                                 label="Filtres"

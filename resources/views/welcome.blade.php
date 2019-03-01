@@ -10,7 +10,7 @@
         <share-fab></share-fab>
         <service-worker></service-worker>
         <v-toolbar>
-            <v-toolbar-title>App de Tasques Catalanes</v-toolbar-title>
+            <v-toolbar-title v-if="$vuetify.breakpoint.smAndUp">App de Tasques Catalanes</v-toolbar-title>
             <v-spacer></v-spacer>
             @if (Route::has('login'))
                 @auth
@@ -23,7 +23,7 @@
         </v-toolbar>
         <v-content>
             <section>
-                <v-parallax-webp alt="Portada" src="img/portada.webp" height="600" alt-format="jpg">
+                <v-parallax-webp alt="Portada" src="/images/portada.webp" height="600" alt-format="jpg">
                     <v-layout
                             column
                             align-center
@@ -131,7 +131,7 @@
             </section>
 
             <section>
-                <v-parallax-webp alt="Portada2" src="img/portada2.webp" height="380" alt-format="jpg">
+                <v-parallax-webp alt="Portada2" src="/images/portada2.webp" height="380" alt-format="jpg">
                     <v-layout column align-center justify-center>
                         <h1 style="
                         font-family: 'Montserrat', sans-serif;

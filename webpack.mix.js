@@ -1,8 +1,8 @@
 const workboxPlugin = require('workbox-webpack-plugin')
-const mix = require('laravel-mix');
-const replace = require( 'replace-in-file' );
-const path = require( 'path' );
-const publicDir = 'public/';
+const mix = require('laravel-mix')
+const replace = require('replace-in-file')
+const path = require('path')
+const publicDir = 'public/'
 
 /*
  |--------------------------------------------------------------------------
@@ -15,16 +15,23 @@ const publicDir = 'public/';
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').then( () => {
-  replace.sync( {
+mix.js('resources/js/app.js', 'public/js').then(() => {
+  replace.sync({
     // SEE: https://github.com/JeffreyWay/laravel-mix/issues/1717
     // FIXME:   Workaround for laravel-mix placeing '//*.js' at the begining of JS filesystem
 
-    files: path.normalize( `${publicDir}/service-worker/precache-manifest.*.js` ),
-    from:  /\/\//gu,
-    to:    '/',
-  } )
-}).sass('resources/sass/app.scss', 'public/css');
+    files: path.normalize(`${publicDir}/service-worker/precache-manifest.*.js`),
+    from: /\/\//gu,
+    to: '/'
+  })
+})
+  .extract()
+  .sourceMaps(false)
+  .sass('resources/sass/app.scss', 'public/css')
+
+if (mix.inProduction()) {
+  mix.version()
+}
 
 mix.webpackConfig({
   plugins: [
@@ -32,7 +39,7 @@ mix.webpackConfig({
     new workboxPlugin.InjectManifest({
       swSrc: 'public/service-worker.js', // more control over the caching
       swDest: 'sw.js', // the service-worker file name
-      importsDirectory: 'service-worker', // have a dedicated folder for sw files
+      importsDirectory: 'service-worker' // have a dedicated folder for sw files
     })
   ]
 })

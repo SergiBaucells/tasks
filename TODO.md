@@ -10,6 +10,7 @@
 - [ ] Share de una tasca concreta
 - [ ] Fer inports imatges app.js, copiar de public->img a resources->img i canviar a la welcome page
 - [ ] Arreglar lighthouse accessibility
+- [ ] Opreacions touch mobile, arrastrar per borrar
 #### TODO possibles millores (opcionals):
 - [ ] inline Edit: Editar amb click/dblick el nom d'una tasca directament sense entrar al formulari de edit
 

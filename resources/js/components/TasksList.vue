@@ -25,7 +25,7 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout row wrap>
+                <v-layout wrap>
                     <v-flex lg3 class="pr-2">
                         <v-select
                                 label="Filtres"

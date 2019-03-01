@@ -117,7 +117,7 @@
         <v-card>
             <v-card-title class="primary white--text"><h4>Opcions administrador</h4></v-card-title>
 
-            <v-layout row wrap>
+            <v-layout wrap>
                 @impersonating
                 <v-flex xs12 text-xs-center class="pb-2 pt-2">
                     <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">

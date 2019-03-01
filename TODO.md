@@ -10,7 +10,7 @@
 - [ ] Share de una tasca concreta
 - [ ] Fer inports imatges app.js, copiar de public->img a resources->img i canviar a la welcome page
 - [ ] Arreglar lighthouse accessibility
-#### TODO possibles millores (opcionals):   
+#### TODO possibles millores (opcionals):
 - [ ] inline Edit: Editar amb click/dblick el nom d'una tasca directament sense entrar al formulari de edit
 
 ### Fer en explotació

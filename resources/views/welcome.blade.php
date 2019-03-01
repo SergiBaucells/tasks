@@ -14,10 +14,10 @@
             <v-spacer></v-spacer>
             @if (Route::has('login'))
                 @auth
-                    <v-btn dark color="primary" href="{{ url('/home') }}">Accedeix</v-btn>
+                    <v-btn dark color="primary darken-3" href="{{ url('/home') }}">Accedeix</v-btn>
                 @else
-                    <v-btn dark color="primary" href="/login">Login</v-btn>
-                    <v-btn dark color="primary" href="/register">Registrar</v-btn>
+                    <v-btn dark color="primary darken-3" href="/login">Login</v-btn>
+                    <v-btn dark color="primary darken-3" href="/register">Registrar</v-btn>
                 @endauth
             @endif
         </v-toolbar>
@@ -45,7 +45,7 @@
                                     dark
                                     large
                                     href="/home"
-                                    color="primary darken-1"
+                                    color="primary darken-3"
                             >
                                 Accedeix
                             </v-btn>
@@ -56,7 +56,7 @@
                                     href="https://github.com/SergiBaucells/tasks"
                                     target="_blank"
                                     rel="noopener"
-                                    color="primary darken-1"
+                                    color="primary darken-3"
                             >
                                 GitHub
                             </v-btn>
@@ -148,7 +148,7 @@
                                 dark
                                 large
                                 href="/home"
-                                color="primary darken-1"
+                                color="primary darken-3"
                         >
                             Accedeix
                         </v-btn>

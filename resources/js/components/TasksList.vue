@@ -25,7 +25,7 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout row wrap>
+                <v-layout wrap>
                     <v-flex lg3 class="pr-2">
                         <v-select
                                 label="Filtres"
@@ -132,7 +132,7 @@
                         </v-layout>
                         <v-divider light></v-divider>
                         <v-card-actions class="pa-3 elevation-5">
-                          {{ task.user_email }}
+                          <p style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ task.user_email }}</p>
                           <v-spacer></v-spacer>
                             <task-show v-if="$can('user.tasks.show')" :users="users" :task="task" :uri="uri" :loading="showing" :disabled="showing"></task-show>
                             <task-update v-if="$can('user.tasks.update')" :users="users" :task="task" @updated="updateTask" :uri="uri" :loading="editing" :disabled="editing"></task-update>

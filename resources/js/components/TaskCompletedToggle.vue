@@ -1,4 +1,3 @@
-
 <template>
     <v-switch
             v-model="dataValue"
@@ -45,9 +44,6 @@ export default {
         if (dataValue) this.completeTask()
         else this.uncompleteTask()
       }
-    },
-    value (value) {
-      this.dataValue = value
     }
   },
   methods: {

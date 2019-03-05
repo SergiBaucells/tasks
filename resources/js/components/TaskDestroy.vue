@@ -12,7 +12,9 @@
 </template>
 
 <script>
-export default {
+  import EventBus from './../eventBus'
+
+  export default {
   'name': 'TaskDestroy',
   data () {
     return {
@@ -27,6 +29,10 @@ export default {
     uri: {
       type: String,
       required: true
+    },
+    mobile: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -52,6 +58,13 @@ export default {
         })
       }
     }
+  },
+  created () {
+    EventBus.$on('touch-delete', (event) => {
+      if (event.id === this.task.id && this.mobile) {
+        this.destroy(this.task)
+      }
+    })
   }
 }
 </script>

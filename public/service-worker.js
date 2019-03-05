@@ -27,3 +27,13 @@ workbox.routing.registerRoute(
   '/css/footer.css',
   workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
 )
+
+workbox.routing.registerRoute(
+  '/tasques',
+  new workbox.strategies.NetworkFirst()
+)
+
+workbox.routing.registerRoute(
+  '/home',
+  new workbox.strategies.NetworkFirst()
+)

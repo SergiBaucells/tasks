@@ -140,7 +140,9 @@
                         xs12
                 >
                     <v-flex xs12 pb-3>
-                      <v-card color="grey lighten-4" class="elevation-5 mr-2 ml-2">
+                      <v-card color="grey lighten-4" class="elevation-5 mr-2 ml-2" v-touch="{
+                                    left: () => call('delete', task)
+                            }">
                         <v-layout>
                           <v-flex xs5>
                             <v-img :src="(task.user !== null) ? task.user_gravatar : 'img/user_profile.png'" height="125px" contain></v-img>
@@ -162,7 +164,7 @@
                           <v-spacer></v-spacer>
                             <task-show v-if="$can('user.tasks.show')" :users="users" :task="task" :uri="uri" :loading="showing" :disabled="showing"></task-show>
                             <task-update v-if="$can('user.tasks.update')" :users="users" :task="task" @updated="updateTask" :uri="uri" :loading="editing" :disabled="editing"></task-update>
-                            <task-destroy v-if="$can('user.tasks.destroy')" :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+                            <task-destroy v-if="$can('user.tasks.destroy')" :task="task" :mobile="true" @removed="removeTask" :uri="uri"></task-destroy>
                         </v-card-actions>
                       </v-card>
                     </v-flex>
@@ -178,6 +180,7 @@ import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
+import EventBus from './../eventBus'
 export default {
   name: 'TasksList',
   components: {
@@ -271,6 +274,9 @@ export default {
     },
     updateTask () {
       this.refresh()
+    },
+    call (action, object) {
+      EventBus.$emit('touch-' + action, object)
     }
   }
 }

@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.d59f5aca1c3f7c836a8a707048f86f4f.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.af8e1a3413288b2b56a0f88d85b52c1a.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 workbox.skipWaiting()
 workbox.clientsClaim()
@@ -28,5 +28,15 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   '/css/footer.css',
   workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+)
+
+workbox.routing.registerRoute(
+  '/tasques',
+  new workbox.strategies.NetworkFirst()
+)
+
+workbox.routing.registerRoute(
+  '/home',
+  new workbox.strategies.NetworkFirst()
 )
 

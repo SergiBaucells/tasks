@@ -28,6 +28,8 @@ import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
 import ImgWebp from './components/ImgWebp.vue'
 import VParallaxWebp from './components/VParallaxWebp.vue'
+import MainToolbar from './components/MainToolbar.vue'
+import UserInfoDrawer from './components/UserInfoDrawer.vue'
 import Vibrate from './components/mobile/Vibrate.vue'
 import BatteryStatus from './components/mobile/BatteryStatus.vue'
 import Memory from './components/mobile/Memory.vue'
@@ -158,6 +160,8 @@ window.Vue.use(TreeView)
 window.Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation', Navigation)
 window.Vue.component('share-fab', ShareFab)
+window.Vue.component('main-toolbar', MainToolbar)
+window.Vue.component('user-info-drawer', UserInfoDrawer)
 // Changelog
 window.Vue.component('changelog', Changelog)
 window.Vue.component('notifications-widget', NotificationsWidget)

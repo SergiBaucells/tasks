@@ -5,6 +5,7 @@
 - [ ] Acabar de fer tots els logs 
 - [ ] Share de una tasca concreta, fer vista per cada tasca
 - [ ] Components https://whatwebcando.today/ mobile
+- [ ] Acabar components UserInfoDrawer
 #### TODO possibles millores (opcionals):
 - [ ] inline Edit: Editar amb click/dblick el nom d'una tasca directament sense entrar al formulari de edit
 

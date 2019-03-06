@@ -75,6 +75,11 @@
     <snackbar></snackbar>
     <service-worker></service-worker>
     <navigation v-model="drawer"></navigation>
+
+    <main-toolbar @toggle-right="drawerRight=!drawerRight"
+                  @toggle-left="drawer=!drawer">
+    </main-toolbar>
+
     <v-navigation-drawer
             v-model="drawerRight"
             fixed
@@ -147,24 +152,6 @@
             <color></color>
         </v-card>
     </v-navigation-drawer>
-    <v-toolbar color="primary" dark fixed app clipped-right clipped-left>
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>Menú</v-toolbar-title>
-        <v-spacer></v-spacer>
-
-        <notifications-widget></notifications-widget>
-
-        <span class="mr-4 hidden-xs-only" v-role="'SuperAdmin'"><git-info></git-info></span>
-
-        <v-avatar @click.stop="drawerRight = !drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
-            <img v-if="{{ Auth::user()->online }}" style="border: lawngreen 2px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-            <img v-else style="border: red 2px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-        </v-avatar>
-        <v-form action="logout" method="POST">
-            @csrf
-            <v-btn type="submit" icon><v-icon>exit_to_app</v-icon></v-btn>
-        </v-form>
-    </v-toolbar>
     <v-content>
         <v-container fluid fill-height>
             <v-layout>

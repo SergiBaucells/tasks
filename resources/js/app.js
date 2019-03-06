@@ -30,6 +30,7 @@ import ImgWebp from './components/ImgWebp.vue'
 import VParallaxWebp from './components/VParallaxWebp.vue'
 import Vibrate from './components/mobile/Vibrate.vue'
 import BatteryStatus from './components/mobile/BatteryStatus.vue'
+import Memory from './components/mobile/Memory.vue'
 import '../img/catalunya.png'
 import '../img/catalunya.webp'
 import '../img/portada.jpg'
@@ -167,6 +168,7 @@ window.Vue.component('v-parallax-webp', VParallaxWebp)
 // Mobile
 window.Vue.component('vibrate', Vibrate)
 window.Vue.component('battery-status', BatteryStatus)
+window.Vue.component('memory', Memory)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

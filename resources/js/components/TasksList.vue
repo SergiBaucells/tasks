@@ -100,7 +100,7 @@
                             {{ task.user_email }}
                         </td>
                         <td>
-                            <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
+                            <task-completed-toggle :status="task.completed" :task="task" :tags="tags"></task-completed-toggle>
                         </td>
                         <td>
                             <tasks-tags :task="task" :task-tags="task.tags" :tags="tags" @change="refresh(false)"></tasks-tags>

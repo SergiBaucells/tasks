@@ -1,13 +1,5 @@
 # Laravel 
 
-# Git
-* alias gst='git status'
-* alias gc='git commit'
-* alias gco='git checkout'
-* alias gl='git pull'
-* alias gpom="git pull origin master"
-* alias gp='git push'
-* alias gd='git diff | mate'
-* alias gb='git branch'
-* alias gba='git branch -a'
-* alias del='git branch -d'
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SergiBaucells/tasks/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SergiBaucells/tasks/?branch=master)
+[![StyleCI](https://github.styleci.io/repos/150627912/shield?branch=master)](https://github.styleci.io/repos/150627912)
+[![Build Status](https://travis-ci.org/SergiBaucells/tasks.svg?branch=master)](https://travis-ci.org/SergiBaucells/tasks)

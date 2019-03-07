@@ -1,7 +1,6 @@
 <template>
     <span>
-        <v-chip v-for="tag in taskTags" :key="tag.id" v-text="tag.name" :color="tag.color"
-                @dblclick="removeTag"></v-chip>
+        <v-chip v-for="tag in taskTags" :key="tag.id" v-text="tag.name" :color="tag.color"></v-chip>
         <v-btn icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
         <v-btn icon @click="dialog = true"><v-icon>remove</v-icon></v-btn>
         <v-dialog v-model="dialog" width="500">

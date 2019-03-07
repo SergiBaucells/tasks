@@ -133,25 +133,7 @@
             <section>
                 <v-parallax-webp alt="Portada2" src="/images/portada2.webp" height="380" alt-format="jpg">
                     <v-layout column align-center justify-center>
-                        <h1 style="
-                        font-family: 'Montserrat', sans-serif;
-                        font-size: 30px;
-                        text-shadow: rgba(0,0,0,40) 0 0 50px;"
-                            class="white--text mb-2 text-xs-center">
-                            El desenvolupament web mai ha estat tan fàcil
-                        </h1>
-                        <div style="text-shadow: rgba(0,0,0,40) 0 0 50px;" class="subheading mb-3 text-xs-center">
-                            Accediu a la aplicació!
-                        </div>
-                        <v-btn
-                                class="mt-5"
-                                dark
-                                large
-                                href="/home"
-                                color="primary darken-3"
-                        >
-                            Accedeix
-                        </v-btn>
+                        <newsletter-subscription-card></newsletter-subscription-card>
                     </v-layout>
                 </v-parallax-webp>
             </section>

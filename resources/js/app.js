@@ -28,8 +28,12 @@ import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab'
 import ImgWebp from './components/ImgWebp.vue'
 import VParallaxWebp from './components/VParallaxWebp.vue'
+import MainToolbar from './components/MainToolbar.vue'
+import UserInfoDrawer from './components/UserInfoDrawer.vue'
+import NewsLetterSubscriptionCard from './components/newsletter/NewsLetterSubscriptionCard.vue'
 import Vibrate from './components/mobile/Vibrate.vue'
 import BatteryStatus from './components/mobile/BatteryStatus.vue'
+import Memory from './components/mobile/Memory.vue'
 import '../img/catalunya.png'
 import '../img/catalunya.webp'
 import '../img/portada.jpg'
@@ -139,6 +143,27 @@ window.Vue.use(permissions)
 window.Vue.use(snackbar)
 window.Vue.use(confirm)
 
+window.axios.interceptors.response.use((response) => {
+  return response
+}, function (error) {
+  if (error) {
+    if (error.response) {
+      if (error.response.status === 401) {
+        console.log('HEY! unauthorized, logging out ...')
+        // TODO -> Pass current page as query string '/login?back=CURRENT_URL'
+        // this.showSnackBar(error.response.data, 'error', error.response.status)
+        window.Vue.prototype.$snackbar.showError("No heu entrat al sistema o ha caducat la sessió. Renviant-vos a l'entrada del sistema")
+        setTimeout(function () { window.location = '/login' }, 3000)
+      }
+      if (error.response.status === 402) {
+        // TODO errors validació
+      }
+      // return Promise.reject(error.response)
+    }
+  }
+  return Promise.reject(error)
+})
+
 // window.Vue.use(Snackbar)
 
 window.Vue.component('example-component', ExampleComponent)
@@ -157,6 +182,8 @@ window.Vue.use(TreeView)
 window.Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation', Navigation)
 window.Vue.component('share-fab', ShareFab)
+window.Vue.component('main-toolbar', MainToolbar)
+window.Vue.component('user-info-drawer', UserInfoDrawer)
 // Changelog
 window.Vue.component('changelog', Changelog)
 window.Vue.component('notifications-widget', NotificationsWidget)
@@ -167,6 +194,9 @@ window.Vue.component('v-parallax-webp', VParallaxWebp)
 // Mobile
 window.Vue.component('vibrate', Vibrate)
 window.Vue.component('battery-status', BatteryStatus)
+window.Vue.component('memory', Memory)
+
+window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

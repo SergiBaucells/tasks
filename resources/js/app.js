@@ -30,6 +30,7 @@ import ImgWebp from './components/ImgWebp.vue'
 import VParallaxWebp from './components/VParallaxWebp.vue'
 import MainToolbar from './components/MainToolbar.vue'
 import UserInfoDrawer from './components/UserInfoDrawer.vue'
+import NewsLetterSubscriptionCard from './components/newsletter/NewsLetterSubscriptionCard.vue'
 import Vibrate from './components/mobile/Vibrate.vue'
 import BatteryStatus from './components/mobile/BatteryStatus.vue'
 import Memory from './components/mobile/Memory.vue'
@@ -173,6 +174,8 @@ window.Vue.component('v-parallax-webp', VParallaxWebp)
 window.Vue.component('vibrate', Vibrate)
 window.Vue.component('battery-status', BatteryStatus)
 window.Vue.component('memory', Memory)
+
+window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

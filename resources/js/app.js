@@ -143,6 +143,27 @@ window.Vue.use(permissions)
 window.Vue.use(snackbar)
 window.Vue.use(confirm)
 
+window.axios.interceptors.response.use((response) => {
+  return response
+}, function (error) {
+  if (error) {
+    if (error.response) {
+      if (error.response.status === 401) {
+        console.log('HEY! unauthorized, logging out ...')
+        // TODO -> Pass current page as query string '/login?back=CURRENT_URL'
+        // this.showSnackBar(error.response.data, 'error', error.response.status)
+        window.Vue.prototype.$snackbar.showError("No heu entrat al sistema o ha caducat la sessió. Renviant-vos a l'entrada del sistema")
+        setTimeout(function () { window.location = '/login' }, 3000)
+      }
+      if (error.response.status === 402) {
+        // TODO errors validació
+      }
+      // return Promise.reject(error.response)
+    }
+  }
+  return Promise.reject(error)
+})
+
 // window.Vue.use(Snackbar)
 
 window.Vue.component('example-component', ExampleComponent)

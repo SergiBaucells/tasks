@@ -34,6 +34,10 @@ import NewsLetterSubscriptionCard from './components/newsletter/NewsLetterSubscr
 import Vibrate from './components/mobile/Vibrate.vue'
 import BatteryStatus from './components/mobile/BatteryStatus.vue'
 import Memory from './components/mobile/Memory.vue'
+import OnlineState from './components/mobile/OnlineState.vue'
+import NetworkTypeSpeed from './components/mobile/NetworkTypeSpeed.vue'
+import DevicePosition from './components/mobile/DevicePosition.vue'
+import Geolocation from './components/mobile/Geolocation.vue'
 import '../img/catalunya.png'
 import '../img/catalunya.webp'
 import '../img/portada.jpg'
@@ -195,6 +199,10 @@ window.Vue.component('v-parallax-webp', VParallaxWebp)
 window.Vue.component('vibrate', Vibrate)
 window.Vue.component('battery-status', BatteryStatus)
 window.Vue.component('memory', Memory)
+window.Vue.component('online-state', OnlineState)
+window.Vue.component('network-type-speed', NetworkTypeSpeed)
+window.Vue.component('device-position', DevicePosition)
+window.Vue.component('geolocation', Geolocation)
 
 window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 

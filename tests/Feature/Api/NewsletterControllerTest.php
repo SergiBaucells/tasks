@@ -17,25 +17,11 @@ class NewsletterControllerTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Refresh the in-memory database.
-     *
-     * @return void
-     */
-    protected function refreshInMemoryDatabase()
-    {
-        $this->artisan('migrate',[
-            '--path' => 'database/migrations'
-        ]);
-
-        $this->app[Kernel::class]->setArtisan(null);
-    }
-
-    /**
      * @test
-     * @group users
      */
     public function guest_user_can_subscribe_to_newsletter()
     {
+        $this->withoutExceptionHandling();
         Newsletter::shouldReceive('subscribePending')
             ->once()
             ->with('prova@gmail.com')
@@ -48,7 +34,6 @@ class NewsletterControllerTest extends TestCase
 
     /**
      * @test
-     * @group newsletter
      */
     public function email_is_required()
     {

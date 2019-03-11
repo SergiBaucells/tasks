@@ -11,6 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#F7C948">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Tasques Sergi Baucells">
+    <meta name="impersonatedBy" content="{{ Auth::user()->impersonatedBy() }}">
     <link rel="apple-touch-startup-image" href="img/images/icons2/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="57x57" href="img/images/icons2/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/images/icons2/apple-touch-icon-60x60.png">
@@ -77,81 +78,12 @@
     <navigation v-model="drawer"></navigation>
 
     <main-toolbar @toggle-right="drawerRight=!drawerRight"
-                  @toggle-left="drawer=!drawer">
+                  @toggle-left="drawer=!drawer"
+                  csrf-token="{{ csrf_token()}}">
     </main-toolbar>
 
-    <v-navigation-drawer
-            v-model="drawerRight"
-            fixed
-            right
-            clipped
-            app
-    >
-        <v-card>
-            <v-card-title class="primary white--text"><h4>Perfil</h4></v-card-title>
-            <v-list-tile class="pb-2 pt-2">
-                <v-list-tile-avatar>
-                    <v-avatar title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
-                        <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-                    </v-avatar>
-                </v-list-tile-avatar>
-                <v-list-tile-content>
-                    <v-list-tile-title>{{ Auth::user()->name }}</v-list-tile-title>
-                    <v-list-tile-title>{{ Auth::user()->email }}</v-list-tile-title>
-                </v-list-tile-content>
-            </v-list-tile>
-            <v-divider></v-divider>
-            <v-list-tile class="pb-2 pt-2">
-                <v-list-tile-content>
-                    <v-list-tile-title>Administrador? {{ Auth::user()->admin ? 'Si' : 'No' }}</v-list-tile-title>
-                </v-list-tile-content>
-            </v-list-tile>
-            <v-divider></v-divider>
-            <v-list-tile class="pb-2 pt-2">
-                <v-list-tile-content>
-                    <v-list-tile-title>Rols</v-list-tile-title>
-                    <v-list-tile-sub-title>{{ implode(', ',Auth::user()->map()['roles']) }}</v-list-tile-sub-title>
-                </v-list-tile-content>
-            </v-list-tile>
-            <v-divider></v-divider>
-            <v-list-tile class="pb-2 pt-2">
-                <v-list-tile-content>
-                    <v-list-tile-title>Permisos</v-list-tile-title>
-                    <v-list-tile-sub-title>{{ implode(', ',Auth::user()->map()['permissions']) }}</v-list-tile-sub-title>
-                </v-list-tile-content>
-            </v-list-tile>
-        </v-card>
-        <v-card>
-            <v-card-title class="primary white--text"><h4>Opcions administrador</h4></v-card-title>
+    <user-info-drawer v-model="drawerRight"></user-info-drawer>
 
-            <v-layout wrap>
-                @impersonating
-                <v-flex xs12 text-xs-center class="pb-2 pt-2">
-                    <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
-                        <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}"
-                             alt="avatar">
-                    </v-avatar>
-                </v-flex>
-                @endImpersonating
-                <v-flex xs12 text-xs-center class="pb-2 pt-2">
-                    @canImpersonate
-                    <impersonate class="ml-1 mr-1" label="Entrar com..." url="/api/v1/regular_users"></impersonate>
-                    @endCanImpersonate
-                    @impersonating
-                    {{ Auth::user()->impersonatedBy()->name }} està suplantant a {{ Auth::user()->name }}
-                    <v-btn color="success" href="impersonate/leave">
-                        <v-icon class="mr-1" >exit_to_app</v-icon>
-                        Abandonar la suplantació
-                    </v-btn>
-                    @endImpersonating
-                </v-flex>
-            </v-layout>
-        </v-card>
-        <v-card>
-            <v-card-title class="primary white--text"><h4>Colors del tema</h4></v-card-title>
-            <color></color>
-        </v-card>
-    </v-navigation-drawer>
     <v-content>
         <v-container fluid fill-height>
             <v-layout>

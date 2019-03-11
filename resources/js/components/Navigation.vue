@@ -92,7 +92,8 @@ export default {
         { icon: 'person', text: 'Perfil', url: '/profile' },
         { icon: 'update', text: 'ChangeLog', url: '/changelog' },
         { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
-        { icon: 'stay_primary_portrait', text: 'Mobile', url: '/mobile' }
+        { icon: 'stay_primary_portrait', text: 'Mobile', url: '/mobile' },
+        { icon: 'contact_mail', text: 'NewsLetters', url: '/newsletters' }
       ]
     }
   },

@@ -88,7 +88,6 @@ Route::middleware(['auth:api'])->group(function () {
     // Simple notifications
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
 
-    Route::post('/v1/newsletter', '\\' . NewsletterController::class . '@store');
-
-
 });
+
+Route::post('/v1/newsletter', '\\' . NewsletterController::class . '@store');

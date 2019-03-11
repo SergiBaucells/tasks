@@ -21,8 +21,6 @@
 
                         <v-btn color="primary" id="askButton">Pregunta per localització</v-btn>
 
-                        <div id="target"></div>
-
                     </v-card-text>
 
                     <v-divider></v-divider>

@@ -34,6 +34,17 @@ if (mix.inProduction()) {
 }
 
 mix.webpackConfig({
+  plugins: [
+    // Options: https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
+    new workboxPlugin.InjectManifest({
+      swSrc: 'public/service-worker.js', // more control over the caching
+      swDest: 'sw.js', // the service-worker file name
+      importsDirectory: 'service-worker' // have a dedicated folder for sw files
+    })
+  ]
+})
+
+mix.webpackConfig({
   module: {
     rules: [
       {

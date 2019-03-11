@@ -38,6 +38,7 @@ import OnlineState from './components/mobile/OnlineState.vue'
 import NetworkTypeSpeed from './components/mobile/NetworkTypeSpeed.vue'
 import DevicePosition from './components/mobile/DevicePosition.vue'
 import Geolocation from './components/mobile/Geolocation.vue'
+import Newsletters from './components/newsletters/Newsletters.vue'
 import '../img/catalunya.png'
 import '../img/catalunya.webp'
 import '../img/portada.jpg'
@@ -205,6 +206,7 @@ window.Vue.component('device-position', DevicePosition)
 window.Vue.component('geolocation', Geolocation)
 
 window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
+window.Vue.component('newsletters', Newsletters)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

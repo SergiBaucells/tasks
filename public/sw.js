@@ -1,11 +1,13 @@
-importScripts("/service-worker/precache-manifest.a1a6c33f197588de6849219e0413a9fd.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.3622d6a879fe9d85c366a43d7709fa9b.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
 
 workbox.setConfig({
   debug: true
 })
 
-workbox.skipWaiting()
-workbox.clientsClaim()
+workbox.core.skipWaiting()
+workbox.core.clientsClaim()
+
+workbox.precaching.cleanupOutdatedCaches()
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest)
 // workbox.precaching.precacheAndRoute([]) També funciona i workbox substitueix pel que pertoca -> placeholder
@@ -13,7 +15,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest)
 // images
 workbox.routing.registerRoute(
   new RegExp('/img/*.*(?:jpg|jpeg|png|gif|svg|webp)$'),
-  workbox.strategies.cacheFirst({
+  new workbox.strategies.CacheFirst({
     cacheName: 'images',
     plugins: [
       new workbox.expiration.Plugin({
@@ -26,12 +28,12 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   '/',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'landing' })
 )
 
 workbox.routing.registerRoute(
   '/css/footer.css',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'landing' })
 )
 
 workbox.routing.registerRoute(
@@ -42,5 +44,28 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   '/home',
   new workbox.strategies.NetworkFirst()
+)
+
+const showNotification = () => {
+  self.registration.showNotification('Post Sent', {
+    body: 'You are back online and your post was successfully sent!'
+    // icon: 'assets/icon/256.png',
+    // badge: 'assets/icon/32png.png'
+  })
+}
+
+const bgSyncPlugin = new workbox.backgroundSync.Plugin('newsletter', {
+  maxRetentionTime: 24 * 60, // Retry for max of 24 Hours
+  callbacks: {
+    queueDidReplay: showNotification
+  }
+})
+
+workbox.routing.registerRoute(
+  '/api/v1/newsletter',
+  new workbox.strategies.NetworkOnly({
+    plugins: [bgSyncPlugin]
+  }),
+  'POST'
 )
 

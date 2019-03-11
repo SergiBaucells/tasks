@@ -49,6 +49,7 @@ class ImgOptimizeTest extends TestCase
      */
     public function test_jpeg_image_is_optimized()
     {
+        $this->markTestSkipped();
         $path = base_path('tests/__Fixtures__/ImgOptimizeTests/test.jpg');
 
         // RESTORE IMAGE

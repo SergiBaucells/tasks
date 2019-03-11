@@ -23,7 +23,7 @@
 
                         <p>L'estat de conexió inicial era <b id="status">unknown</b>.</p>
 
-                        <div id="target"></div>
+                        <div id="targett"></div>
 
                     </v-card-text>
 
@@ -54,14 +54,14 @@ export default {
     onlineState () {
       document.getElementById('status').innerHTML = navigator.onLine ? 'online' : 'offline'
 
-      let target = document.getElementById('target')
+      let targett = document.getElementById('targett')
 
       function handleStateChange () {
         let timeBadge = new Date().toTimeString().split(' ')[0]
         let newState = document.createElement('p')
         let state = navigator.onLine ? 'online' : 'offline'
         newState.innerHTML = '<span class="badge">' + timeBadge + "</span> L'estat de conexió ha canviat a <b>" + state + '</b>.'
-        target.appendChild(newState)
+        targett.appendChild(newState)
       }
 
       window.addEventListener('online', handleStateChange)

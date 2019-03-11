@@ -83,7 +83,7 @@
     </main-toolbar>
 
     <user-info-drawer v-model="drawerRight"></user-info-drawer>
-    
+
     <v-content>
         <v-container fluid fill-height>
             <v-layout>

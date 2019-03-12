@@ -262,7 +262,6 @@ export default {
         if (message) this.$snackbar.showMessage("S'ha refrescat correctament")
         this.loading = false
       }).catch(error => {
-        this.$snackbar.showError(error.message)
         this.loading = false
       })
     },

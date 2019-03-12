@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
+use App\Http\Controllers\ClockController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\MobileController;
@@ -59,6 +60,9 @@ Route::middleware(['auth'])->group(function () {
 
     //Newsletters
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
+
+    //Clock
+    Route::get('/clock', '\\' . ClockController::class . '@index');
 
 });
 

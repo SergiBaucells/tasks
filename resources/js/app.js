@@ -174,7 +174,7 @@ window.axios.interceptors.response.use((response) => {
     }
     console.log('1')
     if (error.response.status === 401) {
-      window.Vue.prototype.$snackbar.showsError("No heu entrat al sistema o ha caducat la sessió. Renviant-vos a l'entrada del sistema")
+      window.Vue.prototype.$snackbar.showError("No heu entrat al sistema o ha caducat la sessió. Renviant-vos a l'entrada del sistema")
       const loginUrl = location.pathname ? '/login?back=' + location.pathname : '/login'
       console.log('Waiting to redirect to:')
       console.log(loginUrl)

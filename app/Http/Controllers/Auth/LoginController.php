@@ -43,6 +43,19 @@ class LoginController extends Controller
     }
 
     /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        if (!session()->get('url.intended')) {
+            session()->put('url.intended',url()->previous());
+        }
+        return view('auth.login');
+    }
+
+    /**
      * Redirect the user to the $provider authentication page.
      *
      * @param Request $request

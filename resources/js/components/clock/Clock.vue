@@ -1,5 +1,7 @@
 <template>
-    <canvas id="canvas" ref="canvas" width="400" height="400" style="background-color: #333"></canvas>
+    <div class="text-xs-center">
+        <canvas id="canvas" ref="canvas" width="400" height="400" style="background-color: #333"></canvas>
+    </div>
 </template>
 
 <script>
@@ -8,7 +10,7 @@ export default {
   methods: {
     drawClock (ctx, radius) {
       // console.log('drawClock')
-      var fps = 60
+      let fps = 60
       setTimeout(() => {
         window.requestAnimationFrame(() => this.drawClock(ctx, radius))
       }, 1000 / fps)
@@ -18,11 +20,11 @@ export default {
       this.drawTime(ctx, radius)
     },
     drawTime (ctx, radius) {
-      var now = new Date()
-      var hour = now.getHours()
-      var minute = now.getMinutes()
-      var second = now.getSeconds()
-      var millis = now.getMilliseconds()
+      let now = new Date()
+      let hour = now.getHours()
+      let minute = now.getMinutes()
+      let second = now.getSeconds()
+      let millis = now.getMilliseconds()
       // hour
       hour = hour % 12
       hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60))
@@ -48,8 +50,8 @@ export default {
       ctx.rotate(-pos)
     },
     drawNumbers (ctx, radius) {
-      var ang
-      var num
+      let ang
+      let num
       ctx.font = radius * 0.15 + 'px arial'
       ctx.textBaseline = 'middle'
       ctx.textAlign = 'center'
@@ -65,7 +67,7 @@ export default {
       }
     },
     drawFace (ctx, radius) {
-      var grad
+      let grad
       ctx.beginPath()
       ctx.arc(0, 0, radius, 0, 2 * Math.PI)
       ctx.fillStyle = 'white'
@@ -86,7 +88,7 @@ export default {
   mounted () {
     this.canvas = this.$refs.canvas
     let ctx = this.canvas.getContext('2d')
-    var radius = this.canvas.height / 2
+    let radius = this.canvas.height / 2
     ctx.translate(radius, radius)
     radius = radius * 0.90
     ctx.arc(0, 0, radius, 0, 2 * Math.PI)

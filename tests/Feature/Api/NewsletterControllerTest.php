@@ -1,17 +1,12 @@
 <?php
 
-namespace Tests\Feature\Tenants\Api\Users;
+namespace Tests\Feature\Api;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Newsletter;
 use Tests\TestCase;
 
-/**
- * Class NewsletterControllerTest.
- *
- * @package Tests\Feature\Tenants
- */
 class NewsletterControllerTest extends TestCase
 {
     use RefreshDatabase;

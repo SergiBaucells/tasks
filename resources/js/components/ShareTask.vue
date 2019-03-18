@@ -20,7 +20,16 @@ export default {
   data () {
     return {
       fab: false,
-      loading: false
+      loading: false,
+      dataTitle: this.title,
+      dataText: this.text,
+      dataUrl: this.url
+    }
+  },
+  props: {
+    task: {
+      type: Object,
+      required: true
     }
   },
   methods: {

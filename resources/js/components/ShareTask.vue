@@ -4,7 +4,8 @@
             v-model="fab"
             color="accent"
             dark
-            large
+            icon
+            flat
             @click="share"
             :disabled="loading"
             :loading="loading"

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
+use App\Http\Controllers\ClockController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\MobileController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TasquesController;
 use App\Task;
 
 Auth::routes();
@@ -25,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/calendari', 'calendari');
     Route::get('/tasks_vue', 'TasksVueController@index');
     Route::get('/tasques', 'TasquesController@index');
+    Route::get('/tasques/{id}', '\\' . TasquesController::class . '@show');
     Route::get('/home', 'TasquesController@index');
     // Propies
     Route::post('/taskscompleted/{task}', 'TasksCompletedController@store');
@@ -59,6 +62,9 @@ Route::middleware(['auth'])->group(function () {
 
     //Newsletters
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
+
+    //Clock
+    Route::get('/clock', '\\' . ClockController::class . '@index');
 
 });
 

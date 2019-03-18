@@ -22,7 +22,7 @@ class TagsControllerTest extends TestCase
         $response = $this->get('/tags');
 
         //3 Comprovar
-        $response->assertRedirect('/login');
+        $response->assertRedirect('/login?back=tags');
 
         // Comprovar que es veuen les etiquetes que hi ha a la base dades
 

@@ -93,7 +93,9 @@ export default {
         { icon: 'update', text: 'ChangeLog', url: '/changelog' },
         { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
         { icon: 'stay_primary_portrait', text: 'Mobile', url: '/mobile' },
-        { icon: 'contact_mail', text: 'NewsLetters', url: '/newsletters' }
+        { icon: 'contact_mail', text: 'NewsLetters', url: '/newsletters' },
+        { icon: 'av_timer', text: 'Rellotge', url: '/clock' }
+
       ]
     }
   },

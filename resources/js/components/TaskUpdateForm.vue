@@ -82,7 +82,6 @@ export default {
         this.working = false
         this.$snackbar.showMessage("S'ha actualitzat correctament")
       }).catch(error => {
-        this.$snackbar.showError(error.message)
         this.working = false
       })
     },

@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('title')
-    NewsLetters
+	Rellotge
 @endsection
-
 @section('content')
-    <newsletters :newsletter="{{ $newsletter }}"></newsletters>
+	<clock></clock>
 @endsection

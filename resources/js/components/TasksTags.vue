@@ -87,7 +87,6 @@ export default {
         this.loading = false
         this.$emit('change', this.selectedTags)
       }).catch(error => {
-        this.$snackbar.showError(error.message)
         this.dialog = false
         this.loading = false
       })
@@ -98,7 +97,6 @@ export default {
       window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag' + this.tag).then(() => {
         this.$snackbar.showMessage('Etiqueta/es eliminada/es correctament')
       }).catch(error => {
-        this.$snackbar.showError(error.message)
       })
     },
     formatTag (event) {

@@ -35,7 +35,6 @@ export default {
         this.dataUsers = response.data
       }).catch(error => {
         console.log(error)
-        this.$snackbar.showError(error.message)
       })
     }
   },

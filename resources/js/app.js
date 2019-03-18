@@ -40,6 +40,7 @@ import DevicePosition from './components/mobile/DevicePosition.vue'
 import Geolocation from './components/mobile/Geolocation.vue'
 import Newsletters from './components/newsletters/Newsletters.vue'
 import Clock from './components/clock/Clock.vue'
+import ShowOneTask from './components/ShowOneTask.vue'
 import '../img/catalunya.png'
 import '../img/catalunya.webp'
 import '../img/portada.jpg'
@@ -273,6 +274,7 @@ window.Vue.component('navigation', Navigation)
 window.Vue.component('share-fab', ShareFab)
 window.Vue.component('main-toolbar', MainToolbar)
 window.Vue.component('user-info-drawer', UserInfoDrawer)
+window.Vue.component('show-one-task', ShowOneTask)
 // Changelog
 window.Vue.component('changelog', Changelog)
 window.Vue.component('notifications-widget', NotificationsWidget)

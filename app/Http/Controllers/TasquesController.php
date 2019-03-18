@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\IndexUserTasks;
 use App\Tag;
 use App\Task;
 use App\User;
+use App\Http\Requests\ShowTask;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\IndexUserTasks;
 use Illuminate\Support\Facades\Cache;
 
 class TasquesController extends Controller
@@ -32,4 +33,12 @@ class TasquesController extends Controller
         return view('tasques', compact('tasks', 'users', 'uri', 'tags'));
 
     }
+
+    public function show(ShowTask $request)
+    {
+        $task = map_collection(Task::where('id', '=', $request->id )->with('user')->first());
+        $users = map_collection(User::with('roles','permissions')->get());
+        return view('tasks.user.show', compact('task', 'users'));
+    }
+
 }

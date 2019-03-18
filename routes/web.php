@@ -11,6 +11,7 @@ use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TasquesController;
 use App\Task;
 
 Auth::routes();
@@ -26,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/calendari', 'calendari');
     Route::get('/tasks_vue', 'TasksVueController@index');
     Route::get('/tasques', 'TasquesController@index');
+    Route::get('/tasques/{id}', '\\' . TasquesController::class . '@show');
     Route::get('/home', 'TasquesController@index');
     // Propies
     Route::post('/taskscompleted/{task}', 'TasksCompletedController@store');

@@ -162,6 +162,7 @@
                         <v-card-actions class="pa-3 elevation-5">
                           <p style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ task.user_email }}</p>
                           <v-spacer></v-spacer>
+                            <share-task :task="task"></share-task>
                             <task-show v-if="$can('user.tasks.show')" :users="users" :task="task" :uri="uri" :loading="showing" :disabled="showing"></task-show>
                             <task-update v-if="$can('user.tasks.update')" :users="users" :task="task" @updated="updateTask" :uri="uri" :loading="editing" :disabled="editing"></task-update>
                             <task-destroy v-if="$can('user.tasks.destroy')" :task="task" :mobile="true" @removed="removeTask" :uri="uri"></task-destroy>
@@ -181,6 +182,7 @@ import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
 import EventBus from './../eventBus'
+import ShareTask from './ShareTask'
 export default {
   name: 'TasksList',
   components: {
@@ -188,7 +190,8 @@ export default {
     'task-destroy': TaskDestroy,
     'task-update': TaskUpdate,
     'task-show': TaskShow,
-    'tasks-tags': TasksTags
+    'tasks-tags': TasksTags,
+    'share-task': ShareTask
   },
   data () {
     return {

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Events\TaskCompleted;
+use App\Events\TaskUncompleted;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DestroyTaskCompleted;
 use App\Http\Requests\StoreTaskCompleted;
-use App\Events\TaskUncompleted;
 use App\Task;
 
 class TasksCompletedController extends Controller

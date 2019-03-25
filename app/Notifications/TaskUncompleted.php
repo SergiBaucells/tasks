@@ -4,9 +4,8 @@ namespace App\Notifications;
 
 use App\Task;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class TaskUncompleted extends Notification
 {
@@ -22,7 +21,6 @@ class TaskUncompleted extends Notification
     {
         $this->task = $task;
     }
-
 
     /**
      * Get the notification's delivery channels.

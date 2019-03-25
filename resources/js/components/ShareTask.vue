@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'ShareFab',
+  name: 'ShareTask',
   data () {
     return {
       fab: false,

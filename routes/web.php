@@ -12,6 +12,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasquesController;
+use App\Http\Controllers\Web\ChatController;
 use App\Task;
 
 Auth::routes();
@@ -65,6 +66,10 @@ Route::middleware(['auth'])->group(function () {
 
     //Clock
     Route::get('/clock', '\\' . ClockController::class . '@index');
+
+    //Xat
+    Route::get('/chat', '\\' . ChatController::class . '@index');
+    Route::get('/xat', '\\' . ChatController::class . '@index');
 
 });
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Channel;
+use App\ChatMessage;
 use App\Log;
 use App\Notifications\SimpleNotification;
 use App\Tag;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Role as ScoolRole;
 
 if (! function_exists('ellipsis')) {
     function ellipsis($text,$max=50)
@@ -635,6 +637,20 @@ if (! function_exists('map_simple_collection')) {
     }
 }
 
+if (! function_exists('create_admin_user')) {
+    function create_admin_user()
+    {
+        if (! App\User::where('email',config('tasks.admin_user_email'))->first()) {
+            User::forceCreate([
+                'name' => config('tasks.admin_user_name'),
+                'email' => config('tasks.admin_user_email'),
+                'password' => is_sha1($password = config('tasks.admin_username_password')) ? $password : sha1($password),
+                'admin' => true
+            ]);
+        }
+    }
+}
+
 if (! function_exists('is_sha1')) {
     function is_sha1($str) {
         return (bool) preg_match('/^[0-9a-f]{40}$/i', $str);
@@ -652,6 +668,29 @@ if (! function_exists('create_admin_user')) {
                 'admin' => true
             ]);
         }
+    }
+}
+
+if (!function_exists('initialize_chat_role')) {
+    function initialize_chat_role()
+    {
+        $role = Role::firstOrCreate(['name' => ScoolRole::CHAT['name']]);
+        $permissions = chat_permissions();
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+            $role->givePermissionTo($permission);
+        }
+    }
+}
+
+if (!function_exists('chat_permissions')) {
+    function chat_permissions()
+    {
+        return [
+            'chat.index',
+            'chat.store',
+            'chat.destroy'
+        ];
     }
 }
 
@@ -816,3 +855,40 @@ if (! function_exists('get_admin_user')) {
     }
 }
 
+if (! function_exists('create_sample_channel')) {
+    function create_sample_channel($user = null,$name = 'Pepe Pardo Jeans', $randomTimestamps = true) {
+        create_admin_user();
+        if(!$user) $user = get_admin_user();
+
+        if ($randomTimestamps) {
+            $channelData = add_random_timestamps([
+                'name' => $name,
+                'image' => 'http://i.pravatar.cc/300',
+                'last_message' => 'Bla bla bla'
+            ]);
+        } else {
+            $channelData = [
+                'name' => $name,
+                'image' => 'http://i.pravatar.cc/300',
+                'last_message' => 'Bla bla bla'
+            ];
+        }
+
+        $channel = Channel::create($channelData)->addUser($user);
+
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'Hola que tal!'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'Whats up?'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'Dude your are so cool!'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'WTF are you fool?'
+        ]));
+
+        return $channel;
+    }
+}

@@ -2,29 +2,30 @@
 
 namespace App\Notifications;
 
+use App\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
 /**
- * Class SimpleNotification.
+ * Class TaskStored.
  *
  * @package App\Notifications
  */
-class SimpleNotification extends Notification
+class TaskStored extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $title;
+    public $task;
 
     /**
      * SimpleNotification constructor.
-     * @param $title
+     * @param $task
      */
-    public function __construct($title)
+    public function __construct(Task $task)
     {
-        $this->title = $title;
+        $this->task = $task;
     }
 
     /**
@@ -44,23 +45,8 @@ class SimpleNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
-    {
-        return [
-            'title' => $this->title
-        ];
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function toDatabase($notifiable)
     {
-        return [
-            'title' => $this->title
-        ];
+        return $this->task->map();
     }
 }

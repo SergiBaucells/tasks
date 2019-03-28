@@ -16,10 +16,10 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Role as ScoolRole;
 
-if (! function_exists('ellipsis')) {
-    function ellipsis($text,$max=50)
+if (!function_exists('ellipsis')) {
+    function ellipsis($text, $max = 50)
     {
-        $ellipted = strlen($text) > $max ? substr($text,0,$max)."..." : $text;
+        $ellipted = strlen($text) > $max ? substr($text, 0, $max) . "..." : $text;
         return $ellipted;
     }
 }
@@ -243,20 +243,20 @@ if (!function_exists('create_example_tasks')) {
             });
             Gate::define('chat.index', function ($loggedUser, $chat) {
                 $result = $chat->users->search(function ($user) use ($loggedUser) {
-                    return $loggedUser->id  === $user->id;
+                    return $loggedUser->id === $user->id;
                 });
                 return $result === false ? false : true;
             });
             Gate::define('chat.store', function ($loggedUser, $chat) {
                 $result = $chat->users->search(function ($user) use ($loggedUser) {
-                    return $loggedUser->id  === $user->id;
+                    return $loggedUser->id === $user->id;
                 });
                 return $result === false ? false : true;
             });
 
             Gate::define('chat.destroy', function ($loggedUser, $chat) {
                 $result = $chat->users->search(function ($user) use ($loggedUser) {
-                    return $loggedUser->id  === $user->id;
+                    return $loggedUser->id === $user->id;
                 });
                 return $result === false ? false : true;
             });
@@ -551,7 +551,7 @@ if (!function_exists('create_sample_task')) {
         return $task;
     }
 }
-if (! function_exists('sample_logs')) {
+if (!function_exists('sample_logs')) {
     function sample_logs()
     {
         $user1 = factory(User::class)->create();
@@ -604,18 +604,18 @@ if (! function_exists('sample_logs')) {
             'icon' => 'home',
             'color' => 'teal'
         ]);
-        return [$log1,$log2,$log3,$log4];
+        return [$log1, $log2, $log3, $log4];
     }
 }
 
-if (! function_exists('is_valid_uuid')) {
+if (!function_exists('is_valid_uuid')) {
     /**
      * Check if a given string is a valid UUID
      *
-     * @param   string  $uuid   The string to check
+     * @param   string $uuid The string to check
      * @return  boolean
      */
-    function is_valid_uuid( $uuid )
+    function is_valid_uuid($uuid)
     {
 
         if (!is_string($uuid) || (preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/', $uuid) !== 1)) {
@@ -623,16 +623,19 @@ if (! function_exists('is_valid_uuid')) {
         }
         return true;
     }
-    if (! function_exists('set_sample_notifications_to_user')) {
-        function set_sample_notifications_to_user($user) {
+
+    if (!function_exists('set_sample_notifications_to_user')) {
+        function set_sample_notifications_to_user($user)
+        {
             $user->notify(new SimpleNotification('Notification 1'));
             $user->notify(new SimpleNotification('Notification 2'));
             $user->notify(new SimpleNotification('Notification 3'));
         }
     }
 
-    if (! function_exists('sample_notifications')) {
-        function sample_notifications() {
+    if (!function_exists('sample_notifications')) {
+        function sample_notifications()
+        {
             $user1 = factory(User::class)->create([
                 'name' => 'Homer Simpson',
                 'email' => 'homer@lossimpsons.com'
@@ -647,19 +650,19 @@ if (! function_exists('is_valid_uuid')) {
     }
 }
 
-if (! function_exists('map_simple_collection')) {
+if (!function_exists('map_simple_collection')) {
     function map_simple_collection($collection)
     {
-        return $collection->map(function($item) {
+        return $collection->map(function ($item) {
             return $item->mapSimple();
         });
     }
 }
 
-if (! function_exists('create_admin_user')) {
+if (!function_exists('create_admin_user')) {
     function create_admin_user()
     {
-        if (! App\User::where('email',config('tasks.admin_user_email'))->first()) {
+        if (!App\User::where('email', config('tasks.admin_user_email'))->first()) {
             User::forceCreate([
                 'name' => config('tasks.admin_user_name'),
                 'email' => config('tasks.admin_user_email'),
@@ -670,9 +673,10 @@ if (! function_exists('create_admin_user')) {
     }
 }
 
-if (! function_exists('is_sha1')) {
-    function is_sha1($str) {
-        return (bool) preg_match('/^[0-9a-f]{40}$/i', $str);
+if (!function_exists('is_sha1')) {
+    function is_sha1($str)
+    {
+        return (bool)preg_match('/^[0-9a-f]{40}$/i', $str);
     }
 }
 
@@ -699,13 +703,14 @@ if (!function_exists('chat_permissions')) {
     }
 }
 
-if (! function_exists('initialize_sample_chat_channels')) {
-    function initialize_sample_chat_channels($user = null)	{
+if (!function_exists('initialize_sample_chat_channels')) {
+    function initialize_sample_chat_channels($user = null)
+    {
         create_admin_user();
-        if(!$user) $user = get_admin_user();
+        if (!$user) $user = get_admin_user();
         Channel::create(add_random_timestamps([
             'name' => 'Pepe Pardo Jeans',
-            'image' => 'http://i.pravatar.cc/300',
+            'image' => 'https://i.pravatar.cc/300',
             'last_message' => 'Bla bla bla'
         ]))->addUser($user);
         Channel::create(add_random_timestamps([
@@ -826,12 +831,11 @@ if (! function_exists('initialize_sample_chat_channels')) {
     }
 }
 
-if (! function_exists('get_random_timestamps')) {
+if (!function_exists('get_random_timestamps')) {
     function get_random_timestamps($backwardDays = null)
     {
 
-        if ( is_null($backwardDays) )
-        {
+        if (is_null($backwardDays)) {
             $backwardDays = -800;
         }
 
@@ -847,23 +851,25 @@ if (! function_exists('get_random_timestamps')) {
     }
 }
 
-if (! function_exists('add_random_timestamps')) {
+if (!function_exists('add_random_timestamps')) {
     function add_random_timestamps($array)
     {
-        return array_merge($array,get_random_timestamps());
+        return array_merge($array, get_random_timestamps());
     }
 }
 
-if (! function_exists('get_admin_user')) {
-    function get_admin_user() {
-        return User::where('email',config('tasks.admin_user_email'))->first();
+if (!function_exists('get_admin_user')) {
+    function get_admin_user()
+    {
+        return User::where('email', config('tasks.admin_user_email'))->first();
     }
 }
 
-if (! function_exists('create_sample_channel')) {
-    function create_sample_channel($user = null,$name = 'Pepe Pardo Jeans', $randomTimestamps = true) {
+if (!function_exists('create_sample_channel')) {
+    function create_sample_channel($user = null, $name = 'Pepe Pardo Jeans', $randomTimestamps = true)
+    {
         create_admin_user();
-        if(!$user) $user = get_admin_user();
+        if (!$user) $user = get_admin_user();
 
         if ($randomTimestamps) {
             $channelData = add_random_timestamps([

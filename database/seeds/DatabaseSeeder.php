@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
         // Crea usuaris de proves
         sample_users();
+        initialize_sample_chat_channels();
 
     }
 }

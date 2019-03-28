@@ -12,7 +12,6 @@ use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
-use App\Task;
 use Illuminate\Http\Request;
 
 /*

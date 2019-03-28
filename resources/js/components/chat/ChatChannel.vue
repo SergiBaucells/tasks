@@ -1,11 +1,11 @@
 <template>
-    <div id="dsadsasadasdasddsadsa">
+    <div>
         <v-toolbar color="primary">
             <v-avatar
                     color="grey lighten-4"
             >
                 <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
-              </v-avatar>
+            </v-avatar>
             <v-toolbar-title>Channel 1</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-tooltip bottom>
@@ -22,45 +22,45 @@
             </v-tooltip>
         </v-toolbar>
         <v-container fluid text-xs-center class="ma-0 pa-0" >
-          <v-layout row wrap>
-            <v-flex xs12 style="height: calc(100vh - 64px - 64px - 64px);" class="bg-pattern">
-                <v-list subheader style="background-color: transparent;">
-                    <v-subheader>Recent messages</v-subheader>
-                    <v-list-tile
-                            v-for="message in dataMessages"
-                            :key="message.id"
-                            avatar
-                            @click=""
-                    >
-                      <v-list-tile-avatar>
-                        <img :src="message.avatar">
-                      </v-list-tile-avatar>
+            <v-layout row wrap class="mx-0">
+                <v-flex xs12 style="height: calc(100vh - 64px - 64px - 64px);" class="bg-pattern">
+                    <v-list subheader style="background-color: transparent;">
+                        <v-subheader>Recent messages</v-subheader>
+                        <v-list-tile
+                                v-for="message in dataMessages"
+                                :key="message.id"
+                                avatar
+                                @click=""
+                        >
+                            <v-list-tile-avatar>
+                                <img :src="message.avatar">
+                            </v-list-tile-avatar>
 
-                      <v-list-tile-content>
-                        <v-list-tile-title v-html="message.title"></v-list-tile-title>
-                      </v-list-tile-content>
+                            <v-list-tile-content>
+                                <v-list-tile-title v-html="message.text"></v-list-tile-title>
+                            </v-list-tile-content>
 
-                      <v-list-tile-action>
-                        <v-icon color="primary">chat_bubble</v-icon>
-                      </v-list-tile-action>
-                    </v-list-tile>
-                  </v-list>
-            </v-flex>
-              <v-flex xs12>
-                    <v-text-field
-                            label="Solo"
-                            placeholder="Nou missatge"
-                            solo
-                    ></v-text-field>
-              </v-flex>
-          </v-layout>
+                            <v-list-tile-action>
+                                <v-icon color="primary">chat_bubble</v-icon>
+                            </v-list-tile-action>
+                        </v-list-tile>
+                    </v-list>
+                </v-flex>
+                <v-flex xs12>
+                    <chat-message-add :channel="channel" @added="add"></chat-message-add>
+                </v-flex>
+            </v-layout>
         </v-container>
     </div>
 </template>
 
 <script>
+import ChatMessageAdd from './ChatMessageAdd'
 export default {
   name: 'ChatChannel',
+  components: {
+    'chat-message-add': ChatMessageAdd
+  },
   data () {
     return {
       dataMessages: [],
@@ -76,26 +76,10 @@ export default {
     }
   },
   methods: {
+    add () {
+      this.fetchMessages()
+    },
     fetchMessages () {
-      // TODO esborrar seguent línia quan estigui feta l'API
-      this.dataMessages = [
-        {
-          id: 1,
-          title: 'Hey man!'
-        },
-        {
-          id: 2,
-          title: 'How are you?'
-        },
-        {
-          id: 3,
-          title: 'bla bla bla....'
-        },
-        {
-          id: 4,
-          title: 'bla bla bla....'
-        }
-      ]
       if (this.channel) {
         this.loading = true
         window.axios('/api/v1/channel/' + this.channel.id + '/messages').then((response) => {

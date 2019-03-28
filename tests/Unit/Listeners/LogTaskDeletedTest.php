@@ -27,7 +27,7 @@ class LogTaskDeletedTest extends TestCase
         $task = factory(Task::class)->create();
 
         $listener = new LogTaskDelete();
-        $listener->handle(new TaskDelete($task, $user));
+        $listener->handle(new TaskDelete($task));
 
         $log  = Log::find(1);
         $this->assertEquals($log->text, "S'ha esborrat la tasca '" . $task->name . "'");

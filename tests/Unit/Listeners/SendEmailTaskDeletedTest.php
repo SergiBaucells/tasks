@@ -27,7 +27,7 @@ class SendEmailTaskDeletedTest extends TestCase
         $user->addTask($task);
 
         $listener = new EmailTaskDelete();
-        $listener->handle(new TaskDelete($task, $user));
+        $listener->handle(new TaskDelete($task));
 
         Mail::assertSent(\App\Mail\TaskDeleted::class, function($mail) use ($task, $user) {
             return  $mail->task->is($task) &&

@@ -241,6 +241,25 @@ if (!function_exists('create_example_tasks')) {
             Gate::define('changelog.list', function ($user) {
                 return $user->hasRole('ChangelogManager');
             });
+            Gate::define('chat.index', function ($loggedUser, $chat) {
+                $result = $chat->users->search(function ($user) use ($loggedUser) {
+                    return $loggedUser->id  === $user->id;
+                });
+                return $result === false ? false : true;
+            });
+            Gate::define('chat.store', function ($loggedUser, $chat) {
+                $result = $chat->users->search(function ($user) use ($loggedUser) {
+                    return $loggedUser->id  === $user->id;
+                });
+                return $result === false ? false : true;
+            });
+
+            Gate::define('chat.destroy', function ($loggedUser, $chat) {
+                $result = $chat->users->search(function ($user) use ($loggedUser) {
+                    return $loggedUser->id  === $user->id;
+                });
+                return $result === false ? false : true;
+            });
         }
     }
 
@@ -654,20 +673,6 @@ if (! function_exists('create_admin_user')) {
 if (! function_exists('is_sha1')) {
     function is_sha1($str) {
         return (bool) preg_match('/^[0-9a-f]{40}$/i', $str);
-    }
-}
-
-if (! function_exists('create_admin_user')) {
-    function create_admin_user()
-    {
-        if (! App\User::where('email',config('tasks.admin_user_email'))->first()) {
-            User::forceCreate([
-                'name' => config('tasks.admin_user_name'),
-                'email' => config('tasks.admin_user_email'),
-                'password' => is_sha1($password = config('tasks.admin_username_password')) ? $password : sha1($password),
-                'admin' => true
-            ]);
-        }
     }
 }
 

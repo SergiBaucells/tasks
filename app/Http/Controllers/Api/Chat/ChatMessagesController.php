@@ -10,29 +10,14 @@ use App\Channel;
 use App\ChatMessage;
 
 
-/**
- * Class ChangelogController
- * @package App\Http\Controllers\Tenant\Api\Changelog
- */
 class ChatMessagesController extends Controller
 {
-    /**
-     * Index
-     *
-     * @param ChatMessagesIndex $request
-     * @return mixed
-     */
-    public function index(ChatMessagesIndex $request,Channel $channel)
+
+    public function index(ChatMessagesIndex $request, Channel $channel)
     {
         return map_collection($channel->messages);
     }
 
-    /**
-     * Store
-     *
-     * @param ChatMessagesStore $request
-     * @return mixed
-     */
     public function store(ChatMessagesStore $request, Channel $channel)
     {
         $channel->addMessage($message = ChatMessage::create([
@@ -41,13 +26,7 @@ class ChatMessagesController extends Controller
         return $message;
     }
 
-    /**
-     * Destroy
-     *
-     * @param ChatMessagesDestroy $request
-     * @return mixed
-     * @throws \Exception
-     */
+
     public function destroy(ChatMessagesDestroy $request, Channel $channel, ChatMessage $message)
     {
         $message->delete();

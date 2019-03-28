@@ -28,7 +28,7 @@ class ChatControllerTest extends TestCase
         $response->assertViewIs('chat.index');
         $response->assertViewHas('channels', function ($channels) {
             return is_array($channels->toArray()) &&
-                $channels[0]->value === 'Pepe Pardo Jeans';
+                $channels[0]->name === 'Pepe Pardo Jeans';
         });
     }
 }

@@ -19,7 +19,7 @@ class ChatIndex extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('user.tasks.index');
+        return Auth::user()->can('chat.index');
     }
 
     /**

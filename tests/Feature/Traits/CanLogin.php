@@ -5,6 +5,7 @@ namespace Tests\Feature\Traits;
 use App\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Role as ScoolRole;
 
 trait CanLogin
 {
@@ -77,17 +78,23 @@ trait CanLogin
         return $user;
     }
 
-    protected function loginAsSuperAdmin($guard = null)
+    protected function loginAsSuperAdmin($guard = null, $user = null)
     {
-        $user = factory(User::class)->create();
+        if (!$user) $user = factory(User::class)->create();
         $user->admin = true;
         $user->save();
-        $this->actingAs($user, $guard);
+        $this->actingAs($user,$guard);
         return $user;
     }
 
     protected function loginAsNotificationsManager($guard = null)
     {
         return $this->loginAsUsingRole($guard, ['NotificationsManager']);
+    }
+
+    public function loginAsChatUser($guard = 'web')
+    {
+        initialize_chat_role();
+        return $this->loginAsUsingRole($guard, ScoolRole::CHAT['name']);
     }
 }

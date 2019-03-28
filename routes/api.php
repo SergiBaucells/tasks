@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Changelog\ChangelogController;
+use App\Http\Controllers\Api\Chat\ChatMessagesController;
 use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
@@ -11,7 +12,6 @@ use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
-use App\Task;
 use Illuminate\Http\Request;
 
 /*
@@ -36,6 +36,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::delete('/v1/tasks/{task}', 'Api\TasksController@destroy');
     Route::post('/v1/tasks/', 'Api\TasksController@store');
     Route::put('/v1/tasks/{task}', 'Api\TasksController@update');
+    Route::put('/v1/tasks/inline/{task}', 'Api\TasksControllerInLine@update');
     // Tags
     Route::get('/v1/tags', 'Api\TagsController@index');
     Route::get('/v1/tags/{tag}', 'Api\TagsController@show');
@@ -87,6 +88,12 @@ Route::middleware(['auth:api'])->group(function () {
 
     // Simple notifications
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
+
+    // Chat
+    // Channel messages
+    Route::get('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@index');
+    Route::post('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@store');
+    Route::delete('/v1/channel/{channel}/messages/{message}', '\\' . ChatMessagesController::class . '@destroy');
 
 });
 

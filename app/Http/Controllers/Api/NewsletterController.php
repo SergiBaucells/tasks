@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsletterStore;
 use Log;
-use Response;
-use App\Http\Controllers\Controller;
 use Newsletter;
+use Response;
 
 /**
  * Class NewsletterController.
@@ -25,9 +25,12 @@ class NewsletterController extends Controller
     {
         Log::debug('Subscribing user email: ' . $request->email);
         $result = Newsletter::subscribePending($request->email);
-        if ($result) return $result;
+        if ($result) {
+            return $result;
+        }
+
         return Response::json([
-            'message' => 'User already registered'
+            'message' => 'User already registered',
         ], 423);
     }
 }

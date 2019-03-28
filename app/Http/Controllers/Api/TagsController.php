@@ -9,7 +9,6 @@ use App\Http\Requests\ShowTag;
 use App\Http\Requests\StoreTag;
 use App\Http\Requests\UpdateTag;
 use App\Tag;
-use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {

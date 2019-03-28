@@ -94,8 +94,8 @@ export default {
         { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
         { icon: 'stay_primary_portrait', text: 'Mobile', url: '/mobile' },
         { icon: 'contact_mail', text: 'NewsLetters', url: '/newsletters' },
-        { icon: 'av_timer', text: 'Rellotge', url: '/clock' }
-
+        { icon: 'av_timer', text: 'Rellotge', url: '/clock' },
+        { icon: 'chat', text: 'Xat', url: '/chat' }
       ]
     }
   },

@@ -27,9 +27,8 @@ class EmailTaskDelete implements ShouldQueue
      */
     public function handle($event)
     {
-        $subject = $event->task->subject();
         Mail::to($event->user)
             ->cc(config('tasks.manager_email'))
-            ->send((new TaskDeleted($event->task))->subject($subject));
+            ->send(new TaskDeleted($event->task));
     }
 }

@@ -100,6 +100,17 @@ class Task extends Model
         ];
     }
 
+    public function mapSimple()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'completed' => (boolean)$this->completed,
+            'tags' => $this->tags
+        ];
+    }
+
     public function getFullSearchAttribute()
     {
         $state = $this->completed ? 'Completada' : 'Pendent';

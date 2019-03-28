@@ -85,13 +85,7 @@
     <user-info-drawer v-model="drawerRight"></user-info-drawer>
 
     <v-content>
-        <v-container fluid fill-height>
-            <v-layout>
-                <v-flex>
-                    @yield('content')
-                </v-flex>
-            </v-layout>
-        </v-container>
+        @yield('content')
     </v-content>
     <v-footer color="primary" app>
         <span class="white--text pl-2">Created by Sergi Baucells Rodríguez, &copy; 2018 All rights reserved</span>

@@ -41,6 +41,7 @@ import Geolocation from './components/mobile/Geolocation.vue'
 import Newsletters from './components/newsletters/Newsletters.vue'
 import Clock from './components/clock/Clock.vue'
 import ShowOneTask from './components/ShowOneTask.vue'
+import Chat from './components/chat/Chat.vue'
 import '../img/catalunya.png'
 import '../img/catalunya.webp'
 import '../img/portada.jpg'
@@ -294,6 +295,7 @@ window.Vue.component('geolocation', Geolocation)
 window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 window.Vue.component('newsletters', Newsletters)
 window.Vue.component('clock', Clock)
+window.Vue.component('chat', Chat)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

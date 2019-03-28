@@ -35,7 +35,9 @@
         "vuetify": "^1.5.4"
     },
     "dependencies": {
+        "laravel-echo": "^1.5.3",
         "moment": "^2.24.0",
+        "pusher-js": "^4.4.0",
         "replace-in-file": "^3.4.3",
         "typeface-montserrat": "0.0.54",
         "typeface-roboto": "0.0.54",

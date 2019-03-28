@@ -88,9 +88,26 @@
                 <v-progress-linear slot="progress" color="primary" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item:task}">
                     <tr>
-                        <td>{{task.id}}</td>
                         <td>
-                            <span :title="task.description">{{ task.name }}</span>
+                            {{task.id}}
+                        </td>
+                        <td>
+                            <v-edit-dialog
+                                    :return-value.sync="task.name"
+                                    lazy
+                                    @save="save(task)"
+                                    @cancel="cancel"
+                            >{{ task.name }}
+                            <template v-slot:input>
+                                <v-text-field
+                                        v-model="task.name"
+                                        :rules="[max25chars]"
+                                        label="Nom de la tasca"
+                                        single-line
+                                        counter
+                                ></v-text-field>
+                            </template>
+                            </v-edit-dialog>
                         </td>
                         <td>
                             <v-avatar :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : ''">
@@ -195,6 +212,7 @@ export default {
   },
   data () {
     return {
+      max25chars: v => v.length <= 25 || 'Nom de la tasca massa llarg!',
       dataUsers: this.users,
       showDialog: false,
       editDialog: false,
@@ -279,6 +297,60 @@ export default {
     },
     call (action, object) {
       EventBus.$emit('touch-' + action, object)
+    },
+    save (task) {
+      this.working = true
+      window.axios.put('/api/v1/tasks/inline/' + task.id,
+        {
+          name: task.name
+        }
+      ).then((response) => {
+        this.working = false
+        this.$snackbar.showMessage("S'ha actualitzat correctament")
+      }).catch(error => {
+        this.working = false
+      })
+    },
+    cancel () {
+      this.$snackbar.showError('Cancelat!')
+    }
+  },
+  created () {
+
+    if (window.laravel_user.admin) {
+      window.Echo.private('Tasques')
+        .listen('TaskUncompleted', (e) => {
+          this.refresh()
+        })
+        .listen('TaskCompleted', (e) => {
+          this.refresh()
+        })
+        .listen('TaskUpdate', (e) => {
+          this.refresh()
+        })
+        .listen('TaskStored', (e) => {
+          this.refresh()
+        })
+        .listen('TaskDeleted', (e) => {
+          this.refresh()
+        })
+    } else {
+      window.Echo.private('App.User.' + window.laravel_user.id)
+        .listen('TaskUncompleted', (e) => {
+          this.refresh()
+        })
+        .listen('TaskCompleted', (e) => {
+          this.refresh()
+        })
+        .listen('TaskUpdate', (e) => {
+          this.refresh()
+        })
+        .listen('TaskStored', (e) => {
+          this.refresh()
+        })
+        .listen('TaskDeleted', (e) => {
+          this.refresh()
+        })
     }
   }
 }

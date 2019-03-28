@@ -23,9 +23,10 @@ class TaskDelete implements ShouldBroadcast
      *
      * @param array $oldTask
      */
-    public function __construct(array $oldTask)
+    public function __construct($task, User $user)
     {
-        $this->oldTask = $oldTask;
+        $this->task = $task;
+        $this->user = $user;
     }
 
     /**
@@ -35,8 +36,8 @@ class TaskDelete implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return[
-            new PrivateChannel('App.User.' . $this->task['user_id']),
+        return [
+            new PrivateChannel('App.User.' . $this->user->id),
             new PrivateChannel('Tasques')
         ];
     }

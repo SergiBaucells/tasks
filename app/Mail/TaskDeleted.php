@@ -18,7 +18,7 @@ class TaskDeleted extends Mailable
      *
      * @param Task $task
      */
-    public function __construct(Task $task)
+    public function __construct($task)
     {
         $this->task = $task;
     }

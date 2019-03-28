@@ -21,14 +21,11 @@ class SendEmailTaskDeletedTest extends TestCase
     public function email_has_been_sent_when_task_deleted()
     {
         Mail::fake();
-
         $user = factory(User::class)->create();
         $task = factory(Task::class)->create();
         $user->addTask($task);
-
         $listener = new EmailTaskDelete();
-        $listener->handle(new TaskDelete($task));
-
+        $listener->handle(new TaskDelete($task, $user));
         Mail::assertSent(\App\Mail\TaskDeleted::class, function($mail) use ($task, $user) {
             return  $mail->task->is($task) &&
                 $mail->hasTo($user->email) &&

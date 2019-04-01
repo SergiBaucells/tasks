@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
@@ -70,6 +71,8 @@ Route::middleware(['auth'])->group(function () {
     //Xat
     Route::get('/chat', '\\' . ChatController::class . '@index');
     Route::get('/xat', '\\' . ChatController::class . '@index');
+
+    Route::get('/users', '\\' . UsersController::class . '@index');
 
 });
 

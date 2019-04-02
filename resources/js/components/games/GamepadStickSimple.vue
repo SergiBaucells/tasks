@@ -1,6 +1,6 @@
 <template>
     <span>
-        <p class="font-weight-bold text-xs-center mt-5 headline">Press any button for connet your gamepad!</p>
+        <p>Prem un botó per començar a jugar!</p>
         <div id="ball"></div>
     </span>
 </template>

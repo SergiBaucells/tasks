@@ -13,16 +13,19 @@ use App\Listeners\EmailTaskDelete;
 use App\Listeners\EmailTaskStored;
 use App\Listeners\EmailTaskUpdated;
 use App\Listeners\ForgetTasksCache;
+use App\Listeners\LogNotification;
 use App\Listeners\LogTaskCompleted;
 use App\Listeners\LogTaskDelete;
 use App\Listeners\LogTaskStored;
 use App\Listeners\LogTaskUncompleted;
 use App\Events\TaskUncompleted;
 use App\Listeners\LogTaskUpdated;
+use App\Listeners\SendDatabaseNotificationStore;
 use App\Listeners\SendTaskStoredNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Notifications\Events\NotificationSent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -62,6 +65,10 @@ class EventServiceProvider extends ServiceProvider
             LogTaskDelete::class,
             EmailTaskDelete::class,
             ForgetTasksCache::class
+        ],
+        NotificationSent::class => [
+            LogNotification::class,
+            SendDatabaseNotificationStore::class
         ]
     ];
 

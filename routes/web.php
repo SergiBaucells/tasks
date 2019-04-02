@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
@@ -71,7 +73,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/chat', '\\' . ChatController::class . '@index');
     Route::get('/xat', '\\' . ChatController::class . '@index');
 
+    Route::get('/users', '\\' . UsersController::class . '@index');
+
+
 });
+
+Route::get('/game', '\\' . GameController::class . '@index');
 
 Route::post('/login_alt', 'Auth\LoginAltController@login');
 

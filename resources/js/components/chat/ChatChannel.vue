@@ -33,7 +33,7 @@
                                 @click=""
                         >
                             <v-list-tile-avatar>
-                                <img :src="message.avatar">
+                                <v-img :src="user.gravatar"></v-img>
                             </v-list-tile-avatar>
 
                             <v-list-tile-content>
@@ -92,6 +92,7 @@ export default {
     }
   },
   created () {
+    this.user = window.laravel_user
     this.fetchMessages()
   }
 }

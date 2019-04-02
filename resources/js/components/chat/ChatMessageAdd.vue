@@ -1,9 +1,14 @@
 <template>
     <div class="chat-new-msg">
+        <v-btn icon>
+            <v-icon>face</v-icon>
+        </v-btn>
         <label class="m-2">
             <input @keyup.enter="save" v-model="message" type="text" class="search" placeholder="Escribe un mensaje aquí">
         </label>
-        <v-icon class="mic">mic</v-icon>
+        <v-btn icon class="mic">
+            <v-icon>mic</v-icon>
+        </v-btn>
     </div>
 </template>
 <script>
@@ -42,8 +47,7 @@ export default {
 <style>
     .mic{
         position: relative;
-        top: 4px;
-        left: 10px;
+        left: -10px;
     }
     .chat-new-msg{
         background-color: #EEEEEE;

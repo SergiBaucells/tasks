@@ -1,15 +1,11 @@
 <template>
-    <v-text-field
-            label="Solo"
-            placeholder="Nou missatge"
-            solo
-            @keyup.enter="save"
-            v-model="message"
-            :loading="loading"
-            :disabled="loading"
-    ></v-text-field>
+    <div class="chat-new-msg">
+        <label class="m-2">
+            <input @keyup.enter="save" v-model="message" type="text" class="search" placeholder="Escribe un mensaje aquí">
+        </label>
+        <v-icon class="mic">mic</v-icon>
+    </div>
 </template>
-
 <script>
 export default {
   name: 'ChatMessageAdd',
@@ -43,3 +39,44 @@ export default {
   }
 }
 </script>
+<style>
+    .mic{
+        position: relative;
+        top: 4px;
+        left: 10px;
+    }
+    .chat-new-msg{
+        background-color: #EEEEEE;
+        padding: 1px;
+    }
+    .chat-new-msg label{
+        -webkit-align-items: center;
+        align-items: center;
+        box-sizing: border-box;
+        display: inline-flex;
+        height: 35px;
+        top: 7px;
+        left: 12px;
+        margin-left: 65px;
+        padding-left: 10px;
+        padding-right: 70%;
+        right: 14px;
+        background-color: #fff;
+        border-radius: 18px;
+    }
+    .chat-new-msg input.search{
+        font-size: 15px;
+        font-weight: normal;
+        line-height: 20px;
+        min-height: 20px;
+        outline: none;
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+        width: 100%;
+        z-index: 1;
+        border: none;
+        padding: 0;
+    }
+</style>

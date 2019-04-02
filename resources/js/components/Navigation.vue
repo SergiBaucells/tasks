@@ -96,7 +96,8 @@ export default {
         { icon: 'contact_mail', text: 'NewsLetters', url: '/newsletters' },
         { icon: 'av_timer', text: 'Rellotge', url: '/clock' },
         { icon: 'chat', text: 'Xat', url: '/chat' },
-        { icon: 'supervisor_account', text: 'Users', url: '/users' }
+        { icon: 'supervisor_account', text: 'Users', url: '/users' },
+        { icon: 'videogame_asset', text: 'Joc', url: '/game' }
       ]
     }
   },

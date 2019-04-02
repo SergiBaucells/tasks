@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
@@ -74,7 +75,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/users', '\\' . UsersController::class . '@index');
 
+
 });
+
+Route::get('/game', '\\' . GameController::class . '@index');
 
 Route::post('/login_alt', 'Auth\LoginAltController@login');
 

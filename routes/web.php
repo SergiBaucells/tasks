@@ -88,7 +88,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Login Facebook
 //Route::get('/auth/facebook', '\\' . LoginController::class . '@redirectToProvider');

@@ -4,13 +4,15 @@
 namespace App\CodeGenerator;
 
 
+use Faker\Factory;
+
 class MobileCodesGenerators
 {
 
     public static function generate()
     {
-        // TODO: Fer generador de codis aleatoris
-        return '123456';
+        $faker = Factory::create();
+        return $faker->numberBetween($min = 000000, $max = 999999);
     }
 
 }

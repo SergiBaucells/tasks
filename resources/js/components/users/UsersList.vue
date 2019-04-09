@@ -1,7 +1,7 @@
 <template>
     <span>
         <v-toolbar color="primary">
-            <v-toolbar-title class="white--text">Tasques</v-toolbar-title>
+            <v-toolbar-title class="white--text">Usuaris</v-toolbar-title>
         </v-toolbar>
         <v-card>
             <v-container fluid>
@@ -21,7 +21,7 @@
                                 <td>{{ user.id }}</td>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
-                                <td>{{ user.email }}</td>
+                                <td>{{ user.mobile }}</td>
                                 <td>{{ user.email_verified_at }}</td>
                                 <td></td>
                             </template>
@@ -44,7 +44,7 @@ export default {
         { text: 'Id', value: 'id' },
         { text: 'Name', value: 'name' },
         { text: 'Email', value: 'email' },
-        { text: 'Phone', value: 'email' },
+        { text: 'Phone', value: 'mobile' },
         { text: 'Verified', value: 'verified_at' },
         { text: 'Actions', value: 'id' }
       ]

@@ -27,6 +27,7 @@
     <meta name="msapplication-TileColor" content="#ffc40d">
     <meta name="msapplication-TileImage" content="img/images/icons2/mstile-144x144.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="vapidPublicKey" content="{{ config('webpush.vapid.public_key') }}">
     <!-- Carta compartida -->
     <meta property="og:image" content="/img/catalunya.png">
     <meta property="og:image:width" content="1190">

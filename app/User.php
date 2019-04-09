@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Session;
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
 
     const DEFAULT_PHOTO = 'default.png';
@@ -26,7 +27,7 @@ class User extends Authenticatable
     const USERS_CACHE_KEY = 'tasks.sergibaucells.scool.cat.user';
 
 
-    use Notifiable, HasApiTokens, HasRoles, Impersonate;
+    use Notifiable, HasApiTokens, HasRoles, Impersonate , HasPushSubscriptions;
 
     /**
      * The attributes that are mass assignable.
@@ -205,6 +206,11 @@ class User extends Authenticatable
     public function channels()
     {
         return $this->belongsToMany(Channel::class);
+    }
+
+    public function routeNotificationForNexmo()
+    {
+        return $this->mobile;
     }
 
 }

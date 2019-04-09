@@ -1,6 +1,6 @@
 <template>
     <v-menu offset-y>
-        <v-badge slot="activator" left overlap color="error" class="ml-3 mr-2">
+        <v-badge slot="activator" left overlap color="error" class="ml-2 mr-2 mt-2">
             <span slot="badge" v-text="amount"></span>
             <v-btn icon color="white" :loading="loading" :disabled="loading">
                 <v-icon :large="large" color="primary">notifications</v-icon>
@@ -28,7 +28,10 @@
                 <v-list-tile-content>
                     <v-list-tile-title style="max-width: 450px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         <v-icon v-if="notification.data.icon" :color="notification.data.iconColor">{{ notification.data.icon }}</v-icon>
-                        {{ notification.data.title }}
+                        <v-tooltip bottom>
+                            <span slot="activator">{{ notification.data.title }}</span>
+                            <span>{{ notification.data.title }}</span>
+                        </v-tooltip>
                     </v-list-tile-title>
                 </v-list-tile-content>
             </v-list-tile>
@@ -78,9 +81,8 @@ export default {
         this.dataNotifications = response.data
         this.loading = false
         if (message) this.$snackbar.showMessage('Notificacions actualitzades correctament')
-      }).catch(error => {
+      }).catch(() => {
         this.loading = false
-        this.$snackbar.showError(error)
       })
     },
     markAsReaded (notification) {
@@ -88,9 +90,8 @@ export default {
       window.axios.delete('/api/v1/user/unread_notifications/' + notification.id).then(() => {
         this.loading = false
         this.refresh()
-      }).catch(error => {
+      }).catch(() => {
         this.loading = false
-        this.$snackbar(error)
       })
     },
     markAllAsReaded () {
@@ -99,10 +100,15 @@ export default {
       window.axios.delete('/api/v1/user/unread_notifications/all').then(() => {
         this.loading = false
         this.refresh()
-      }).catch(error => {
+      }).catch(() => {
         this.loading = false
-        this.$snackbar(error)
       })
+    },
+    listen () {
+      window.Echo.private('App.User.' + window.laravel_user.id)
+        .notification((notification) => {
+          this.refresh(false)
+        })
     }
   },
   created () {
@@ -113,11 +119,11 @@ export default {
       window.axios.get('/api/v1/user/unread_notifications').then((response) => {
         this.dataNotifications = response.data
         this.loading = false
-      }).catch(error => {
-        this.$snackbar.showError(error)
+      }).catch(() => {
         this.loading = false
       })
     }
+    this.listen()
   }
 }
 </script>

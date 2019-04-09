@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AvatarController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\Web\ChatController;
 use App\Task;
+use Faker\Factory;
 
 Auth::routes();
 
@@ -75,6 +77,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/users', '\\' . UsersController::class . '@index');
 
+    Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');
+    Route::post('/subscriptions/Delete', '\\' . PushSubscriptionController::class . '@destroy');
+
 
 });
 
@@ -88,7 +93,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Login Facebook
 //Route::get('/auth/facebook', '\\' . LoginController::class . '@redirectToProvider');

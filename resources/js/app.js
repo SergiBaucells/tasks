@@ -44,6 +44,8 @@ import ShowOneTask from './components/ShowOneTask.vue'
 import Chat from './components/chat/Chat.vue'
 import UsersList from './components/users/UsersList.vue'
 import GamepadStickSimple from './components/games/GamepadStickSimple.vue'
+import UsersOnlineWidget from './components/users/UsersOnlineWidget.vue'
+import PushNotificationsButton from './components/PushNotificationsButton.vue'
 import '../img/catalunya.png'
 import '../img/catalunya.webp'
 import '../img/portada.jpg'
@@ -300,6 +302,9 @@ window.Vue.component('clock', Clock)
 window.Vue.component('chat', Chat)
 window.Vue.component('users-list', UsersList)
 window.Vue.component('gamepad-stick-simple', GamepadStickSimple)
+window.Vue.component('users-online-widget', UsersOnlineWidget)
+window.Vue.component('push-notifications-button', PushNotificationsButton)
+window.eventBus = new Vue()
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)

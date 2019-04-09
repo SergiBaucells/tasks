@@ -4,6 +4,8 @@
         <v-toolbar-title>Menú</v-toolbar-title>
         <v-spacer></v-spacer>
 
+        <users-online-widget></users-online-widget>
+
         <notifications-widget></notifications-widget>
 
         <span class="mr-4 hidden-xs-only" v-role="'SuperAdmin'"><git-info></git-info></span>

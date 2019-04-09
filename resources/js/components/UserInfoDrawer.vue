@@ -50,6 +50,8 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
+                <v-divider></v-divider>
+                <push-notifications-button></push-notifications-button>
             </v-list>
         </v-card>
         <v-card>

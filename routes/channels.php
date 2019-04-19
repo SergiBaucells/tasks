@@ -22,6 +22,7 @@ Broadcast::channel('Tasques', function ($user) {
 Broadcast::channel('App.Counter', function ($user) {
     return [
         'id' => $user->id,
-        'name' => $user->name
+        'name' => $user->name,
+        'gravatar' => $user->gravatar
     ];
 });

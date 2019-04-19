@@ -97,7 +97,8 @@ export default {
         { icon: 'av_timer', text: 'Rellotge', url: '/clock' },
         { icon: 'chat', text: 'Xat', url: '/chat' },
         { icon: 'supervisor_account', text: 'Users', url: '/users' },
-        { icon: 'videogame_asset', text: 'Joc', url: '/game' }
+        { icon: 'videogame_asset', text: 'Joc', url: '/game' },
+        { icon: 'music_video', text: 'Multimedia', url: '/multimedia' }
       ]
     }
   },

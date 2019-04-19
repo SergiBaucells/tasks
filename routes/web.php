@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\LoginController;
@@ -70,6 +71,9 @@ Route::middleware(['auth'])->group(function () {
 
     //Clock
     Route::get('/clock', '\\' . ClockController::class . '@index');
+
+    //Multimedia
+    Route::get('/multimedia', '\\' . MultimediaController::class . '@index');
 
     //Xat
     Route::get('/chat', '\\' . ChatController::class . '@index');

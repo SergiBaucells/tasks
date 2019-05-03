@@ -44,7 +44,7 @@ class VerifyMobile extends Notification
     public function toNexmo($notifiable)
     {
         return (new NexmoMessage)
-            ->content($this->code . ' ' . config('app.url') . '/verificar_mobil')
+            ->content($this->code)
             ->unicode();
     }
 

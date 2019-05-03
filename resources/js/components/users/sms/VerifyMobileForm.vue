@@ -47,7 +47,7 @@ export default {
   methods: {
     validate () {
       this.loading = true
-      window.axios.post('/api/v1/users/' + window.user.id + '/verify_mobile', {
+      window.axios.post('/api/v1/users/' + window.laravel_user.id + '/verify_mobile', {
         code: this.code
       }).then(() => {
         this.loading = false

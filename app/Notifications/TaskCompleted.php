@@ -15,7 +15,7 @@ use NotificationChannels\WebPush\WebPushMessage;
  *
  * @package App\Notifications
  */
-class TaskStored extends Notification implements ShouldQueue
+class TaskCompleted extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -50,7 +50,7 @@ class TaskStored extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
-            'title' => "S'ha creat una nova tasca: " . $this->task->name,
+            'title' => "S'ha completat una tasca: " . $this->task->name,
             'url' => '/tasques/' . $this->task->id,
             'icon' => 'assignment',
             'iconColor' => 'primary',
@@ -68,9 +68,9 @@ class TaskStored extends Notification implements ShouldQueue
     public function toWebPush($notifiable, $notification)
     {
         return (new WebPushMessage)
-            ->title('Tasca creada!')
+            ->title('Tasca completada!')
             ->icon('/notification-icon.png')
-            ->body('Has creat la tasca: ' . $this->task->name)
+            ->body('Has completat la tasca: ' . $this->task->name)
             ->action('View app', 'view_app')
             ->data(['id' => $notification->id]);
     }

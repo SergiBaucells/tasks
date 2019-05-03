@@ -17,6 +17,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\Web\ChatController;
+use App\Http\Controllers\VerifyMobileController;
 use App\Task;
 use Faker\Factory;
 
@@ -65,6 +66,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Mobile
     Route::get('/mobile', '\\' . MobileController::class . '@index');
+    Route::get('/verificar_mobil','\\' . VerifyMobileController::class . '@index');
+    Route::post('/verificar_mobil','\\' . VerifyMobileController::class . '@send');
 
     //Newsletters
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');

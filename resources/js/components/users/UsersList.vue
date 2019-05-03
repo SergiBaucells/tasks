@@ -23,7 +23,9 @@
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.mobile }}</td>
                                 <td>{{ user.email_verified_at }}</td>
-                                <td></td>
+                                <td>
+                                    <user-emails :user="user"></user-emails>
+                                </td>
                             </template>
                         </v-data-table>
                     </v-flex>
@@ -34,8 +36,13 @@
 </template>
 
 <script>
+import UserEmails from './UserEmailsComponent'
+
 export default {
   name: 'UsersList',
+  components: {
+    'user-emails': UserEmails
+  },
   data () {
     return {
       dataUsers: this.users,
@@ -52,7 +59,8 @@ export default {
   },
   props: {
     users: {
-      type: Array
+      type: Array,
+      required: true
     }
   }
 }

@@ -47,6 +47,7 @@ import GamepadStickSimple from './components/games/GamepadStickSimple.vue'
 import UsersOnlineWidget from './components/users/UsersOnlineWidget.vue'
 import PushNotificationsButton from './components/PushNotificationsButton.vue'
 import MultimediaSupportHtml5 from './components/Multimedia/MultimediaSupportHtml5.vue'
+import VerifyMobileForm from './components/users/sms/VerifyMobileForm.vue'
 import '../img/catalunya.png'
 import '../img/catalunya.webp'
 import '../img/portada.jpg'
@@ -306,6 +307,7 @@ window.Vue.component('gamepad-stick-simple', GamepadStickSimple)
 window.Vue.component('users-online-widget', UsersOnlineWidget)
 window.Vue.component('push-notifications-button', PushNotificationsButton)
 window.Vue.component('multimedia-support-html', MultimediaSupportHtml5)
+window.Vue.component('verify-mobile-form', VerifyMobileForm)
 window.eventBus = new Vue()
 
 // eslint-disable-next-line no-unused-vars

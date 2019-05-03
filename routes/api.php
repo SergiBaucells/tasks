@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\Notifications\UserNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\PushSubscriptions\PushSubscriptionController;
+use App\Http\Controllers\Api\SMS\VerifyMobileController;
 use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
@@ -105,6 +106,11 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@index');
     Route::post('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@store');
     Route::delete('/v1/channel/{channel}/messages/{message}', '\\' . ChatMessagesController::class . '@destroy');
+
+    //Mobile
+    Route::post('/users/{user}/verify_mobile', '\\' . VerifyMobileController::class . '@store');
+    Route::post('/users/{user}/send_mobile_verification', '\\' . VerifyMobileController::class . '@send');
+
 
 });
 

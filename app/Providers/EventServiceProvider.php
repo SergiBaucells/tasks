@@ -22,7 +22,10 @@ use App\Events\TaskUncompleted;
 use App\Listeners\LogTaskUpdated;
 use App\Listeners\SendDatabaseNotificationStore;
 use App\Listeners\SendTaskCompletedNotification;
+use App\Listeners\SendTaskDeleteNotification;
 use App\Listeners\SendTaskStoredNotification;
+use App\Listeners\SendTaskUncompletedNotification;
+use App\Listeners\SendTaskUpdateNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -44,7 +47,8 @@ class EventServiceProvider extends ServiceProvider
         TaskUncompleted::class => [
             LogTaskUncompleted::class,
             EmailTaskUncompleted::class,
-            ForgetTasksCache::class
+            ForgetTasksCache::class,
+            SendTaskUncompletedNotification::class
         ],
         TaskCompleted::class => [
             LogTaskCompleted::class,
@@ -61,12 +65,14 @@ class EventServiceProvider extends ServiceProvider
         TaskUpdate::class => [
             LogTaskUpdated::class,
             EmailTaskUpdated::class,
-            ForgetTasksCache::class
+            ForgetTasksCache::class,
+            SendTaskUpdateNotification::class
         ],
         TaskDelete::class => [
             LogTaskDelete::class,
             EmailTaskDelete::class,
-            ForgetTasksCache::class
+            ForgetTasksCache::class,
+            SendTaskDeleteNotification::class
         ],
         NotificationSent::class => [
             LogNotification::class,

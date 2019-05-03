@@ -1,11 +1,5 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/manifest.js": "/js/manifest.js",
-    "/js/vendor.js": "/js/vendor.js",
-    "/js/app.29cf92ae05f370d43aa3.hot-update.js": "/js/app.29cf92ae05f370d43aa3.hot-update.js",
-    "/js/app.424f594eb70e540964d2.hot-update.js": "/js/app.424f594eb70e540964d2.hot-update.js",
-    "/js/app.b9a0e3262b3fb3261d2a.hot-update.js": "/js/app.b9a0e3262b3fb3261d2a.hot-update.js",
-    "/js/app.e37b808aade2d9123774.hot-update.js": "/js/app.e37b808aade2d9123774.hot-update.js",
-    "/js/app.c82f4963cf271f09ca5a.hot-update.js": "/js/app.c82f4963cf271f09ca5a.hot-update.js",
-    "/js/app.a2e8f6ef07c455008c26.hot-update.js": "/js/app.a2e8f6ef07c455008c26.hot-update.js"
+    "/js/vendor.js": "/js/vendor.js"
 }

@@ -54,7 +54,7 @@ export default {
     },
     sendMobileVerification () {
       this.loading = true
-      window.axios.post('api/users/' + this.user.id + '/send_mobile_verification').then((response) => {
+      window.axios.post('/api/v1/users/' + this.user.id + '/send_mobile_verification').then((response) => {
         this.loading = false
         this.$snackbar.showMessage('SMS enviat correctament')
       }).catch(() => {

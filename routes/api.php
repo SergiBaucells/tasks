@@ -108,8 +108,8 @@ Route::middleware(['auth:api'])->group(function () {
     Route::delete('/v1/channel/{channel}/messages/{message}', '\\' . ChatMessagesController::class . '@destroy');
 
     //Mobile
-    Route::post('/users/{user}/verify_mobile', '\\' . VerifyMobileController::class . '@store');
-    Route::post('/users/{user}/send_mobile_verification', '\\' . VerifyMobileController::class . '@send');
+    Route::post('/v1/users/{user}/verify_mobile', '\\' . VerifyMobileController::class . '@store');
+    Route::post('/v1/users/{user}/send_mobile_verification', '\\' . VerifyMobileController::class . '@send');
 
 
 });

@@ -5,7 +5,7 @@
 - [ ] Fer ChangeLogs en temps real amb un Observer de la taula Logs.
 - [ ] Joc personal.
 - [ ] Afegir música al joc de sergi (música al agafar monedes).
-- [ ] LanParty -> Mirar tema imatge.
+- [ ] LanParty -> Mirar tema imatge, validacions
 #### TODO possibles millores (opcionals):
 
 ### Fer en explotació

@@ -38,7 +38,8 @@ class TaskDelete implements ShouldBroadcast
     {
         return [
             new PrivateChannel('App.User.' . $this->user->id),
-            new PrivateChannel('Tasques')
+            new PrivateChannel('Tasques'),
+            new PrivateChannel('App.Log')
         ];
     }
 }

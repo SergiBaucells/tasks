@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.df0d2f2aa9510b0d5c789e7d5ad8d337.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.c32fa3c2764ee7265c920f44661ca8e7.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
 
 workbox.setConfig({
   debug: true
@@ -77,6 +77,26 @@ const WebPush = {
   },
 
   /**
+     * Handle notification push event.
+     *
+     * https://developer.mozilla.org/en-US/docs/Web/Events/push
+     *
+     * @param {NotificationEvent} event
+     */
+  notificationPush (event) {
+    if (!(self.Notification && self.Notification.permission === 'granted')) {
+      return
+    }
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData
+    if (event.data) {
+      event.waitUntil(
+        this.sendNotification(event.data.json())
+      )
+    }
+  },
+
+  /**
    * Handle notification push event.
    *
    * https://developer.mozilla.org/en-US/docs/Web/Events/push
@@ -113,22 +133,6 @@ const WebPush = {
       default:
         console.log(`Unknown action clicked: '${event.action}'`)
         break
-    }
-  },
-  /**
-   * Handle notification click event.
-   *
-   * https://developer.mozilla.org/en-US/docs/Web/Events/notificationclick
-   *
-   * @param {NotificationEvent} event
-   */
-  notificationClick (event) {
-    // console.log(event.notification)
-    if (event.action === 'some_action') {
-      // Do something...
-      // TODO
-    } else {
-      self.clients.openWindow('/')
     }
   },
 

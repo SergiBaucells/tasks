@@ -71,8 +71,8 @@ class TaskCompleted extends Notification implements ShouldQueue
             ->title('Tasca completada!')
             ->icon('/notification-icon.png')
             ->body('Has completat la tasca: ' . $this->task->name)
-            ->action('View app', 'view_app')
-            ->data(['id' => $notification->id]);
+            ->action('Visualitza la tasca', 'open_url')
+            ->data(['url' => env('APP_URL') . '/tasques/' . $this->task->id]);
     }
 
 }

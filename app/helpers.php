@@ -403,7 +403,7 @@ if (!function_exists('create_example_tasks')) {
                 $sergitur = factory(User::class)->create([
                     'name' => 'Sergi Tur',
                     'email' => 'sergiturbadenas@gmail.com',
-                    'mobile' => '679525437',
+                    'mobile' => '34679525437',
                     'password' => bcrypt(env('PRIMARY_USER_PASSWORD', 'secret'))
                 ]);
                 $sergitur->admin = true;

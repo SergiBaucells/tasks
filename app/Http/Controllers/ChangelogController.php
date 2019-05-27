@@ -23,12 +23,7 @@ class ChangelogController extends Controller
     {
         $logs = map_collection(Log::with(
             'user'
-        )->get()->loadMorph(
-            'loggable', [ // could instead be named loadMixed()? loadMorphed()?
-                \App\Models\Incident::class => ['user','closer','comments','tags','assignees']
-            ]
-        ));
-        // loadMorph allows eager load different fields/properties depending on type of polimorphic relation
+        )->get());
 
         $users = User::all();
         return view('changelog.index', compact('logs','users'));

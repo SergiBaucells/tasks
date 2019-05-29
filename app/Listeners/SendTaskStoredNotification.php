@@ -6,7 +6,7 @@ use App\Notifications\TaskStored;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendTaskStoredNotification
+class SendTaskStoredNotification implements ShouldQueue
 {
     /**
      * Create the event listener.

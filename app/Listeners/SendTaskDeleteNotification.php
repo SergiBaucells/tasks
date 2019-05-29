@@ -3,8 +3,9 @@
 namespace App\Listeners;
 
 use App\Notifications\TaskDeleted;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendTaskDeleteNotification
+class SendTaskDeleteNotification implements ShouldQueue
 {
     /**
      * Create the event listener.

@@ -3,8 +3,9 @@
 namespace App\Listeners;
 
 use App\Notifications\TaskUpdated;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendTaskUpdateNotification
+class SendTaskUpdateNotification implements ShouldQueue
 {
     /**
      * Create the event listener.

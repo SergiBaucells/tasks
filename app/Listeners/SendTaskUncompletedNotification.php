@@ -3,8 +3,9 @@
 namespace App\Listeners;
 
 use App\Notifications\TaskUncompleted;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendTaskUncompletedNotification
+class SendTaskUncompletedNotification implements ShouldQueue
 {
     /**
      * Create the event listener.
